@@ -1,0 +1,155 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "features": "Fonctionnalités",
+        "blog": "Blog",
+        "about": "À propos",
+        "contact": "Contact"
+    },
+    "hero": {
+        "badge": "Outil de visualisation Instagram gratuit",
+        "title": "Visualiseur de {story} et {followers} Instagram",
+        "story": "Stories",
+        "followers": "Abonnés",
+        "subtitle": "Visualisez les stories, profils, reels et abonnés Instagram de manière anonyme. Aucune connexion requise. 100% gratuit et sécurisé.",
+        "searchPlaceholder": "Entrez le nom d'utilisateur Instagram...",
+        "searchButton": "Voir le profil",
+        "searchHint": "Essayez: @instagram, @cristiano, @therock",
+        "stats": {
+            "profiles": "Profils vus",
+            "stories": "Stories vues",
+            "anonymous": "Anonyme"
+        }
+    },
+    "features": {
+        "badge": "Fonctionnalités",
+        "title": "Découvrez la {magic} d'InstaPSV",
+        "magic": "Magie",
+        "subtitle": "Des outils puissants pour explorer le contenu Instagram de manière anonyme et sécurisée.",
+        "storyViewer": {
+            "title": "Visualiseur de Stories",
+            "description": "Regardez les stories Instagram de manière anonyme. Enregistrez les stories avant qu'elles ne disparaissent."
+        },
+        "followersParser": {
+            "title": "Analyseur d'Abonnés",
+            "description": "Consultez les listes complètes d'abonnés et d'abonnements de tout profil Instagram public."
+        },
+        "reelsViewer": {
+            "title": "Visualiseur de Reels",
+            "description": "Regardez et téléchargez des Reels Instagram en haute qualité sans vous connecter."
+        },
+        "photoSaver": {
+            "title": "Sauvegarde de Photos",
+            "description": "Téléchargez des photos Instagram et des photos de profil en qualité originale."
+        },
+        "learnMore": "En savoir plus"
+    },
+    "howItWorks": {
+        "badge": "Comment ça marche",
+        "title": "Seulement {steps} pour explorer",
+        "steps": "3 étapes",
+        "subtitle": "Commencez à visualiser le contenu Instagram de manière anonyme en quelques secondes.",
+        "step1": {
+            "title": "Entrez le nom d'utilisateur",
+            "description": "Tapez le nom d'utilisateur Instagram que vous souhaitez explorer."
+        },
+        "step2": {
+            "title": "Voir le profil",
+            "description": "Parcourez leurs publications, stories, reels et abonnés de manière anonyme."
+        },
+        "step3": {
+            "title": "Télécharger le contenu",
+            "description": "Enregistrez n'importe quelle photo, vidéo ou story en un seul clic."
+        }
+    },
+    "faq": {
+        "badge": "Support",
+        "title": "Questions {questions}",
+        "questions": "Fréquentes",
+        "subtitle": "Trouvez des réponses aux questions courantes sur InstaPSV.",
+        "contactCta": "Encore des questions?",
+        "contactLink": "Contacter le support",
+        "items": [
+            {
+                "question": "InstaPSV est-il gratuit?",
+                "answer": "Oui, InstaPSV est entièrement gratuit. Nous offrons toutes nos fonctionnalités sans frais."
+            },
+            {
+                "question": "Les utilisateurs Instagram peuvent-ils voir si j'ai vu leur profil?",
+                "answer": "Non, lorsque vous utilisez InstaPSV, vous restez complètement anonyme."
+            },
+            {
+                "question": "Dois-je créer un compte?",
+                "answer": "Non, aucune inscription requise. Entrez simplement le nom d'utilisateur et commencez immédiatement."
+            },
+            {
+                "question": "Puis-je télécharger des stories et des publications?",
+                "answer": "Oui! InstaPSV permet de télécharger des stories, publications, reels et photos de profil."
+            },
+            {
+                "question": "L'utilisation d'InstaPSV est-elle légale?",
+                "answer": "InstaPSV n'accède qu'au contenu publiquement disponible sur Instagram."
+            },
+            {
+                "question": "Pourquoi ne puis-je pas voir certains profils?",
+                "answer": "InstaPSV ne peut accéder qu'aux profils Instagram publics."
+            }
+        ]
+    },
+    "testimonials": {
+        "badge": "Avis",
+        "title": "Ce que nos utilisateurs disent d'{brand}",
+        "brand": "InstaPSV",
+        "subtitle": "Rejoignez des milliers d'utilisateurs satisfaits qui font confiance à InstaPSV."
+    },
+    "cta": {
+        "title": "Voir les {followers} Instagram",
+        "followers": "Abonnés",
+        "description": "Prêt à explorer les profils Instagram de manière anonyme? Commencez maintenant. Aucune connexion requise, entièrement gratuit!",
+        "primaryBtn": "Commencer maintenant",
+        "secondaryBtn": "Explorer les fonctionnalités",
+        "badges": {
+            "secure": "100% Sécurisé",
+            "noLogin": "Sans connexion",
+            "instant": "Accès instantané"
+        }
+    },
+    "featureSuggestion": {
+        "title": "Aidez-nous à créer le meilleur {tool}",
+        "tool": "outil Instagram",
+        "description": "Nous améliorons constamment InstaPSV. Partagez vos idées avec nous.",
+        "textareaPlaceholder": "Décrivez votre idée de fonctionnalité...",
+        "emailPlaceholder": "Votre email (optionnel)",
+        "submitBtn": "Soumettre l'idée",
+        "sent": "Envoyé!",
+        "popularLabel": "Demandes populaires:",
+        "tags": [
+            "Mode sombre",
+            "Téléchargement en lot",
+            "Visualiseur de highlights",
+            "Extension de navigateur"
+        ]
+    },
+    "blog": {
+        "title": "Blog",
+        "subtitle": "Conseils, tutoriels et guides pour InstaPSV.",
+        "viewAll": "Voir tous les articles",
+        "readMore": "Lire la suite",
+        "recentPosts": "Articles récents",
+        "categories": "Catégories",
+        "archive": "Archives"
+    },
+    "footer": {
+        "description": "L'outil le plus puissant et sécurisé pour visualiser les stories, profils et abonnés Instagram de manière anonyme.",
+        "product": "Produit",
+        "company": "Entreprise",
+        "legal": "Mentions légales",
+        "copyright": "© {year} InstaPSV. Tous droits réservés.",
+        "disclaimer": "Non affilié à Instagram ou Meta."
+    },
+    "common": {
+        "loading": "Chargement...",
+        "error": "Une erreur s'est produite",
+        "tryAgain": "Réessayer"
+    }
+}

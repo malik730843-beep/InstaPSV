@@ -1,0 +1,155 @@
+{
+    "nav": {
+        "home": "Hjem",
+        "features": "Funksjoner",
+        "blog": "Blogg",
+        "about": "Om oss",
+        "contact": "Kontakt"
+    },
+    "hero": {
+        "badge": "Gratis Instagram Viewer",
+        "title": "Instagram {story} og {followers} Viewer",
+        "story": "Stories",
+        "followers": "Følgere",
+        "subtitle": "Se Instagram-historier, profiler, reels og følgere anonymt. Ingen pålogging kreves. 100% gratis og sikker.",
+        "searchPlaceholder": "Skriv inn brukernavn...",
+        "searchButton": "Vis profil",
+        "searchHint": "Prøv: @instagram, @cristiano, @therock",
+        "stats": {
+            "profiles": "Profiler vist",
+            "stories": "Historier vist",
+            "anonymous": "Anonym"
+        }
+    },
+    "features": {
+        "badge": "Funksjoner",
+        "title": "Oppdag {magic} av InstaPSV",
+        "magic": "Magien",
+        "subtitle": "Kraftige verktøy for å utforske Instagram-innhold anonymt.",
+        "storyViewer": {
+            "title": "Story Viewer",
+            "description": "Se Instagram-historier anonymt."
+        },
+        "followersParser": {
+            "title": "Følgere Analyzer",
+            "description": "Se komplette følgerlister."
+        },
+        "reelsViewer": {
+            "title": "Reels Viewer",
+            "description": "Se og last ned Reels i høy kvalitet."
+        },
+        "photoSaver": {
+            "title": "Foto Lagrer",
+            "description": "Last ned bilder i originalkvalitet."
+        },
+        "learnMore": "Les mer"
+    },
+    "howItWorks": {
+        "badge": "Hvordan det fungerer",
+        "title": "Bare {steps} for å utforske",
+        "steps": "3 trinn",
+        "subtitle": "Begynn å se Instagram-innhold anonymt på sekunder.",
+        "step1": {
+            "title": "Skriv brukernavn",
+            "description": "Skriv Instagram-brukernavnet."
+        },
+        "step2": {
+            "title": "Vis profil",
+            "description": "Bla gjennom innlegg, historier og følgere anonymt."
+        },
+        "step3": {
+            "title": "Last ned innhold",
+            "description": "Lagre foto, video eller historie med ett klikk."
+        }
+    },
+    "faq": {
+        "badge": "Support",
+        "title": "Vanlige {questions}",
+        "questions": "Spørsmål",
+        "subtitle": "Finn svar på vanlige spørsmål om InstaPSV.",
+        "contactCta": "Flere spørsmål?",
+        "contactLink": "Kontakt support",
+        "items": [
+            {
+                "question": "Er InstaPSV gratis?",
+                "answer": "Ja, helt gratis."
+            },
+            {
+                "question": "Kan brukere se at jeg så?",
+                "answer": "Nei, du forblir anonym."
+            },
+            {
+                "question": "Må jeg opprette konto?",
+                "answer": "Nei, ingen registrering."
+            },
+            {
+                "question": "Kan jeg laste ned historier?",
+                "answer": "Ja! Du kan laste ned alt."
+            },
+            {
+                "question": "Er det lovlig?",
+                "answer": "Vi bruker kun offentlig innhold."
+            },
+            {
+                "question": "Hvorfor kan jeg ikke se noen profiler?",
+                "answer": "Kun offentlige profiler."
+            }
+        ]
+    },
+    "testimonials": {
+        "badge": "Anmeldelser",
+        "title": "Hva brukere sier om {brand}",
+        "brand": "InstaPSV",
+        "subtitle": "Tusenvis av fornøyde brukere."
+    },
+    "cta": {
+        "title": "Vis Instagram {followers}",
+        "followers": "Følgere",
+        "description": "Klar til å utforske? Start nå. Gratis!",
+        "primaryBtn": "Start nå",
+        "secondaryBtn": "Utforsk funksjoner",
+        "badges": {
+            "secure": "100% Sikker",
+            "noLogin": "Ingen pålogging",
+            "instant": "Umiddelbar tilgang"
+        }
+    },
+    "featureSuggestion": {
+        "title": "Hjelp oss bygge det beste {tool}",
+        "tool": "Instagram-verktøyet",
+        "description": "Del ideene dine.",
+        "textareaPlaceholder": "Beskriv ideen din...",
+        "emailPlaceholder": "Din e-post (valgfritt)",
+        "submitBtn": "Send idé",
+        "sent": "Sendt!",
+        "popularLabel": "Populære:",
+        "tags": [
+            "Mørk modus",
+            "Batch-nedlasting",
+            "Highlights",
+            "Utvidelse"
+        ]
+    },
+    "blog": {
+        "title": "Blogg",
+        "subtitle": "Tips og guider.",
+        "viewAll": "Alle artikler",
+        "readMore": "Les mer",
+        "recentPosts": "Nyeste",
+        "categories": "Kategorier",
+        "archive": "Arkiv"
+    },
+    "footer": {
+        "description": "Det sikreste verktøyet for anonym Instagram-visning.",
+        "product": "Produkt",
+        "company": "Selskap",
+        "legal": "Juridisk",
+        "copyright": "© {year} InstaPSV.",
+        "disclaimer": "Ikke tilknyttet Instagram."
+    },
+    "common": {
+        "loading": "Laster...",
+        "error": "Noe gikk galt",
+        "tryAgain": "Prøv igjen"
+    }
+}

@@ -1,0 +1,155 @@
+{
+    "nav": {
+        "home": "Home",
+        "features": "Functies",
+        "blog": "Blog",
+        "about": "Over ons",
+        "contact": "Contact"
+    },
+    "hero": {
+        "badge": "Gratis Instagram Viewer Tool",
+        "title": "Instagram {story} en {followers} Viewer",
+        "story": "Verhalen",
+        "followers": "Volgers",
+        "subtitle": "Bekijk Instagram verhalen, profielen, reels en volgers anoniem. Geen login vereist. 100% gratis en veilig.",
+        "searchPlaceholder": "Voer gebruikersnaam in...",
+        "searchButton": "Profiel bekijken",
+        "searchHint": "Probeer: @instagram, @cristiano, @therock",
+        "stats": {
+            "profiles": "Profielen bekeken",
+            "stories": "Verhalen bekeken",
+            "anonymous": "Anoniem"
+        }
+    },
+    "features": {
+        "badge": "Functies",
+        "title": "Ontdek de {magic} van InstaPSV",
+        "magic": "Magie",
+        "subtitle": "Krachtige tools om Instagram-content anoniem en veilig te verkennen.",
+        "storyViewer": {
+            "title": "Verhalen Viewer",
+            "description": "Bekijk Instagram verhalen anoniem. Sla verhalen op voordat ze verdwijnen."
+        },
+        "followersParser": {
+            "title": "Volgers Analyzer",
+            "description": "Bekijk volledige volgers- en volgend-lijsten van elk openbaar profiel."
+        },
+        "reelsViewer": {
+            "title": "Reels Viewer",
+            "description": "Bekijk en download Instagram Reels in hoge kwaliteit zonder in te loggen."
+        },
+        "photoSaver": {
+            "title": "Foto Opslaan",
+            "description": "Download Instagram foto's en profielfoto's in originele kwaliteit."
+        },
+        "learnMore": "Meer info"
+    },
+    "howItWorks": {
+        "badge": "Hoe het werkt",
+        "title": "Slechts {steps} om te verkennen",
+        "steps": "3 stappen",
+        "subtitle": "Begin in seconden met het anoniem bekijken van Instagram-content.",
+        "step1": {
+            "title": "Voer gebruikersnaam in",
+            "description": "Typ de Instagram-gebruikersnaam die je wilt verkennen."
+        },
+        "step2": {
+            "title": "Bekijk profiel",
+            "description": "Blader door hun berichten, verhalen, reels en volgers anoniem."
+        },
+        "step3": {
+            "title": "Download content",
+            "description": "Sla elke foto, video of verhaal op met één klik."
+        }
+    },
+    "faq": {
+        "badge": "Ondersteuning",
+        "title": "Veelgestelde {questions}",
+        "questions": "Vragen",
+        "subtitle": "Vind antwoorden op veelgestelde vragen over InstaPSV.",
+        "contactCta": "Nog vragen?",
+        "contactLink": "Contact support",
+        "items": [
+            {
+                "question": "Is InstaPSV gratis?",
+                "answer": "Ja, InstaPSV is volledig gratis."
+            },
+            {
+                "question": "Kunnen gebruikers zien dat ik hun profiel heb bekeken?",
+                "answer": "Nee, wanneer je InstaPSV gebruikt, blijf je volledig anoniem."
+            },
+            {
+                "question": "Moet ik een account aanmaken?",
+                "answer": "Nee, geen registratie vereist."
+            },
+            {
+                "question": "Kan ik verhalen en berichten downloaden?",
+                "answer": "Ja! InstaPSV maakt het mogelijk om verhalen, berichten, reels en profielfoto's te downloaden."
+            },
+            {
+                "question": "Is het legaal om InstaPSV te gebruiken?",
+                "answer": "InstaPSV heeft alleen toegang tot openbaar beschikbare content op Instagram."
+            },
+            {
+                "question": "Waarom kan ik bepaalde profielen niet zien?",
+                "answer": "InstaPSV kan alleen openbare Instagram-profielen bekijken."
+            }
+        ]
+    },
+    "testimonials": {
+        "badge": "Reviews",
+        "title": "Wat onze gebruikers zeggen over {brand}",
+        "brand": "InstaPSV",
+        "subtitle": "Sluit je aan bij duizenden tevreden gebruikers die InstaPSV vertrouwen."
+    },
+    "cta": {
+        "title": "Bekijk Instagram {followers}",
+        "followers": "Volgers",
+        "description": "Klaar om Instagram-profielen anoniem te verkennen? Begin nu. Geen login vereist, volledig gratis!",
+        "primaryBtn": "Nu beginnen",
+        "secondaryBtn": "Ontdek functies",
+        "badges": {
+            "secure": "100% Veilig",
+            "noLogin": "Geen login nodig",
+            "instant": "Directe toegang"
+        }
+    },
+    "featureSuggestion": {
+        "title": "Help ons de beste {tool} te bouwen",
+        "tool": "Instagram tool",
+        "description": "We verbeteren InstaPSV voortdurend. Deel je ideeën.",
+        "textareaPlaceholder": "Beschrijf je idee...",
+        "emailPlaceholder": "Je email (optioneel)",
+        "submitBtn": "Idee indienen",
+        "sent": "Verzonden!",
+        "popularLabel": "Populaire verzoeken:",
+        "tags": [
+            "Donkere modus",
+            "Batch download",
+            "Highlights viewer",
+            "Browser extensie"
+        ]
+    },
+    "blog": {
+        "title": "Blog",
+        "subtitle": "Tips, tutorials en handleidingen voor InstaPSV.",
+        "viewAll": "Alle artikelen bekijken",
+        "readMore": "Lees meer",
+        "recentPosts": "Recente berichten",
+        "categories": "Categorieën",
+        "archive": "Archief"
+    },
+    "footer": {
+        "description": "De krachtigste en veiligste tool om Instagram verhalen, profielen en volgers anoniem te bekijken.",
+        "product": "Product",
+        "company": "Bedrijf",
+        "legal": "Juridisch",
+        "copyright": "© {year} InstaPSV. Alle rechten voorbehouden.",
+        "disclaimer": "Niet verbonden met Instagram of Meta."
+    },
+    "common": {
+        "loading": "Laden...",
+        "error": "Er ging iets mis",
+        "tryAgain": "Probeer opnieuw"
+    }
+}

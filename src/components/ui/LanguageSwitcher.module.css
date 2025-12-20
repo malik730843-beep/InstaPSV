@@ -1,0 +1,96 @@
+.wrapper {
+    position: relative;
+}
+
+.trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.trigger:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+.globeIcon {
+    opacity: 0.9;
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + var(--spacing-xs));
+    right: 0;
+    min-width: 160px;
+    background: rgba(10, 10, 26, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xs);
+    z-index: var(--z-dropdown);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--color-text-light-muted);
+    font-size: var(--font-size-sm);
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+}
+
+.option.active {
+    background: rgba(255, 0, 128, 0.2);
+    color: var(--color-white);
+}
+
+.name {
+    flex: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .trigger {
+        padding: var(--spacing-xs);
+    }
+
+    .code {
+        display: none;
+    }
+
+    .dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        padding: var(--spacing-md);
+    }
+
+    .option {
+        padding: var(--spacing-md);
+    }
+}

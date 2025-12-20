@@ -1,0 +1,569 @@
+/* ============================================
+   InstaPSV - Premium Design System
+   ============================================ */
+
+/* Google Fonts - Nunito */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ============================================
+   CSS Variables - Design Tokens
+   ============================================ */
+:root {
+  /* Primary Colors */
+  --color-primary-dark: #0a0a1a;
+  --color-primary-darker: #050510;
+  --color-secondary-dark: #1a1a3e;
+
+  /* Gradient Colors */
+  --color-gradient-pink: #ff0080;
+  --color-gradient-purple: #7928ca;
+  --color-gradient-blue: #00d4ff;
+  --color-gradient-magenta: #ff00ff;
+
+  /* Light Theme Colors */
+  --color-light-bg: #f8f9ff;
+  --color-white: #ffffff;
+  --color-light-gray: #f3f4f6;
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-dark: #1a1a2e;
+  --color-text-muted: #6b7280;
+  --color-text-light-muted: #9ca3af;
+
+  /* Accent Colors */
+  --color-accent-success: #10b981;
+  --color-accent-warning: #f59e0b;
+  --color-accent-error: #ef4444;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #ff0080 0%, #7928ca 100%);
+  --gradient-secondary: linear-gradient(135deg, #7928ca 0%, #00d4ff 100%);
+  --gradient-hero-bg: linear-gradient(180deg, #0a0a1a 0%, #1a1a3e 50%, #0a0a1a 100%);
+  --gradient-text: linear-gradient(90deg, #ff0080, #7928ca, #00d4ff);
+  --gradient-button: linear-gradient(135deg, #ff0080 0%, #7928ca 50%, #00d4ff 100%);
+  --gradient-glow: radial-gradient(circle, rgba(255, 0, 128, 0.3) 0%, transparent 70%);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-light: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --shadow-glow-pink: 0 0 30px rgba(255, 0, 128, 0.3);
+  --shadow-glow-purple: 0 0 30px rgba(121, 40, 202, 0.3);
+
+  /* Typography */
+  --font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+
+  /* Line Heights */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  --spacing-5xl: 8rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* Container */
+  --container-max-width: 1280px;
+  --container-padding: 1.5rem;
+
+  /* Z-Index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-tooltip: 400;
+}
+
+/* ============================================
+   CSS Reset & Base Styles
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+h1,
+h2,
+h3 {
+  font-family: var(--font-family);
+  font-weight: 800;
+  line-height: var(--line-height-tight);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, var(--font-size-7xl));
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, var(--font-size-5xl));
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, var(--font-size-2xl));
+}
+
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* ============================================
+   Gradient Text
+   ============================================ */
+.gradient-text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+
+.gradient-text-primary {
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+   Container
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* ============================================
+   Sections
+   ============================================ */
+.section {
+  padding: var(--spacing-5xl) 0;
+}
+
+.section-dark {
+  background: var(--gradient-hero-bg);
+  color: var(--color-text-primary);
+}
+
+.section-light {
+  background: var(--color-light-bg);
+  color: var(--color-text-dark);
+}
+
+.section-white {
+  background: var(--color-white);
+  color: var(--color-text-dark);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-glow-pink);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(255, 0, 128, 0.5);
+}
+
+.btn-secondary {
+  background: var(--glass-bg-light);
+  color: var(--color-white);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: var(--glass-bg);
+  border-color: var(--color-gradient-pink);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-gradient-pink);
+  border: 2px solid var(--color-gradient-pink);
+}
+
+.btn-outline:hover {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+}
+
+/* ============================================
+   Cards
+   ============================================ */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card-glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  transition: all var(--transition-normal);
+}
+
+.card-glass:hover {
+  background: var(--glass-bg-light);
+  border-color: rgba(255, 0, 128, 0.3);
+  box-shadow: var(--shadow-glow-pink);
+}
+
+/* ============================================
+   Form Elements
+   ============================================ */
+.input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--color-text-light-muted);
+}
+
+.input:focus {
+  border-color: var(--color-gradient-pink);
+  box-shadow: 0 0 0 3px rgba(255, 0, 128, 0.1);
+}
+
+/* ============================================
+   Glassmorphism Header
+   ============================================ */
+.glass-header {
+  background: rgba(10, 10, 26, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}
+
+.gap-lg {
+  gap: var(--spacing-lg);
+}
+
+.gap-xl {
+  gap: var(--spacing-xl);
+}
+
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
+
+.mt-xl {
+  margin-top: var(--spacing-xl);
+}
+
+.mt-2xl {
+  margin-top: var(--spacing-2xl);
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mb-xl {
+  margin-bottom: var(--spacing-xl);
+}
+
+.mb-2xl {
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* ============================================
+   Responsive Breakpoints
+   ============================================ */
+@media (max-width: 1280px) {
+  :root {
+    --container-max-width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 1.25rem;
+    --spacing-5xl: 6rem;
+    --spacing-4xl: 4.5rem;
+  }
+
+  .section {
+    padding: var(--spacing-4xl) 0;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 1rem;
+    --spacing-5xl: 4rem;
+    --spacing-4xl: 3rem;
+  }
+
+  .section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  /* Responsive spacing utilities */
+  .mt-md-mobile {
+    margin-top: var(--spacing-md);
+  }
+
+  .mb-md-mobile {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-base: 0.9375rem;
+  }
+
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    width: 100%;
+    /* Default buttons to full width on very small screens */
+  }
+
+  h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+  }
+}
