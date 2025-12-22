@@ -8,10 +8,12 @@ import FAQ from '@/components/sections/FAQ';
 import Testimonials from '@/components/sections/Testimonials';
 import CTASection from '@/components/sections/CTASection';
 import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
+import FAQSchema from '@/components/seo/FAQSchema';
 
 export default function Home() {
   return (
     <>
+      <FAQSchema />
       <Header />
       <main>
         <Hero />

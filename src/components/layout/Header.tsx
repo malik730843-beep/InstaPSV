@@ -14,9 +14,9 @@ export default function Header() {
     const navLinks = [
         { href: '/', label: t('home') },
         { href: '/features', label: t('features') },
+        { href: '/highlights-viewer', label: t('highlights') },
         { href: '/blog', label: t('blog') },
         { href: '/about', label: t('about') },
-        { href: '/contact', label: t('contact') },
     ];
 
     useEffect(() => {

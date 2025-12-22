@@ -37,6 +37,7 @@ export default function ParticleBackground({ className }: ParticleBackgroundProp
         let renderer: THREE.WebGLRenderer;
         try {
             const canvas = document.createElement('canvas');
+            // Try to create a context first to see if it's truly available
             const gl = canvas.getContext('webgl', { failIfMajorPerformanceCaveat: true }) ||
                 canvas.getContext('experimental-webgl', { failIfMajorPerformanceCaveat: true });
 
@@ -44,7 +45,6 @@ export default function ParticleBackground({ className }: ParticleBackgroundProp
                 // Try again without performance caveat before giving up
                 const glBasic = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
                 if (!glBasic) {
-                    console.warn('WebGL not supported on this device.');
                     container.classList.add(styles.fallback);
                     return;
                 }
@@ -53,18 +53,18 @@ export default function ParticleBackground({ className }: ParticleBackgroundProp
             renderer = new THREE.WebGLRenderer({
                 alpha: true,
                 antialias: true,
-                powerPreference: 'low-power', // Use low-power for better compatibility on old GPUs
+                powerPreference: 'low-power',
                 failIfMajorPerformanceCaveat: false,
-                precision: 'lowp' // Use lower precision for older mobile/desktop GPUs
+                precision: 'lowp'
             });
 
             renderer.setSize(width, height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Limit pixel ratio for performance
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
             renderer.setClearColor(0x000000, 0);
             container.appendChild(renderer.domElement);
             rendererRef.current = renderer;
         } catch (error) {
-            console.warn('Failed to initialize WebGL renderer, using fallback background:', error);
+            // Silently fail and use fallback background
             container.classList.add(styles.fallback);
             return;
         }

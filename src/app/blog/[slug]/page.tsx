@@ -9,7 +9,7 @@ const mockPosts = [
     {
         id: 1,
         slug: 'how-to-view-instagram-stories-anonymously',
-        title: 'How to View Instagram Stories Anonymously in 2024',
+        title: 'How to View Instagram Stories Anonymously',
         content: `
             <p>Instagram stories have become one of the most popular features on the platform, with over 500 million daily active users. However, many users want to view stories without letting the poster know they've watched it. In this comprehensive guide, we'll show you exactly how to do that.</p>
             
@@ -55,7 +55,7 @@ const mockPosts = [
             <p>While there are various methods to view Instagram stories anonymously, using a dedicated tool like InstaPSV is the most reliable and convenient option. It requires no account creation, works instantly, and keeps your viewing completely anonymous.</p>
         `,
         category: 'Tutorials',
-        date: '2024-01-15',
+        date: '2025-01-15',
         readTime: 5,
         author: 'InstaPSV Team',
     },
@@ -108,7 +108,7 @@ const mockPosts = [
             <p>Regularly check your analytics to see what's working and adjust your strategy accordingly.</p>
         `,
         category: 'Growth',
-        date: '2024-01-12',
+        date: '2025-01-12',
         readTime: 8,
         author: 'InstaPSV Team',
     },
@@ -143,16 +143,16 @@ const mockPosts = [
             <p>Always respect copyright and ask permission before reposting someone else's content. Give credit to the original creator when sharing.</p>
         `,
         category: 'Tutorials',
-        date: '2024-01-10',
+        date: '2025-01-10',
         readTime: 4,
         author: 'InstaPSV Team',
     },
     {
         id: 4,
         slug: 'instagram-algorithm-explained',
-        title: 'Instagram Algorithm 2024: Everything You Need to Know',
+        title: 'Instagram Algorithm: Everything You Need to Know',
         content: `
-            <p>Understanding the Instagram algorithm is crucial for anyone looking to grow their presence on the platform. In 2024, Instagram uses a sophisticated AI-powered system to determine what content appears in your feed.</p>
+            <p>Understanding the Instagram algorithm is crucial for anyone looking to grow their presence on the platform. Instagram uses a sophisticated AI-powered system to determine what content appears in your feed.</p>
             
             <h2>How the Algorithm Works</h2>
             <p>The algorithm considers several key factors:</p>
@@ -181,7 +181,7 @@ const mockPosts = [
             </ol>
         `,
         category: 'Insights',
-        date: '2024-01-08',
+        date: '2025-01-08',
         readTime: 10,
         author: 'InstaPSV Team',
     },
@@ -223,7 +223,7 @@ const mockPosts = [
             <p>InstaPSV stands out as the best option for anonymous Instagram viewing with its combination of features, ease of use, and reliability.</p>
         `,
         category: 'Reviews',
-        date: '2024-01-05',
+        date: '2025-01-05',
         readTime: 6,
         author: 'InstaPSV Team',
     },
@@ -259,7 +259,7 @@ const mockPosts = [
             <p>Think twice before posting personal information like your address, phone number, or daily routine.</p>
         `,
         category: 'Privacy',
-        date: '2024-01-02',
+        date: '2025-01-02',
         readTime: 7,
         author: 'InstaPSV Team',
     },

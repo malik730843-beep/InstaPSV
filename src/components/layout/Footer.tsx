@@ -4,6 +4,7 @@ import styles from './Footer.module.css';
 const footerLinks = {
     product: [
         { href: '/features', label: 'Features' },
+        { href: '/highlights-viewer', label: 'Highlights Viewer' },
         { href: '/#how-it-works', label: 'How It Works' },
         { href: '/faq', label: 'FAQ' },
     ],

@@ -2,16 +2,17 @@
     "nav": {
         "home": "Home",
         "features": "Features",
+        "highlights": "Highlights",
         "blog": "Blog",
         "about": "About",
         "contact": "Contact"
     },
     "hero": {
-        "badge": "Free Instagram Viewer Tool",
-        "title": "Instagram {story} and {followers} Viewer",
+        "badge": "Free IG Story Viewer Tool — No Account Required",
+        "title": "Anonymous Instagram {story} Viewer and Private {followers} Parser",
         "story": "Story",
         "followers": "Followers",
-        "subtitle": "View Instagram stories, profiles, reels, and followers anonymously. No login required. 100% free and secure.",
+        "subtitle": "View and download Instagram stories, profiles, reels, and highlights anonymously. No login or account required. 100% free and secure.",
         "searchPlaceholder": "Enter Instagram username...",
         "searchButton": "View Profile",
         "searchHint": "Try: @instagram, @cristiano, @therock",
@@ -23,17 +24,17 @@
     },
     "features": {
         "badge": "Features",
-        "titleStart": "Discover InstaPSV's",
-        "titleHighlight": "Magic",
+        "titleStart": "Advanced Features of our",
+        "titleHighlight": "Instagram Viewer",
         "titleEnd": "",
-        "subtitle": "Powerful tools to explore Instagram content anonymously and securely.",
+        "subtitle": "Powerful tools to explore Instagram content anonymously and securely without an account.",
         "storyViewer": {
             "title": "Story Viewer",
             "description": "Watch Instagram stories anonymously without the user knowing. Save stories before they disappear."
         },
         "followersParser": {
             "title": "Followers Parser",
-            "description": "View complete follower and following lists of any public Instagram profile."
+            "description": "View, export, and download complete follower and following lists of any public Instagram profile."
         },
         "reelsViewer": {
             "title": "Reels Viewer",
@@ -47,10 +48,10 @@
     },
     "howItWorks": {
         "badge": "How It Works",
-        "titleStart": "Just",
-        "titleHighlight": "3 Steps",
-        "titleEnd": "to Explore",
-        "subtitle": "Start viewing Instagram content anonymously in seconds.",
+        "titleStart": "How to View",
+        "titleHighlight": "Instagram Stories",
+        "titleEnd": "Anonymously",
+        "subtitle": "Start viewing Instagram content anonymously in seconds — no account required.",
         "step1": {
             "title": "Enter Username",
             "description": "Type the Instagram username you want to explore in the search bar."
@@ -96,6 +97,14 @@
             {
                 "question": "Why can't I view certain profiles?",
                 "answer": "InstaPSV can only access public Instagram profiles. If a profile is set to private, we cannot view their content."
+            },
+            {
+                "question": "Can I view Instagram Highlights anonymously?",
+                "answer": "Yes! Our IG Story Viewer allows you to view and download Instagram Highlights without the user knowing. Simply enter their username to access all public highlights."
+            },
+            {
+                "question": "Do I need an Instagram account to use InstaPSV?",
+                "answer": "No, you can use InstaPSV without an Instagram account. Our tool works entirely independently, so you can browse profiles, stories, and reels without logging in or creating any account."
             }
         ]
     },

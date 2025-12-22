@@ -6,17 +6,17 @@ import Footer from '@/components/layout/Footer';
 // Mock posts grouped by year/month
 const archiveData = [
     {
-        year: 2024,
+        year: 2025,
         months: [
             {
                 month: 'January',
                 posts: [
-                    { slug: 'how-to-view-instagram-stories-anonymously', title: 'How to View Instagram Stories Anonymously in 2024', date: '2024-01-15' },
-                    { slug: 'instagram-followers-growth-tips', title: '10 Proven Tips to Grow Your Instagram Followers', date: '2024-01-12' },
-                    { slug: 'download-instagram-reels-guide', title: 'Complete Guide to Downloading Instagram Reels', date: '2024-01-10' },
-                    { slug: 'instagram-algorithm-explained', title: 'Instagram Algorithm 2024: Everything You Need to Know', date: '2024-01-08' },
-                    { slug: 'best-instagram-viewer-tools', title: 'Top 5 Instagram Viewer Tools Compared', date: '2024-01-05' },
-                    { slug: 'instagram-privacy-tips', title: 'Protect Your Privacy on Instagram: Essential Tips', date: '2024-01-02' },
+                    { slug: 'how-to-view-instagram-stories-anonymously', title: 'How to View Instagram Stories Anonymously', date: '2025-01-15' },
+                    { slug: 'instagram-followers-growth-tips', title: '10 Proven Tips to Grow Your Instagram Followers', date: '2025-01-12' },
+                    { slug: 'download-instagram-reels-guide', title: 'Complete Guide to Downloading Instagram Reels', date: '2025-01-10' },
+                    { slug: 'instagram-algorithm-explained', title: 'Instagram Algorithm: Everything You Need to Know', date: '2025-01-08' },
+                    { slug: 'best-instagram-viewer-tools', title: 'Top 5 Instagram Viewer Tools Compared', date: '2025-01-05' },
+                    { slug: 'instagram-privacy-tips', title: 'Protect Your Privacy on Instagram: Essential Tips', date: '2025-01-02' },
                 ],
             },
         ],
@@ -27,7 +27,7 @@ const archiveData = [
             {
                 month: 'December',
                 posts: [
-                    { slug: 'instagram-trends-2024', title: 'Instagram Trends to Watch in 2024', date: '2023-12-28' },
+                    { slug: 'instagram-trends-2024', title: 'Instagram Trends to Watch', date: '2023-12-28' },
                     { slug: 'story-highlights-guide', title: 'Ultimate Guide to Instagram Story Highlights', date: '2023-12-20' },
                 ],
             },
