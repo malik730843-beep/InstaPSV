@@ -102,73 +102,29 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
 
             {/* Pre-Download Ad Modal */}
             {showPreDownloadAd && (
-                <div
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        background: 'rgba(0,0,0,0.95)',
-                        zIndex: 10002,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: '20px'
-                    }}
-                >
-                    <div style={{
-                        background: '#fff',
-                        borderRadius: '12px',
-                        padding: '30px',
-                        maxWidth: '400px',
-                        width: '100%',
-                        textAlign: 'center'
-                    }}>
-                        <p style={{ fontSize: '12px', color: '#999', marginBottom: '15px' }}>{t('advertisement')}</p>
+                <div className={styles.adModalOverlay} onClick={(e) => e.stopPropagation()}>
+                    <div className={styles.adModalContent}>
+                        <p className={styles.adLabel}>{t('advertisement')}</p>
 
                         {/* Ad Content */}
-                        <div style={{ marginBottom: '20px' }}>
+                        <div className={styles.adContentBox}>
                             <AdUnit slot="header" />
                         </div>
 
                         {/* Countdown or Download Button */}
                         {countdown > 0 ? (
                             <div>
-                                <p style={{ color: '#666', marginBottom: '10px' }}>
+                                <p className={styles.countdownTimer}>
                                     {t('downloadStartIn')}
                                 </p>
-                                <div style={{
-                                    width: '60px',
-                                    height: '60px',
-                                    borderRadius: '50%',
-                                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                                    color: '#fff',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '24px',
-                                    fontWeight: 'bold',
-                                    margin: '0 auto'
-                                }}>
+                                <div className={styles.countdownCircle}>
                                     {countdown}
                                 </div>
                             </div>
                         ) : (
                             <button
                                 onClick={initiateDownload}
-                                style={{
-                                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                                    color: '#fff',
-                                    border: 'none',
-                                    padding: '15px 40px',
-                                    borderRadius: '30px',
-                                    fontSize: '16px',
-                                    fontWeight: 600,
-                                    cursor: 'pointer'
-                                }}
+                                className={styles.finalDownloadBtn}
                             >
                                 🎉 {t('downloadNow')}
                             </button>
@@ -179,14 +135,7 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
                                 setShowPreDownloadAd(false);
                                 setDownloading(false);
                             }}
-                            style={{
-                                marginTop: '20px',
-                                background: 'none',
-                                border: 'none',
-                                color: '#999',
-                                cursor: 'pointer',
-                                fontSize: '13px'
-                            }}
+                            className={styles.cancelBtn}
                         >
                             {t('cancel')}
                         </button>

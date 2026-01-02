@@ -4,8 +4,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 9999;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 200000;
+    /* Higher than site header and mobile menu */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,7 +17,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border: none;
     color: white;
     width: 44px;
@@ -26,8 +27,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
-    z-index: 10001;
+    transition: all 0.2s;
+    z-index: 200001;
+    /* Above modal content and header */
 }
 
 .closeButton:hover {
@@ -135,5 +137,106 @@
         width: 100%;
         background: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(10px);
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
     }
+
+    .caption {
+        max-width: 100%;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .downloadButton {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .closeButton {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* === Pre-download Ad Modal === */
+.adModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 200005;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.adModalContent {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.adLabel {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.adContentBox {
+    margin-bottom: 20px;
+}
+
+.countdownTimer {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.countdownCircle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.finalDownloadBtn {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.finalDownloadBtn:hover {
+    transform: scale(1.05);
+}
+
+.cancelBtn {
+    margin-top: 20px;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 13px;
 }

@@ -211,6 +211,21 @@
     /* Instagram Ring */
     margin-bottom: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .avatarWrapper {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .avatarWrapper {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 .avatar {
@@ -236,9 +251,23 @@
     font-weight: 800;
     margin: 0;
     background: linear-gradient(90deg, #fff, #ccc);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
+    transition: font-size 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .name {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .name {
+        font-size: 1.3rem;
+    }
 }
 
 .usernameWrapper {
@@ -279,10 +308,10 @@
     display: flex;
     gap: 40px;
     /* Spacious */
-    padding: 20px 40px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
 }
 
 .statItem {
@@ -309,11 +338,22 @@
 /* === Tabs === */
 .tabs {
     display: flex;
-    justify-content: center;
-    gap: 60px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     margin-top: 20px;
     padding-top: 0;
+    transition: gap 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .tabs {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabs {
+        gap: 15px;
+    }
 }
 
 .tab {
@@ -433,18 +473,46 @@
     }
 
     .wrapper {
-        padding: 0 16px;
+        padding: 0 10px;
     }
 
     .profileBox {
-        padding: 24px;
+        padding: 20px 15px;
+        /* Reduce padding */
     }
 
     .stats {
-        gap: 20px;
-        padding: 16px;
+        gap: 15px;
+        padding: 15px 10px;
         width: 100%;
-        justify-content: space-around;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        /* Allow wrapping on very small screens */
+    }
+
+    .adBannerContainer {
+        margin: 15px 0 !important;
+        padding: 10px !important;
+    }
+
+    .mainLayout {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    .mainContent {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+    }
+
+    .desktopSidebar {
+        display: none !important;
+    }
+
+    .statItem {
+        flex: 1;
+        /* Distribute evenly */
+        min-width: 60px;
     }
 }
 
@@ -491,4 +559,42 @@
     margin-top: 20px;
     text-align: center;
     backdrop-filter: blur(10px);
+}
+
+/* === Layout Helper Classes === */
+.adBannerContainer {
+    margin: 20px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.mainLayout {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.mainContent {
+    flex: 1 1 600px;
+    min-width: 300px;
+}
+
+.desktopSidebar {
+    flex: 0 0 300px;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+}
+
+.sidebarAdBox {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.sidebarAdBox:last-child {
+    margin-bottom: 0;
 }

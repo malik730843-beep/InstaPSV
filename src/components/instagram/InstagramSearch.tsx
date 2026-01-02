@@ -198,20 +198,14 @@ export default function InstagramSearch() {
             {profile && (
                 <>
                     {/* Ad Banner Above Results */}
-                    <div style={{
-                        margin: '20px 0',
-                        padding: '15px',
-                        background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%)',
-                        borderRadius: '12px',
-                        textAlign: 'center'
-                    }}>
+                    <div className={styles.adBannerContainer}>
                         <AdUnit slot="header" />
                     </div>
-
+ 
                     {/* Main Content with Sidebar Layout */}
-                    <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                    <div className={styles.mainLayout}>
                         {/* Main Profile Content */}
-                        <div style={{ flex: '1 1 600px', minWidth: '300px' }}>
+                        <div className={styles.mainContent}>
                             <div className={styles.profileBox} ref={resultsRef}>
                                 <div className={styles.profileHeader}>
                                     <div className={styles.avatarWrapper}>
@@ -332,36 +326,22 @@ export default function InstagramSearch() {
                                     )}
                                 </div>
 
-                                {/* Inline Ad after media grid */}
+                                 {/* Inline Ad after media grid */}
                                 <div style={{ marginTop: '20px' }}>
                                     <AdUnit slot="sidebar" />
                                 </div>
                             </div>
                         </div>
-
+ 
                         {/* Sidebar Ads - Desktop Only */}
-                        <div className="desktop-sidebar" style={{
-                            flex: '0 0 300px',
-                            position: 'sticky',
-                            top: '100px',
-                            alignSelf: 'flex-start'
-                        }}>
-                            <div style={{
-                                padding: '15px',
-                                background: '#f8f9fa',
-                                borderRadius: '12px',
-                                marginBottom: '20px'
-                            }}>
+                        <aside className={styles.desktopSidebar}>
+                            <div className={styles.sidebarAdBox}>
                                 <AdUnit slot="sidebar" />
                             </div>
-                            <div style={{
-                                padding: '15px',
-                                background: '#f8f9fa',
-                                borderRadius: '12px'
-                            }}>
+                            <div className={styles.sidebarAdBox}>
                                 <AdUnit slot="sidebar" />
                             </div>
-                        </div>
+                        </aside>
                     </div>
                 </>
             )}
@@ -372,17 +352,6 @@ export default function InstagramSearch() {
                     onClose={() => setSelectedMedia(null)}
                 />
             )}
-
-            <style jsx global>{`
-                .desktop-sidebar {
-                    display: none;
-                }
-                @media (min-width: 1024px) {
-                    .desktop-sidebar {
-                        display: block !important;
-                    }
-                }
-            `}</style>
         </div>
     );
 }
