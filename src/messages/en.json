@@ -2,17 +2,22 @@
     "nav": {
         "home": "Home",
         "features": "Features",
-        "highlights": "Highlights",
         "blog": "Blog",
         "about": "About",
-        "contact": "Contact"
+        "contact": "Contact",
+        "highlights": "Highlights Viewer",
+        "howItWorks": "How It Works",
+        "faq": "FAQ",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "disclaimer": "Disclaimer"
     },
     "hero": {
-        "badge": "Free IG Story Viewer Tool — No Account Required",
+        "badge": "Free Insta Story Viewer Tool — No Account Required",
         "title": "Anonymous Instagram {story} Viewer and Private {followers} Parser",
         "story": "Story",
         "followers": "Followers",
-        "subtitle": "View and download Instagram stories, profiles, reels, and highlights anonymously. No login or account required. 100% free and secure.",
+        "subtitle": "The best Insta Story Viewer to view and download Instagram stories, profiles, reels, and highlights anonymously. No login or account required. 100% free and secure.",
         "searchPlaceholder": "Enter Instagram username...",
         "searchButton": "View Profile",
         "searchHint": "Try: @instagram, @cristiano, @therock",
@@ -100,7 +105,7 @@
             },
             {
                 "question": "Can I view Instagram Highlights anonymously?",
-                "answer": "Yes! Our IG Story Viewer allows you to view and download Instagram Highlights without the user knowing. Simply enter their username to access all public highlights."
+                "answer": "Yes! Our Insta Story Viewer allows you to view and download Instagram Highlights without the user knowing. Simply enter their username to access all public highlights."
             },
             {
                 "question": "Do I need an Instagram account to use InstaPSV?",
@@ -111,9 +116,56 @@
     "testimonials": {
         "badge": "Reviews",
         "titleStart": "What Our Users Say About",
-        "titleHighlight": "InstaPSV",
+        "titleHighlight": "Users",
         "titleEnd": "",
-        "subtitle": "Join thousands of satisfied users who trust InstaPSV for their Instagram viewing needs."
+        "subtitle": "Join thousands of users who trust InstaPSV for their Instagram insights.",
+        "items": [
+            {
+                "id": 1,
+                "name": "Sarah Johnson",
+                "handle": "@sarahj_design",
+                "avatar": "S",
+                "rating": 5,
+                "text": "InstaPSV is amazing! I use it daily to check competitor content. The anonymous viewing feature is perfect for market research.",
+                "role": "Digital Marketer"
+            },
+            {
+                "id": 2,
+                "name": "Mike Chen",
+                "handle": "@mike_tech",
+                "avatar": "M",
+                "rating": 5,
+                "text": "Finally a tool that works! No login required, fast, and reliable. I can view any public profile instantly. Highly recommended!",
+                "role": "Software Developer"
+            },
+            {
+                "id": 3,
+                "name": "Emily Davis",
+                "handle": "@emily_creates",
+                "avatar": "E",
+                "rating": 5,
+                "text": "The story viewer is incredible. I can save inspiration for my mood boards without alerting anyone. Super helpful for creatives!",
+                "role": "Content Creator"
+            },
+            {
+                "id": 4,
+                "name": "Alex Thompson",
+                "handle": "@alex_growth",
+                "avatar": "A",
+                "rating": 5,
+                "text": "Best Instagram viewer tool I've found. Clean interface, fast loading, and the download feature works flawlessly every time.",
+                "role": "Growth Strategist"
+            },
+            {
+                "id": 5,
+                "name": "Jessica Lee",
+                "handle": "@jess_photo",
+                "avatar": "J",
+                "rating": 5,
+                "text": "As a photographer, I love being able to view and save inspiration anonymously. InstaPSV has become an essential part of my workflow.",
+                "role": "Photographer"
+            }
+        ]
     },
     "cta": {
         "titleStart": "View Instagram",
@@ -146,12 +198,77 @@
     },
     "blog": {
         "title": "Blog",
-        "subtitle": "Tips, tutorials, and guides to help you get the most out of InstaPSV.",
+        "badge": "Blog & Resources",
+        "insights": "Insights &",
+        "resources": "Resources",
+        "subtitle": "Tips, tutorials, and guides to help you get the most out of Instagram. Learn from experts and stay ahead of the curve.",
         "viewAll": "View All Articles",
+        "readArticle": "Read Article",
         "readMore": "Read More",
         "recentPosts": "Recent Posts",
         "categories": "Categories",
-        "archive": "Archive"
+        "archive": "Archive",
+        "all": "All",
+        "minRead": "min read",
+        "team": "InstaPSV Team",
+        "writer": "Content Writer",
+        "noPosts": "No Posts Yet",
+        "working": "We're working on some amazing content. Check back soon!",
+        "backHome": "Back to Home",
+        "stayUpdated": "Stay Updated",
+        "newsletterText": "Get the latest tips, tutorials, and Instagram insights delivered straight to your inbox.",
+        "newsletterPlaceholder": "Enter your email",
+        "subscribing": "Subscribing...",
+        "subscribed": "Subscribed!",
+        "subscribe": "Subscribe",
+        "postNotFound": "Post Not Found",
+        "defaultAuthor": "InstaPSV Team",
+        "defaultCategory": "Updates"
+    },
+    "viewer": {
+        "pleaseWait": "Please wait...",
+        "download": "Download",
+        "advertisement": "ADVERTISEMENT",
+        "downloadStartIn": "Your download will start in",
+        "downloadNow": "Download Now",
+        "cancel": "Cancel"
+    },
+    "contact": {
+        "badge": "Support",
+        "title": "Contact",
+        "highlight": "Us",
+        "subtitle": "We're here to help with any questions or issues.",
+        "sendMessage": "Send us a message",
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "your@email.com",
+        "message": "Message",
+        "messagePlaceholder": "How can we help?",
+        "send": "Send Message",
+        "success": "Message Sent!",
+        "successSub": "We'll get back to you within 24 hours.",
+        "sendAnother": "Send Another"
+    },
+    "pages": {
+        "badge": "Pages",
+        "title": "Information",
+        "highlight": "Pages",
+        "subtitle": "Browse all our information and legal pages.",
+        "aboutDesc": "Learn more about InstaPSV and our mission to provide free Instagram viewing tools.",
+        "contactDesc": "Get in touch with our team for support, partnerships, or feedback.",
+        "featuresDesc": "Explore all the features InstaPSV offers for Instagram viewing.",
+        "faqDesc": "Frequently asked questions about InstaPSV."
+    },
+    "search": {
+        "viewProfile": "View Profile",
+        "anonymousBadge": "(Anonymous profile view)",
+        "posts": "Posts",
+        "followers": "Followers",
+        "following": "Following",
+        "noMedia": "No {type} found.",
+        "storyTip": "Stories usually expire after 24 hours.",
+        "viewStory": "View Story"
     },
     "footer": {
         "description": "The most powerful and secure tool to view Instagram stories, profiles, and followers anonymously. No login required.",
@@ -164,6 +281,11 @@
     "common": {
         "loading": "Loading...",
         "error": "Something went wrong",
-        "tryAgain": "Try Again"
+        "tryAgain": "Try Again",
+        "and": "and",
+        "viewer": "Viewer",
+        "instagram": "Instagram",
+        "contentNotFound": "Content not found.",
+        "scrollToExplore": "Scroll to explore"
     }
 }

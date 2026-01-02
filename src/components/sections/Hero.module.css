@@ -11,16 +11,18 @@
 }
 
 /* Particle Background */
+/* Particle Background - Brought forward to be visible over orbs */
 .particles {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 1;
+    pointer-events: none;
 }
 
-/* Gradient Overlay */
+/* Gradient Overlay - Pushed back */
 .gradientOverlay {
     position: absolute;
     top: 0;
@@ -31,16 +33,16 @@
         radial-gradient(ellipse at 20% 20%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 80%, rgba(121, 40, 202, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
-    z-index: 1;
+    z-index: 0;
     pointer-events: none;
 }
 
-/* Floating Orbs */
+/* Floating Orbs - Pushed back */
 .floatingElements {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
     pointer-events: none;
     overflow: hidden;
 }
@@ -50,6 +52,8 @@
     border-radius: 50%;
     filter: blur(60px);
     opacity: 0.5;
+    will-change: transform;
+    transform: translateZ(0);
     animation: float 8s ease-in-out infinite;
 }
 
@@ -166,7 +170,12 @@
     line-height: var(--line-height-relaxed);
 }
 
-/* Search Form */
+.searchContainer {
+    width: 100%;
+    margin-bottom: var(--spacing-2xl);
+    z-index: 10;
+}
+
 .searchForm {
     width: 100%;
     max-width: 600px;

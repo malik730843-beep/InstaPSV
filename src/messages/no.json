@@ -4,7 +4,13 @@
         "features": "Funksjoner",
         "blog": "Blogg",
         "about": "Om oss",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "highlights": "Highlights Viewer",
+        "howItWorks": "Hvordan det fungerer",
+        "faq": "FAQ",
+        "privacy": "Personvernerklæring",
+        "terms": "Vilkår for bruk",
+        "disclaimer": "Ansvarsfraskrivelse"
     },
     "hero": {
         "badge": "Gratis Instagram Viewer",
@@ -132,24 +138,97 @@
     },
     "blog": {
         "title": "Blogg",
-        "subtitle": "Tips og guider.",
-        "viewAll": "Alle artikler",
+        "badge": "Blogg og ressurser",
+        "insights": "Innsikt og",
+        "resources": "ressurser",
+        "subtitle": "Tips, veiledninger og guider som hjelper deg med å få mest mulig ut af Instagram. Lær fra eksperter og hold deg oppdatert.",
+        "viewAll": "Se alle artikler",
+        "readArticle": "Les artikkel",
         "readMore": "Les mer",
-        "recentPosts": "Nyeste",
+        "recentPosts": "Siste innlegg",
         "categories": "Kategorier",
-        "archive": "Arkiv"
+        "archive": "Arkiv",
+        "all": "Alle",
+        "minRead": "min lesing",
+        "team": "InstaPSV-teamet",
+        "writer": "Innholdskribent",
+        "noPosts": "Ingen innlegg ennå",
+        "working": "Vi jobber med fantastisk innhold. Kom snart tilbake!",
+        "backHome": "Tilbake til forsiden",
+        "stayUpdated": "Hold deg oppdatert",
+        "newsletterText": "Få de siste tipsene, veiledningene og Instagram-innsiktene levert rett i din innboks.",
+        "newsletterPlaceholder": "Skriv inn din e-post",
+        "subscribing": "Melder på...",
+        "subscribed": "Påmeldt!",
+        "subscribe": "Abonner",
+        "postNotFound": "Innlegg ikke funnet",
+        "defaultAuthor": "InstaPSV-teamet",
+        "defaultCategory": "Oppdateringer"
+    },
+    "viewer": {
+        "pleaseWait": "Vennligst vent...",
+        "download": "Last ned",
+        "advertisement": "ANNONSE",
+        "downloadStartIn": "Nedlastingen din starter om",
+        "downloadNow": "Last ned nå",
+        "cancel": "Avbryt"
+    },
+    "contact": {
+        "badge": "Brukerstøtte",
+        "title": "Kontakt",
+        "highlight": "oss",
+        "subtitle": "Vi er her for å hjelpe med eventuelle spørgsmål eller problemer.",
+        "sendMessage": "Send oss en melding",
+        "name": "Navn",
+        "namePlaceholder": "Ditt navn",
+        "email": "E-post",
+        "emailPlaceholder": "din@epost.no",
+        "message": "Melding",
+        "messagePlaceholder": "Hvordan kan vi hjelpe?",
+        "send": "Send melding",
+        "success": "Melding sendt!",
+        "successSub": "Vi kommer tilbake til deg innen 24 timer.",
+        "sendAnother": "Send en til"
+    },
+    "pages": {
+        "badge": "Sider",
+        "title": "Informasjons-",
+        "highlight": "sider",
+        "subtitle": "Bla gjennom alle våre informasjons- og juridiske sider.",
+        "aboutDesc": "Lær mer om InstaPSV og vårt oppdrag om å tilby gratis Instagram-visningsverktøy.",
+        "contactDesc": "Kontakt teamet vårt for støtte, partnerskap eller tilbakemelding.",
+        "featuresDesc": "Utforsk alle funksjonene InstaPSV tilbyr for Instagram-visning.",
+        "faqDesc": "Ofte stilte spørgsmål om InstaPSV."
+    },
+    "search": {
+        "viewProfile": "Se profil",
+        "history": "Siste søk",
+        "clearHistory": "Slett alt",
+        "errorTip": "Tips: Sørg for at det er en offentlig Business- eller Creator-konto.",
+        "anonymousBadge": "(Anonym profilvisning)",
+        "posts": "Innlegg",
+        "followers": "Følgere",
+        "following": "Følger",
+        "noMedia": "Ingen {type} funnet.",
+        "storyTip": "Historier utløper vanligvis etter 24 timer.",
+        "viewStory": "Vis historie"
     },
     "footer": {
         "description": "Det sikreste verktøyet for anonym Instagram-visning.",
         "product": "Produkt",
         "company": "Selskap",
         "legal": "Juridisk",
-        "copyright": "© {year} InstaPSV.",
-        "disclaimer": "Ikke tilknyttet Instagram."
+        "copyright": "© {year} InstaPSV. Alle rettigheter forbeholdes.",
+        "disclaimer": "Ikke tilknyttet Instagram eller Meta."
     },
     "common": {
         "loading": "Laster...",
         "error": "Noe gikk galt",
-        "tryAgain": "Prøv igjen"
+        "tryAgain": "Prøv igjen",
+        "and": "og",
+        "viewer": "Viewer",
+        "instagram": "Instagram",
+        "contentNotFound": "Innhold ikke funnet.",
+        "scrollToExplore": "Rull for å utforske"
     }
 }

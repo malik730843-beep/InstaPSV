@@ -57,7 +57,10 @@ export interface WPCategory {
     description: string;
 }
 
-const WP_API_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://your-wordpress-site.com';
+function getWPUrl() {
+    const url = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://your-wordpress-site.com';
+    return url.endsWith('/') ? url.slice(0, -1) : url;
+}
 
 // Fetch all posts
 export async function getPosts(params?: {
@@ -77,16 +80,36 @@ export async function getPosts(params?: {
     if (params?.search) searchParams.set('search', params.search);
     if (params?.lang) searchParams.set('lang', params.lang);
 
+    const baseUrl = getWPUrl();
+    const url = `${baseUrl}/wp-json/wp/v2/posts?${searchParams}`;
+    console.log('Fetching posts from:', url);
+
     try {
-        const res = await fetch(`${WP_API_URL}/wp-json/wp/v2/posts?${searchParams}`, {
+        const res = await fetch(url, {
             next: { revalidate: 60 }, // Cache for 60 seconds
         });
 
-        if (!res.ok) throw new Error('Failed to fetch posts');
+        const contentType = res.headers.get('content-type');
+
+        if (!res.ok) {
+            console.error('WordPress fetch failed:', res.status, res.statusText);
+            const text = await res.text();
+            console.error('Response preview:', text.slice(0, 200));
+            throw new Error(`Failed to fetch posts: ${res.status}`);
+        }
+
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await res.text();
+            console.error('Invalid content type from WordPress:', contentType);
+            console.error('Response preview:', text.slice(0, 200));
+            throw new Error('WordPress API returned non-JSON response');
+        }
 
         const posts = await res.json();
         const total = parseInt(res.headers.get('X-WP-Total') || '0');
         const totalPages = parseInt(res.headers.get('X-WP-TotalPages') || '0');
+
+        console.log(`Fetched ${posts.length} posts from WordPress. Total: ${total}`);
 
         return { posts, total, totalPages };
     } catch (error) {
@@ -97,9 +120,10 @@ export async function getPosts(params?: {
 
 // Fetch single post by slug
 export async function getPost(slug: string): Promise<WPPost | null> {
+    const baseUrl = getWPUrl();
     try {
         const res = await fetch(
-            `${WP_API_URL}/wp-json/wp/v2/posts?slug=${slug}&_embed=true`,
+            `${baseUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed=true`,
             { next: { revalidate: 60 } }
         );
 
@@ -115,9 +139,10 @@ export async function getPost(slug: string): Promise<WPPost | null> {
 
 // Fetch all pages
 export async function getPages(): Promise<WPPage[]> {
+    const baseUrl = getWPUrl();
     try {
         const res = await fetch(
-            `${WP_API_URL}/wp-json/wp/v2/pages?_embed=true&per_page=100`,
+            `${baseUrl}/wp-json/wp/v2/pages?_embed=true&per_page=100`,
             { next: { revalidate: 300 } }
         );
 
@@ -131,9 +156,10 @@ export async function getPages(): Promise<WPPage[]> {
 
 // Fetch single page by slug
 export async function getPage(slug: string): Promise<WPPage | null> {
+    const baseUrl = getWPUrl();
     try {
         const res = await fetch(
-            `${WP_API_URL}/wp-json/wp/v2/pages?slug=${slug}&_embed=true`,
+            `${baseUrl}/wp-json/wp/v2/pages?slug=${slug}&_embed=true`,
             { next: { revalidate: 300 } }
         );
 
@@ -149,9 +175,10 @@ export async function getPage(slug: string): Promise<WPPage | null> {
 
 // Fetch categories
 export async function getCategories(): Promise<WPCategory[]> {
+    const baseUrl = getWPUrl();
     try {
         const res = await fetch(
-            `${WP_API_URL}/wp-json/wp/v2/categories?per_page=100`,
+            `${baseUrl}/wp-json/wp/v2/categories?per_page=100`,
             { next: { revalidate: 300 } }
         );
 

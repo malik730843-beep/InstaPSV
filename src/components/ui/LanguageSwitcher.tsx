@@ -37,7 +37,9 @@ export default function LanguageSwitcher() {
         setIsOpen(false);
 
         // Save to cookie (expires in 1 year)
-        document.cookie = `NEXT_LOCALE=${lang.code}; path=/; max-age=${60 * 60 * 24 * 365}`;
+        const date = new Date();
+        date.setTime(date.getTime() + (60 * 60 * 24 * 365 * 1000));
+        document.cookie = `NEXT_LOCALE=${lang.code}; path=/; expires=${date.toUTCString()}`;
 
         // Reload page to apply new language
         window.location.reload();

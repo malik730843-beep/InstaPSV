@@ -37,25 +37,24 @@ export default function ParticleBackground({ className }: ParticleBackgroundProp
         let renderer: THREE.WebGLRenderer;
         try {
             const canvas = document.createElement('canvas');
-            // Try to create a context first to see if it's truly available
+            // Try to get context first to verify support
             const gl = canvas.getContext('webgl', { failIfMajorPerformanceCaveat: true }) ||
                 canvas.getContext('experimental-webgl', { failIfMajorPerformanceCaveat: true });
 
             if (!gl) {
-                // Try again without performance caveat before giving up
-                const glBasic = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-                if (!glBasic) {
-                    container.classList.add(styles.fallback);
-                    return;
-                }
+                console.warn('WebGL not supported or major performance caveat detected, using fallback background');
+                container.classList.add(styles.fallback);
+                return;
             }
 
+            // Even if we have a context, Three.js might still fail to create its own internal version
+            // we catch that here.
             renderer = new THREE.WebGLRenderer({
                 alpha: true,
                 antialias: true,
-                powerPreference: 'low-power',
+                powerPreference: 'default',
                 failIfMajorPerformanceCaveat: false,
-                precision: 'lowp'
+                precision: 'mediump'
             });
 
             renderer.setSize(width, height);
@@ -64,7 +63,8 @@ export default function ParticleBackground({ className }: ParticleBackgroundProp
             container.appendChild(renderer.domElement);
             rendererRef.current = renderer;
         } catch (error) {
-            // Silently fail and use fallback background
+            // Suppress full stack trace for known hardware incompatibility
+            console.warn('WebGL initialization failed (hardware/driver incompatibility), using static fallback.');
             container.classList.add(styles.fallback);
             return;
         }

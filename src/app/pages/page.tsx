@@ -2,35 +2,75 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { createClient } from '@supabase/supabase-js';
+import { getTranslations } from 'next-intl/server';
 
-// Mock pages
-const pages = [
-    { slug: 'about', title: 'About Us', description: 'Learn more about InstaPSV and our mission to provide free Instagram viewing tools.', icon: '👥' },
-    { slug: 'contact', title: 'Contact', description: 'Get in touch with our team for support, partnerships, or feedback.', icon: '📧' },
-    { slug: 'features', title: 'Features', description: 'Explore all the features InstaPSV offers for Instagram viewing.', icon: '⚡' },
-    { slug: 'privacy', title: 'Privacy Policy', description: 'Read our privacy policy and how we protect your data.', icon: '🔒' },
-    { slug: 'terms', title: 'Terms of Service', description: 'Our terms of service and usage guidelines.', icon: '📄' },
-    { slug: 'faq', title: 'FAQ', description: 'Frequently asked questions about InstaPSV.', icon: '❓' },
-];
+// Initialize Supabase Client
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
-export const metadata = {
-    title: 'Pages - InstaPSV',
-    description: 'Browse all information pages on InstaPSV.',
-};
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
-export default function PagesArchivePage() {
+interface Page {
+    slug: string;
+    title: string;
+    excerpt?: string;
+}
+
+async function getDynamicPages() {
+    const { data: pages, error } = await supabase
+        .from('pages')
+        .select('slug, title, excerpt')
+        .eq('status', 'published');
+
+    if (error || !pages) return [];
+
+    return pages.map((page: Page) => ({
+        slug: page.slug,
+        title: page.title,
+        description: page.excerpt || page.title,
+        icon: '📄'
+    }));
+}
+
+export async function generateMetadata() {
+    const t = await getTranslations('pages');
+    return {
+        title: `${t('badge')} - InstaPSV`,
+        description: t('subtitle'),
+    };
+}
+
+export default async function PagesArchivePage() {
+    const t = await getTranslations('pages');
+    const navT = await getTranslations('nav');
+    const dynamicPages = await getDynamicPages();
+
+    // Static pages that are hardcoded routes
+    const staticPages = [
+        { slug: 'about', title: navT('about'), description: t('aboutDesc'), icon: '👥' },
+        { slug: 'contact', title: navT('contact'), description: t('contactDesc'), icon: '📧' },
+        { slug: 'features', title: navT('features'), description: t('featuresDesc'), icon: '⚡' },
+        { slug: 'faq', title: navT('faq'), description: t('faqDesc'), icon: '❓' },
+    ];
+
+    const allPages = [...staticPages, ...dynamicPages];
+
     return (
         <>
             <Header />
             <main className={styles.main}>
                 <section className={styles.hero}>
                     <div className={styles.container}>
-                        <span className={styles.badge}>📄 Pages</span>
+                        <span className={styles.badge}>📄 {t('badge')}</span>
                         <h1 className={styles.title}>
-                            Information <span className={styles.highlight}>Pages</span>
+                            {t('title')} <span className={styles.highlight}>{t('highlight')}</span>
                         </h1>
                         <p className={styles.subtitle}>
-                            Browse all our information and legal pages.
+                            {t('subtitle')}
                         </p>
                     </div>
                 </section>
@@ -38,7 +78,7 @@ export default function PagesArchivePage() {
                 <section className={styles.pagesSection}>
                     <div className={styles.container}>
                         <div className={styles.pagesGrid}>
-                            {pages.map((page) => (
+                            {allPages.map((page) => (
                                 <Link key={page.slug} href={`/${page.slug}`} className={styles.pageCard}>
                                     <span className={styles.pageIcon}>{page.icon}</span>
                                     <div className={styles.pageContent}>

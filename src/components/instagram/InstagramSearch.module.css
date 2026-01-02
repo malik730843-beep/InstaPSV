@@ -1,0 +1,494 @@
+/* Premium Glassmorphism & Layout */
+.wrapper {
+    width: 100%;
+    max-width: 900px;
+    /* Wider for desktop */
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* === Search Section === */
+.searchForm {
+    display: flex;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 10px;
+    border-radius: 50px;
+    /* Pill shape */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+.searchForm:focus-within {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.searchContainer {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.historyDropdown {
+    position: absolute;
+    top: calc(100% - 30px);
+    /* Overlap slightly with the pill */
+    left: 20px;
+    right: 20px;
+    background: rgba(30, 30, 45, 0.95);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    padding: 30px 20px 20px;
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.historyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.historyHeader span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.clearHistory {
+    background: none;
+    border: none;
+    color: #ff3b30;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.clearHistory:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.historyList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.historyItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.historyItem:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+.historyItem svg {
+    opacity: 0.5;
+}
+
+.historyItem:hover svg {
+    opacity: 1;
+    color: #FF0080;
+}
+
+.inputGroup {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.atSymbol {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 16px 0;
+    font-size: 1.1rem;
+    outline: none;
+    font-weight: 500;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.button {
+    background: linear-gradient(135deg, #FF0080 0%, #7928CA 100%);
+    /* Modern Vibrant Gradient */
+    color: white;
+    border: none;
+    padding: 0 48px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+    white-space: nowrap;
+}
+
+.button:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 0, 128, 0.5);
+}
+
+/* === Profile Box (The "Card") === */
+.profileBox {
+    background: rgba(30, 30, 40, 0.6);
+    /* Slightly dark base */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(20px);
+    /* Heavy blur */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === Header & Stats === */
+.profileHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.avatarWrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    /* Instagram Ring */
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #121212;
+    /* Match background or dark theme */
+    background-color: #121212;
+}
+
+.profileInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name {
+    font-size: 2rem;
+    /* Big Name */
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(90deg, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.usernameWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.username {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.anonymousBadge {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bio {
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* === Stats Row === */
+.stats {
+    display: flex;
+    gap: 40px;
+    /* Spacious */
+    padding: 20px 40px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.statValue {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* === Tabs === */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 20px;
+    padding-top: 0;
+}
+
+.tab {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 24px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.tab:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.activeTab {
+    color: white !important;
+}
+
+.activeTab::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* === Media Grid === */
+.mediaGrid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Verified 4 columns */
+    gap: 4px;
+    /* Tight gap like Instagram */
+}
+
+.mediaItem {
+    aspect-ratio: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Hover Zoom Effect */
+.mediaThumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.mediaItem:hover .mediaThumb {
+    transform: scale(1.05);
+}
+
+.mediaOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Darker overlay for text readability */
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.mediaItem:hover .mediaOverlay {
+    opacity: 1;
+}
+
+.mediaStats {
+    display: flex;
+    gap: 16px;
+    color: white;
+    font-weight: 700;
+}
+
+.typeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* === Empty State === */
+.emptyState {
+    grid-column: 1 / -1;
+    padding: 60px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* === Mobile Adjustments === */
+@media (max-width: 768px) {
+    .mediaGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+    }
+
+    .wrapper {
+        padding: 0 16px;
+    }
+
+    .profileBox {
+        padding: 24px;
+    }
+
+    .stats {
+        gap: 20px;
+        padding: 16px;
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 480px) {
+    .searchForm {
+        flex-direction: column;
+        border-radius: 24px;
+        padding: 8px;
+    }
+
+    .button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .mediaGrid {
+        grid-template-columns: repeat(3, 1fr);
+        /* Keep 3 for mobile aesthetic */
+    }
+
+    .name {
+        font-size: 1.5rem;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.errorCard {
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    color: #ff3b30;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}

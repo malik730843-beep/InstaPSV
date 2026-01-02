@@ -5,7 +5,12 @@
     right: 0;
     z-index: var(--z-sticky);
     padding: var(--spacing-md) 0;
-    transition: all var(--transition-normal);
+    transition: background-color var(--transition-normal),
+        backdrop-filter var(--transition-normal),
+        padding var(--transition-normal),
+        border-bottom var(--transition-normal);
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .header.scrolled {
@@ -144,16 +149,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 10, 26, 0.98);
-    backdrop-filter: blur(20px);
+    background: #0a0a1a;
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     padding: var(--spacing-4xl) var(--spacing-xl);
     transform: translateX(100%);
     opacity: 0;
     visibility: hidden;
-    transition: transform var(--transition-normal), opacity var(--transition-normal), visibility var(--transition-normal);
-    z-index: calc(var(--z-sticky) + 10);
+    transition: all var(--transition-normal);
+    z-index: 99999;
 }
 
 .mobileMenu.open {

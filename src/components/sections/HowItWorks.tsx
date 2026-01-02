@@ -1,10 +1,8 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import styles from './HowItWorks.module.css';
 
-export default function HowItWorks() {
-    const t = useTranslations('howItWorks');
+export default async function HowItWorks() {
+    const t = await getTranslations('howItWorks');
 
     const steps = [
         {

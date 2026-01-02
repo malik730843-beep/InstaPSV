@@ -1,11 +1,9 @@
-'use client';
-
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import styles from './CTASection.module.css';
 
-export default function CTASection() {
-    const t = useTranslations('cta');
+export default async function CTASection() {
+    const t = await getTranslations('cta');
 
     return (
         <section className={styles.cta}>

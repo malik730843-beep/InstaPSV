@@ -4,7 +4,13 @@
         "features": "Funzionalità",
         "blog": "Blog",
         "about": "Chi siamo",
-        "contact": "Contatti"
+        "contact": "Contatti",
+        "highlights": "Visualizzatore Highlights",
+        "howItWorks": "Come funziona",
+        "faq": "FAQ",
+        "privacy": "Informativa sulla privacy",
+        "terms": "Termini di servizio",
+        "disclaimer": "Dichiarazione di non responsabilità"
     },
     "hero": {
         "badge": "Strumento gratuito per Instagram",
@@ -98,9 +104,57 @@
     },
     "testimonials": {
         "badge": "Recensioni",
-        "title": "Cosa dicono i nostri utenti di {brand}",
-        "brand": "InstaPSV",
-        "subtitle": "Unisciti a migliaia di utenti soddisfatti che si fidano di InstaPSV."
+        "title": "Cosa dicono i",
+        "titleHighlight": "Utenti",
+        "titleEnd": "",
+        "subtitle": "Unisciti a migliaia di utenti che si affidano a InstaPSV per i loro approfondimenti su Instagram.",
+        "items": [
+            {
+                "id": 1,
+                "name": "Sarah Johnson",
+                "handle": "@sarahj_design",
+                "avatar": "S",
+                "rating": 5,
+                "text": "InstaPSV è fantastico! Lo uso ogni giorno per controllare i contenuti della concorrenza. La funzione di visualizzazione anonima è perfetta per le ricerche di mercato.",
+                "role": "Digital Marketer"
+            },
+            {
+                "id": 2,
+                "name": "Mike Chen",
+                "handle": "@mike_tech",
+                "avatar": "M",
+                "rating": 5,
+                "text": "Finalmente uno strumento che funziona! Nessun login richiesto, veloce e affidabile. Posso visualizzare istantaneamente qualsiasi profilo pubblico. Altamente raccomandato!",
+                "role": "Sviluppatore Software"
+            },
+            {
+                "id": 3,
+                "name": "Emily Davis",
+                "handle": "@emily_creates",
+                "avatar": "E",
+                "rating": 5,
+                "text": "Il visualizzatore di storie è incredibile. Posso salvare ispirazioni per le mie moodboard senza avvisare nessuno. Super utile per i creativi!",
+                "role": "Content Creator"
+            },
+            {
+                "id": 4,
+                "name": "Alex Thompson",
+                "handle": "@alex_growth",
+                "avatar": "A",
+                "rating": 5,
+                "text": "Il miglior strumento per visualizzare Instagram che abbia mai trovato. Interfaccia pulita, caricamento veloce e la funzione di download funziona perfettamente ogni volta.",
+                "role": "Growth Strategist"
+            },
+            {
+                "id": 5,
+                "name": "Jessica Lee",
+                "handle": "@jess_photo",
+                "avatar": "J",
+                "rating": 5,
+                "text": "Come fotografa, amo poter visualizzare e salvare ispirazioni in modo anonimo. InstaPSV è diventato una parte essenziale del mio flusso di lavoro.",
+                "role": "Fotografa"
+            }
+        ]
     },
     "cta": {
         "title": "Vedi i {followers} di Instagram",
@@ -132,12 +186,80 @@
     },
     "blog": {
         "title": "Blog",
-        "subtitle": "Suggerimenti, tutorial e guide per InstaPSV.",
+        "badge": "Blog e Risorse",
+        "insights": "Approfondimenti e",
+        "resources": "Risorse",
+        "subtitle": "Suggerimenti, tutorial e guide per aiutarti a ottenere il massimo da Instagram. Impara dagli esperti e resta al passo.",
         "viewAll": "Vedi tutti gli articoli",
+        "readArticle": "Leggi articolo",
         "readMore": "Leggi di più",
         "recentPosts": "Post recenti",
         "categories": "Categorie",
-        "archive": "Archivio"
+        "archive": "Archivio",
+        "all": "Tutti",
+        "minRead": "min di lettura",
+        "team": "Team InstaPSV",
+        "writer": "Redattore di contenuti",
+        "noPosts": "Ancora nessun post",
+        "working": "Stiamo lavorando a contenuti incredibili. Torna presto!",
+        "backHome": "Torna alla Home",
+        "stayUpdated": "Resta aggiornato",
+        "newsletterText": "Ricevi gli ultimi suggerimenti, tutorial e approfondimenti su Instagram direttamente nella tua casella di posta.",
+        "newsletterPlaceholder": "Inserisci la tua email",
+        "subscribing": "Iscrizione...",
+        "subscribed": "Iscritto!",
+        "subscribe": "Iscriviti",
+        "postNotFound": "Articolo non trovato",
+        "defaultAuthor": "Team InstaPSV",
+        "defaultCategory": "Aggiornamenti"
+    },
+    "viewer": {
+        "pleaseWait": "Attendere prego...",
+        "download": "Scarica",
+        "advertisement": "PUBBLICITÀ",
+        "downloadStartIn": "Il tuo download inizierà tra",
+        "downloadNow": "Scarica ora",
+        "cancel": "Annulla"
+    },
+    "contact": {
+        "badge": "Supporto",
+        "title": "Contattaci",
+        "highlight": "",
+        "subtitle": "Siamo qui per aiutarti con qualsiasi domanda o problema.",
+        "sendMessage": "Inviaci un messaggio",
+        "name": "Nome",
+        "namePlaceholder": "Il tuo nome",
+        "email": "Email",
+        "emailPlaceholder": "tua@email.it",
+        "message": "Messaggio",
+        "messagePlaceholder": "Come possiamo aiutarti?",
+        "send": "Invia messaggio",
+        "success": "Messaggio inviato!",
+        "successSub": "Ti risponderemo entro 24 ore.",
+        "sendAnother": "Inviane un altro"
+    },
+    "pages": {
+        "badge": "Pagine",
+        "title": "Pagine di",
+        "highlight": "informazione",
+        "subtitle": "Sfoglia tutte le nostre pagine informative e legali.",
+        "aboutDesc": "Scopri di più su InstaPSV e sulla nostra missione di fornire strumenti gratuiti per la visualizzazione di Instagram.",
+        "contactDesc": "Mettiti in contatto con il nostro team per supporto, partnership o feedback.",
+        "featuresDesc": "Esplora tutte le funzionalità che InstaPSV offre per la visualizzazione di Instagram.",
+        "faqDesc": "Domande frequenti su InstaPSV."
+    },
+    "search": {
+        "viewProfile": "Visualizza profilo",
+        "history": "Ricerche recenti",
+        "clearHistory": "Cancella tutto",
+        "errorTip": "Suggerimento: Assicurati che sia un account pubblico Business o Creator.",
+        "anonymousBadge": "(Visualizzazione profilo anonima)",
+        "posts": "Post",
+        "followers": "Follower",
+        "following": "Seguiti",
+        "noMedia": "Nessun {type} trovato.",
+        "storyTip": "Le storie di solito scadono dopo 24 ore.",
+        "viewStory": "Visualizza storia"
     },
     "footer": {
         "description": "Lo strumento più potente e sicuro per visualizzare storie, profili e follower di Instagram in modo anonimo.",
@@ -150,6 +272,11 @@
     "common": {
         "loading": "Caricamento...",
         "error": "Qualcosa è andato storto",
-        "tryAgain": "Riprova"
+        "tryAgain": "Riprova",
+        "and": "e",
+        "viewer": "Visualizzatore",
+        "instagram": "Instagram",
+        "contentNotFound": "Contenuto non trovato.",
+        "scrollToExplore": "Scorri per esplorare"
     }
 }

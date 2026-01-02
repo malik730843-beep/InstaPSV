@@ -1,19 +1,12 @@
-'use client';
-
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import styles from './FAQ.module.css';
+import FAQClient from './FAQClient';
 
-export default function FAQ() {
-    const t = useTranslations('faq');
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+export default async function FAQ() {
+    const t = await getTranslations('faq');
 
     // Get FAQ items from translations
     const faqItems = t.raw('items') as Array<{ question: string; answer: string }>;
-
-    const toggleFAQ = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
 
     return (
         <section className={styles.faq}>
@@ -29,31 +22,8 @@ export default function FAQ() {
                     </p>
                 </div>
 
-                {/* FAQ Items */}
-                <div className={styles.faqList}>
-                    {faqItems.map((faq, index) => (
-                        <div
-                            key={index}
-                            className={`${styles.faqItem} ${openIndex === index ? styles.open : ''}`}
-                        >
-                            <button
-                                className={styles.faqQuestion}
-                                onClick={() => toggleFAQ(index)}
-                                aria-expanded={openIndex === index}
-                            >
-                                <span>{faq.question}</span>
-                                <span className={styles.faqIcon}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M12 5v14M5 12h14" />
-                                    </svg>
-                                </span>
-                            </button>
-                            <div className={styles.faqAnswer}>
-                                <p>{faq.answer}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                {/* FAQ Interactive List */}
+                <FAQClient items={faqItems} />
 
                 {/* Contact CTA */}
                 <div className={styles.contactCta}>

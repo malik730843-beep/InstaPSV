@@ -1,32 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
+import InstagramSearch from '../instagram/InstagramSearch';
+import dynamic from 'next/dynamic';
 
-// Dynamic import for Three.js to avoid SSR issues
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
     ssr: false,
 });
 
 export default function Hero() {
     const t = useTranslations('hero');
-    const [username, setUsername] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!username.trim()) return;
-
-        setIsLoading(true);
-        // Simulate loading - replace with actual functionality
-        setTimeout(() => {
-            setIsLoading(false);
-            // Navigate to profile page or show results
-            window.location.href = `/profile/${username.replace('@', '')}`;
-        }, 1000);
-    };
+    const commonT = useTranslations('common');
 
     return (
         <section className={styles.hero} id="search">
@@ -51,65 +36,31 @@ export default function Hero() {
                 </div>
 
                 <h1 className={styles.title}>
-                    Instagram{' '}
+                    {commonT('instagram')}{' '}
                     <span className={styles.gradientText}>{t('story')}</span>
-                    {' '}and{' '}
+                    {' '}{commonT('and')}{' '}
                     <span className={styles.gradientText}>{t('followers')}</span>
-                    {' '}Viewer
+                    {' '}{commonT('viewer')}
                 </h1>
 
                 <p className={styles.subtitle}>
                     {t('subtitle')}
                 </p>
 
-                {/* Search Form */}
-                <form onSubmit={handleSubmit} className={styles.searchForm}>
-                    <div className={styles.searchInputWrapper}>
-                        <span className={styles.searchIcon}>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <circle cx="11" cy="11" r="8" />
-                                <path d="m21 21-4.35-4.35" />
-                            </svg>
-                        </span>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder={t('searchPlaceholder')}
-                            className={styles.searchInput}
-                            aria-label="Instagram username"
-                        />
-                        <button
-                            type="submit"
-                            className={styles.searchButton}
-                            disabled={isLoading || !username.trim()}
-                        >
-                            {isLoading ? (
-                                <span className={styles.loadingSpinner} />
-                            ) : (
-                                <>
-                                    <span>{t('searchButton')}</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </>
-                            )}
-                        </button>
-                    </div>
-                    <p className={styles.searchHint}>
-                        {t('searchHint')}
-                    </p>
-                </form>
+                {/* Interactive Search Component */}
+                <div className={styles.searchContainer}>
+                    <InstagramSearch />
+                </div>
 
                 {/* Stats */}
                 <div className={styles.stats}>
                     <div className={styles.stat}>
-                        <span className={styles.statValue}>10M+</span>
+                        <span className={styles.statValue}>500K+</span>
                         <span className={styles.statLabel}>{t('stats.profiles')}</span>
                     </div>
                     <div className={styles.statDivider} />
                     <div className={styles.stat}>
-                        <span className={styles.statValue}>50M+</span>
+                        <span className={styles.statValue}>50K+</span>
                         <span className={styles.statLabel}>{t('stats.stories')}</span>
                     </div>
                     <div className={styles.statDivider} />
@@ -122,7 +73,7 @@ export default function Hero() {
 
             {/* Scroll Indicator */}
             <div className={styles.scrollIndicator}>
-                <span>Scroll to explore</span>
+                <span>{commonT('scrollToExplore') || 'Scroll to explore'}</span>
                 <div className={styles.scrollMouse}>
                     <div className={styles.scrollWheel} />
                 </div>

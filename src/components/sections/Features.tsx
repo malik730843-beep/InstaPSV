@@ -1,10 +1,8 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import styles from './Features.module.css';
 
-export default function Features() {
-    const t = useTranslations('features');
+export default async function Features() {
+    const t = await getTranslations('features');
 
     const features = [
         {
@@ -57,7 +55,7 @@ export default function Features() {
     ];
 
     return (
-        <section className={styles.features}>
+        <section className={styles.features} id="features">
             <div className={styles.container}>
                 {/* Section Header */}
                 <div className={styles.header}>

@@ -4,7 +4,13 @@
         "features": "Functies",
         "blog": "Blog",
         "about": "Over ons",
-        "contact": "Contact"
+        "contact": "Contact",
+        "highlights": "Highlights Viewer",
+        "howItWorks": "Hoe het werkt",
+        "faq": "Veelgestelde vragen",
+        "privacy": "Privacybeleid",
+        "terms": "Gebruiksvoorwaarden",
+        "disclaimer": "Disclaimer"
     },
     "hero": {
         "badge": "Gratis Instagram Viewer Tool",
@@ -98,9 +104,57 @@
     },
     "testimonials": {
         "badge": "Reviews",
-        "title": "Wat onze gebruikers zeggen over {brand}",
-        "brand": "InstaPSV",
-        "subtitle": "Sluit je aan bij duizenden tevreden gebruikers die InstaPSV vertrouwen."
+        "title": "Wat onze gebruikers",
+        "titleHighlight": "gebruikers",
+        "titleEnd": "",
+        "subtitle": "Sluit je aan bij duizenden gebruikers die InstaPSV vertrouwen voor hun Instagram-inzichten.",
+        "items": [
+            {
+                "id": 1,
+                "name": "Sarah Johnson",
+                "handle": "@sarahj_design",
+                "avatar": "S",
+                "rating": 5,
+                "text": "InstaPSV is geweldig! Ik gebruik het dagelijks om de inhoud van concurrenten te checken. De anonieme kijkfunctie is perfect voor marktonderzoek.",
+                "role": "Digitale Marketeer"
+            },
+            {
+                "id": 2,
+                "name": "Mike Chen",
+                "handle": "@mike_tech",
+                "avatar": "M",
+                "rating": 5,
+                "text": "Eindelijk een tool die werkt! Geen login nodig, snel en betrouwbaar. Ik kan elk openbaar profiel direct bekijken. Zeer aanbevolen!",
+                "role": "Software Ontwikkelaar"
+            },
+            {
+                "id": 3,
+                "name": "Emily Davis",
+                "handle": "@emily_creates",
+                "avatar": "E",
+                "rating": 5,
+                "text": "De story viewer is ongelooflijk. Ik kan inspiratie opslaan voor mijn moodboards zonder dat iemand het merkt. Super handig voor creatieven!",
+                "role": "Content Creator"
+            },
+            {
+                "id": 4,
+                "name": "Alex Thompson",
+                "handle": "@alex_growth",
+                "avatar": "A",
+                "rating": 5,
+                "text": "Beste Instagram-viewer-tool die ik heb gevonden. Schone interface, snel laden en de downloadfunctie werkt elke keer vlekkeloos.",
+                "role": "Groeistrateeg"
+            },
+            {
+                "id": 5,
+                "name": "Jessica Lee",
+                "handle": "@jess_photo",
+                "avatar": "J",
+                "rating": 5,
+                "text": "Als fotograaf vind ik het heerlijk om anoniem inspiratie te kunnen bekijken en opslaan. InstaPSV is een essentieel onderdeel van mijn workflow geworden.",
+                "role": "Fotograaf"
+            }
+        ]
     },
     "cta": {
         "title": "Bekijk Instagram {followers}",
@@ -132,12 +186,80 @@
     },
     "blog": {
         "title": "Blog",
-        "subtitle": "Tips, tutorials en handleidingen voor InstaPSV.",
+        "badge": "Blog & Artikelen",
+        "insights": "Inzichten &",
+        "resources": "Artikelen",
+        "subtitle": "Tips, tutorials en gidsen om je te helpen het meeste uit Instagram te halen. Leer van experts en blijf op de hoogte.",
         "viewAll": "Alle artikelen bekijken",
+        "readArticle": "Artikel lezen",
         "readMore": "Lees meer",
         "recentPosts": "Recente berichten",
         "categories": "Categorieën",
-        "archive": "Archief"
+        "archive": "Archief",
+        "all": "Alle",
+        "minRead": "min leestijd",
+        "team": "InstaPSV Team",
+        "writer": "Content Schrijver",
+        "noPosts": "Nog geen berichten",
+        "working": "We werken aan geweldige content. Kom snel terug!",
+        "backHome": "Terug naar Home",
+        "stayUpdated": "Blijf op de hoogte",
+        "newsletterText": "Ontvang de nieuwste tips, tutorials en Instagram-inzichten direct in je inbox.",
+        "newsletterPlaceholder": "Voer je e-mailadres in",
+        "subscribing": "Inschrijven...",
+        "subscribed": "Ingeschreven!",
+        "subscribe": "Inschrijven",
+        "postNotFound": "Bericht niet gevonden",
+        "defaultAuthor": "InstaPSV Team",
+        "defaultCategory": "Updates"
+    },
+    "viewer": {
+        "pleaseWait": "Even geduld...",
+        "download": "Download",
+        "advertisement": "ADVERTENTIE",
+        "downloadStartIn": "Je download start over",
+        "downloadNow": "Nu downloaden",
+        "cancel": "Annuleren"
+    },
+    "contact": {
+        "badge": "Ondersteuning",
+        "title": "Neem contact",
+        "highlight": "op",
+        "subtitle": "We zijn er om te helpen bij vragen of problemen.",
+        "sendMessage": "Stuur ons een bericht",
+        "name": "Naam",
+        "namePlaceholder": "Je naam",
+        "email": "E-mail",
+        "emailPlaceholder": "jouw@email.nl",
+        "message": "Bericht",
+        "messagePlaceholder": "Hoe kunnen we helpen?",
+        "send": "Bericht verzenden",
+        "success": "Bericht verzonden!",
+        "successSub": "We nemen binnen 24 uur contact met je op.",
+        "sendAnother": "Nog een bericht sturen"
+    },
+    "pages": {
+        "badge": "Pagina's",
+        "title": "Informatie-",
+        "highlight": "pagina's",
+        "subtitle": "Blader door al onze informatie- en juridische pagina's.",
+        "aboutDesc": "Lees meer over InstaPSV en onze missie om gratis Instagram-viewer-tools aan te bieden.",
+        "contactDesc": "Neem contact op met ons team voor ondersteuning, partnerschappen of feedback.",
+        "featuresDesc": "Ontdek alle functies die InstaPSV biedt voor het bekijken van Instagram.",
+        "faqDesc": "Veelgestelde vragen over InstaPSV."
+    },
+    "search": {
+        "history": "Recente zoekopdrachten",
+        "clearHistory": "Alles wissen",
+        "errorTip": "Tip: Zorg ervoor dat het een openbaar Business- of Creator-account is.",
+        "viewProfile": "Profiel bekijken",
+        "anonymousBadge": "(Anonieme profielweergave)",
+        "posts": "Berichten",
+        "followers": "Volgers",
+        "following": "Volgend",
+        "noMedia": "Geen {type} gevonden.",
+        "storyTip": "Verhalen verlopen meestal na 24 uur.",
+        "viewStory": "Bekijk verhaal"
     },
     "footer": {
         "description": "De krachtigste en veiligste tool om Instagram verhalen, profielen en volgers anoniem te bekijken.",
@@ -150,6 +272,11 @@
     "common": {
         "loading": "Laden...",
         "error": "Er ging iets mis",
-        "tryAgain": "Probeer opnieuw"
+        "tryAgain": "Probeer opnieuw",
+        "and": "en",
+        "viewer": "Viewer",
+        "instagram": "Instagram",
+        "contentNotFound": "Inhoud niet gevonden.",
+        "scrollToExplore": "Scroll om te ontdekken"
     }
 }

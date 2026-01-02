@@ -9,9 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.89.0",
     "@types/three": "^0.182.0",
+    "@upstash/redis": "^1.35.8",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.8.2",
     "next": "16.1.0",
     "next-intl": "^4.6.1",
+    "nextjs-toploader": "^3.9.17",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "three": "^0.182.0"
