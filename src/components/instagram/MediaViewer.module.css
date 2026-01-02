@@ -5,19 +5,20 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.95);
-    z-index: 200000;
-    /* Higher than site header and mobile menu */
+    z-index: 9999999;
+    /* Extremely high to be above site header (200), mobile menu (9999), and toploader */
     display: flex;
     align-items: center;
     justify-content: center;
     animation: fadeIn 0.2s ease-out;
+    backdrop-filter: blur(10px);
 }
 
 .closeButton {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
     width: 44px;
@@ -28,8 +29,8 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
-    z-index: 200001;
-    /* Above modal content and header */
+    z-index: 10000000;
+    /* Above overlay */
 }
 
 .closeButton:hover {
