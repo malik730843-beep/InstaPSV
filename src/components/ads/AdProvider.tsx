@@ -3,6 +3,9 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 
+// Supported locales for i18n routing
+const supportedLocales = ['en', 'es', 'fr', 'de', 'it', 'da', 'nl', 'no', 'sv'] as const;
+
 interface Ad {
     id: string;
     name: string;
