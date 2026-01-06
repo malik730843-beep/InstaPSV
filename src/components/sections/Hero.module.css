@@ -372,7 +372,8 @@
 /* Responsive */
 @media (max-width: 768px) {
     .hero {
-        padding-top: 100px;
+        padding-top: 245px;
+        /* Increased by an additional 30px per user request */
         min-height: auto;
         padding-bottom: var(--spacing-4xl);
         justify-content: flex-start;

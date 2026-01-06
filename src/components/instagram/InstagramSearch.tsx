@@ -204,71 +204,62 @@ export default function InstagramSearch() {
                         <AdUnit slot="header" />
                     </div>
 
-                    {/* Main Content with Sidebar Layout */}
-                    <div className={styles.mainLayout}>
-                        {/* Main Profile Content */}
-                        <div className={styles.mainContent}>
-                            <div className={styles.profileBox} ref={resultsRef}>
-                                <div className={styles.profileHeader}>
-                                    <div className={styles.avatarWrapper}>
-                                        <img src={profile.profile_picture_url} alt={profile.username} className={styles.avatar} />
+                    {/* Main Results Layout */}
+                    <div className={styles.profileBox} ref={resultsRef}>
+                        {/* Full Width Hero Area (Header + Highlights) */}
+                        <div className={styles.profileHeader}>
+                            <div className={styles.avatarWrapper}>
+                                <img src={profile.profile_picture_url} alt={profile.username} className={styles.avatar} />
+                            </div>
+                            <div className={styles.profileInfo}>
+                                <div className={styles.usernameWrapper}>
+                                    <p className={styles.username}>{profile.username}</p>
+                                </div>
+
+                                <div className={styles.stats}>
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statValue}>{profile.media_count?.toLocaleString()}</span>
+                                        <span className={styles.statLabel}>{t('posts')}</span>
                                     </div>
-                                    <div className={styles.profileInfo}>
-                                        <div className={styles.usernameWrapper}>
-                                            <p className={styles.username}>{profile.username}</p>
-                                            {/* Buttons or Badge could go here */}
-                                        </div>
-
-                                        <div className={styles.stats}>
-                                            <div className={styles.statItem}>
-                                                <span className={styles.statValue}>{profile.media_count?.toLocaleString()}</span>
-                                                <span className={styles.statLabel}>{t('posts')}</span>
-                                            </div>
-                                            <div className={styles.statItem}>
-                                                <span className={styles.statValue}>
-                                                    {formatCount(profile.followers_count)}
-                                                </span>
-                                                <span className={styles.statLabel}>{t('followers')}</span>
-                                            </div>
-                                            <div className={styles.statItem}>
-                                                <span className={styles.statValue}>{profile.follows_count?.toLocaleString()}</span>
-                                                <span className={styles.statLabel}>{t('following')}</span>
-                                            </div>
-                                        </div>
-
-                                        <h3 className={styles.name}>{profile.name || profile.username}</h3>
-
-                                        {profile.biography && (
-                                            <p className={styles.bio}>{profile.biography}</p>
-                                        )}
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statValue}>
+                                            {formatCount(profile.followers_count)}
+                                        </span>
+                                        <span className={styles.statLabel}>{t('followers')}</span>
+                                    </div>
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statValue}>{profile.follows_count?.toLocaleString()}</span>
+                                        <span className={styles.statLabel}>{t('following')}</span>
                                     </div>
                                 </div>
 
-                                {/* Highlights Section */}
-                                {(profile.highlights?.data?.length > 0 || profile.stories?.data?.length > 0) && (
-                                    <div className={styles.highlights}>
-                                        {profile.highlights?.data?.map((highlight: any) => (
-                                            <div key={highlight.id} className={styles.highlightItem}>
-                                                <div className={styles.highlightCircle}>
-                                                    <img src={highlight.thumbnail_url} alt={highlight.title} className={styles.highlightThumb} />
-                                                </div>
-                                                <span className={styles.highlightLabel}>{highlight.title}</span>
-                                            </div>
-                                        ))}
-                                        {/* If no highlights but have stories, show a mock highlight for stories to match InstaPV UI */}
-                                        {!profile.highlights?.data?.length && profile.stories?.data?.length > 0 && (
-                                            <div className={styles.highlightItem}>
-                                                <div className={styles.highlightCircle}>
-                                                    <img src={profile.profile_picture_url} className={styles.highlightThumb} />
-                                                </div>
-                                                <span className={styles.highlightLabel}>{t('stories')}</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
+                                <h3 className={styles.name}>{profile.name || profile.username}</h3>
 
-                                {/* Tabs */}
+                                {profile.biography && (
+                                    <p className={styles.bio}>{profile.biography}</p>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Highlights Section */}
+                        {(profile.highlights?.data?.length > 0 || profile.stories?.data?.length > 0) && (
+                            <div className={styles.highlights}>
+                                {profile.highlights?.data?.map((highlight: any) => (
+                                    <div key={highlight.id} className={styles.highlightItem}>
+                                        <div className={styles.highlightCircle}>
+                                            <img src={highlight.thumbnail_url} alt={highlight.title} className={styles.highlightThumb} />
+                                        </div>
+                                        <span className={styles.highlightLabel}>{highlight.title}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Main Content with Sidebar (Tabs + Grid) */}
+                        <div className={styles.mainLayout}>
+                            <div className={styles.mainContent}>
                                 <div className={styles.tabs}>
+
                                     <button
                                         className={`${styles.tab} ${activeTab === 'POSTS' ? styles.activeTab : ''}`}
                                         onClick={() => setActiveTab('POSTS')}

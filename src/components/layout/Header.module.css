@@ -14,7 +14,7 @@
 }
 
 .header.scrolled {
-    background: rgba(10, 10, 26, 0.9);
+    background: rgba(10, 10, 26, 0.98);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     padding: var(--spacing-sm) 0;

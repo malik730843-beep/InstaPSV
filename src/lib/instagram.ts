@@ -130,6 +130,12 @@ export async function discoverProfile(myIgId: string, targetUsername: string): P
         }
 
         const rawProfile = data.business_discovery;
+        console.log("Raw Profile Keys:", Object.keys(rawProfile));
+        if (rawProfile.stories) {
+            console.log("Stories found in raw profile:", rawProfile.stories.data?.length);
+        } else {
+            console.log("No stories field in raw profile");
+        }
 
         // Strict Normalization
         const normalizedProfile: IGProfile = {
@@ -140,11 +146,8 @@ export async function discoverProfile(myIgId: string, targetUsername: string): P
             followers_count: rawProfile.followers_count,
             follows_count: rawProfile.follows_count, // Optional but good to have
             media_count: rawProfile.media_count,
-            media: rawProfile.media, // Keep media structure as is for now, or further normalize if needed
-            // explicit undefined for stories to ensure we don't accidentally rely on it if not requested
-            // Stories are strictly not part of the core cache requirements but good to keep if API returns them.
-            // Requirement says: "Username, bio, profile picture, followers count, posts count, public media/posts list"
-            // So we strictly return these.
+            media: rawProfile.media,
+            stories: rawProfile.stories,
         };
 
         return normalizedProfile;
