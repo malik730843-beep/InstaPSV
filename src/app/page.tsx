@@ -3,7 +3,7 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
 import Features from '@/components/sections/Features';
 import HowItWorks from '@/components/sections/HowItWorks';
-import BlogPreview from '@/components/sections/BlogPreview';
+
 import FAQ from '@/components/sections/FAQ';
 import CTASection from '@/components/sections/CTASection';
 import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
@@ -51,10 +51,7 @@ export default function Home() {
         {/* Ad after HowItWorks */}
         <AdSlot slot="header" />
 
-        <BlogPreview />
 
-        {/* Ad after BlogPreview */}
-        <AdSlot slot="sidebar" />
 
         <FAQ />
 

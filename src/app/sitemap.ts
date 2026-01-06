@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // 2. Blog Posts
+    /*
     let posts: any[] = [];
     try {
         const { data } = await supabase
@@ -34,13 +35,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             .eq('status', 'published');
         if (data) posts = data;
     } catch (e) { }
-
+    
     const postRoutes = posts.map((post) => ({
         url: `${BASE_URL}/blog/${post.slug}`,
         lastModified: new Date(post.updated_at),
         changeFrequency: 'weekly' as const,
         priority: 0.7,
     }));
+    */
+    const postRoutes: any[] = [];
 
     // 3. Pages (Dynamic)
     let pages: any[] = [];

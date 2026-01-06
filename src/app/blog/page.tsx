@@ -47,17 +47,22 @@ export default async function BlogPage() {
     const locale = await getLocale();
 
     // Fetch Posts from Supabase
+    /* 
+    const { data: postsData, error: postsError } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('status', 'published')
+        .order('created_at', { ascending: false });
+
+    if (postsData && !postsError) {
+        posts = postsData;
+    } 
+    */
+
+    // Force empty for now
+    posts = [];
+
     try {
-        const { data: postsData, error: postsError } = await supabase
-            .from('posts')
-            .select('*')
-            .eq('status', 'published')
-            .order('created_at', { ascending: false });
-
-        if (postsData && !postsError) {
-            posts = postsData;
-        }
-
         // Fetch Categories
         const { data: categoriesData, error: catError } = await supabase
             .from('categories')
