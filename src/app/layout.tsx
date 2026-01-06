@@ -132,7 +132,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   // Fetch GA ID separately for Script component
-  let gaId = '';
+  let gaId = 'G-FFC7WJ09DH';
   try {
     const { data } = await supabase
       .from('seo_settings')
