@@ -1,7 +1,20 @@
 import styles from './FeatureSuggestion.module.css';
-import FeatureSuggestionForm from './FeatureSuggestionForm';
+
 
 export default function FeatureSuggestion() {
+    const scrollToTop = (e: React.MouseEvent) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        // Focus on search input
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput instanceof HTMLElement) {
+            setTimeout(() => searchInput.focus(), 800);
+        }
+    };
+
     return (
         <section className={styles.featureSuggestion}>
             <div className={styles.container}>
@@ -12,32 +25,18 @@ export default function FeatureSuggestion() {
                 </div>
 
                 {/* Content */}
-                <div className={styles.content}>
-                    <div className={styles.icon}>💡</div>
-                    <h2 className={styles.title}>
-                        Help us build the best{' '}
-                        <span className={styles.highlight}>Instagram tool</span>
-                        <br />
-                        by suggesting features
+                <div className={styles.stealthContent}>
+                    <div className={styles.icon}>👻</div>
+                    <h2 className={styles.stealthTitle}>
+                        Stalk the Gram in Stealth Mode Only on InstaPSV
                     </h2>
-                    <p className={styles.description}>
-                        We&apos;re constantly improving InstaPSV. Share your ideas and help us create
-                        the features you need most.
+                    <p className={styles.stealthDescription}>
+                        Master the art of Digital Invisibility with InstaPSV. View Instagram stories anonymously and download content without leaving a trace. Learn more about why users trust anonymous Instagram viewers.
                     </p>
 
-                    {/* Form */}
-                    <FeatureSuggestionForm />
-
-                    {/* Popular Tags */}
-                    <div className={styles.tags}>
-                        <span className={styles.tagsLabel}>Popular requests:</span>
-                        <div className={styles.tagList}>
-                            <span className={styles.tag}>Dark Mode</span>
-                            <span className={styles.tag}>Batch Download</span>
-                            <span className={styles.tag}>Highlights Viewer</span>
-                            <span className={styles.tag}>Browser Extension</span>
-                        </div>
-                    </div>
+                    <a href="#" onClick={scrollToTop} className={styles.gradientButton}>
+                        🚀 Start Viewing
+                    </a>
                 </div>
             </div>
         </section>
