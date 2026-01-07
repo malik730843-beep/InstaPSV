@@ -7,6 +7,7 @@ import HowItWorks from '@/components/sections/HowItWorks';
 import FAQ from '@/components/sections/FAQ';
 import CTASection from '@/components/sections/CTASection';
 import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
+import StealthBanner from '@/components/sections/StealthBanner';
 import FAQSchema from '@/components/seo/FAQSchema';
 import AdUnit from '@/components/ads/AdUnit';
 import dynamic from 'next/dynamic';
@@ -67,6 +68,8 @@ export default function Home() {
 
         {/* Ad after Testimonials */}
         <AdSlot slot="header" />
+
+        <StealthBanner />
 
         <FeatureSuggestion />
       </main>
