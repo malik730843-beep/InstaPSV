@@ -22,6 +22,7 @@ interface Post {
 export default function PostsPage() {
     const [posts, setPosts] = useState<Post[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [selectedPosts, setSelectedPosts] = useState<string[]>([]);
     const [statusFilter, setStatusFilter] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
@@ -32,10 +33,11 @@ export default function PostsPage() {
 
     const loadPosts = async () => {
         setLoading(true);
+        setError(null);
         try {
             const { data: { session } } = await supabase.auth.getSession();
             if (!session) {
-                console.error("No session found");
+                setError("Authentication failed: No session found. Please log in.");
                 setLoading(false);
                 return;
             }
@@ -45,10 +47,17 @@ export default function PostsPage() {
                     'Authorization': `Bearer ${session.access_token}`
                 }
             });
+
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || `Server Error: ${res.status}`);
+            }
+
             const data = await res.json();
             setPosts(data.posts || []);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to load posts:', error);
+            setError(error.message || "Failed to load posts");
         }
         setLoading(false);
     };
@@ -233,6 +242,15 @@ export default function PostsPage() {
                     <div className="admin-loading" style={{ minHeight: '400px' }}>
                         <div className="admin-spinner"></div>
                         <p style={{ color: 'var(--admin-text-muted)', fontWeight: '500' }}>Fetching posts...</p>
+                    </div>
+                ) : error ? (
+                    <div className="empty-state">
+                        <div className="empty-state-icon" style={{ color: '#ef4444' }}>⚠️</div>
+                        <h3 style={{ color: '#ef4444' }}>Error Loading Posts</h3>
+                        <p>{error}</p>
+                        <button className="btn btn-secondary" onClick={loadPosts}>
+                            Retry
+                        </button>
                     </div>
                 ) : filteredPosts.length === 0 ? (
                     <div className="empty-state">
