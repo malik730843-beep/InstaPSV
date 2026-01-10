@@ -24,14 +24,15 @@ interface Post {
 
 // Fetch single post
 async function getPost(slug: string, isPreview = false): Promise<Post | null> {
-    const query = supabaseAdmin
+    console.log(`Fetching post: ${slug}, isPreview: ${isPreview}`);
+    let query = supabaseAdmin
         .from('posts')
         .select('*')
         .eq('slug', slug);
 
     // If not previewing, only show published posts
     if (!isPreview) {
-        query.eq('status', 'published');
+        query = query.eq('status', 'published');
     }
 
     const { data, error } = await query.single();
@@ -59,16 +60,24 @@ async function getCategoryName(categoryId: string | undefined) {
 }
 
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({
+    params,
+    searchParams
+}: {
+    params: Promise<{ slug: string }>,
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
     const { slug } = await params;
-    const post = await getPost(slug);
+    const sParams = await searchParams;
+    const isPreview = sParams.preview === 'true';
+
+    const post = await getPost(slug, isPreview);
     const t = await getTranslations('blog');
-    const commonT = await getTranslations('common');
 
     if (!post) return { title: t('postNotFound') };
 
     return {
-        title: `${post.title} - InstaPSV ${t('title')}`,
+        title: `${post.title} - InstaPSV ${isPreview ? '[PREVIEW]' : t('title')}`,
         description: post.excerpt || post.content.slice(0, 160),
     };
 }
@@ -82,27 +91,37 @@ export default async function BlogPostPage({
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const { slug } = await params;
-    const { preview } = await searchParams;
-    const isPreview = preview === 'true';
+    const sParams = await searchParams;
+    const isPreview = sParams.preview === 'true';
+
+    console.log('Blog Page params:', { slug, isPreview, rawParams: sParams });
 
     const post = await getPost(slug, isPreview);
 
     if (!post) {
         if (isPreview) {
+            const hasServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
             return (
-                <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
                     <div style={{ maxWidth: '600px', width: '100%', padding: '40px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
                         <h1 style={{ color: '#ef4444', marginBottom: '16px' }}>Preview Not Found</h1>
                         <p style={{ color: '#374151', fontSize: '16px', lineHeight: '1.6' }}>
                             We couldn't find a draft or published post with the slug: <br />
                             <strong style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>{slug}</strong>
                         </p>
+
+                        <div style={{ marginTop: '24px', padding: '16px', borderRadius: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '13px' }}>
+                            <div style={{ marginBottom: '8px' }}>🔍 <strong>Debug Status:</strong></div>
+                            <div>• URL Preview Mode: <span style={{ color: isPreview ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{String(isPreview)}</span></div>
+                            <div>• Service Role Key: <span style={{ color: hasServiceKey ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{hasServiceKey ? 'Detected' : 'MISSING'}</span></div>
+                        </div>
+
                         <div style={{ marginTop: '32px', textAlign: 'left', background: '#fef2f2', padding: '20px', borderRadius: '8px', border: '1px solid #fee2e2' }}>
                             <h2 style={{ fontSize: '14px', fontWeight: '600', color: '#991b1b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Possible Reasons:</h2>
-                            <ul style={{ paddingLeft: '20px', margin: 0, color: '#b91c1c', fontSize: '14px' }}>
-                                <li>The post hasn't been saved to the database yet.</li>
-                                <li>The slug was changed in the editor but not saved.</li>
-                                <li>The <strong>SUPABASE_SERVICE_ROLE_KEY</strong> is missing on the Vercel server.</li>
+                            <ul style={{ paddingLeft: '20px', margin: 0, color: '#b91c1c', fontSize: '14px', lineHeight: '1.8' }}>
+                                <li><strong>Save first:</strong> Did you click "Save Draft" before clicking Preview?</li>
+                                <li><strong>Slug match:</strong> Does the slug in the URL match the one in the editor?</li>
+                                <li><strong>Server Config:</strong> If "Service Role Key" shows as <strong>MISSING</strong>, you must add it to Vercel.</li>
                             </ul>
                         </div>
                         <button
