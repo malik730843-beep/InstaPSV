@@ -6,10 +6,11 @@ import Footer from '@/components/layout/Footer';
 import AdUnit from '@/components/ads/AdUnit';
 import { getTranslations, getLocale } from 'next-intl/server';
 
-// Initialize Supabase Client
+// Initialize Supabase Client with Service Role Key to bypass RLS for previews
+// This is safe because this is a server component
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
 // Force dynamic rendering

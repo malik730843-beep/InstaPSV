@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
 
         if (uploadError) {
             console.error('Upload Error:', uploadError);
-            return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 });
+            return NextResponse.json({ error: `Upload Detail: ${uploadError.message}` }, { status: 500 });
         }
 
         const { data: { publicUrl } } = supabase.storage
