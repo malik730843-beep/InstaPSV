@@ -90,59 +90,77 @@ export default async function BlogPostPage({
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const { slug } = await params;
-    const sParams = await searchParams;
-    const isPreview = sParams.preview === 'true';
+    try {
+        const { slug } = await params;
+        const sParams = await searchParams;
+        const isPreview = sParams.preview === 'true';
 
-    console.log('Blog Page params:', { slug, isPreview, rawParams: sParams });
+        console.log('Blog Page params:', { slug, isPreview, rawParams: sParams });
 
-    const post = await getPost(slug, isPreview);
+        const post = await getPost(slug, isPreview);
 
-    if (!post) {
-        if (isPreview) {
-            const hasServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
-            return (
-                <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
-                    <div style={{ maxWidth: '600px', width: '100%', padding: '40px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-                        <h1 style={{ color: '#ef4444', marginBottom: '16px' }}>Preview Not Found</h1>
-                        <p style={{ color: '#374151', fontSize: '16px', lineHeight: '1.6' }}>
-                            We couldn't find a draft or published post with the slug: <br />
-                            <strong style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>{slug}</strong>
-                        </p>
+        if (!post) {
+            if (isPreview) {
+                const hasServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
+                const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || '';
+                return (
+                    <>
+                        <Header alwaysDark />
+                        <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
+                            <div style={{ maxWidth: '600px', width: '100%', padding: '40px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+                                <h1 style={{ color: '#ef4444', marginBottom: '16px', fontSize: '24px' }}>Preview Not Found</h1>
+                                <p style={{ color: '#374151', fontSize: '16px', lineHeight: '1.6' }}>
+                                    We couldn't find a draft or published post with the slug: <br />
+                                    <strong style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>{slug}</strong>
+                                </p>
 
-                        <div style={{ marginTop: '24px', padding: '16px', borderRadius: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '13px' }}>
-                            <div style={{ marginBottom: '8px' }}>🔍 <strong>Debug Status:</strong></div>
-                            <div>• URL Preview Mode: <span style={{ color: isPreview ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{String(isPreview)}</span></div>
-                            <div>• Service Role Key: <span style={{ color: hasServiceKey ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{hasServiceKey ? 'Detected' : 'MISSING'}</span></div>
+                                <div style={{ marginTop: '24px', padding: '16px', borderRadius: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '13px' }}>
+                                    <div style={{ marginBottom: '8px' }}>🔍 <strong>Debug Status:</strong></div>
+                                    <div>• URL Preview Mode: <span style={{ color: isPreview ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{String(isPreview)}</span></div>
+                                    <div>• Service Role Key: <span style={{ color: hasServiceKey ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{hasServiceKey ? 'Detected' : 'MISSING'}</span></div>
+                                </div>
+
+                                <div style={{ marginTop: '32px', textAlign: 'left', background: '#fef2f2', padding: '20px', borderRadius: '8px', border: '1px solid #fee2e2' }}>
+                                    <h2 style={{ fontSize: '14px', fontWeight: '600', color: '#991b1b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Checklist:</h2>
+                                    <ul style={{ paddingLeft: '20px', margin: 0, color: '#b91c1c', fontSize: '14px', lineHeight: '1.8' }}>
+                                        <li><strong>Save first:</strong> Ensure you saved as "Draft" in the editor.</li>
+                                        <li><strong>Wait:</strong> Vercel caching may take 30-60 seconds to update.</li>
+                                        <li><strong>Config:</strong> If "Service Role Key" is MISSING, add it to Vercel env vars.</li>
+                                    </ul>
+                                </div>
+                                <a
+                                    href={`/blog/${slug}?preview=true&t=${Date.now()}`}
+                                    style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}
+                                >
+                                    🔄 Refresh Preview
+                                </a>
+                            </div>
                         </div>
-
-                        <div style={{ marginTop: '32px', textAlign: 'left', background: '#fef2f2', padding: '20px', borderRadius: '8px', border: '1px solid #fee2e2' }}>
-                            <h2 style={{ fontSize: '14px', fontWeight: '600', color: '#991b1b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Possible Reasons:</h2>
-                            <ul style={{ paddingLeft: '20px', margin: 0, color: '#b91c1c', fontSize: '14px', lineHeight: '1.8' }}>
-                                <li><strong>Save first:</strong> Did you click "Save Draft" before clicking Preview?</li>
-                                <li><strong>Slug match:</strong> Does the slug in the URL match the one in the editor?</li>
-                                <li><strong>Server Config:</strong> If "Service Role Key" shows as <strong>MISSING</strong>, you must add it to Vercel.</li>
-                            </ul>
-                        </div>
-                        <a
-                            href="javascript:location.reload()"
-                            style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}
-                        >
-                            Refresh Page
-                        </a>
-                    </div>
-                </div>
-            );
+                        <Footer />
+                    </>
+                );
+            }
+            notFound();
         }
-        notFound();
+
+        const t = await getTranslations('blog');
+        const locale = await getLocale();
+
+        // Resolve category name for the main post
+        const categoryName = (await getCategoryName(post.categories?.[0])) || t('defaultCategory');
+        const authorName = post.author_name || t('defaultAuthor');
+    } catch (err: any) {
+        console.error("CRITICAL PAGE ERROR:", err);
+        return (
+            <div style={{ padding: '40px', background: '#fff', color: '#000', fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
+                <h1>Critical Server Error (Caught)</h1>
+                <p>Message: {err.message}</p>
+                <p>Stack: {err.stack}</p>
+                <hr />
+                <p>Please share this with the developer to fix the crash.</p>
+            </div>
+        );
     }
-
-    const t = await getTranslations('blog');
-    const locale = await getLocale();
-
-    // Resolve category name for the main post
-    const categoryName = (await getCategoryName(post.categories?.[0])) || t('defaultCategory');
-    const authorName = post.author_name || t('defaultAuthor');
 
     return (
         <>
