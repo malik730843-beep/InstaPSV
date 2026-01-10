@@ -124,12 +124,12 @@ export default async function BlogPostPage({
                                 <li><strong>Server Config:</strong> If "Service Role Key" shows as <strong>MISSING</strong>, you must add it to Vercel.</li>
                             </ul>
                         </div>
-                        <button
-                            onClick={() => window.location.reload()}
-                            style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer' }}
+                        <a
+                            href="javascript:location.reload()"
+                            style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}
                         >
-                            Try Again
-                        </button>
+                            Refresh Page
+                        </a>
                     </div>
                 </div>
             );
