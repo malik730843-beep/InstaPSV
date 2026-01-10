@@ -145,7 +145,7 @@ export default function NewPostPage() {
         }));
     };
 
-    const handleSave = async (status?: string) => {
+    const handleSave = async (status?: string, openPreview = false) => {
         if (!formData.title.trim()) {
             alert('Please enter a title');
             return;
@@ -177,7 +177,19 @@ export default function NewPostPage() {
 
             if (res.ok) {
                 localStorage.removeItem('draft_post');
-                router.push('/admin/posts');
+                const data = await res.json();
+
+                if (openPreview) {
+                    window.open(`/blog/${payload.slug}?preview=true`, '_blank');
+                    // If we are on 'new' page, we should still redirect to 'edit' page for the newly created post
+                    if (data.post && data.post.id) {
+                        router.push(`/admin/posts/${data.post.id}/edit`);
+                    } else {
+                        router.push('/admin/posts');
+                    }
+                } else {
+                    router.push('/admin/posts');
+                }
             } else {
                 const data = await res.json();
                 alert(data.error || 'Failed to save post');
@@ -347,26 +359,11 @@ export default function NewPostPage() {
                 <div style={{ display: 'flex', gap: '12px' }}>
                     <button
                         className="btn btn-secondary"
-                        onClick={async () => {
-                            if (!formData.title) {
-                                alert('Please add a title first');
-                                return;
-                            }
-                            // Save first, then open
-                            await handleSave('draft');
-                            // If it's a new post, handleSave might redirect, so we need to be careful.
-                            // But usually handleSave updates the state. 
-                            // Actually, handleSave for 'new' saves and redirects. 
-                            // So we might rely on the auto-save logic or just manually construct the url.
-                            // If it has a slug, we can open it.
-                            if (formData.slug) {
-                                window.open(`/blog/${formData.slug}?preview=true`, '_blank');
-                            }
-                        }}
+                        onClick={() => handleSave('draft', true)}
                         disabled={saving}
-                        style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-border)' }}
+                        style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-primary)', color: 'var(--admin-primary)' }}
                     >
-                        👁️ Preview
+                        🚀 Save & Preview
                     </button>
                     <button
                         className="btn btn-secondary"

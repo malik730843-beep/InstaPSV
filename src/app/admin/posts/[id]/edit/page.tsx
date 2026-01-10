@@ -176,7 +176,7 @@ export default function EditPostPage() {
         }
     };
 
-    const handleSave = async (status?: string) => {
+    const handleSave = async (status?: string, openPreview = false) => {
         if (!formData.title.trim()) {
             alert('Please enter a title');
             return;
@@ -194,7 +194,7 @@ export default function EditPostPage() {
             const { data: { session } } = await supabase.auth.getSession();
             if (!session?.access_token) {
                 alert('Session expired');
-                setSaving(false); // Fix stuck loading state
+                setSaving(false);
                 return;
             }
 
@@ -208,7 +208,11 @@ export default function EditPostPage() {
             });
 
             if (res.ok) {
-                router.push('/admin/posts');
+                if (openPreview) {
+                    window.open(`/blog/${formData.slug}?preview=true`, '_blank');
+                } else {
+                    router.push('/admin/posts');
+                }
             } else {
                 const data = await res.json();
                 alert(data.error || 'Failed to save post');
@@ -363,18 +367,11 @@ export default function EditPostPage() {
                     </Link>
                     <button
                         className="btn btn-secondary"
-                        onClick={async () => {
-                            // Save first (auto-save style, or explicit draft save? explicit is safer)
-                            await handleSave();
-                            // Open preview
-                            if (formData.slug) {
-                                window.open(`/blog/${formData.slug}?preview=true`, '_blank');
-                            }
-                        }}
+                        onClick={() => handleSave('draft', true)}
                         disabled={saving}
-                        style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-border)' }}
+                        style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-primary)', color: 'var(--admin-primary)' }}
                     >
-                        👁️ Preview
+                        🚀 Save & Preview
                     </button>
                     <button
                         className="btn btn-secondary"
