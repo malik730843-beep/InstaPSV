@@ -344,6 +344,29 @@ export default function NewPostPage() {
                 <div style={{ display: 'flex', gap: '12px' }}>
                     <button
                         className="btn btn-secondary"
+                        onClick={async () => {
+                            if (!formData.title) {
+                                alert('Please add a title first');
+                                return;
+                            }
+                            // Save first, then open
+                            await handleSave('draft');
+                            // If it's a new post, handleSave might redirect, so we need to be careful.
+                            // But usually handleSave updates the state. 
+                            // Actually, handleSave for 'new' saves and redirects. 
+                            // So we might rely on the auto-save logic or just manually construct the url.
+                            // If it has a slug, we can open it.
+                            if (formData.slug) {
+                                window.open(`/blog/${formData.slug}?preview=true`, '_blank');
+                            }
+                        }}
+                        disabled={saving}
+                        style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-border)' }}
+                    >
+                        👁️ Preview
+                    </button>
+                    <button
+                        className="btn btn-secondary"
                         onClick={() => handleSave('draft')}
                         disabled={saving}
                     >

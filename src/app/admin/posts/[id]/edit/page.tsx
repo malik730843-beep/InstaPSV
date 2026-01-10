@@ -360,6 +360,21 @@ export default function EditPostPage() {
                     </Link>
                     <button
                         className="btn btn-secondary"
+                        onClick={async () => {
+                            // Save first (auto-save style, or explicit draft save? explicit is safer)
+                            await handleSave();
+                            // Open preview
+                            if (formData.slug) {
+                                window.open(`/blog/${formData.slug}?preview=true`, '_blank');
+                            }
+                        }}
+                        disabled={saving}
+                        style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-border)' }}
+                    >
+                        👁️ Preview
+                    </button>
+                    <button
+                        className="btn btn-secondary"
                         onClick={() => handleSave('draft')}
                         disabled={saving}
                     >

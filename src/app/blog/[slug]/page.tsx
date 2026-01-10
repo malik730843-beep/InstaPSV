@@ -29,13 +29,18 @@ interface Post {
 }
 
 // Fetch single post
-async function getPost(slug: string): Promise<Post | null> {
-    const { data, error } = await supabase
+async function getPost(slug: string, isPreview = false): Promise<Post | null> {
+    const query = supabase
         .from('posts')
         .select('*')
-        .eq('slug', slug)
-        .eq('status', 'published') // Only show published posts
-        .single();
+        .eq('slug', slug);
+
+    // If not previewing, only show published posts
+    if (!isPreview) {
+        query.eq('status', 'published');
+    }
+
+    const { data, error } = await query.single();
 
     if (error || !data) return null;
     return data;
@@ -70,9 +75,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({
+    params,
+    searchParams
+}: {
+    params: Promise<{ slug: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
     const { slug } = await params;
-    const post = await getPost(slug);
+    const { preview } = await searchParams;
+    const isPreview = preview === 'true';
+
+    const post = await getPost(slug, isPreview);
 
     const t = await getTranslations('blog');
     const locale = await getLocale();
