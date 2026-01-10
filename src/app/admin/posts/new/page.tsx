@@ -217,7 +217,10 @@ export default function NewPostPage() {
                 body: formDataUpload,
             });
 
-            if (!res.ok) throw new Error('Upload failed');
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.error || 'Upload failed');
+            }
 
             const data = await res.json();
 
@@ -226,9 +229,9 @@ export default function NewPostPage() {
             } else {
                 handleFormat('insertImage', data.url);
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error('Upload Error:', error);
-            alert('Failed to upload image');
+            alert(error.message || 'Failed to upload image');
         }
         setUploading(false);
     };
