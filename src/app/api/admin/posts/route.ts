@@ -42,6 +42,12 @@ export async function GET(req: NextRequest) {
     }
 }
 
+// Helper to strip unknown fields
+function sanitizePostData(body: any) {
+    const { id, categories, savedAt, ...data } = body; // Explicitly remove savedAt
+    return { id, categories, data };
+}
+
 // POST - Create or update post
 export async function POST(req: NextRequest) {
     const authResult = await verifyAdmin(req);
@@ -50,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     try {
         const body = await req.json();
-        const { id, categories, ...data } = body;
+        const { id, categories, data } = sanitizePostData(body);
 
         if (id) {
             // Update existing post
