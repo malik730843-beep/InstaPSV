@@ -3,7 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
+import { createClient } from '@supabase/supabase-js';
 import RichEditor from '@/components/admin/RichEditor';
+
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 interface Category {
     id: string;
@@ -42,6 +48,79 @@ export default function EditPostPage() {
 
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [showSEO, setShowSEO] = useState(false);
+    const [lastSaved, setLastSaved] = useState<Date | null>(null);
+
+    // Auto-save every 30 seconds
+    useEffect(() => {
+        const autoSaveInterval = setInterval(() => {
+            if (formData.title) {
+                handleAutoSave();
+            }
+        }, 30000);
+
+        return () => clearInterval(autoSaveInterval);
+    }, [formData]); // Auto-save when form data changes effectively resets timer? No, incorrect dep. 
+    // Actually, setInterval will run every 30s. But if we depend on formData, it will reset interval on every keystroke.
+    // Correct way: use ref for formData or just let the closure be stale? React hooks trap.
+    // Better: use a separate effect for debouncing or keep ref. 
+    // BUT `new` page implementation had `[formData]` dependency which resets timer on change. 
+    // That acts like a debounce (30s after LAST change). That is actually desired behavior.
+
+    const handleAutoSave = async () => {
+        if (!formData.title) return;
+
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) return;
+
+        try {
+            const payload = {
+                id: postId, // Ensure ID is passed for update
+                ...formData,
+                status: 'draft', // FORCE draft status on auto-save?? 
+                // Wait, if I am editing a PUBLISHED post, auto-save should probably NOT change it to draft.
+                // It should keeping current status OR maybe we shouldn't auto-save published posts to live?
+                // The implementation plan said: "Let's update updated_at but keep status."
+                // So let's use formData.status but maybe we want to be careful.
+                // If I edit a published post, I might not want to push changes live until I click update.
+                // But this backend overwrites content. 
+                // SAFE APPROACH: Only auto-save if status is 'draft'.
+                // If status is published, maybe we only save to localStorage?
+                // Let's stick to the plan: "Implement handleAutoSave... to update the existing post."
+                // I'll check status. If published, I will SKIP server auto-save to avoid accidents.
+            };
+
+            if (formData.status !== 'draft') {
+                // Skip server auto-save for published posts to avoid live breakages
+                // Just local storage
+                localStorage.setItem(`draft_post_${postId}`, JSON.stringify({
+                    ...formData,
+                    categories: selectedCategories,
+                    savedAt: new Date().toISOString()
+                }));
+                setLastSaved(new Date());
+                return;
+            }
+
+            // Server save for drafts
+            const res = await fetch('/api/admin/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`
+                },
+                body: JSON.stringify({
+                    ...payload,
+                    categories: selectedCategories,
+                }),
+            });
+
+            if (res.ok) {
+                setLastSaved(new Date());
+            }
+        } catch (e) {
+            console.error("Auto-save failed", e);
+        }
+    };
 
     useEffect(() => {
         loadPost();
@@ -50,7 +129,15 @@ export default function EditPostPage() {
 
     const loadPost = async () => {
         try {
-            const res = await fetch(`/api/admin/posts?id=${postId}`);
+            const { data: { session } } = await supabase.auth.getSession();
+            // Note: GET request might need auth too if admin API is protected. 
+            // The route says: "const adminUser = await verifyAdmin(req);" for GET as well.
+            // So we MUST add headers here too.
+            const res = await fetch(`/api/admin/posts?id=${postId}`, {
+                headers: {
+                    'Authorization': `Bearer ${session?.access_token || ''}`
+                }
+            });
             const data = await res.json();
 
             if (data.post) {
@@ -104,9 +191,19 @@ export default function EditPostPage() {
                 categories: selectedCategories,
             };
 
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) {
+                alert('Session expired');
+                setSaving(false); // Fix stuck loading state
+                return;
+            }
+
             const res = await fetch('/api/admin/posts', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`
+                },
                 body: JSON.stringify(payload),
             });
 
@@ -136,8 +233,18 @@ export default function EditPostPage() {
         formDataUpload.append('file', file);
 
         try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) {
+                alert('Session expired');
+                setUploading(false);
+                return;
+            }
+
             const res = await fetch('/api/admin/upload', {
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${session.access_token}`
+                },
                 body: formDataUpload,
             });
 

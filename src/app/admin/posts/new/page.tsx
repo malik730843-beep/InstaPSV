@@ -3,7 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { createClient } from '@supabase/supabase-js';
 import RichEditor from '@/components/admin/RichEditor';
+
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 interface Category {
     id: string;
@@ -56,16 +62,60 @@ export default function NewPostPage() {
     }, [formData]);
 
     const handleAutoSave = async () => {
+        // Don't auto-save if no title
+        if (!formData.title) return;
+
         try {
-            // Save to localStorage as backup
+            // 1. Save to local storage as backup
             localStorage.setItem('draft_post', JSON.stringify({
                 ...formData,
                 categories: selectedCategories,
                 savedAt: new Date().toISOString()
             }));
-            setLastSaved(new Date());
+
+            // 2. Server-side auto-save
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) return; // Can't save to server if not logged in
+
+            const payload = {
+                ...formData,
+                status: 'draft', // Always save as draft during auto-save
+                slug: formData.slug || generateSlug(formData.title),
+                categories: selectedCategories,
+            };
+
+            const res = await fetch('/api/admin/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setLastSaved(new Date());
+
+                // If this was a new post and we just created it via auto-save, 
+                // we should switch to edit mode to avoid creating duplicates.
+                if (data.post && data.post.id) {
+                    // Update URL without reloading
+                    window.history.replaceState(null, '', `/admin/posts/${data.post.id}/edit`);
+                    // Optionally redirect fully if needed, but replaceState is smoother
+                    // Note: We are still on the "New" page component, so we might want to 
+                    // fully redirect to ensure we are using the EditPostPage logic if it differs significantly.
+                    // However, for now, let's just do a full replace to be safe.
+                    // router.replace(`/admin/posts/${data.post.id}/edit`); 
+                    // Actually, if we use router.replace, it might re-mount. 
+                    // Let's just update url and keep using this component or redirect?
+                    // Redirecting is safer to switch context.
+                    router.replace(`/admin/posts/${data.post.id}/edit`);
+                }
+            }
+
         } catch (error) {
-            console.error('Auto-save failed');
+            console.error('Auto-save failed', error);
         }
     };
 
@@ -110,9 +160,18 @@ export default function NewPostPage() {
                 categories: selectedCategories,
             };
 
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) {
+                alert('Session expired. Please log in again.');
+                return;
+            }
+
             const res = await fetch('/api/admin/posts', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`
+                },
                 body: JSON.stringify(payload),
             });
 
@@ -143,8 +202,18 @@ export default function NewPostPage() {
         formDataUpload.append('file', file);
 
         try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) {
+                alert('Session expired');
+                setUploading(false);
+                return;
+            }
+
             const res = await fetch('/api/admin/upload', {
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${session.access_token}`
+                },
                 body: formDataUpload,
             });
 
