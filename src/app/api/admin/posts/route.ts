@@ -90,48 +90,67 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
         const { id, categories, data } = sanitizePostData(body);
 
-        if (id) {
-            // Ensure unique slug for update (if slug changed)
-            if (data.slug) {
-                data.slug = await ensureUniqueSlug(data.slug, id);
+        let attempts = 0;
+        const maxAttempts = 3;
+
+        while (attempts < maxAttempts) {
+            try {
+                if (id) {
+                    // Ensure unique slug for update
+                    if (data.slug) {
+                        data.slug = await ensureUniqueSlug(data.slug, id);
+                    }
+
+                    // Update existing post
+                    const { error } = await supabase
+                        .from('posts')
+                        .update({
+                            ...data,
+                            updated_at: new Date().toISOString(),
+                            published_at: data.status === 'published' ? new Date().toISOString() : null,
+                        })
+                        .eq('id', id);
+
+                    if (error) throw error;
+
+                    return NextResponse.json({ success: true });
+                } else {
+                    // Ensure unique slug for new post
+                    if (data.slug) {
+                        data.slug = await ensureUniqueSlug(data.slug);
+                    }
+
+                    // Create new post
+                    const { data: newPost, error } = await supabase
+                        .from('posts')
+                        .insert([{
+                            ...data,
+                            published_at: data.status === 'published' ? new Date().toISOString() : null,
+                        }])
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    return NextResponse.json({ post: newPost });
+                }
+            } catch (error: any) {
+                // Check for Postgres unique violation (code 23505)
+                if (error.code === '23505' && error.message?.includes('slug')) {
+                    console.warn(`Slug collision detected for ${data.slug}. Retrying... (${attempts + 1}/${maxAttempts})`);
+                    attempts++;
+                    if (attempts >= maxAttempts) throw new Error("Failed to generate unique slug after multiple attempts");
+                    continue; // Loop again to generate a new slug
+                }
+                throw error; // Rethrow other errors
             }
-
-            // Update existing post
-            const { error } = await supabase
-                .from('posts')
-                .update({
-                    ...data,
-                    updated_at: new Date().toISOString(),
-                    published_at: data.status === 'published' ? new Date().toISOString() : null,
-                })
-                .eq('id', id);
-
-            if (error) throw error;
-
-            return NextResponse.json({ success: true });
-        } else {
-            // Ensure unique slug for new post
-            if (data.slug) {
-                data.slug = await ensureUniqueSlug(data.slug);
-            }
-
-            // Create new post
-            const { data: newPost, error } = await supabase
-                .from('posts')
-                .insert([{
-                    ...data,
-                    published_at: data.status === 'published' ? new Date().toISOString() : null,
-                }])
-                .select()
-                .single();
-
-            if (error) throw error;
-
-            return NextResponse.json({ post: newPost });
         }
     } catch (error: any) {
+        console.error("POST Error:", error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
+
+    return NextResponse.json({ error: "Unexpected error" }, { status: 500 });
 }
 
 // DELETE - Delete post
