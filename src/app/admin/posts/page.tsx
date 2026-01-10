@@ -3,6 +3,13 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
 interface Post {
     id: string;
     title: string;
@@ -26,7 +33,18 @@ export default function PostsPage() {
     const loadPosts = async () => {
         setLoading(true);
         try {
-            const res = await fetch('/api/admin/posts');
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
+                console.error("No session found");
+                setLoading(false);
+                return;
+            }
+
+            const res = await fetch('/api/admin/posts', {
+                headers: {
+                    'Authorization': `Bearer ${session.access_token}`
+                }
+            });
             const data = await res.json();
             setPosts(data.posts || []);
         } catch (error) {
@@ -39,8 +57,14 @@ export default function PostsPage() {
         if (!confirm('Are you sure you want to delete this post?')) return;
 
         try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) return;
+
             const res = await fetch(`/api/admin/posts?id=${id}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${session.access_token}`
+                }
             });
 
             if (res.ok) {
@@ -62,13 +86,24 @@ export default function PostsPage() {
         }
 
         try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) return;
+
             for (const id of selectedPosts) {
                 if (action === 'delete') {
-                    await fetch(`/api/admin/posts?id=${id}`, { method: 'DELETE' });
+                    await fetch(`/api/admin/posts?id=${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${session.access_token}`
+                        }
+                    });
                 } else if (action === 'publish' || action === 'draft') {
                     await fetch('/api/admin/posts', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${session.access_token}`
+                        },
                         body: JSON.stringify({ id, status: action === 'publish' ? 'published' : 'draft' }),
                     });
                 }
