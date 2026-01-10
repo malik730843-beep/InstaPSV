@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
 import RichEditor from '@/components/admin/RichEditor';
+import { compressImage } from '@/lib/imageUtils';
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -210,10 +211,12 @@ export default function NewPostPage() {
         if (!file) return;
 
         setUploading(true);
-        const formDataUpload = new FormData();
-        formDataUpload.append('file', file);
-
         try {
+            // Automatically compress image before upload
+            const compressedFile = await compressImage(file, 100);
+
+            const formDataUpload = new FormData();
+            formDataUpload.append('file', compressedFile);
             const { data: { session } } = await supabase.auth.getSession();
             if (!session?.access_token) {
                 alert('Session expired');
@@ -325,6 +328,7 @@ export default function NewPostPage() {
     };
 
     const wordCount = formData.content.replace(/<[^>]*>/g, '').split(/\s+/).filter(x => x).length;
+    const charCount = formData.content.replace(/<[^>]*>/g, '').length;
     const readingTime = Math.ceil(wordCount / 200);
 
     // Load draft from localStorage
@@ -762,21 +766,39 @@ export default function NewPostPage() {
                             </div>
                         </div>
 
-                        {/* Real-time SEO Score Panel */}
-                        <div className="admin-card" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: '#fff', border: 'none' }}>
+                        {/* Real-time Content Statistics Panel */}
+                        <div className="admin-card" style={{ background: 'linear-gradient(135deg, #0ea5e9, #2563eb)', color: '#fff', border: 'none' }}>
                             <div style={{ textAlign: 'center' }}>
-                                <h3 style={{ margin: 0, fontSize: '14px', fontWeight: '600' }}>SEO Score</h3>
+                                <h3 style={{ margin: 0, fontSize: '14px', fontWeight: '600', opacity: 0.9 }}>Post Statistics</h3>
                                 <div style={{
-                                    fontSize: '48px',
+                                    fontSize: '42px',
                                     fontWeight: '900',
-                                    margin: '16px 0',
+                                    margin: '12px 0',
                                     textShadow: '0 4px 10px rgba(0,0,0,0.2)'
                                 }}>
-                                    {Math.min(100, (formData.title.length > 30 ? 40 : 10) + (formData.content.length > 500 ? 60 : 20))}
+                                    {wordCount}
                                 </div>
-                                <p style={{ margin: 0, fontSize: '12px', opacity: '0.9' }}>
-                                    {formData.title ? 'Keep going! Optimize for RankMath.' : 'Start writing to see score'}
-                                </p>
+                                <div style={{ fontSize: '14px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>
+                                    Words Integrated
+                                </div>
+
+                                <div style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: '1fr 1fr',
+                                    gap: '12px',
+                                    borderTop: '1px solid rgba(255,255,255,0.2)',
+                                    paddingTop: '16px',
+                                    fontSize: '13px'
+                                }}>
+                                    <div style={{ textAlign: 'left' }}>
+                                        <div style={{ opacity: 0.8 }}>Characters</div>
+                                        <div style={{ fontWeight: '700', fontSize: '16px' }}>{charCount}</div>
+                                    </div>
+                                    <div style={{ textAlign: 'right' }}>
+                                        <div style={{ opacity: 0.8 }}>Reading Time</div>
+                                        <div style={{ fontWeight: '700', fontSize: '16px' }}>{readingTime} min</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
