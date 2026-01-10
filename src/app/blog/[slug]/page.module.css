@@ -58,7 +58,7 @@
     font-size: 42px;
     /* Large bold title */
     font-weight: 800;
-    color: #111;
+    color: #000000;
     line-height: 1.2;
     letter-spacing: -0.5px;
     margin-bottom: 16px;
@@ -78,22 +78,26 @@
     font-weight: 400;
 }
 
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+    font-weight: 800;
+    color: #000000;
+    line-height: 1.35;
+}
+
 .content h2 {
     font-size: 28px;
-    font-weight: 800;
-    color: #000;
     margin-top: 48px;
     margin-bottom: 20px;
-    line-height: 1.35;
 }
 
 .content h3 {
     font-size: 22px;
-    font-weight: 800;
-    color: #000;
     margin-top: 36px;
     margin-bottom: 16px;
-    line-height: 1.4;
 }
 
 .content ul,
