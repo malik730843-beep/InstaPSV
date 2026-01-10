@@ -9,8 +9,9 @@ const supabase = createClient(
 
 // GET - Get single post by id or list all posts
 export async function GET(req: NextRequest) {
-    const adminUser = await verifyAdmin(req);
-    if (!adminUser) return unauthorizedResponse();
+    const authResult = await verifyAdmin(req);
+    if ('error' in authResult) return unauthorizedResponse(authResult.error);
+    const adminUser = authResult;
 
     try {
         const { searchParams } = new URL(req.url);
@@ -43,8 +44,9 @@ export async function GET(req: NextRequest) {
 
 // POST - Create or update post
 export async function POST(req: NextRequest) {
-    const adminUser = await verifyAdmin(req);
-    if (!adminUser) return unauthorizedResponse();
+    const authResult = await verifyAdmin(req);
+    if ('error' in authResult) return unauthorizedResponse(authResult.error);
+    const adminUser = authResult;
 
     try {
         const body = await req.json();
@@ -86,8 +88,9 @@ export async function POST(req: NextRequest) {
 
 // DELETE - Delete post
 export async function DELETE(req: NextRequest) {
-    const adminUser = await verifyAdmin(req);
-    if (!adminUser) return unauthorizedResponse();
+    const authResult = await verifyAdmin(req);
+    if ('error' in authResult) return unauthorizedResponse(authResult.error);
+    const adminUser = authResult;
 
     try {
         const { searchParams } = new URL(req.url);

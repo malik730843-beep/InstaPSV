@@ -12,7 +12,7 @@ export async function verifyAdmin(request: Request) {
     const authHeader = request.headers.get('Authorization');
 
     if (!authHeader) {
-        return null;
+        return { error: "Missing Authorization Header" };
     }
 
     const token = authHeader.replace('Bearer ', '');
@@ -20,24 +20,24 @@ export async function verifyAdmin(request: Request) {
 
     if (error || !user) {
         console.error("Admin Auth Failed:", error?.message);
-        return null;
+        return { error: `Invalid Token: ${error?.message || 'User not found'}` };
     }
 
     // STRICT SECURITY: Only allow specific email
     if (ADMIN_EMAIL && user.email !== ADMIN_EMAIL) {
         console.warn(`Unauthorized access attempt by ${user.email}`);
-        return null;
+        return { error: `Unauthorized Email: ${user.email} is not admin` };
     }
 
     // If ADMIN_EMAIL is not set, we BLOCK access for safety in production
     if (!ADMIN_EMAIL) {
         console.error("ADMIN_EMAIL environment variable is not set! Blocking all admin access for security.");
-        return null;
+        return { error: "Configuration Error: ADMIN_EMAIL not set on server" };
     }
 
     return user;
 }
 
-export function unauthorizedResponse() {
-    return NextResponse.json({ error: 'Unauthorized: Admin Access Required' }, { status: 401 });
+export function unauthorizedResponse(reason: string = 'Admin Access Required') {
+    return NextResponse.json({ error: `Unauthorized: ${reason}` }, { status: 401 });
 }
