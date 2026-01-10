@@ -3,14 +3,8 @@ import styles from './page.module.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import NewsletterForm from '@/components/NewsletterForm';
-import { createClient } from '@supabase/supabase-js';
+import { supabaseAdmin } from '@/lib/supabase';
 import { getTranslations, getLocale } from 'next-intl/server';
-
-// Initialize Supabase Client (Server-side)
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export async function generateMetadata() {
     const t = await getTranslations('blog');
@@ -46,25 +40,22 @@ export default async function BlogPage() {
     const t = await getTranslations('blog');
     const locale = await getLocale();
 
-    // Fetch Posts from Supabase
-    /* 
-    const { data: postsData, error: postsError } = await supabase
-        .from('posts')
-        .select('*')
-        .eq('status', 'published')
-        .order('created_at', { ascending: false });
-
-    if (postsData && !postsError) {
-        posts = postsData;
-    } 
-    */
-
-    // Force empty for now
-    posts = [];
-
     try {
+        // Fetch Posts from Supabase Admin (Server-side)
+        const { data: postsData, error: postsError } = await supabaseAdmin
+            .from('posts')
+            .select('*')
+            .eq('status', 'published')
+            .order('created_at', { ascending: false });
+
+        if (postsData && !postsError) {
+            posts = postsData;
+        } else if (postsError) {
+            console.error('Failed to fetch posts:', postsError.message);
+        }
+
         // Fetch Categories
-        const { data: categoriesData, error: catError } = await supabase
+        const { data: categoriesData, error: catError } = await supabaseAdmin
             .from('categories')
             .select('*');
 
@@ -72,7 +63,7 @@ export default async function BlogPage() {
             categories = categoriesData;
         }
     } catch (error) {
-        console.error('Failed to fetch data:', error);
+        console.error('Global fetch error in BlogPage:', error);
     }
 
     const categoryNames = [t('all'), ...categories.map(c => c.name)];
