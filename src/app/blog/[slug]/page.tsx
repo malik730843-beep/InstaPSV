@@ -1,17 +1,10 @@
 import { notFound } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
 import styles from './page.module.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import AdUnit from '@/components/ads/AdUnit';
 import { getTranslations, getLocale } from 'next-intl/server';
-
-// Initialize Supabase Client with Service Role Key to bypass RLS for previews
-// This is safe because this is a server component
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { supabaseAdmin } from '@/lib/supabase';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -31,7 +24,7 @@ interface Post {
 
 // Fetch single post
 async function getPost(slug: string, isPreview = false): Promise<Post | null> {
-    const query = supabase
+    const query = supabaseAdmin
         .from('posts')
         .select('*')
         .eq('slug', slug);
@@ -43,7 +36,12 @@ async function getPost(slug: string, isPreview = false): Promise<Post | null> {
 
     const { data, error } = await query.single();
 
-    if (error || !data) return null;
+    if (error) {
+        console.error(`Error fetching post [${slug}]:`, error.message);
+        return null;
+    }
+
+    if (!data) return null;
     return data;
 }
 
@@ -51,7 +49,7 @@ async function getPost(slug: string, isPreview = false): Promise<Post | null> {
 async function getCategoryName(categoryId: string | undefined) {
     if (!categoryId) return null;
 
-    const { data } = await supabase
+    const { data } = await supabaseAdmin
         .from('categories')
         .select('name')
         .eq('id', categoryId)
@@ -89,12 +87,39 @@ export default async function BlogPostPage({
 
     const post = await getPost(slug, isPreview);
 
-    const t = await getTranslations('blog');
-    const locale = await getLocale();
-
     if (!post) {
+        if (isPreview) {
+            return (
+                <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ maxWidth: '600px', width: '100%', padding: '40px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+                        <h1 style={{ color: '#ef4444', marginBottom: '16px' }}>Preview Not Found</h1>
+                        <p style={{ color: '#374151', fontSize: '16px', lineHeight: '1.6' }}>
+                            We couldn't find a draft or published post with the slug: <br />
+                            <strong style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>{slug}</strong>
+                        </p>
+                        <div style={{ marginTop: '32px', textAlign: 'left', background: '#fef2f2', padding: '20px', borderRadius: '8px', border: '1px solid #fee2e2' }}>
+                            <h2 style={{ fontSize: '14px', fontWeight: '600', color: '#991b1b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Possible Reasons:</h2>
+                            <ul style={{ paddingLeft: '20px', margin: 0, color: '#b91c1c', fontSize: '14px' }}>
+                                <li>The post hasn't been saved to the database yet.</li>
+                                <li>The slug was changed in the editor but not saved.</li>
+                                <li>The <strong>SUPABASE_SERVICE_ROLE_KEY</strong> is missing on the Vercel server.</li>
+                            </ul>
+                        </div>
+                        <button
+                            onClick={() => window.location.reload()}
+                            style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer' }}
+                        >
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+            );
+        }
         notFound();
     }
+
+    const t = await getTranslations('blog');
+    const locale = await getLocale();
 
     // Resolve category name for the main post
     const categoryName = (await getCategoryName(post.categories?.[0])) || t('defaultCategory');
