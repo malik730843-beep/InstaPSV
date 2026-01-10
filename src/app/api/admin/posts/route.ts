@@ -42,6 +42,38 @@ export async function GET(req: NextRequest) {
     }
 }
 
+// Helper to ensure unique slug
+async function ensureUniqueSlug(slug: string, existingId?: string) {
+    let uniqueSlug = slug;
+    let counter = 1;
+
+    while (true) {
+        // Check if slug exists
+        const query = supabase
+            .from('posts')
+            .select('id')
+            .eq('slug', uniqueSlug);
+
+        // If updating, exclude current post from check
+        if (existingId) {
+            query.neq('id', existingId);
+        }
+
+        const { data: existing } = await query.maybeSingle();
+
+        if (!existing) {
+            // Slug is safe to use
+            break;
+        }
+
+        // Slug collision, append counter and try again
+        uniqueSlug = `${slug}-${counter}`;
+        counter++;
+    }
+
+    return uniqueSlug;
+}
+
 // Helper to strip unknown fields
 function sanitizePostData(body: any) {
     const { id, categories, savedAt, ...data } = body; // Explicitly remove savedAt
@@ -59,6 +91,11 @@ export async function POST(req: NextRequest) {
         const { id, categories, data } = sanitizePostData(body);
 
         if (id) {
+            // Ensure unique slug for update (if slug changed)
+            if (data.slug) {
+                data.slug = await ensureUniqueSlug(data.slug, id);
+            }
+
             // Update existing post
             const { error } = await supabase
                 .from('posts')
@@ -73,6 +110,11 @@ export async function POST(req: NextRequest) {
 
             return NextResponse.json({ success: true });
         } else {
+            // Ensure unique slug for new post
+            if (data.slug) {
+                data.slug = await ensureUniqueSlug(data.slug);
+            }
+
             // Create new post
             const { data: newPost, error } = await supabase
                 .from('posts')
