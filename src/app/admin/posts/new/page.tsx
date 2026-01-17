@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
 import RichEditor from '@/components/admin/RichEditor';
 import { compressImage } from '@/lib/imageUtils';
+import SEOPanel from '@/components/admin/SEOPanel';
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,6 +29,7 @@ export default function NewPostPage() {
     const [showColorPicker, setShowColorPicker] = useState(false);
     const [showBgColorPicker, setShowBgColorPicker] = useState(false);
 
+
     const [formData, setFormData] = useState({
         title: '',
         slug: '',
@@ -35,17 +37,29 @@ export default function NewPostPage() {
         excerpt: '',
         status: 'draft',
         featured_image: '',
+        // SEO - Basic
+        focus_keyword: '',
         meta_title: '',
         meta_description: '',
         meta_keywords: '',
+        // SEO - Advanced
+        canonical_url: '',
+        robots: 'index,follow',
+        robots_advanced: [] as string[],
+        schema_type: 'Article',
+        // Social - Open Graph
         og_title: '',
         og_description: '',
         og_image: '',
-        robots: 'index,follow',
+        // Social - Twitter
+        twitter_title: '',
+        twitter_description: '',
+        twitter_image: '',
+        twitter_card_type: 'summary_large_image',
     });
 
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const [showSEO, setShowSEO] = useState(false);
+
 
     useEffect(() => {
         loadCategories();
@@ -386,8 +400,8 @@ export default function NewPostPage() {
                 </div>
             </div>
 
-            {/* Premium Two-Column Layout */}
-            <div style={{ display: 'grid', gridTemplateColumns: isFullscreen ? '1fr' : '1fr 380px', gap: '32px' }}>
+            {/* Full Width Editor Layout */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
                 {/* Main Content Area */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                     {/* Writing Header (Distraction-Free) */}
@@ -626,106 +640,14 @@ export default function NewPostPage() {
                     </div>
 
                     {/* SEO Section */}
-                    <div className="admin-card">
-                        <div
-                            className="admin-card-header"
-                            style={{ cursor: 'pointer', marginBottom: showSEO ? '20px' : 0 }}
-                            onClick={() => setShowSEO(!showSEO)}
-                        >
-                            <h2 className="admin-card-title">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: '8px', verticalAlign: 'middle' }}>
-                                    <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-                                </svg>
-                                SEO Settings
-                            </h2>
-                            <span style={{ transform: showSEO ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9" /></svg>
-                            </span>
-                        </div>
-
-                        {showSEO && (
-                            <div>
-                                <div className="form-group">
-                                    <label className="form-label">Meta Title</label>
-                                    <input
-                                        type="text"
-                                        className="form-input"
-                                        placeholder={formData.title || 'Enter meta title'}
-                                        value={formData.meta_title}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, meta_title: e.target.value }))}
-                                    />
-                                    <div style={{ fontSize: '11px', color: formData.meta_title.length > 60 ? '#ef4444' : 'var(--admin-text-muted)', marginTop: '4px' }}>
-                                        {formData.meta_title.length}/60 characters
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Meta Description</label>
-                                    <textarea
-                                        className="form-textarea"
-                                        placeholder="Enter meta description..."
-                                        value={formData.meta_description}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, meta_description: e.target.value }))}
-                                        style={{ minHeight: '80px' }}
-                                    />
-                                    <div style={{ fontSize: '11px', color: formData.meta_description.length > 160 ? '#ef4444' : 'var(--admin-text-muted)', marginTop: '4px' }}>
-                                        {formData.meta_description.length}/160 characters
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Keywords</label>
-                                    <input
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="keyword1, keyword2, keyword3"
-                                        value={formData.meta_keywords}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, meta_keywords: e.target.value }))}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Robots</label>
-                                    <select
-                                        className="form-select"
-                                        value={formData.robots}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, robots: e.target.value }))}
-                                    >
-                                        <option value="index,follow">Index, Follow</option>
-                                        <option value="index,nofollow">Index, No Follow</option>
-                                        <option value="noindex,follow">No Index, Follow</option>
-                                        <option value="noindex,nofollow">No Index, No Follow</option>
-                                    </select>
-                                </div>
-
-                                {/* SERP Preview */}
-                                <div style={{
-                                    padding: '16px',
-                                    background: '#fff',
-                                    border: '1px solid var(--admin-border)',
-                                    borderRadius: 'var(--admin-radius)'
-                                }}>
-                                    <p style={{ fontSize: '12px', color: 'var(--admin-text-muted)', marginBottom: '8px' }}>
-                                        Google SERP Preview
-                                    </p>
-                                    <div style={{ color: '#1a0dab', fontSize: '18px', marginBottom: '4px' }}>
-                                        {formData.meta_title || formData.title || 'Post Title'}
-                                    </div>
-                                    <div style={{ color: '#006621', fontSize: '13px', marginBottom: '4px' }}>
-                                        example.com/blog/{formData.slug || 'post-slug'}
-                                    </div>
-                                    <div style={{ color: '#545454', fontSize: '13px' }}>
-                                        {formData.meta_description || formData.excerpt || 'Post description will appear here...'}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                    {/* Comprehensive RankMath-Style SEO Panel */}
+                    {/* SEO Section */}
+                    <SEOPanel formData={formData} setFormData={setFormData} />
                 </div>
 
-                {/* Sidebar (Settings Area) - Hidden in fullscreen */}
+                {/* Settings Row (Below Editor) */}
                 {!isFullscreen && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
 
                         {/* Status & Visibility */}
                         <div className="admin-card" style={{ padding: '24px' }}>

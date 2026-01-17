@@ -95,6 +95,11 @@
     color: #000000 !important;
 }
 
+.content h1,
+.content h1 span {
+    font-size: 38px !important;
+}
+
 .content h2 {
     font-size: 28px;
     margin-top: 48px;

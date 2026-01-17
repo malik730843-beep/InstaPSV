@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./typography.css";
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { createClient } from '@supabase/supabase-js';
@@ -91,6 +92,7 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: "InstaPSV" }],
     verification: {
       ...verification,
+      google: "Fnn-go67eU4kNaQBJ5Y_wXWSWxu8W2zCs5cIv8e1Tck",
       other: otherMeta
     },
     alternates: {

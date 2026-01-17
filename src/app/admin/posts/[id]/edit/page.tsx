@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
 import RichEditor from '@/components/admin/RichEditor';
 import { compressImage } from '@/lib/imageUtils';
+import SEOPanel from '@/components/admin/SEOPanel';
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -38,17 +39,29 @@ export default function EditPostPage() {
         excerpt: '',
         status: 'draft',
         featured_image: '',
+        // SEO - Basic
+        focus_keyword: '',
         meta_title: '',
         meta_description: '',
         meta_keywords: '',
+        // SEO - Advanced
+        canonical_url: '',
+        robots: 'index,follow',
+        robots_advanced: [] as string[],
+        schema_type: 'Article',
+        // Social - Open Graph
         og_title: '',
         og_description: '',
         og_image: '',
-        robots: 'index,follow',
+        // Social - Twitter
+        twitter_title: '',
+        twitter_description: '',
+        twitter_image: '',
+        twitter_card_type: 'summary_large_image',
     });
 
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const [showSEO, setShowSEO] = useState(false);
+
     const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
     // Auto-save every 30 seconds
@@ -149,13 +162,23 @@ export default function EditPostPage() {
                     excerpt: data.post.excerpt || '',
                     status: data.post.status || 'draft',
                     featured_image: data.post.featured_image || '',
+                    // SEO
+                    focus_keyword: data.post.focus_keyword || '',
                     meta_title: data.post.meta_title || '',
                     meta_description: data.post.meta_description || '',
                     meta_keywords: data.post.meta_keywords || '',
+                    canonical_url: data.post.canonical_url || '',
+                    robots: data.post.robots || 'index,follow',
+                    robots_advanced: data.post.robots_advanced || [],
+                    schema_type: data.post.schema_type || 'Article',
+                    // Social
                     og_title: data.post.og_title || '',
                     og_description: data.post.og_description || '',
                     og_image: data.post.og_image || '',
-                    robots: data.post.robots || 'index,follow',
+                    twitter_title: data.post.twitter_title || '',
+                    twitter_description: data.post.twitter_description || '',
+                    twitter_image: data.post.twitter_image || '',
+                    twitter_card_type: data.post.twitter_card_type || 'summary_large_image',
                 });
                 if (data.post.categories) {
                     setSelectedCategories(data.post.categories.map((c: any) => c.category_id));
@@ -394,8 +417,8 @@ export default function EditPostPage() {
                 </div>
             </div>
 
-            {/* Premium Two-Column Layout */}
-            <div style={{ display: 'grid', gridTemplateColumns: isFullscreen ? '1fr' : '1fr 380px', gap: '32px' }}>
+            {/* Full Width Editor Layout */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
                 {/* Main Content Area */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                     {/* Writing Header (Distraction-Free) */}
@@ -629,73 +652,14 @@ export default function EditPostPage() {
                         />
                     </div>
 
-                    {/* SEO */}
-                    <div className="admin-card">
-                        <div
-                            className="admin-card-header"
-                            style={{ cursor: 'pointer', marginBottom: showSEO ? '20px' : 0 }}
-                            onClick={() => setShowSEO(!showSEO)}
-                        >
-                            <h2 className="admin-card-title">🔍 SEO Settings</h2>
-                            <span>{showSEO ? '▼' : '▶'}</span>
-                        </div>
-
-                        {showSEO && (
-                            <div>
-                                <div className="form-group">
-                                    <label className="form-label">Meta Title</label>
-                                    <input
-                                        type="text"
-                                        className="form-input"
-                                        placeholder={formData.title || 'Enter meta title'}
-                                        value={formData.meta_title}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, meta_title: e.target.value }))}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Meta Description</label>
-                                    <textarea
-                                        className="form-textarea"
-                                        placeholder="Enter meta description..."
-                                        value={formData.meta_description}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, meta_description: e.target.value }))}
-                                        style={{ minHeight: '80px' }}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Keywords</label>
-                                    <input
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="keyword1, keyword2, keyword3"
-                                        value={formData.meta_keywords}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, meta_keywords: e.target.value }))}
-                                    />
-                                </div>
-
-                                <div className="form-group" style={{ marginBottom: 0 }}>
-                                    <label className="form-label">Robots</label>
-                                    <select
-                                        className="form-select"
-                                        value={formData.robots}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, robots: e.target.value }))}
-                                    >
-                                        <option value="index,follow">Index, Follow</option>
-                                        <option value="index,nofollow">Index, No Follow</option>
-                                        <option value="noindex,follow">No Index, Follow</option>
-                                        <option value="noindex,nofollow">No Index, No Follow</option>
-                                    </select>
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                    {/* Comprehensive RankMath-Style SEO Panel */}
+                    {/* SEO Section */}
+                    <SEOPanel formData={formData} setFormData={setFormData} />
                 </div>
 
                 {/* Sidebar (Settings Area) - Hidden in fullscreen */}
                 {!isFullscreen && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
 
                         {/* Status & Visibility */}
                         <div className="admin-card" style={{ padding: '24px' }}>
