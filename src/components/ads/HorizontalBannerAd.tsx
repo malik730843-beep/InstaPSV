@@ -5,9 +5,10 @@ import React from 'react';
 interface HorizontalBannerAdProps {
     className?: string;
     id?: string;
+    style?: React.CSSProperties;
 }
 
-export default function HorizontalBannerAd({ className, id }: HorizontalBannerAdProps) {
+export default function HorizontalBannerAd({ className, id, style }: HorizontalBannerAdProps) {
     const adCode = `
         <html>
             <body style="margin: 0; padding: 0; background: transparent; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -36,7 +37,8 @@ export default function HorizontalBannerAd({ className, id }: HorizontalBannerAd
                 alignItems: 'center',
                 padding: '20px 0',
                 background: 'transparent',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                ...style
             }}
         >
             <iframe

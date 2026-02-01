@@ -163,6 +163,7 @@ export default function EditPostPage() {
                     excerpt: data.post.excerpt || '',
                     status: data.post.status || 'draft',
                     featured_image: data.post.featured_image || '',
+                    featured_image_alt: data.post.featured_image_alt || '',
                     // SEO
                     focus_keyword: data.post.focus_keyword || '',
                     meta_title: data.post.meta_title || '',
