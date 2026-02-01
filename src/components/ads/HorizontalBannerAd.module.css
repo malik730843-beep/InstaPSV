@@ -1,0 +1,44 @@
+.bannerWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+.adScaler {
+    width: 728px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(var(--ad-scale, 1));
+    transform-origin: center center;
+    --ad-scale: 1;
+}
+
+@media (max-width: 768px) {
+    .adScaler {
+        --ad-scale: 0.8;
+    }
+}
+
+@media (max-width: 600px) {
+    .adScaler {
+        --ad-scale: 0.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .adScaler {
+        --ad-scale: 0.45;
+    }
+}
+
+@media (max-width: 380px) {
+    .adScaler {
+        --ad-scale: 0.4;
+    }
+}

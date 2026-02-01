@@ -73,7 +73,39 @@
 /* Responsive visibility */
 @media (max-width: 768px) {
     .stickyWrapper {
-        display: none;
-        /* Hide on mobile if it blocks too much content */
+        display: flex;
+    }
+
+    .adContent {
+        padding: 5px 10px 0 10px;
+    }
+
+    .iframeContainer {
+        transform: scale(0.8);
+        transform-origin: center center;
+    }
+}
+
+@media (max-width: 600px) {
+    .iframeContainer {
+        transform: scale(0.65);
+    }
+}
+
+@media (max-width: 480px) {
+    .iframeContainer {
+        transform: scale(0.48);
+        /* Fits ~350px width */
+    }
+
+    .adContent {
+        border-radius: 8px 8px 0 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .iframeContainer {
+        transform: scale(0.42);
+        /* Fits ~300px width */
     }
 }

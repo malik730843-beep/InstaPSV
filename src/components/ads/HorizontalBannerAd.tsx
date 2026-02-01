@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import styles from './HorizontalBannerAd.module.css';
 
 interface HorizontalBannerAdProps {
     className?: string;
@@ -29,27 +29,20 @@ export default function HorizontalBannerAd({ className, id, style }: HorizontalB
     return (
         <div
             id={id}
-            className={className}
-            style={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '20px 0',
-                background: 'transparent',
-                overflow: 'hidden',
-                ...style
-            }}
+            className={`${styles.bannerWrapper} ${className || ''}`}
+            style={style}
         >
-            <iframe
-                srcDoc={adCode}
-                width="728"
-                height="90"
-                frameBorder="0"
-                scrolling="no"
-                style={{ border: 'none', background: 'transparent' }}
-                title="horizontal-banner-ad"
-            />
+            <div className={styles.adScaler}>
+                <iframe
+                    srcDoc={adCode}
+                    width="728"
+                    height="90"
+                    frameBorder="0"
+                    scrolling="no"
+                    style={{ border: 'none', background: 'transparent' }}
+                    title="horizontal-banner-ad"
+                />
+            </div>
         </div>
     );
 }
