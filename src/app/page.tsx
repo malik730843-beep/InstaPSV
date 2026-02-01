@@ -9,26 +9,12 @@ import CTASection from '@/components/sections/CTASection';
 import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
 import FAQSchema from '@/components/seo/FAQSchema';
 import AdUnit from '@/components/ads/AdUnit';
+import HorizontalBannerAd from '@/components/ads/HorizontalBannerAd';
 import dynamic from 'next/dynamic';
 
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
   ssr: true, // Keep SSR for SEO as requested
 });
-
-// Ad wrapper for consistent styling
-const AdSlot = ({ slot = 'header' }: { slot?: string }) => (
-  <div style={{
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '20px',
-    background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
-    borderRadius: '12px',
-    marginTop: '20px',
-    marginBottom: '20px'
-  }}>
-    <AdUnit slot={slot} />
-  </div>
-);
 
 export default function Home() {
   return (
@@ -36,37 +22,36 @@ export default function Home() {
       <FAQSchema />
       <Header />
       <main>
+        {/* Hero Section - Ads integrated inside */}
         <Hero />
 
-        {/* Ad after Hero */}
-        <AdSlot slot="header" />
+        {/* Ad after Hero - New 728x90 Script */}
+        <HorizontalBannerAd />
 
         <Features />
 
-        {/* Ad after Features */}
-        <AdSlot slot="sidebar" />
+        {/* Ad after Features - New 728x90 Script */}
+        <HorizontalBannerAd />
 
         <HowItWorks />
 
-        {/* Ad after HowItWorks */}
-        <AdSlot slot="header" />
-
-
+        {/* Ad after HowItWorks - New 728x90 Script */}
+        <HorizontalBannerAd />
 
         <FAQ />
 
-        {/* Ad after FAQ */}
-        <AdSlot slot="header" />
+        {/* Ad after FAQ - New 728x90 Script */}
+        <HorizontalBannerAd />
 
         <CTASection />
 
-        {/* Ad after CTA */}
-        <AdSlot slot="sidebar" />
+        {/* Ad after CTA - New 728x90 Script */}
+        <HorizontalBannerAd />
 
         <Testimonials />
 
-        {/* Ad after Testimonials */}
-        <AdSlot slot="header" />
+        {/* Ad after Testimonials - New 728x90 Script */}
+        <HorizontalBannerAd />
 
         <FeatureSuggestion />
       </main>

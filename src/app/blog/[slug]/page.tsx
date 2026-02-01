@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import styles from './page.module.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import AdUnit from '@/components/ads/AdUnit';
+import HorizontalBannerAd from '@/components/ads/HorizontalBannerAd';
 import { getTranslations, getLocale } from 'next-intl/server';
 import { supabaseAdmin } from '@/lib/supabase';
 
@@ -180,9 +180,6 @@ export default async function BlogPostPage({
                 <Header alwaysDark />
                 <main className={styles.main}>
                     <div className={styles.articleContainer}>
-                        {/* Header Ad */}
-                        <AdUnit slot="header" style={{ marginBottom: '20px' }} />
-
                         {/* Header */}
                         <header className={styles.postHeader}>
                             {/* Featured Image */}
@@ -219,13 +216,31 @@ export default async function BlogPostPage({
                             </div>
                         </header>
 
+                        <HorizontalBannerAd style={{ margin: '20px 0' }} />
+
                         {/* Content */}
-                        <div
-                            className={styles.content}
-                            dangerouslySetInnerHTML={{ __html: post.content }}
-                        />
+                        <div className={styles.content}>
+                            {(() => {
+                                const content = post.content || '';
+                                const paragraphs = content.split('</p>');
+                                if (paragraphs.length > 4) {
+                                    const midPoint = Math.floor(paragraphs.length / 2);
+                                    const firstHalf = paragraphs.slice(0, midPoint).join('</p>') + '</p>';
+                                    const secondHalf = paragraphs.slice(midPoint).join('</p>');
+                                    return (
+                                        <>
+                                            <div dangerouslySetInnerHTML={{ __html: firstHalf }} />
+                                            <HorizontalBannerAd style={{ margin: '30px 0' }} />
+                                            <div dangerouslySetInnerHTML={{ __html: secondHalf }} />
+                                        </>
+                                    );
+                                }
+                                return <div dangerouslySetInnerHTML={{ __html: content }} />;
+                            })()}
+                        </div>
                     </div>
                 </main>
+                <HorizontalBannerAd />
                 <Footer />
             </>
         );

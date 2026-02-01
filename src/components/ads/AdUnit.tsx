@@ -1,7 +1,7 @@
 'use client';
 
 import { useAds } from './AdProvider';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 interface AdUnitProps {
     slot: string;
@@ -15,7 +15,9 @@ export default function AdUnit({ slot, className, style, format = 'auto' }: AdUn
     const [ad, setAd] = useState<any>(null);
     const [visible, setVisible] = useState(false);
     const adRef = useRef<HTMLDivElement>(null);
+    const adContentRef = useRef<HTMLDivElement>(null);
     const impressionRecorded = useRef(false);
+    const scriptsExecuted = useRef(false);
 
     // Hydration mismatch avoidance + resize listener
     useEffect(() => {
@@ -27,6 +29,58 @@ export default function AdUnit({ slot, className, style, format = 'auto' }: AdUn
         window.addEventListener('resize', updateAd);
         return () => window.removeEventListener('resize', updateAd);
     }, [slot, getAdForSlot]);
+
+    // Execute scripts from ad code - dangerouslySetInnerHTML doesn't execute scripts
+    const executeAdScripts = useCallback((adCode: string, container: HTMLDivElement) => {
+        if (scriptsExecuted.current) return;
+        scriptsExecuted.current = true;
+
+        // Parse the ad code to find all script tags
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = adCode;
+
+        // Find all inline scripts and external scripts
+        const scripts = tempDiv.querySelectorAll('script');
+
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement('script');
+
+            // Copy all attributes (including src, async, etc.)
+            Array.from(oldScript.attributes).forEach(attr => {
+                newScript.setAttribute(attr.name, attr.value);
+            });
+
+            // Copy inline script content
+            if (oldScript.textContent) {
+                newScript.textContent = oldScript.textContent;
+            }
+
+            // Append to container to execute
+            container.appendChild(newScript);
+        });
+
+        // Also set non-script HTML content
+        const nonScriptContent = adCode.replace(/<script[\s\S]*?<\/script>/gi, '');
+        if (nonScriptContent.trim()) {
+            const contentDiv = document.createElement('div');
+            contentDiv.innerHTML = nonScriptContent;
+            container.insertBefore(contentDiv, container.firstChild);
+        }
+    }, []);
+
+    // Execute scripts when ad loads and becomes visible
+    useEffect(() => {
+        if (!ad || !adContentRef.current || !visible) return;
+
+        // Small delay to ensure DOM is ready
+        const timer = setTimeout(() => {
+            if (adContentRef.current && ad.code) {
+                executeAdScripts(ad.code, adContentRef.current);
+            }
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, [ad, visible, executeAdScripts]);
 
     // Intersection Observer for viewability tracking
     useEffect(() => {
@@ -51,6 +105,11 @@ export default function AdUnit({ slot, className, style, format = 'auto' }: AdUn
         observer.observe(adRef.current);
         return () => observer.disconnect();
     }, [ad, recordImpression]);
+
+    // Reset script execution state when ad changes
+    useEffect(() => {
+        scriptsExecuted.current = false;
+    }, [ad?.id]);
 
     if (!ad) return null;
 
@@ -81,14 +140,15 @@ export default function AdUnit({ slot, className, style, format = 'auto' }: AdUn
             {/* Ad Label */}
             <div style={{
                 fontSize: '10px',
-                color: '#999',
+                color: 'rgba(255, 255, 255, 0.4)',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 marginBottom: '5px'
             }}>
-                Advertisement
+                Ad
             </div>
-            <div dangerouslySetInnerHTML={{ __html: ad.code }} />
+            {/* Ad content container - scripts will be injected here */}
+            <div ref={adContentRef} style={{ background: 'transparent' }} />
         </div>
     );
 }
@@ -97,9 +157,9 @@ export default function AdUnit({ slot, className, style, format = 'auto' }: AdUn
 export function HeaderBannerAd() {
     return (
         <div style={{
-            background: 'linear-gradient(to right, #f8f9fa, #e9ecef)',
+            background: 'transparent',
             padding: '10px 0',
-            borderBottom: '1px solid #dee2e6'
+            borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
         }}>
             <AdUnit slot="header" format="horizontal" style={{ margin: '0 auto' }} />
         </div>
@@ -112,8 +172,7 @@ export function SidebarAd({ position = 'right' }: { position?: 'left' | 'right' 
             position: 'sticky',
             top: '100px',
             padding: '15px',
-            background: '#f8f9fa',
-            borderRadius: '8px'
+            background: 'transparent'
         }}>
             <AdUnit slot="sidebar" format="vertical" />
         </div>
@@ -125,9 +184,10 @@ export function InlineContentAd() {
         <div style={{
             margin: '30px auto',
             padding: '20px',
-            background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-            borderRadius: '12px',
-            maxWidth: '728px'
+            background: 'transparent',
+            maxWidth: '728px',
+            display: 'flex',
+            justifyContent: 'center'
         }}>
             <AdUnit slot="header" format="horizontal" />
         </div>
@@ -139,10 +199,10 @@ export function SearchResultAd() {
         <div style={{
             margin: '20px 0',
             padding: '15px',
-            background: '#fff',
-            border: '1px solid #e1e4e8',
-            borderRadius: '8px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+            background: 'transparent',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '12px',
+            boxShadow: 'none'
         }}>
             <AdUnit slot="sidebar" format="rectangle" />
         </div>
@@ -152,9 +212,10 @@ export function SearchResultAd() {
 export function FooterBannerAd() {
     return (
         <div style={{
-            background: '#1a1a2e',
+            background: 'transparent',
             padding: '20px 0',
-            marginTop: '40px'
+            marginTop: '40px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.05)'
         }}>
             <AdUnit slot="footer" format="horizontal" style={{ margin: '0 auto' }} />
         </div>

@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import NewsletterForm from '@/components/NewsletterForm';
+import HorizontalBannerAd from '@/components/ads/HorizontalBannerAd';
 import { supabaseAdmin } from '@/lib/supabase';
 import { getTranslations, getLocale } from 'next-intl/server';
 
@@ -102,6 +103,8 @@ export default async function BlogPage() {
                         </p>
                     </div>
                 </section>
+
+                <HorizontalBannerAd />
 
                 {/* Categories */}
                 <section className={styles.categoriesSection}>
@@ -215,6 +218,7 @@ export default async function BlogPage() {
                     </div>
                 </section>
             </main>
+            <HorizontalBannerAd />
             <Footer />
         </>
     );

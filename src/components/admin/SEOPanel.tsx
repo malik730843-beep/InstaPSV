@@ -172,6 +172,24 @@ export default function SEOPanel({ formData, setFormData }: SEOPanelProps) {
                                         </p>
                                     </div>
 
+                                    {/* Featured Image Alt Text */}
+                                    <div className="form-group">
+                                        <label className="form-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span>Image Alt Text</span>
+                                            <span style={{ fontSize: '12px', color: 'var(--admin-text-muted)' }}>Optional</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="form-input"
+                                            placeholder="Describe the featured image..."
+                                            value={formData.featured_image_alt || ''}
+                                            onChange={(e) => setFormData((prev: any) => ({ ...prev, featured_image_alt: e.target.value }))}
+                                        />
+                                        <p style={{ fontSize: '12px', color: 'var(--admin-text-muted)', marginTop: '4px' }}>
+                                            Alternative text for the featured image (important for SEO).
+                                        </p>
+                                    </div>
+
                                     <div className="form-group">
                                         <label className="form-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                             <span>SEO Title</span>

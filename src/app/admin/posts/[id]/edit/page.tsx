@@ -39,6 +39,7 @@ export default function EditPostPage() {
         excerpt: '',
         status: 'draft',
         featured_image: '',
+        featured_image_alt: '',
         // SEO - Basic
         focus_keyword: '',
         meta_title: '',

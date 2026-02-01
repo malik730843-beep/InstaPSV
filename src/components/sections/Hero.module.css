@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     background: var(--gradient-hero-bg);
-    overflow: hidden;
+    overflow: visible;
     padding: var(--spacing-5xl) var(--container-padding);
 }
 

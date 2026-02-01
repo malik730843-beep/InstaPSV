@@ -37,6 +37,7 @@ export default function NewPostPage() {
         excerpt: '',
         status: 'draft',
         featured_image: '',
+        featured_image_alt: '',
         // SEO - Basic
         focus_keyword: '',
         meta_title: '',

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
 import InstagramSearch from '../instagram/InstagramSearch';
 import dynamic from 'next/dynamic';
+import HeroSidebarAd from '../ads/HeroSidebarAd';
 
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
     ssr: false,
@@ -15,6 +16,10 @@ export default function Hero() {
 
     return (
         <section className={styles.hero} id="search">
+            {/* Sidebar Ads - Absolute positioned */}
+            <HeroSidebarAd position="left" />
+            <HeroSidebarAd position="right" />
+
             {/* Particle Background */}
             <ParticleBackground className={styles.particles} />
 
@@ -81,3 +86,4 @@ export default function Hero() {
         </section>
     );
 }
+

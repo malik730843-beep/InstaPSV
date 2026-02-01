@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import styles from './page.module.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import HorizontalBannerAd from '@/components/ads/HorizontalBannerAd';
 import { getTranslations } from 'next-intl/server';
 
 // Initialize Supabase Client
@@ -66,6 +67,8 @@ export default async function AboutPage() {
                     </div>
                 </section>
 
+                <HorizontalBannerAd />
+
                 <section className={styles.content}>
                     <div className={styles.container}>
                         {page ? (
@@ -81,6 +84,7 @@ export default async function AboutPage() {
                     </div>
                 </section>
             </main>
+            <HorizontalBannerAd />
             <Footer />
         </>
     );
