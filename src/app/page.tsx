@@ -11,7 +11,6 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import AdUnit from '@/components/ads/AdUnit';
 import HorizontalBannerAd from '@/components/ads/HorizontalBannerAd';
 import dynamic from 'next/dynamic';
-import Script from 'next/script';
 
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
   ssr: true, // Keep SSR for SEO as requested
@@ -20,10 +19,6 @@ const Testimonials = dynamic(() => import('@/components/sections/Testimonials'),
 export default function Home() {
   return (
     <>
-      <Script
-        src="https://pl28623282.effectivegatecpm.com/9e/56/08/9e56086be477870aa0b191662c4e455a.js"
-        strategy="afterInteractive"
-      />
       <FAQSchema />
       <Header />
       <main>

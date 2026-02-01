@@ -9,6 +9,7 @@ import AdProvider from '@/components/ads/AdProvider';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import NextTopLoader from 'nextjs-toploader';
 import StickyBottomAd from '@/components/ads/StickyBottomAd';
+import MultiSideAdPanel from '@/components/ads/MultiSideAdPanel';
 
 // Initialize Supabase Client
 const supabase = createClient(
@@ -217,6 +218,7 @@ export default async function RootLayout({
             />
             <ScrollToTop />
             <StickyBottomAd />
+            <MultiSideAdPanel />
             {children}
           </AdProvider>
         </NextIntlClientProvider>
