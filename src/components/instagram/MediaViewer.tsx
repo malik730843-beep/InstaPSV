@@ -4,8 +4,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './MediaViewer.module.css';
-import { useAds } from '@/components/ads/AdProvider';
-import AdUnit from '@/components/ads/AdUnit';
 import { useTranslations } from 'next-intl';
 
 interface MediaViewerProps {
@@ -17,9 +15,6 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
     const t = useTranslations('viewer');
     const isVideo = media.media_type === 'VIDEO';
     const [downloading, setDownloading] = useState(false);
-    const [showPreDownloadAd, setShowPreDownloadAd] = useState(false);
-    const [countdown, setCountdown] = useState(5);
-    const { triggerInterstitial } = useAds();
 
     useEffect(() => {
         // Prevent background scrolling
@@ -29,28 +24,12 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
         };
     }, []);
 
-    // Countdown timer for pre-download ad
-    useEffect(() => {
-        if (showPreDownloadAd && countdown > 0) {
-            const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-            return () => clearTimeout(timer);
-        }
-    }, [showPreDownloadAd, countdown]);
-
-    const initiateDownload = () => {
+    const handleDownload = async () => {
+        setDownloading(true);
         const fileUrl = media.media_url;
         const filename = `insta-${media.id}.${isVideo ? 'mp4' : 'jpg'}`;
         window.location.href = `/api/download?url=${encodeURIComponent(fileUrl)}&filename=${filename}`;
-        setShowPreDownloadAd(false);
-        setDownloading(false);
-    };
-
-    const handleDownload = async () => {
-        // Show pre-download ad first
-        setShowPreDownloadAd(true);
-        setCountdown(5);
-        setDownloading(true);
-        triggerInterstitial();
+        setTimeout(() => setDownloading(false), 2000);
     };
 
     if (!media) return null;
@@ -96,55 +75,7 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     </button>
                 </div>
-
-                {/* Inline ad below content */}
-                <div style={{ marginTop: '15px', padding: '10px', background: '#f8f9fa', borderRadius: '8px' }}>
-                    <AdUnit slot="sidebar" />
-                </div>
             </div>
-
-            {/* Pre-Download Ad Modal */}
-            {showPreDownloadAd && (
-                <div className={styles.adModalOverlay} onClick={(e) => e.stopPropagation()}>
-                    <div className={styles.adModalContent}>
-                        <p className={styles.adLabel}>{t('advertisement')}</p>
-
-                        {/* Ad Content */}
-                        <div className={styles.adContentBox}>
-                            <AdUnit slot="header" />
-                        </div>
-
-                        {/* Countdown or Download Button */}
-                        {countdown > 0 ? (
-                            <div>
-                                <p className={styles.countdownTimer}>
-                                    {t('downloadStartIn')}
-                                </p>
-                                <div className={styles.countdownCircle}>
-                                    {countdown}
-                                </div>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={initiateDownload}
-                                className={styles.finalDownloadBtn}
-                            >
-                                🎉 {t('downloadNow')}
-                            </button>
-                        )}
-
-                        <button
-                            onClick={() => {
-                                setShowPreDownloadAd(false);
-                                setDownloading(false);
-                            }}
-                            className={styles.cancelBtn}
-                        >
-                            {t('cancel')}
-                        </button>
-                    </div>
-                </div>
-            )}
         </div>,
         document.body
     );

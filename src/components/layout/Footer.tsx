@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styles from './Footer.module.css';
-import AdUnit from '../ads/AdUnit';
 import { getTranslations } from 'next-intl/server';
 
 export default async function Footer() {
@@ -28,7 +27,6 @@ export default async function Footer() {
 
     return (
         <footer className={styles.footer}>
-            <AdUnit slot="footer" style={{ marginBottom: '40px' }} />
             <div className={styles.container}>
                 {/* Top Section */}
                 <div className={styles.top}>

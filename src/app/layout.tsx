@@ -5,11 +5,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { createClient } from '@supabase/supabase-js';
 import Script from 'next/script';
-import AdProvider from '@/components/ads/AdProvider';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import NextTopLoader from 'nextjs-toploader';
-import StickyBottomAd from '@/components/ads/StickyBottomAd';
-import MultiSideAdPanel from '@/components/ads/MultiSideAdPanel';
 
 // Initialize Supabase Client
 const supabase = createClient(
@@ -146,9 +143,8 @@ export default async function RootLayout({
     if (data) gaId = data.value;
   } catch (e) { }
 
-  // Fetch dynamic verifications for scripts (Analytics, AdSense Auto Ads)
+  // Fetch dynamic verifications for scripts (Analytics)
   let analyticsCode = gaId;
-  let adsensePublisherId = '';
 
   try {
     const { data: verifData } = await supabase
@@ -159,16 +155,6 @@ export default async function RootLayout({
     if (verifData) {
       const analyticsVerif = verifData.find((v: any) => v.service === 'analytics');
       if (analyticsVerif) analyticsCode = analyticsVerif.verification_code;
-
-      const adsenseVerif = verifData.find((v: any) => v.service === 'adsense');
-      if (adsenseVerif) {
-        adsensePublisherId = adsenseVerif.verification_code;
-        // Clean 'ca-pub-...' if it was pasted as a full script
-        if (adsensePublisherId.includes('ca-pub-')) {
-          const match = adsensePublisherId.match(/ca-pub-\d+/);
-          if (match) adsensePublisherId = match[0];
-        }
-      }
     }
   } catch (e) { }
 
@@ -204,34 +190,21 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          <AdProvider>
-            <NextTopLoader
-              color="#A855F7"
-              initialPosition={0.08}
-              crawlSpeed={200}
-              height={3}
-              crawl={true}
-              showSpinner={false}
-              easing="ease"
-              speed={200}
-              shadow="0 0 10px #A855F7,0 0 5px #A855F7"
-            />
-            <ScrollToTop />
-            <StickyBottomAd />
-            <MultiSideAdPanel />
-            {children}
-          </AdProvider>
+          <NextTopLoader
+            color="#A855F7"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={false}
+            easing="ease"
+            speed={200}
+            shadow="0 0 10px #A855F7,0 0 5px #A855F7"
+          />
+          <ScrollToTop />
+          {children}
         </NextIntlClientProvider>
 
-        {/* Google Adsense Auto Ads */}
-        {adsensePublisherId && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
 
         {/* Google Analytics */}
         {analyticsCode && (

@@ -539,29 +539,8 @@
 }
 
 /* ===== Layout Helpers ===== */
-.mainLayout {
-    display: flex;
-    gap: 24px;
-}
-
 .mainContent {
-    flex: 1;
-    min-width: 0;
-}
-
-.desktopSidebar {
-    width: 280px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 80px;
-}
-
-.sidebarAdBox {
-    margin-bottom: 16px;
-}
-
-.adBannerContainer {
-    margin: 16px 0;
+    width: 100%;
 }
 
 /* ===== Mobile Responsive ===== */
@@ -571,13 +550,13 @@
     }
 
     .profileBox {
-        padding: 20px;
-        border-radius: 20px;
+        padding: 16px;
+        border-radius: 16px;
     }
 
     .profileHeader {
         flex-direction: row;
-        gap: 20px;
+        gap: 16px;
         margin-bottom: 20px;
     }
 
@@ -665,15 +644,6 @@
         gap: 2px;
         border-radius: 8px;
     }
-
-    /* Hide sidebar */
-    .desktopSidebar {
-        display: none;
-    }
-
-    .mainLayout {
-        display: block;
-    }
 }
 
 @media (max-width: 480px) {
@@ -695,20 +665,76 @@
         border-radius: 12px;
     }
 
+    .profileBox {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
     .profileHeader {
-        gap: 16px;
+        gap: 12px;
     }
 
     .avatarWrapper {
-        width: 77px;
-        height: 77px;
+        width: 70px;
+        height: 70px;
     }
 
     .statItem {
-        padding: 0 10px;
+        padding: 0 8px;
     }
 
     .statValue {
-        font-size: 15px;
+        font-size: 14px;
+    }
+
+    .statLabel {
+        font-size: 10px;
+    }
+
+    .username {
+        font-size: 16px;
+    }
+
+    .name {
+        font-size: 13px;
+    }
+
+    .bio {
+        font-size: 12px;
+    }
+
+    .highlightCircle {
+        width: 52px;
+        height: 52px;
+    }
+
+    .highlightLabel {
+        font-size: 10px;
+        max-width: 52px;
+    }
+}
+
+@media (max-width: 360px) {
+    .profileHeader {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .profileInfo {
+        align-items: center;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+
+    .bio {
+        text-align: center;
+    }
+
+    .mediaGrid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
