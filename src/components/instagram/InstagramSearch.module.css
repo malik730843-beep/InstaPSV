@@ -761,7 +761,4 @@
         text-align: center;
     }
 
-    .mediaGrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
