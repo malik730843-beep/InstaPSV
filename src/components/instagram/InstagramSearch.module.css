@@ -464,6 +464,7 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -492,6 +493,32 @@
     width: 18px;
     height: 18px;
     fill: white;
+}
+
+/* Download button on hover */
+.overlayDownloadBtn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+    z-index: 3;
+}
+
+.overlayDownloadBtn:hover {
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .typeIcon {
