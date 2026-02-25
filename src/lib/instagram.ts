@@ -23,6 +23,9 @@ export interface IGProfile {
     stories?: {
         data: IGMedia[];
     };
+    highlights?: {
+        data: any[];
+    };
 }
 
 export interface IGMedia {
@@ -111,7 +114,7 @@ export async function getMyIGBusinessId() {
  * @param targetUsername The username you want to "scrape"
  */
 export async function discoverProfile(myIgId: string, targetUsername: string): Promise<IGProfile | null> {
-    const fields = `business_discovery.username(${targetUsername}){username,name,biography,profile_picture_url,followers_count,follows_count,media_count,media{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url,like_count,comments_count},stories{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url}}`;
+    const fields = `business_discovery.username(${targetUsername}){username,name,biography,profile_picture_url,followers_count,follows_count,media_count,media{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url,like_count,comments_count},stories{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url},highlights{id,title,media_count,cover_media{id,media_url,thumbnail_url}}}`;
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s Timeout
@@ -140,14 +143,15 @@ export async function discoverProfile(myIgId: string, targetUsername: string): P
         // Strict Normalization
         const normalizedProfile: IGProfile = {
             username: rawProfile.username,
-            name: rawProfile.name, // Keep name for UI
+            name: rawProfile.name,
             biography: rawProfile.biography,
             profile_picture_url: rawProfile.profile_picture_url,
             followers_count: rawProfile.followers_count,
-            follows_count: rawProfile.follows_count, // Optional but good to have
+            follows_count: rawProfile.follows_count,
             media_count: rawProfile.media_count,
             media: rawProfile.media,
             stories: rawProfile.stories,
+            highlights: rawProfile.highlights,
         };
 
         return normalizedProfile;

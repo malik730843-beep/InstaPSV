@@ -16,7 +16,7 @@ export default function InstagramSearch() {
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [activeTab, setActiveTab] = useState<'POSTS' | 'REELS' | 'STORIES' | 'TAGGED'>('POSTS');
+    const [activeTab, setActiveTab] = useState<'POSTS' | 'REELS' | 'STORIES' | 'HIGHLIGHTS'>('POSTS');
     const [selectedMedia, setSelectedMedia] = useState<any>(null);
     const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -65,8 +65,8 @@ export default function InstagramSearch() {
                 return profile.media?.data?.filter((item: any) => item.media_type === 'VIDEO') || [];
             case 'STORIES':
                 return profile.stories?.data || [];
-            case 'TAGGED':
-                return profile.tagged?.data || [];
+            case 'HIGHLIGHTS':
+                return profile.highlights?.data || [];
             default:
                 return [];
         }
@@ -270,88 +270,124 @@ export default function InstagramSearch() {
                                     <span>STORIES</span>
                                 </button>
                                 <button
-                                    className={`${styles.tab} ${activeTab === 'TAGGED' ? styles.activeTab : ''}`}
-                                    onClick={() => setActiveTab('TAGGED')}
+                                    className={`${styles.tab} ${activeTab === 'HIGHLIGHTS' ? styles.activeTab : ''}`}
+                                    onClick={() => setActiveTab('HIGHLIGHTS')}
                                 >
-                                    <svg aria-label="" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12"><path d="M10.201 3.797 12 1.997l1.799 1.8a1.59 1.59 0 0 0 1.124.465h5.259A1.818 1.818 0 0 1 22 6.08v14.104a1.818 1.818 0 0 1-1.818 1.818H3.818A1.818 1.818 0 0 1 2 20.184V6.08a1.818 1.818 0 0 1 1.818-1.818h5.26a1.59 1.59 0 0 0 1.123-.465Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><path d="M18.598 22.002V21.4a3.949 3.949 0 0 0-3.948-3.949H9.495A3.949 3.949 0 0 0 5.546 21.4v.603" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><circle cx="12.072" cy="11.075" fill="none" r="3.556" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></circle></svg>
-                                    <span>TAGGED</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                    <span>HIGHLIGHTS</span>
                                 </button>
                             </div>
 
-                            <div className={styles.mediaGrid}>
-                                {getFilteredMedia().length > 0 ? (
-                                    getFilteredMedia().map((item: any) => (
-                                        <div
-                                            key={item.id}
-                                            className={styles.mediaItem}
-                                            onClick={() => setSelectedMedia(item)}
-                                        >
-                                            {item.media_type === 'VIDEO' ? (
-                                                <div className={styles.videoThumbnailWrapper} style={{ width: '100%', height: '100%' }}>
+                            {activeTab === 'HIGHLIGHTS' ? (
+                                /* Highlights Grid - Circular thumbnails */
+                                <div className={styles.highlightsGrid}>
+                                    {getFilteredMedia().length > 0 ? (
+                                        getFilteredMedia().map((item: any) => (
+                                            <div
+                                                key={item.id}
+                                                className={styles.highlightGridItem}
+                                                onClick={() => setSelectedMedia({
+                                                    ...item,
+                                                    media_url: item.cover_media?.media_url || item.cover_media?.thumbnail_url || item.thumbnail_url || item.media_url,
+                                                    media_type: 'IMAGE',
+                                                })}
+                                            >
+                                                <div className={styles.highlightGridCircle}>
                                                     <img
-                                                        src={item.thumbnail_url || item.media_url}
-                                                        alt={item.caption || 'Instagram Reel'}
-                                                        className={styles.mediaThumb}
+                                                        src={item.cover_media?.thumbnail_url || item.cover_media?.media_url || item.thumbnail_url || item.media_url}
+                                                        alt={item.title || 'Highlight'}
+                                                        className={styles.highlightGridThumb}
                                                     />
-                                                    <div className={styles.typeIcon}>
-                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                                                    </div>
                                                 </div>
-                                            ) : (
-                                                <>
-                                                    <img
-                                                        src={item.media_url}
-                                                        alt={item.caption || 'Instagram Post'}
-                                                        className={styles.mediaThumb}
-                                                    />
-                                                    {item.media_type === 'CAROUSEL_ALBUM' && (
-                                                        <div className={styles.typeIcon}>
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                                                        </div>
-                                                    )}
-                                                </>
-                                            )}
-
-                                            <div className={styles.mediaOverlay}>
-                                                <div className={styles.mediaStats}>
-                                                    {activeTab !== 'STORIES' ? (
-                                                        <>
-                                                            <span className={styles.mediaStat}>
-                                                                <svg className={styles.statIcon} viewBox="0 0 24 24"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.203 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.32.486.555.846.617.945.062-.099.297-.459.617-.945a4.21 4.21 0 0 1 3.675-1.941"></path></svg>
-                                                                {item.like_count?.toLocaleString() || 0}
-                                                            </span>
-                                                            <span className={styles.mediaStat}>
-                                                                <svg className={styles.statIcon} viewBox="0 0 24 24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="white" stroke="white" strokeWidth="2"></path></svg>
-                                                                {item.comments_count?.toLocaleString() || 0}
-                                                            </span>
-                                                        </>
-                                                    ) : (
-                                                        <span className={styles.mediaStat} style={{ fontSize: '0.8rem' }}>{t('viewStory')}</span>
-                                                    )}
-                                                </div>
-                                                <button
-                                                    className={styles.overlayDownloadBtn}
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        const isVideo = item.media_type === 'VIDEO';
-                                                        const fileUrl = item.media_url;
-                                                        const filename = `insta-${item.id}.${isVideo ? 'mp4' : 'jpg'}`;
-                                                        window.location.href = `/api/download?url=${encodeURIComponent(fileUrl)}&filename=${filename}`;
-                                                    }}
-                                                    title="Download"
-                                                >
-                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                                </button>
+                                                <span className={styles.highlightGridLabel}>
+                                                    {item.title || 'Highlight'}
+                                                </span>
                                             </div>
+                                        ))
+                                    ) : (
+                                        <div className={styles.emptyState} style={{ gridColumn: '1 / -1' }}>
+                                            <p>{t('noMedia', { type: 'highlights' })}</p>
+                                            <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>Highlights are only available for some public profiles.</p>
                                         </div>
-                                    ))
-                                ) : (
-                                    <div className={styles.emptyState}>
-                                        <p>{t('noMedia', { type: activeTab.toLowerCase() })}</p>
-                                        {activeTab === 'STORIES' && <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>{t('storyTip')}</p>}
-                                    </div>
-                                )}
-                            </div>
+                                    )}
+                                </div>
+                            ) : (
+                                /* Regular Media Grid - Posts, Reels, Stories */
+                                <div className={styles.mediaGrid}>
+                                    {getFilteredMedia().length > 0 ? (
+                                        getFilteredMedia().map((item: any) => (
+                                            <div
+                                                key={item.id}
+                                                className={styles.mediaItem}
+                                                onClick={() => setSelectedMedia(item)}
+                                            >
+                                                {item.media_type === 'VIDEO' ? (
+                                                    <div className={styles.videoThumbnailWrapper} style={{ width: '100%', height: '100%' }}>
+                                                        <img
+                                                            src={item.thumbnail_url || item.media_url}
+                                                            alt={item.caption || 'Instagram Reel'}
+                                                            className={styles.mediaThumb}
+                                                        />
+                                                        <div className={styles.typeIcon}>
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <img
+                                                            src={item.media_url}
+                                                            alt={item.caption || 'Instagram Post'}
+                                                            className={styles.mediaThumb}
+                                                        />
+                                                        {item.media_type === 'CAROUSEL_ALBUM' && (
+                                                            <div className={styles.typeIcon}>
+                                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                                            </div>
+                                                        )}
+                                                    </>
+                                                )}
+
+                                                <div className={styles.mediaOverlay}>
+                                                    <div className={styles.mediaStats}>
+                                                        {activeTab !== 'STORIES' ? (
+                                                            <>
+                                                                <span className={styles.mediaStat}>
+                                                                    <svg className={styles.statIcon} viewBox="0 0 24 24"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.203 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.32.486.555.846.617.945.062-.099.297-.459.617-.945a4.21 4.21 0 0 1 3.675-1.941"></path></svg>
+                                                                    {item.like_count?.toLocaleString() || 0}
+                                                                </span>
+                                                                <span className={styles.mediaStat}>
+                                                                    <svg className={styles.statIcon} viewBox="0 0 24 24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="white" stroke="white" strokeWidth="2"></path></svg>
+                                                                    {item.comments_count?.toLocaleString() || 0}
+                                                                </span>
+                                                            </>
+                                                        ) : (
+                                                            <span className={styles.mediaStat} style={{ fontSize: '0.8rem' }}>{t('viewStory')}</span>
+                                                        )}
+                                                    </div>
+                                                    <button
+                                                        className={styles.overlayDownloadBtn}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            const isVideo = item.media_type === 'VIDEO';
+                                                            const fileUrl = item.media_url;
+                                                            const filename = `insta-${item.id}.${isVideo ? 'mp4' : 'jpg'}`;
+                                                            window.location.href = `/api/download?url=${encodeURIComponent(fileUrl)}&filename=${filename}`;
+                                                        }}
+                                                        title="Download"
+                                                    >
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className={styles.emptyState}>
+                                            <p>{t('noMedia', { type: activeTab.toLowerCase() })}</p>
+                                            {activeTab === 'STORIES' && <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>{t('storyTip')}</p>}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </>
