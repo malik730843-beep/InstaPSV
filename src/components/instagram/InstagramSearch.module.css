@@ -228,6 +228,32 @@
     transform: scale(1.02);
 }
 
+.hasStory {
+    animation: storyRing 3s linear infinite;
+}
+
+@keyframes storyRing {
+    0% {
+        background: linear-gradient(0deg, #F77737, #E1306C, #833AB4, #405DE6);
+    }
+
+    25% {
+        background: linear-gradient(90deg, #F77737, #E1306C, #833AB4, #405DE6);
+    }
+
+    50% {
+        background: linear-gradient(180deg, #F77737, #E1306C, #833AB4, #405DE6);
+    }
+
+    75% {
+        background: linear-gradient(270deg, #F77737, #E1306C, #833AB4, #405DE6);
+    }
+
+    100% {
+        background: linear-gradient(360deg, #F77737, #E1306C, #833AB4, #405DE6);
+    }
+}
+
 .avatar {
     width: 100%;
     height: 100%;

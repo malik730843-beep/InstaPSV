@@ -197,7 +197,24 @@ export default function InstagramSearch() {
                     <div className={styles.profileBox} ref={resultsRef}>
                         {/* Full Width Hero Area (Header + Highlights) */}
                         <div className={styles.profileHeader}>
-                            <div className={styles.avatarWrapper}>
+                            <div
+                                className={`${styles.avatarWrapper} ${profile.stories?.data?.length > 0 ? styles.hasStory : ''}`}
+                                onClick={() => {
+                                    if (profile.stories?.data?.length > 0) {
+                                        setSelectedMedia(profile.stories.data[0]);
+                                    } else {
+                                        setSelectedMedia({
+                                            id: 'profile-pic',
+                                            media_url: profile.profile_picture_url,
+                                            media_type: 'IMAGE',
+                                            caption: `${profile.username}'s profile picture`,
+                                            timestamp: new Date().toISOString(),
+                                            permalink: `https://instagram.com/${profile.username}`,
+                                        });
+                                    }
+                                }}
+                                title={profile.stories?.data?.length > 0 ? 'View Story' : 'View Profile Picture'}
+                            >
                                 <img src={profile.profile_picture_url} alt={profile.username} className={styles.avatar} />
                             </div>
                             <div className={styles.profileInfo}>
