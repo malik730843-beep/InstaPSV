@@ -35,15 +35,15 @@
     background: rgba(255, 255, 255, 0.25);
 }
 
-/* ===== Side-by-Side Layout ===== */
+/* ===== Side-by-Side Layout (No gap) ===== */
 .content {
     width: 92%;
     max-width: 1100px;
     max-height: 90vh;
     display: flex;
     flex-direction: row;
-    background: #1a1a1a;
-    border-radius: 12px;
+    background: #000;
+    border-radius: 4px;
     overflow: hidden;
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
@@ -56,7 +56,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 400px;
+    min-height: 450px;
     max-height: 90vh;
 }
 
@@ -73,19 +73,119 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    padding: 24px;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    background: #000;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
     overflow-y: auto;
     max-height: 90vh;
+}
+
+/* Profile Header Row */
+.profileRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.profileAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profileName {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Caption Section */
+.captionSection {
+    padding: 16px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.captionUsername {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 6px;
+}
+
+.captionArea {
+    display: inline;
+}
+
+.captionText {
+    display: inline;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+}
+
+.captionText:not(.captionExpanded) {
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.captionExpanded {
+    display: inline;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+.hashtag {
+    color: #E0F1FF;
+    font-weight: 500;
+}
+
+.noCaption {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    font-style: italic;
+    margin: 0;
+}
+
+.moreBtn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 4px;
+    transition: color 0.2s;
+}
+
+.moreBtn:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Timestamp */
+.timestamp {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+    padding: 0 16px 12px;
 }
 
 /* Stats Row */
 .statsRow {
     display: flex;
     gap: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 16px;
+    padding: 8px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .statChip {
@@ -97,55 +197,10 @@
     font-weight: 600;
 }
 
-/* Caption */
-.captionArea {
-    margin-bottom: 12px;
-}
-
-.captionText {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 14px;
-    line-height: 1.6;
-    white-space: pre-wrap;
-    word-break: break-word;
-    margin: 0;
-    max-height: 200px;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.captionExpanded {
-    max-height: none;
-}
-
-.moreBtn {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 13px;
-    cursor: pointer;
-    padding: 4px 0;
-    margin-top: 4px;
-    transition: color 0.2s;
-}
-
-.moreBtn:hover {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* Timestamp */
-.timestamp {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 0;
-}
-
 /* Spacer */
 .spacer {
     flex: 1;
-    min-height: 20px;
+    min-height: 10px;
 }
 
 /* Download Button */
@@ -158,12 +213,12 @@
     color: white;
     border: none;
     padding: 12px 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
     transition: opacity 0.2s, transform 0.2s;
-    width: 100%;
+    margin: 12px 16px 16px;
 }
 
 .downloadButton:hover:not(:disabled) {
@@ -198,23 +253,18 @@
 
     .mediaContainer {
         flex: 1;
-        max-height: 60vh;
+        max-height: 55vh;
     }
 
     .media {
-        max-height: 60vh;
+        max-height: 55vh;
     }
 
     .sidePanel {
         width: 100%;
-        max-height: 40vh;
+        max-height: 45vh;
         border-left: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 16px;
-    }
-
-    .captionText {
-        max-height: 100px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .closeButton {
@@ -225,17 +275,17 @@
 }
 
 @media (max-width: 480px) {
-    .sidePanel {
-        padding: 12px;
-    }
-
     .downloadButton {
         padding: 10px 16px;
         font-size: 13px;
+        margin: 8px 12px 12px;
     }
 
-    .statsRow {
-        padding-bottom: 12px;
-        margin-bottom: 12px;
+    .captionSection {
+        padding: 12px;
+    }
+
+    .profileRow {
+        padding: 10px 12px;
     }
 }

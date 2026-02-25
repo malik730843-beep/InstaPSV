@@ -413,6 +413,7 @@ export default function InstagramSearch() {
             {selectedMedia && (
                 <MediaViewer
                     media={selectedMedia}
+                    profile={profile}
                     onClose={() => setSelectedMedia(null)}
                 />
             )}

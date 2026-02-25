@@ -8,10 +8,11 @@ import { useTranslations } from 'next-intl';
 
 interface MediaViewerProps {
     media: any;
+    profile?: any;
     onClose: () => void;
 }
 
-export default function MediaViewer({ media, onClose }: MediaViewerProps) {
+export default function MediaViewer({ media, profile, onClose }: MediaViewerProps) {
     const t = useTranslations('viewer');
     const isVideo = media.media_type === 'VIDEO';
     const [downloading, setDownloading] = useState(false);
@@ -50,6 +51,18 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
         }
     };
 
+    // Split caption into text and hashtags
+    const renderCaption = (caption: string) => {
+        const parts = caption.split(/(#\w+)/g);
+        return parts.map((part, i) =>
+            part.startsWith('#') ? (
+                <span key={i} className={styles.hashtag}>{part}</span>
+            ) : (
+                <span key={i}>{part}</span>
+            )
+        );
+    };
+
     if (!media) return null;
 
     return createPortal(
@@ -80,45 +93,58 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
 
                 {/* Right: Description Panel */}
                 <div className={styles.sidePanel}>
-                    {/* Stats */}
-                    <div className={styles.statsRow}>
-                        {media.like_count !== undefined && (
-                            <div className={styles.statChip}>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ed4956" stroke="none"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.203 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.32.486.555.846.617.945.062-.099.297-.459.617-.945a4.21 4.21 0 0 1 3.675-1.941"></path></svg>
-                                <span>{media.like_count?.toLocaleString() || 0}</span>
-                            </div>
-                        )}
-                        {media.comments_count !== undefined && (
-                            <div className={styles.statChip}>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                                <span>{media.comments_count?.toLocaleString() || 0}</span>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Caption / Description */}
-                    {media.caption && (
-                        <div className={styles.captionArea}>
-                            <p className={`${styles.captionText} ${captionExpanded ? styles.captionExpanded : ''}`}>
-                                {media.caption}
-                            </p>
-                            {media.caption.length > 200 && (
-                                <button
-                                    className={styles.moreBtn}
-                                    onClick={() => setCaptionExpanded(!captionExpanded)}
-                                >
-                                    {captionExpanded ? 'Show less' : '... more'}
-                                </button>
-                            )}
+                    {/* Profile Header */}
+                    {profile && (
+                        <div className={styles.profileRow}>
+                            <img
+                                src={profile.profile_picture_url}
+                                alt={profile.username}
+                                className={styles.profileAvatar}
+                            />
+                            <span className={styles.profileName}>{profile.username}</span>
                         </div>
                     )}
+
+                    {/* Caption / Description */}
+                    <div className={styles.captionSection}>
+                        {profile && (
+                            <span className={styles.captionUsername}>{profile.username}</span>
+                        )}
+                        {media.caption ? (
+                            <div className={styles.captionArea}>
+                                <p className={`${styles.captionText} ${captionExpanded ? styles.captionExpanded : ''}`}>
+                                    {renderCaption(media.caption)}
+                                </p>
+                                {media.caption.length > 200 && (
+                                    <button
+                                        className={styles.moreBtn}
+                                        onClick={() => setCaptionExpanded(!captionExpanded)}
+                                    >
+                                        {captionExpanded ? 'less' : 'more'}
+                                    </button>
+                                )}
+                            </div>
+                        ) : (
+                            <p className={styles.noCaption}>No caption</p>
+                        )}
+                    </div>
 
                     {/* Timestamp */}
                     {media.timestamp && (
                         <p className={styles.timestamp}>{formatDate(media.timestamp)}</p>
                     )}
 
-                    {/* Spacer pushes download to bottom */}
+                    {/* Stats */}
+                    <div className={styles.statsRow}>
+                        {media.like_count !== undefined && (
+                            <div className={styles.statChip}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="#ed4956" stroke="none"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.203 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.32.486.555.846.617.945.062-.099.297-.459.617-.945a4.21 4.21 0 0 1 3.675-1.941"></path></svg>
+                                <span>{media.like_count?.toLocaleString() || 0} likes</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Spacer */}
                     <div className={styles.spacer}></div>
 
                     {/* Download Button */}
