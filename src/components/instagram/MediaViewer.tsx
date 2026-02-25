@@ -142,6 +142,12 @@ export default function MediaViewer({ media, profile, onClose }: MediaViewerProp
                                 <span>{media.like_count?.toLocaleString() || 0} likes</span>
                             </div>
                         )}
+                        {media.comments_count !== undefined && (
+                            <div className={styles.statChip}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                <span>{media.comments_count?.toLocaleString() || 0} comments</span>
+                            </div>
+                        )}
                     </div>
 
                     {/* Spacer */}
