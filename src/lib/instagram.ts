@@ -114,7 +114,7 @@ export async function getMyIGBusinessId() {
  * @param targetUsername The username you want to "scrape"
  */
 export async function discoverProfile(myIgId: string, targetUsername: string): Promise<IGProfile | null> {
-    const fields = `business_discovery.username(${targetUsername}){username,name,biography,profile_picture_url,followers_count,follows_count,media_count,media{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url,like_count,comments_count},stories{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url},highlights{id,title,media_count,cover_media{id,media_url,thumbnail_url}}}`;
+    const fields = `business_discovery.username(${targetUsername}){username,name,biography,profile_picture_url,followers_count,follows_count,media_count,media{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url,like_count,comments_count},stories{id,caption,media_url,media_type,timestamp,permalink,thumbnail_url}}`;
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s Timeout
