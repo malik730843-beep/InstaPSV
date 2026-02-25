@@ -15,14 +15,19 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
     const t = useTranslations('viewer');
     const isVideo = media.media_type === 'VIDEO';
     const [downloading, setDownloading] = useState(false);
+    const [captionExpanded, setCaptionExpanded] = useState(false);
 
     useEffect(() => {
-        // Prevent background scrolling
         document.body.style.overflow = 'hidden';
+        const handleEsc = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleEsc);
         return () => {
             document.body.style.overflow = 'unset';
+            window.removeEventListener('keydown', handleEsc);
         };
-    }, []);
+    }, [onClose]);
 
     const handleDownload = async () => {
         setDownloading(true);
@@ -32,10 +37,21 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
         setTimeout(() => setDownloading(false), 2000);
     };
 
+    const formatDate = (timestamp: string) => {
+        try {
+            const date = new Date(timestamp);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+            });
+        } catch {
+            return '';
+        }
+    };
+
     if (!media) return null;
 
-    // Use portal to break out of parent stacking contexts (e.g. Hero z-index)
-    // ensuring the viewer is always on top of everything including the Header
     return createPortal(
         <div className={styles.overlay} onClick={onClose}>
             <button className={styles.closeButton} onClick={onClose}>
@@ -43,6 +59,7 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
             </button>
 
             <div className={styles.content} onClick={(e) => e.stopPropagation()}>
+                {/* Left: Media */}
                 <div className={styles.mediaContainer}>
                     {isVideo ? (
                         <video
@@ -55,24 +72,63 @@ export default function MediaViewer({ media, onClose }: MediaViewerProps) {
                     ) : (
                         <img
                             src={media.media_url}
-                            alt={media.caption}
+                            alt={media.caption || 'Instagram media'}
                             className={styles.media}
                         />
                     )}
                 </div>
 
-                <div className={styles.footer}>
+                {/* Right: Description Panel */}
+                <div className={styles.sidePanel}>
+                    {/* Stats */}
+                    <div className={styles.statsRow}>
+                        {media.like_count !== undefined && (
+                            <div className={styles.statChip}>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ed4956" stroke="none"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.203 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.32.486.555.846.617.945.062-.099.297-.459.617-.945a4.21 4.21 0 0 1 3.675-1.941"></path></svg>
+                                <span>{media.like_count?.toLocaleString() || 0}</span>
+                            </div>
+                        )}
+                        {media.comments_count !== undefined && (
+                            <div className={styles.statChip}>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                <span>{media.comments_count?.toLocaleString() || 0}</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Caption / Description */}
                     {media.caption && (
-                        <p className={styles.caption}>{media.caption.substring(0, 100)}{media.caption.length > 100 ? '...' : ''}</p>
+                        <div className={styles.captionArea}>
+                            <p className={`${styles.captionText} ${captionExpanded ? styles.captionExpanded : ''}`}>
+                                {media.caption}
+                            </p>
+                            {media.caption.length > 200 && (
+                                <button
+                                    className={styles.moreBtn}
+                                    onClick={() => setCaptionExpanded(!captionExpanded)}
+                                >
+                                    {captionExpanded ? 'Show less' : '... more'}
+                                </button>
+                            )}
+                        </div>
                     )}
 
+                    {/* Timestamp */}
+                    {media.timestamp && (
+                        <p className={styles.timestamp}>{formatDate(media.timestamp)}</p>
+                    )}
+
+                    {/* Spacer pushes download to bottom */}
+                    <div className={styles.spacer}></div>
+
+                    {/* Download Button */}
                     <button
                         className={styles.downloadButton}
                         onClick={handleDownload}
                         disabled={downloading}
                     >
-                        {downloading ? t('pleaseWait') : t('download')}
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        {downloading ? t('pleaseWait') : t('download')}
                     </button>
                 </div>
             </div>
