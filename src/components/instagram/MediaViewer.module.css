@@ -50,28 +50,30 @@
     gap: 0;
 }
 
-/* Left: Media */
+/* Left: Media - only takes the space the video/image needs */
 .mediaContainer {
-    flex: 1;
+    flex: 0 1 auto;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 450px;
     max-height: 90vh;
+    overflow: hidden;
 }
 
 .media {
+    height: 90vh;
     max-width: 100%;
-    max-height: 90vh;
+    width: auto;
     object-fit: contain;
     display: block;
 }
 
-/* Right: Description Panel */
+/* Right: Description Panel - fills remaining space */
 .sidePanel {
-    width: 340px;
-    flex-shrink: 0;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     background: #000;
