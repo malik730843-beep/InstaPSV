@@ -14,9 +14,8 @@
     },
     "hero": {
         "badge": "Gratis Instagram Viewer-verktyg",
-        "title": "Instagram {story} och {followers} Viewer",
-        "story": "Stories",
-        "followers": "Följare",
+        "titleStart": "Anonym Instagram Story Viewer",
+        "titleHighlight": "och följare parser",
         "subtitle": "Se Instagram-stories, profiler, reels och följare anonymt. Ingen inloggning krävs. 100% gratis och säkert.",
         "searchPlaceholder": "Ange användarnamn...",
         "searchButton": "Visa profil",
@@ -25,6 +24,21 @@
             "profiles": "Profiler visade",
             "stories": "Stories visade",
             "anonymous": "Anonym"
+        },
+        "anonymityCheck": {
+            "title": "Anonymitetskontroll",
+            "standardLogin": {
+                "title": "Standardinloggning",
+                "percentage": "0% ANONYM",
+                "description": "Synlig i \"Sedd av\"-listor. Aktivitet spåras."
+            },
+            "safeMode": {
+                "title": "InstaPSV Säkert Läge",
+                "percentage": "100% ANONYM",
+                "point1": "Dold från listor.",
+                "point2": "Inga spårningspixlar.",
+                "point3": "IP-maskerad."
+            }
         }
     },
     "features": {

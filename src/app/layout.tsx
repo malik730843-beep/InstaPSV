@@ -96,6 +96,18 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+      languages: {
+        'en': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'de': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'fr': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'es': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'it': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'nl': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'sv': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'no': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'da': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+        'x-default': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
+      },
     },
     openGraph: {
       title,
@@ -173,17 +185,23 @@ export default async function RootLayout({
               "name": "InstaPSV",
               "operatingSystem": "Any",
               "applicationCategory": "BrowserApplication",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              },
-              "description": "Anonymous Instagram Story Viewer and Profile Parser. No login required.",
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "1250"
-              }
+              "description": "Anonymous Instagram Story Viewer and Profile Parser. No login required."
+            })
+          }}
+        />
+        {/* BreadcrumbList Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'
+              }]
             })
           }}
         />

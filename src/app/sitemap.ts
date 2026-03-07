@@ -16,17 +16,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/features',
         '/about',
         '/contact',
-        '/privacy-policy',
-        '/terms-of-use',
     ].map((route) => ({
         url: `${BASE_URL}${route}`,
         lastModified: new Date(),
-        changeFrequency: 'daily' as const,
+        changeFrequency: route === '' ? 'weekly' as const : 'monthly' as const,
         priority: route === '' ? 1 : 0.8,
     }));
 
     // 2. Blog Posts
-    /*
     let posts: any[] = [];
     try {
         const { data } = await supabase
@@ -35,15 +32,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             .eq('status', 'published');
         if (data) posts = data;
     } catch (e) { }
-    
+
     const postRoutes = posts.map((post) => ({
         url: `${BASE_URL}/blog/${post.slug}`,
         lastModified: new Date(post.updated_at),
         changeFrequency: 'weekly' as const,
         priority: 0.7,
     }));
-    */
-    const postRoutes: any[] = [];
 
     // 3. Pages (Dynamic)
     let pages: any[] = [];
@@ -62,5 +57,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
-    return [...routes, ...postRoutes, ...pageRoutes];
+    // 4. Additional Static Routes
+    const extraRoutes = [
+        '/privacy-policy',
+        '/terms-of-use',
+        '/disclaimer',
+    ].map((route) => ({
+        url: `${BASE_URL}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.5,
+    }));
+
+    return [...routes, ...postRoutes, ...pageRoutes, ...extraRoutes];
 }

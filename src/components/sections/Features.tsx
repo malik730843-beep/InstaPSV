@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import styles from './Features.module.css';
+import ScrollToSearch from '../ui/ScrollToSearch';
 
 export default async function Features() {
     const t = await getTranslations('features');
@@ -19,37 +20,37 @@ export default async function Features() {
         {
             icon: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
             ),
-            title: t('followersParser.title'),
-            description: t('followersParser.description'),
+            title: t('highlightsViewer.title'),
+            description: t('highlightsViewer.description'),
             gradient: 'linear-gradient(135deg, #7928ca, #00d4ff)',
+        },
+        {
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <line x1="3" y1="9" x2="21" y2="9" />
+                    <line x1="3" y1="15" x2="21" y2="15" />
+                    <line x1="9" y1="3" x2="9" y2="21" />
+                    <line x1="15" y1="3" x2="15" y2="21" />
+                </svg>
+            ),
+            title: t('postGrid.title'),
+            description: t('postGrid.description'),
+            gradient: 'linear-gradient(135deg, #00d4ff, #7928ca)',
         },
         {
             icon: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polygon points="23 7 16 12 23 17 23 7" />
                     <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                    <circle cx="8" cy="12" r="3" />
                 </svg>
             ),
-            title: t('reelsViewer.title'),
-            description: t('reelsViewer.description'),
-            gradient: 'linear-gradient(135deg, #00d4ff, #7928ca)',
-        },
-        {
-            icon: (
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21 15 16 10 5 21" />
-                </svg>
-            ),
-            title: t('photoSaver.title'),
-            description: t('photoSaver.description'),
+            title: t('reelsPlayer.title'),
+            description: t('reelsPlayer.description'),
             gradient: 'linear-gradient(135deg, #ff00ff, #ff0080)',
         },
     ];
@@ -59,7 +60,12 @@ export default async function Features() {
             <div className={styles.container}>
                 {/* Section Header */}
                 <div className={styles.header}>
-                    <span className={styles.badge}>✨ {t('badge')}</span>
+                    <span className={styles.badge}>
+                        <svg className={styles.badgeIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px', verticalAlign: 'middle' }}>
+                            <path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z" />
+                        </svg>
+                        {t('badge')}
+                    </span>
                     <h2 className={styles.title}>
                         {t('titleStart')} <span className={styles.highlight}>{t('titleHighlight')}</span> {t('titleEnd')}
                     </h2>
@@ -80,7 +86,7 @@ export default async function Features() {
                             </div>
                             <h3 className={styles.cardTitle}>{feature.title}</h3>
                             <p className={styles.cardDescription}>{feature.description}</p>
-                            <a href="#" className={styles.cardLink}>
+                            <a href="/features" className={styles.cardLink}>
                                 {t('learnMore')}
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -88,6 +94,10 @@ export default async function Features() {
                             </a>
                         </div>
                     ))}
+                </div>
+
+                <div className={styles.ctaWrapper}>
+                    <ScrollToSearch label={t('cta')} />
                 </div>
             </div>
         </section>

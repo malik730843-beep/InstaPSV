@@ -14,9 +14,8 @@
     },
     "hero": {
         "badge": "Herramienta gratuita para ver historias de Instagram - No requiere cuenta",
-        "title": "Visor anónimo de {story} de Instagram y parser privado de {followers}",
-        "story": "Historia",
-        "followers": "Seguidores",
+        "titleStart": "Visor anónimo de Instagram",
+        "titleHighlight": "y parser privado",
         "subtitle": "El mejor visor de historias de Instagram para ver y descargar historias, perfiles, reels y destacados de forma anónima. Sin login ni cuenta. 100% gratuito y seguro.",
         "searchPlaceholder": "Introduce el nombre de usuario...",
         "searchButton": "Ver Perfil",
@@ -25,6 +24,21 @@
             "profiles": "Perfiles vistos",
             "stories": "Historias vistas",
             "anonymous": "Anónimo"
+        },
+        "anonymityCheck": {
+            "title": "Control de nivel de anonimato",
+            "standardLogin": {
+                "title": "Inicio de sesión estándar",
+                "percentage": "0% ANÓNIMO",
+                "description": "Visible en listas de \"Visto por\". Actividad rastreada."
+            },
+            "safeMode": {
+                "title": "InstaPSV Modo Seguro",
+                "percentage": "100% ANÓNIMO",
+                "point1": "Oculto de las listas.",
+                "point2": "Sin píxeles de seguimiento.",
+                "point3": "IP enmascarada."
+            }
         }
     },
     "features": {

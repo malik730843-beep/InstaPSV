@@ -14,9 +14,8 @@
     },
     "hero": {
         "badge": "Gratis Instagram Viewer Tool",
-        "title": "Instagram {story} en {followers} Viewer",
-        "story": "Verhalen",
-        "followers": "Volgers",
+        "titleStart": "Anonieme Instagram Viewer",
+        "titleHighlight": "en volgers parser",
         "subtitle": "Bekijk Instagram verhalen, profielen, reels en volgers anoniem. Geen login vereist. 100% gratis en veilig.",
         "searchPlaceholder": "Voer gebruikersnaam in...",
         "searchButton": "Profiel bekijken",
@@ -25,6 +24,21 @@
             "profiles": "Profielen bekeken",
             "stories": "Verhalen bekeken",
             "anonymous": "Anoniem"
+        },
+        "anonymityCheck": {
+            "title": "Anonymiteitscheck",
+            "standardLogin": {
+                "title": "Standaard Login",
+                "percentage": "0% ANONIEM",
+                "description": "Zichtbaar in \"Bekeken door\" lijsten. Activiteit gevolgd."
+            },
+            "safeMode": {
+                "title": "InstaPSV Veilige Modus",
+                "percentage": "100% ANONIEM",
+                "point1": "Verborgen uit lijsten.",
+                "point2": "Geen tracking pixels.",
+                "point3": "IP gemaskeerd."
+            }
         }
     },
     "features": {

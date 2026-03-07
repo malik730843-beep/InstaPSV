@@ -28,7 +28,12 @@ export default function FeatureSuggestion() {
 
                 {/* Content */}
                 <div className={styles.stealthContent}>
-                    <div className={styles.icon}>👻</div>
+                    <div className={styles.icon}>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </div>
                     <h2 className={styles.stealthTitle}>
                         Stalk the Gram in Stealth Mode Only on InstaPSV
                     </h2>
@@ -37,7 +42,7 @@ export default function FeatureSuggestion() {
                     </p>
 
                     <a href="#" onClick={scrollToTop} className={styles.gradientButton}>
-                        🚀 Start Viewing
+                        Start Viewing
                     </a>
                 </div>
             </div>

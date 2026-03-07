@@ -14,9 +14,8 @@
     },
     "hero": {
         "badge": "Kostenloses Instagram Viewer Tool",
-        "title": "Instagram {story} und {followers} Viewer",
-        "story": "Story",
-        "followers": "Follower",
+        "titleStart": "Instagram Story und Follower",
+        "titleHighlight": "Viewer",
         "subtitle": "Sehen Sie Instagram Stories, Profile, Reels und Follower anonym. Keine Anmeldung erforderlich. 100% kostenlos und sicher.",
         "searchPlaceholder": "Instagram Benutzername eingeben...",
         "searchButton": "Profil ansehen",
@@ -25,6 +24,21 @@
             "profiles": "Profile angesehen",
             "stories": "Stories angesehen",
             "anonymous": "Anonym"
+        },
+        "anonymityCheck": {
+            "title": "Anonymitätsprüfung",
+            "standardLogin": {
+                "title": "Standard-Login",
+                "percentage": "0% ANONYM",
+                "description": "Sichtbar in \"Gesehen von\"-Listen. Aktivität verfolgt."
+            },
+            "safeMode": {
+                "title": "InstaPSV Sicherheitsmodus",
+                "percentage": "100% ANONYM",
+                "point1": "In Listen verborgen.",
+                "point2": "Keine Tracking-Pixel.",
+                "point3": "IP maskiert."
+            }
         }
     },
     "features": {

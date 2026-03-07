@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import styles from './HowItWorks.module.css';
+import ScrollToSearch from '../ui/ScrollToSearch';
 
 export default async function HowItWorks() {
     const t = await getTranslations('howItWorks');
@@ -45,10 +46,36 @@ export default async function HowItWorks() {
 
     return (
         <section className={styles.howItWorks} id="how-it-works">
+            {/* HowTo Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "HowTo",
+                        "name": t('titleStart') + " " + t('titleHighlight') + " " + t('titleEnd'),
+                        "description": t('subtitle'),
+                        "step": steps.map((step, index) => ({
+                            "@type": "HowToStep",
+                            "position": index + 1,
+                            "name": step.title,
+                            "itemListElement": [{
+                                "@type": "HowToDirection",
+                                "text": step.description
+                            }]
+                        }))
+                    })
+                }}
+            />
             <div className={styles.container}>
                 {/* Section Header */}
                 <div className={styles.header}>
-                    <span className={styles.badge}>🚀 {t('badge')}</span>
+                    <span className={styles.badge}>
+                        <svg className={styles.badgeIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px', verticalAlign: 'middle' }}>
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                        {t('badge')}
+                    </span>
                     <h2 className={styles.title}>
                         {t('titleStart')} <span className={styles.highlight}>{t('titleHighlight')}</span> {t('titleEnd')}
                     </h2>
@@ -76,6 +103,10 @@ export default async function HowItWorks() {
                             )}
                         </div>
                     ))}
+                </div>
+
+                <div className={styles.ctaWrapper}>
+                    <ScrollToSearch label="Start My Anonymous Search Now" />
                 </div>
 
                 {/* Preview Image */}

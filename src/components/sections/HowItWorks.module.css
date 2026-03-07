@@ -313,3 +313,45 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+.ctaWrapper {
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-3xl) 0 var(--spacing-4xl);
+}
+
+.ctaButton {
+    padding: var(--spacing-md) var(--spacing-3xl);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-white);
+    background: linear-gradient(135deg, #ff0080 0%, #7928ca 100%);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ctaButton:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(255, 0, 128, 0.5);
+    filter: brightness(1.1);
+}
+
+.ctaButton:active {
+    transform: translateY(-1px);
+}
+
+.badgeIcon {
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .ctaButton {
+        width: 100%;
+        font-size: var(--font-size-base);
+    }
+}

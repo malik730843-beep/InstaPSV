@@ -14,10 +14,9 @@
     },
     "hero": {
         "badge": "Free Insta Story Viewer Tool — No Account Required",
-        "title": "Anonymous Instagram {story} Viewer and Private {followers} Parser",
-        "story": "Story",
-        "followers": "Followers",
-        "subtitle": "The best Insta Story Viewer to view and download Instagram stories, profiles, reels, and highlights anonymously. No login or account required. 100% free and secure.",
+        "titleStart": "Anonymous Instagram Viewer",
+        "titleHighlight": "Browse Profiles Secretly",
+        "subtitle": "View any public Instagram profile, stories, reels, and highlights completely anonymously. No login, no account, no digital trace. InstaPSV is the best free anonymous Instagram viewer — browse privately and securely.",
         "searchPlaceholder": "Enter Instagram username...",
         "searchButton": "View Profile",
         "searchHint": "Try: @instagram, @cristiano, @therock",
@@ -25,91 +24,256 @@
             "profiles": "Profiles Viewed",
             "stories": "Stories Watched",
             "anonymous": "Anonymous"
+        },
+        "anonymityCheck": {
+            "title": "How We Make You 100% Invisible",
+            "standardLogin": {
+                "title": "Standard Login",
+                "percentage": "0% ANONYMOUS",
+                "description": "Visible in \"Viewed by\" lists. Activity tracked."
+            },
+            "safeMode": {
+                "title": "Ghost Mode (100% Private)",
+                "percentage": "100% ANONYMOUS",
+                "point1": "Hidden from lists.",
+                "point2": "No tracking pixels.",
+                "point3": "IP Masked."
+            }
         }
+    },
+    "security": {
+        "badge": "Privacy First",
+        "title": "How We Make You 100% Invisible to Instagram’s Tracking",
+        "subtitle": "Compare the risks of standard viewing with our secure, anonymous gateway.",
+        "tracks": {
+            "title": "How Instagram Tracks You",
+            "items": [
+                {
+                    "title": "Story Notifications",
+                    "text": "The owner sees your name on their viewer list. Your identity is exposed."
+                },
+                {
+                    "title": "Search History",
+                    "text": "Instagram logs every profile you visit to build a detailed ad profile on you."
+                },
+                {
+                    "title": "IP Logging",
+                    "text": "Your permanent digital footprint is linked to your personal Instagram account."
+                }
+            ]
+        },
+        "protects": {
+            "title": "How InstaPSV Protects You",
+            "items": [
+                {
+                    "title": "Secure Proxy Requests",
+                    "text": "We act as a shield, fetching data so your identity never reaches Instagram."
+                },
+                {
+                    "title": "Zero-Log Policy",
+                    "text": "We never store your searches or personal data. No digital footprint, ever."
+                },
+                {
+                    "title": "No Login Required",
+                    "text": "Browse freely without the risk of accidentally 'liking' a post or appearing in suggestions."
+                }
+            ]
+        },
+        "cta": "Protect My Privacy & Start Searching"
     },
     "features": {
         "badge": "Features",
-        "titleStart": "Advanced Features of our",
-        "titleHighlight": "Instagram Viewer",
+        "titleStart": "Browse Every Detail",
+        "titleHighlight": "Secretly",
         "titleEnd": "",
-        "subtitle": "Powerful tools to explore Instagram content anonymously and securely without an account.",
+        "subtitle": "Access all media types from public accounts with our comprehensive viewer tool.",
         "storyViewer": {
             "title": "Story Viewer",
-            "description": "Watch Instagram stories anonymously without the user knowing. Save stories before they disappear."
+            "description": "Watch active stories discreetly. They expire after 24 hours but you can view them anytime before then."
         },
-        "followersParser": {
-            "title": "Followers Parser",
-            "description": "View, export, and download complete follower and following lists of any public Instagram profile."
+        "highlightsViewer": {
+            "title": "Highlights Viewer",
+            "description": "Browse saved story highlights from profiles. Perfect for revisiting curated content."
         },
-        "reelsViewer": {
-            "title": "Reels Viewer",
-            "description": "Watch and download Instagram Reels in high quality without logging in."
+        "postGrid": {
+            "title": "Profile & Post Grid",
+            "description": "See the full feed layout. View high-resolution photos and carousels."
         },
-        "photoSaver": {
-            "title": "Photo Saver",
-            "description": "Download Instagram photos and profile pictures in original quality."
+        "reelsPlayer": {
+            "title": "Reels Video Player",
+            "description": "Play Reels videos smoothly without auto-playing the next one or notifying the creator."
         },
+        "cta": "Get Started Now",
         "learnMore": "Learn more"
     },
     "howItWorks": {
         "badge": "How It Works",
-        "titleStart": "How to View",
-        "titleHighlight": "Instagram Stories",
-        "titleEnd": "Anonymously",
+        "titleStart": "3 Simple Steps to",
+        "titleHighlight": "Browse Instagram",
+        "titleEnd": "Without Being Seen",
         "subtitle": "Start viewing Instagram content anonymously in seconds — no account required.",
         "step1": {
-            "title": "Enter Username",
-            "description": "Type the Instagram username you want to explore in the search bar."
+            "title": "Enter the Username",
+            "description": "Simply type or paste the public Instagram handle you want to explore. There’s no need to log in or link your own account."
         },
         "step2": {
-            "title": "View Profile",
-            "description": "Browse their posts, stories, reels, and followers anonymously."
+            "title": "Secure Anonymous Search",
+            "description": "Our private servers retrieve the profile data through an anonymous gateway. This ensures your personal IP address and identity are never exposed to Instagram."
         },
         "step3": {
-            "title": "Download Content",
-            "description": "Save any photo, video, or story with a single click."
+            "title": "View Stories & Reels Secretly",
+            "description": "Explore stories, reels, and highlights with total peace of mind. You leave zero digital footprint, and the profile owner will never know you visited."
         }
+    },
+    "comparison": {
+        "title": "How InstaPSV is better than others",
+        "headers": {
+            "feature": "Feature",
+            "app": "Logged-in App",
+            "others": "Other Viewer Sites",
+            "instapsv": "InstaPSV"
+        },
+        "rows": [
+            {
+                "feature": "Visible to Owner",
+                "app": "Yes",
+                "others": "No",
+                "instapsv": "No",
+                "status": [
+                    "risk",
+                    "safe",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "Login Required",
+                "app": "Yes",
+                "others": "No",
+                "instapsv": "No",
+                "status": [
+                    "risk",
+                    "safe",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "Ad Intrusion",
+                "app": "Medium",
+                "others": "Extreme",
+                "instapsv": "Minimal",
+                "status": [
+                    "neutral",
+                    "risk",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "IP Protection",
+                "app": "None",
+                "others": "Partial",
+                "instapsv": "Full Proxy",
+                "status": [
+                    "risk",
+                    "neutral",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "View Reels/Stories",
+                "app": "Yes",
+                "others": "Sometimes",
+                "instapsv": "Yes (HD)",
+                "status": [
+                    "safe",
+                    "neutral",
+                    "safe"
+                ]
+            }
+        ]
+    },
+    "useCases": {
+        "badge": "Solutions",
+        "title": "Popular use cases to view insta anonymously",
+        "subtitle": "Security should always come first, following are the most popular reason why people use instapsv",
+        "items": [
+            {
+                "title": "Monitor Competitors Undetected",
+                "text": "Research market trends and analyze competitor content strategies without alerting their team or appearing in their viewer lists. Perfect for marketers and business owners."
+            },
+            {
+                "title": "Curate Content Without the Trace",
+                "text": "Browse profiles to find visual references and trending ideas. Collect inspiration for your next project without the account owner ever knowing you visited."
+            },
+            {
+                "title": "Stay Safe on Shared Devices",
+                "text": "Access stories and reels on work or family computers without the risk of leaving your personal account logged in. Browse freely on any device with zero history recorded."
+            },
+            {
+                "title": "Deep Research for Journalists & Investigators",
+                "text": "Conduct essential research or parental monitoring on public profiles with a guaranteed 'no-logs' policy. No digital footprint, no IP logging, and no account required."
+            }
+        ]
     },
     "faq": {
         "badge": "Support",
-        "titleStart": "Frequently Asked",
-        "titleHighlight": "Questions",
+        "titleStart": "FAQs",
+        "titleHighlight": "",
         "titleEnd": "",
-        "subtitle": "Find answers to common questions about InstaPSV.",
+        "subtitle": "Frequently asked questions by our users",
         "contactCta": "Still have questions?",
         "contactLink": "Contact Support",
         "items": [
             {
-                "question": "Is InstaPSV free to use?",
-                "answer": "Yes, InstaPSV is completely free to use. We provide all our features including story viewing, profile browsing, and content downloading without any charges."
+                "question": "Is this truly anonymous? Can anyone see I used this viewer?",
+                "answer": "Yes, InstaPSV's anonymous Instagram viewer is 100% untraceable. We don't connect to any Instagram account, we don't store your search history, and the profile owner will never know you viewed their content."
             },
             {
-                "question": "Can Instagram users see if I viewed their profile?",
-                "answer": "No, when you use InstaPSV to view Instagram profiles, stories, or any content, you remain completely anonymous. Instagram users will not be notified."
+                "question": "How is this different from viewing Instagram in a browser?",
+                "answer": "When you view Instagram in a browser (even without logging in), Instagram can still track your IP and browsing patterns. InstaPSV acts as an intermediary, so Instagram never sees your connection."
+            },
+            {
+                "question": "Can I view private Instagram profiles anonymously?",
+                "answer": "No. Our anonymous Instagram viewer only accesses publicly available content. Private accounts are protected by Instagram's privacy settings, which we fully respect."
             },
             {
                 "question": "Do I need to create an account?",
-                "answer": "No account or registration is required. Simply enter the Instagram username you want to explore and start viewing content immediately."
+                "answer": "No. InstaPSV requires zero registration, zero login, and zero personal information. Just type a username and start browsing."
             },
             {
-                "question": "Can I download Instagram stories and posts?",
-                "answer": "Yes! InstaPSV allows you to download stories, posts, reels, and profile pictures in high quality."
+                "question": "Is this anonymous Instagram viewer really free?",
+                "answer": "Yes, completely free. No trial periods, no premium tiers, no hidden fees. All features are available to everyone without charge."
             },
             {
-                "question": "Is it legal to use InstaPSV?",
-                "answer": "InstaPSV only accesses publicly available content on Instagram. We do not bypass any security measures or access private accounts."
+                "question": "What content can I view anonymously?",
+                "answer": "You can view profile information, posts, stories (before they expire), reels, highlights, and followers/following lists of any public Instagram account."
             },
             {
-                "question": "Why can't I view certain profiles?",
-                "answer": "InstaPSV can only access public Instagram profiles. If a profile is set to private, we cannot view their content."
+                "question": "is it possible to view someones story (private account) anonymously?",
+                "answer": "Currently, there is no reliable or safe way to view stories from private accounts without following them. InstaPSV only works with public profiles to ensure 100% legal and secure operation."
             },
             {
-                "question": "Can I view Instagram Highlights anonymously?",
-                "answer": "Yes! Our Insta Story Viewer allows you to view and download Instagram Highlights without the user knowing. Simply enter their username to access all public highlights."
+                "question": "Can the profile owner see that I viewed their story in 'Ghost Mode'?",
+                "answer": "No. When using InstaPSV, we fetch the data through our anonymous servers. To Instagram and the account owner, it appears as a generic system request, never as your personal profile or IP."
             },
             {
-                "question": "Do I need an Instagram account to use InstaPSV?",
-                "answer": "No, you can use InstaPSV without an Instagram account. Our tool works entirely independently, so you can browse profiles, stories, and reels without logging in or creating any account."
+                "question": "Is using a web-based viewer safer than downloading an app?",
+                "answer": "Yes. Most 'Anonymous Viewer' apps require you to log in with your Instagram credentials, which puts your account at risk of being hacked or banned. InstaPSV is web-based and requires zero login, making it significantly safer."
+            },
+            {
+                "question": "How do I use this tool for market research?",
+                "answer": "Simply enter the username of a competitor or influencer. You can analyze their content strategy, story highlights, and engagement patterns without alerting their team or appearing in their viewer analytics."
+            },
+            {
+                "question": "Is there a real way to view instagram stories without showing up in the viewer list?",
+                "answer": "Yes, using InstaPSV is the most reliable way to view Instagram stories without appearing in the viewer list. Since we fetch the content using our own servers, the account owner only sees our system's request and never your personal identity."
+            },
+            {
+                "question": "Has anyone found a reliable way to watch IG stories anonymously?",
+                "answer": "Yes! Many users on platforms like Reddit and Quora recommend InstaPSV because it's a browser-based tool that requires no login. This means your personal account is never linked to the profiles you view, making it the most reliable and secure ghost-mode viewer available."
+            },
+            {
+                "question": "How to view someone's story without him knowing?",
+                "answer": "The easiest and safest method is to use a web-based anonymous viewer like InstaPSV. Simply enter the username on our site, and you can watch their active stories completely undetected, without needing to create a fake account or use the airplane mode trick."
             }
         ]
     },
@@ -166,19 +330,6 @@
                 "role": "Photographer"
             }
         ]
-    },
-    "cta": {
-        "titleStart": "View Instagram",
-        "titleHighlight": "Followers",
-        "titleEnd": "",
-        "description": "Ready to explore Instagram profiles anonymously? Start viewing stories, posts, and followers right now. No login required, completely free!",
-        "primaryBtn": "Start Viewing Now",
-        "secondaryBtn": "Explore Features",
-        "badges": {
-            "secure": "100% Secure",
-            "noLogin": "No Login Required",
-            "instant": "Instant Access"
-        }
     },
     "featureSuggestion": {
         "title": "Help us build the best {tool} by suggesting features",

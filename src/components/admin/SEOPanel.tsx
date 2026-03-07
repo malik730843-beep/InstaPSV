@@ -193,7 +193,12 @@ export default function SEOPanel({ formData, setFormData }: SEOPanelProps) {
                                     <div className="form-group">
                                         <label className="form-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                             <span>SEO Title</span>
-                                            <button className="btn btn-secondary btn-sm" type="button" style={{ fontSize: '10px', padding: '2px 8px' }}>✨ AI Generate</button>
+                                            <button className="btn btn-secondary btn-sm" type="button" style={{ fontSize: '10px', padding: '2px 8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z" />
+                                                </svg>
+                                                AI Generate
+                                            </button>
                                         </label>
                                         <div style={{ position: 'relative' }}>
                                             <input
@@ -230,7 +235,12 @@ export default function SEOPanel({ formData, setFormData }: SEOPanelProps) {
                                     <div className="form-group">
                                         <label className="form-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                             <span>Meta Description</span>
-                                            <button className="btn btn-secondary btn-sm" type="button" style={{ fontSize: '10px', padding: '2px 8px' }}>✨ AI Generate</button>
+                                            <button className="btn btn-secondary btn-sm" type="button" style={{ fontSize: '10px', padding: '2px 8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z" />
+                                                </svg>
+                                                AI Generate
+                                            </button>
                                         </label>
                                         <div style={{ position: 'relative' }}>
                                             <textarea

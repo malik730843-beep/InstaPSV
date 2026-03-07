@@ -104,8 +104,11 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 900px;
+    width: 100%;
+    max-width: 1200px;
+    /* Increased to accommodate search bar properly */
     margin: 0 auto;
+    padding: 0 var(--spacing-xl);
 }
 
 /* Badge */
@@ -172,7 +175,7 @@
 
 .searchContainer {
     width: 100%;
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
     z-index: 10;
 }
 
@@ -437,6 +440,167 @@
 
     .floatingOrb {
         display: none;
+    }
+}
+
+.centeredColumn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* Anonymity Check Section */
+.anonymityCheck {
+    width: 100%;
+    max-width: 600px;
+    /* Matches searchContainer for alignment */
+    margin: 0 0 var(--spacing-4xl) 0;
+    /* Changed from -20px to positive gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.anonymityTitle {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    color: var(--color-white);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.01em;
+}
+
+.statusCard {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-xl);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.safeCard {
+    background: rgba(121, 40, 202, 0.04);
+    border: 1px solid rgba(121, 40, 202, 0.3);
+    box-shadow: 0 0 40px rgba(121, 40, 202, 0.15);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.cardIcon {
+    filter: drop-shadow(0 0 8px currentColor);
+    transition: transform var(--transition-normal);
+}
+
+.statusCard:hover .cardIcon {
+    transform: scale(1.1);
+}
+
+.cardBadge {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.standardBadge {
+    color: #e11d48;
+}
+
+.safeBadge {
+    color: #00ffca;
+}
+
+.progressBar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    border-radius: var(--radius-full);
+}
+
+.standardFill {
+    width: 10%;
+    background: #e11d48;
+    box-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+}
+
+.safeFill {
+    width: 100%;
+    background: linear-gradient(90deg, #00ffca, #4dabf7, #7928ca);
+    box-shadow: 0 0 15px rgba(0, 255, 202, 0.3);
+}
+
+.cardDescription {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-align: left;
+    margin: 0;
+}
+
+.pointsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.pointItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 13px;
+    color: var(--color-text-light-muted);
+    font-weight: 600;
+}
+
+.checkIcon {
+    color: #00ffca;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 202, 0.5));
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .anonymityCheck {
+        margin-top: var(--spacing-2xl);
+        margin-bottom: var(--spacing-4xl);
+        max-width: 100%;
     }
 }
 

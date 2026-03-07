@@ -14,9 +14,8 @@
     },
     "hero": {
         "badge": "Strumento gratuito per Instagram",
-        "title": "Visualizzatore di {story} e {followers} Instagram",
-        "story": "Storie",
-        "followers": "Follower",
+        "titleStart": "Visualizzatore Instagram anonimo",
+        "titleHighlight": "e parser di follower",
         "subtitle": "Visualizza storie, profili, reel e follower di Instagram in modo anonimo. Nessun login richiesto. 100% gratuito e sicuro.",
         "searchPlaceholder": "Inserisci il nome utente...",
         "searchButton": "Vedi profilo",
@@ -25,6 +24,21 @@
             "profiles": "Profili visti",
             "stories": "Storie viste",
             "anonymous": "Anonimo"
+        },
+        "anonymityCheck": {
+            "title": "Controllo livello anonimato",
+            "standardLogin": {
+                "title": "Login standard",
+                "percentage": "0% ANONIMO",
+                "description": "Visibile nelle liste \"Visualizzato da\". Attività tracciata."
+            },
+            "safeMode": {
+                "title": "InstaPSV Modalità Sicura",
+                "percentage": "100% ANONIMO",
+                "point1": "Nascosto dalle liste.",
+                "point2": "Nessun pixel di tracciamento.",
+                "point3": "IP mascherato."
+            }
         }
     },
     "features": {
