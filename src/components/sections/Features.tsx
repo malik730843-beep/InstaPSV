@@ -96,9 +96,6 @@ export default async function Features() {
                     ))}
                 </div>
 
-                <div className={styles.ctaWrapper}>
-                    <ScrollToSearch label={t('cta')} />
-                </div>
             </div>
         </section>
     );

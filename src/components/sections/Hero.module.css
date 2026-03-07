@@ -7,7 +7,7 @@
     justify-content: center;
     background: var(--gradient-hero-bg);
     overflow: visible;
-    padding: var(--spacing-5xl) var(--container-padding);
+    padding: var(--spacing-5xl) 3px;
 }
 
 /* Particle Background */
@@ -108,7 +108,7 @@
     max-width: 1200px;
     /* Increased to accommodate search bar properly */
     margin: 0 auto;
-    padding: 0 var(--spacing-xl);
+    padding: 0 3px;
 }
 
 /* Badge */
@@ -412,9 +412,11 @@
 
     .searchButton {
         width: 100%;
-        justify-content: center;
-        margin-top: var(--spacing-xs);
-        padding: var(--spacing-md);
+        max-width: 320px;
+        margin: var(--spacing-sm) auto 0;
+        padding: var(--spacing-sm);
+        font-size: 13px;
+        line-height: 1.2;
     }
 
     .stats {
@@ -440,6 +442,13 @@
 
     .floatingOrb {
         display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .searchButton {
+        padding: 10px;
+        font-size: 12px;
     }
 }
 

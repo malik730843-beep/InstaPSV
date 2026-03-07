@@ -65,9 +65,9 @@ export default async function ComparisonTable() {
                             {rows.map((row, index) => (
                                 <tr key={index}>
                                     <td className={styles.featureCell}>{row.feature}</td>
-                                    <td>{renderStatus(row.app, row.status[0])}</td>
-                                    <td>{renderStatus(row.others, row.status[1])}</td>
-                                    <td className={styles.highlightCell}>{renderStatus(row.instapsv, row.status[2])}</td>
+                                    <td data-label={t('headers.app')}>{renderStatus(row.app, row.status[0])}</td>
+                                    <td data-label={t('headers.others')}>{renderStatus(row.others, row.status[1])}</td>
+                                    <td className={styles.highlightCell} data-label={t('headers.instapsv')}>{renderStatus(row.instapsv, row.status[2])}</td>
                                 </tr>
                             ))}
                         </tbody>

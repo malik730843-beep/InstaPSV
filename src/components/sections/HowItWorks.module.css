@@ -352,6 +352,18 @@
 @media (max-width: 768px) {
     .ctaButton {
         width: 100%;
-        font-size: var(--font-size-base);
+        max-width: 320px;
+        margin: 0 auto;
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-sm);
+        letter-spacing: 0.02em;
+    }
+}
+
+@media (max-width: 480px) {
+    .ctaButton {
+        padding: var(--spacing-sm) var(--spacing-sm);
+        font-size: 13px;
+        line-height: 1.2;
     }
 }
