@@ -4,6 +4,7 @@ import styles from './pricing.module.css';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import PricingCards from '@/components/pricing/PricingCards';
+import PricingFaq from '@/components/pricing/PricingFaq';
 
 export const metadata: Metadata = {
     title: 'Pricing — InstaPSV | Anonymous Instagram Viewer Plans',
@@ -59,28 +60,6 @@ const plans = [
     },
 ];
 
-const faqs = [
-    {
-        q: 'How does the free tier work?',
-        a: 'The free tier allows you to search 1 profile anonymously. You can view all posts, but Reels, Stories, and Highlights are reserved for Pro users.',
-    },
-    {
-        q: 'How do I subscribe?',
-        a: 'Click the plan button, send us an email with your account details, and our team will activate your plan within minutes after payment verification.',
-    },
-    {
-        q: 'What happens when my credits run out?',
-        a: 'You will see an upgrade prompt. Cached profiles (previously searched) are still viewable for free.',
-    },
-    {
-        q: 'Can I cancel anytime?',
-        a: 'Yes. Contact us and we will stop the renewal. You keep access until your current plan period ends.',
-    },
-    {
-        q: 'Do cached searches use credits?',
-        a: 'No. If a profile was recently searched (within 24 hours), it is served from cache and costs zero credits.',
-    },
-];
 
 export default async function PricingPage() {
     return (
@@ -129,19 +108,7 @@ export default async function PricingPage() {
                         </div>
 
                         {/* FAQ Section */}
-                        <div className={styles.faqSection}>
-                            <h2 className={styles.faqTitle}>
-                                Frequently Asked <span className={styles.gradientText}>Questions</span>
-                            </h2>
-                            <div className={styles.faqGrid}>
-                                {faqs.map((faq, i) => (
-                                    <div key={i} className={styles.faqCard}>
-                                        <h4 className={styles.faqQuestion}>{faq.q}</h4>
-                                        <p className={styles.faqAnswer}>{faq.a}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                        <PricingFaq />
 
                         {/* Bottom CTA */}
                         <div className={styles.bottomCta}>

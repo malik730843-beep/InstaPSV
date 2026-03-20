@@ -317,9 +317,12 @@
     color: var(--color-accent-success);
 }
 
-/* FAQ */
+/* FAQ Accordion */
 .faqSection {
     margin-bottom: 5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .faqTitle {
@@ -330,34 +333,81 @@
     margin-bottom: 2.5rem;
 }
 
-.faqGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
+.faqAccordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.faqCard {
-    background: rgba(255, 255, 255, 0.04);
+.faqItem {
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 1rem;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.faqCard:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.12);
+.faqItem:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.faqOpen {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 0, 128, 0.2);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+.faqHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
 }
 
 .faqQuestion {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 600;
     color: #fff;
-    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.faqOpen .faqQuestion {
+    color: #ff0080;
+}
+
+.faqChevron {
+    color: var(--color-text-light-muted);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faqOpen .faqChevron {
+    transform: rotate(180deg);
+    color: #ff0080;
+}
+
+.faqContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faqOpen .faqContent {
+    max-height: 200px; /* Adjust as needed */
+}
+
+.faqInner {
+    padding: 0 1.5rem 1.5rem;
 }
 
 .faqAnswer {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--color-text-light-muted);
     line-height: 1.6;
 }
