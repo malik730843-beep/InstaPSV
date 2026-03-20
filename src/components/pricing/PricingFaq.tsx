@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import styles from './pricing.module.css';
+import styles from '@/app/pricing/pricing.module.css';
 
 interface FAQ {
     q: string;
