@@ -1,233 +1,39 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
-import { CheckCircle2, ShieldCheck, CreditCard, ArrowLeft, Loader2, Sparkles, Send } from 'lucide-react';
+import { Suspense } from 'react';
+import { Sparkles, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import ParticleBackground from '@/components/ui/ParticleBackground';
 import styles from './checkout.module.css';
 
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
 function CheckoutContent() {
-    const searchParams = useSearchParams();
-    const router = useRouter();
-    const plan = searchParams.get('plan') || 'pro';
-    
-    const [user, setUser] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const [submitting, setSubmitting] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('paypal');
-    const [transactionId, setTransactionId] = useState('');
-
-    useEffect(() => {
-        const checkUser = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
-                // Not logged in, redirect to home with login modal trigger if possible
-                // or just show a message. For now, redirect home.
-                router.push('/?login=true');
-            } else {
-                setUser(session.user);
-            }
-            setLoading(false);
-        };
-        checkUser();
-    }, [router]);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!transactionId) {
-            setError('Please enter your payment transaction ID or email.');
-            return;
-        }
-
-        setSubmitting(true);
-        setError('');
-
-        try {
-            const res = await fetch('/api/subscriptions/request', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: user.email,
-                    plan_name: plan,
-                    amount: 5, // Pro is $5
-                    payment_method: paymentMethod,
-                    transaction_id: transactionId,
-                }),
-            });
-
-            const data = await res.json();
-            if (res.ok) {
-                setSuccess(true);
-            } else {
-                setError(data.error || 'Failed to submit request.');
-            }
-        } catch (err) {
-            setError('Something went wrong. Please try again.');
-        } finally {
-            setSubmitting(false);
-        }
-    };
-
-    const content = () => {
-        if (loading) {
-            return (
-                <div className={styles.loadingWrapper}>
-                    <div className={styles.spinner} />
-                    <p>Preparing secure checkout...</p>
-                </div>
-            );
-        }
-
-        if (success) {
-            return (
-                <div className={styles.successWrapper}>
-                    <div className={styles.successCard}>
-                        <CheckCircle2 size={80} color="#10b981" />
-                        <h1>Request Received!</h1>
-                        <p>Your subscription upgrade request has been submitted to the admin team.</p>
-                        <div className={styles.statusInfo}>
-                            <span>Status: <strong>Pending Approval</strong></span>
-                            <p>We'll process your request within 24 hours. You'll receive full access once approved.</p>
-                        </div>
-                        <Link href="/" className={styles.doneBtn}>Back to Search</Link>
-                    </div>
-                </div>
-            );
-        }
-
-        return (
-            <div className={styles.checkoutContainer}>
-                <div className={styles.checkoutHeader}>
-                    <Link href="/pricing" className={styles.backLink}>
-                        <ArrowLeft size={18} /> Back to Pricing
-                    </Link>
-                    <h1 className={styles.title}>Secure Checkout</h1>
-                    <p className={styles.subtitle}>Unlock unlimited anonymous browsing</p>
-                </div>
-
-                <div className={styles.checkoutGrid}>
-                    {/* Left: Summary */}
-                    <div className={styles.summaryCard}>
-                        <div className={styles.planBadge}>
-                            <Sparkles size={16} /> RECOMMENDED
-                        </div>
-                        <h2 className={styles.planName}>Pro Monthly Plan</h2>
-                        <div className={styles.priceSection}>
-                            <span className={styles.currency}>$</span>
-                            <span className={styles.amount}>5</span>
-                            <span className={styles.period}>/month</span>
-                        </div>
-
-                        <ul className={styles.featureList}>
-                            <li><CheckCircle2 size={16} color="#10b981" /> Unlimited Anonymous Searches</li>
-                            <li><CheckCircle2 size={16} color="#10b981" /> Stories & Highlights Access</li>
-                            <li><CheckCircle2 size={16} color="#10b981" /> HD Media Downloads</li>
-                            <li><CheckCircle2 size={16} color="#10b981" /> Cloud Sync Search History</li>
-                            <li><CheckCircle2 size={16} color="#10b981" /> Priority Support</li>
-                        </ul>
-
-                        <div className={styles.securitySeal}>
-                            <ShieldCheck size={20} />
-                            <span>Encrypted & Secure</span>
-                        </div>
-                    </div>
-
-                    {/* Right: Payment Instructions & Form */}
-                    <div className={styles.paymentCard}>
-                        <h2 className={styles.cardSectionTitle}>Complete Your Upgrade</h2>
-                        
-                        <div className={styles.instructions}>
-                            <p>To upgrade your account to <strong>Pro</strong>, please follow these steps:</p>
-                            <div className={styles.paymentInfo}>
-                                <p><strong>1. Send Payment:</strong> $5.00 USD</p>
-                                <p><strong>2. PayPal Email:</strong> payments@instapsv.com</p>
-                                <p><strong>3. Note:</strong> Include your email ({user?.email})</p>
-                            </div>
-                            <p className={styles.instructionNote}>
-                                * Once paid, enter your Transaction ID or PayPal Email below to notify our team.
-                            </p>
-                        </div>
-
-                        <form onSubmit={handleSubmit} className={styles.paymentForm}>
-                            <div className={styles.inputGroup}>
-                                <label htmlFor="method">Payment Method</label>
-                                <select 
-                                    id="method"
-                                    className={styles.select}
-                                    value={paymentMethod}
-                                    onChange={(e) => setPaymentMethod(e.target.value)}
-                                >
-                                    <option value="paypal">PayPal</option>
-                                    <option value="crypto">Crypto (Manual)</option>
-                                    <option value="card">Credit/Debit Card</option>
-                                </select>
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <label htmlFor="txnId">Transaction ID / Payment Email</label>
-                                <input 
-                                    id="txnId"
-                                    type="text" 
-                                    className={styles.input}
-                                    placeholder="e.g. 5TR08432XX..."
-                                    value={transactionId}
-                                    onChange={(e) => setTransactionId(e.target.value)}
-                                    required
-                                />
-                            </div>
-
-                            {error && <p className={styles.errorText}>{error}</p>}
-
-                            <button 
-                                type="submit" 
-                                className={styles.submitBtn}
-                                disabled={submitting}
-                            >
-                                {submitting ? (
-                                    <>
-                                        <Loader2 size={20} className={styles.spin} />
-                                        Processing Request...
-                                    </>
-                                ) : (
-                                    <>
-                                        <Send size={20} />
-                                        Submit for Verification
-                                    </>
-                                )}
-                            </button>
-                        </form>
-
-                        <div className={styles.securitySeal} style={{ marginTop: '30px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '20px' }}>
-                            <ShieldCheck size={18} />
-                            <span>Manual verification ensures 100% privacy</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    };
-
     return (
-        <div className={styles.checkoutPage}>
-            <ParticleBackground />
-            {content()}
+        <div className={styles.checkoutContainer} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className={styles.successCard} style={{ maxWidth: '480px', textAlign: 'center' }}>
+                <Sparkles size={64} color="#ff0080" style={{ marginBottom: '1.5rem', opacity: 0.8 }} />
+                <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, #fff, #d1d5db)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    Coming Soon
+                </h1>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2rem' }}>
+                    We're currently perfecting our automated payment system to provide you with the best experience. 
+                    <br/><br/>
+                    Check back soon to unlock unlimited anonymous browsing!
+                </p>
+                <Link href="/pricing" className={styles.doneBtn} style={{ background: 'linear-gradient(135deg, #ff0080, #7928ca)', border: 'none', padding: '0.8rem 2rem' }}>
+                    Back to Pricing
+                </Link>
+            </div>
         </div>
     );
 }
 
 export default function CheckoutPage() {
     return (
-        <Suspense fallback={<div className={styles.loadingWrapper}><Loader2 className={styles.spinner} /><p>Loading Checkout...</p></div>}>
-            <CheckoutContent />
-        </Suspense>
+        <div className={styles.checkoutPage}>
+            <ParticleBackground />
+            <Suspense fallback={<div className={styles.loadingWrapper}><Loader2 className={styles.spinner} /><p>Loading Checkout...</p></div>}>
+                <CheckoutContent />
+            </Suspense>
+        </div>
     );
 }
