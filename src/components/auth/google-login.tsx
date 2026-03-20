@@ -16,17 +16,32 @@ interface GoogleLoginProps {
 export default function GoogleLogin({ onSuccess, onError }: GoogleLoginProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [loading, setLoading] = useState(false);
+    const [configLoading, setConfigLoading] = useState(true);
+    const [clientId, setClientId] = useState<string | null>(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || null);
 
     useEffect(() => {
+        const fetchConfig = async () => {
+            if (!clientId) {
+                try {
+                    const res = await fetch('/api/auth/google-config');
+                    const data = await res.json();
+                    if (data.clientId) {
+                        setClientId(data.clientId);
+                    }
+                } catch (err) {
+                    console.error('Failed to fetch Google config:', err);
+                }
+            }
+            setConfigLoading(false);
+        };
+        fetchConfig();
+    }, [clientId]);
+
+    useEffect(() => {
+        if (configLoading || !clientId) return;
+
         if (typeof window === 'undefined' || !(window as any).google) {
             console.error('Google Identity script not loaded');
-            return;
-        }
-
-        const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-        if (!clientId) {
-            console.error('Missing NEXT_PUBLIC_GOOGLE_CLIENT_ID environment variable');
-            if (onError) onError(new Error("Missing Google Client ID configuration"));
             return;
         }
 
@@ -76,11 +91,29 @@ export default function GoogleLogin({ onSuccess, onError }: GoogleLoginProps) {
                 logo_alignment: 'left'
             });
         }
-    }, [onSuccess, onError]);
+    }, [onSuccess, onError, clientId, configLoading]);
 
     return (
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            {loading ? (
+            {configLoading ? (
+                <div style={{ padding: '0.8rem', color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>
+                    Loading...
+                </div>
+            ) : !clientId ? (
+                <div style={{ 
+                    padding: '0.8rem', 
+                    color: '#ef4444', 
+                    fontSize: '0.85rem',
+                    background: 'rgba(239,68,68,0.05)',
+                    border: '1px solid rgba(239,68,68,0.15)',
+                    borderRadius: '12px',
+                    width: '100%',
+                    textAlign: 'center'
+                }}>
+                    Google Client ID not configured. <br/>
+                    <small>Set it in Admin Settings &gt; Integrations</small>
+                </div>
+            ) : loading ? (
                 <div style={{ 
                     padding: '0.8rem', 
                     color: '#fff', 

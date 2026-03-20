@@ -25,6 +25,7 @@ export default function SiteSettingsPage() {
         contact_email: '',
         ads_enabled: 'true',
         maintenance_mode: 'false',
+        google_client_id: '',
     });
 
     useEffect(() => {
@@ -187,6 +188,12 @@ export default function SiteSettingsPage() {
                     onClick={() => setActiveTab('behavior')}
                 >
                     Behavior
+                </button>
+                <button
+                    className={`tab ${activeTab === 'integrations' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('integrations')}
+                >
+                    Integrations
                 </button>
             </div>
 
@@ -379,6 +386,25 @@ export default function SiteSettingsPage() {
                                 </p>
                             </div>
                         </label>
+                    </div>
+                </div>
+            )}
+
+            {/* Integrations Tab */}
+            {activeTab === 'integrations' && (
+                <div className="admin-card">
+                    <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label className="form-label">Google Client ID</label>
+                        <input
+                            type="text"
+                            className="form-input"
+                            value={settings.google_client_id}
+                            onChange={(e) => setSettings(prev => ({ ...prev, google_client_id: e.target.value }))}
+                            placeholder="xxxxxxxxxxxx-xxxxxxxxxxxxxxxx.apps.googleusercontent.com"
+                        />
+                        <p style={{ fontSize: '12px', color: 'var(--admin-text-muted)', marginTop: '8px' }}>
+                            Required for Google One Tap and Sign-In. Create one in Google Cloud Console.
+                        </p>
                     </div>
                 </div>
             )}
