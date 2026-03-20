@@ -142,65 +142,15 @@ function CheckoutContent() {
                     </div>
 
                     {/* Right: Payment Instructions & Form */}
-                    <div className={styles.paymentCard}>
-                        <h3 className={styles.cardSectionTitle}>Payment Instructions</h3>
-                        <div className={styles.instructions}>
-                            <p>Please send <strong>$5.00 USD</strong> to the following account:</p>
-                            <div className={styles.paymentInfo}>
-                                <p><strong>PayPal:</strong> payments@instapsv.com</p>
-                                <p><strong>Crypto (USDT):</strong> 0x71C7656EC7ab88b098defB751B7401B5f6d8976F</p>
-                            </div>
-                            <p className={styles.instructionNote}>
-                                After payment, please provide your transaction ID or payment email below. 
-                                Our admin will verify the payment and activate your plan.
-                            </p>
+                    <div className={styles.comingSoonCard}>
+                        <div className={styles.comingSoonContent}>
+                            <Loader2 className={styles.comingSoonIcon} size={48} />
+                            <h2>Payments Coming Soon</h2>
+                            <p>We are currently integrating a more seamless payment experience. Pro features will be available for purchase again very soon!</p>
+                            <Link href="/pricing" className={styles.backToPricingBtn}>
+                                <ArrowLeft size={18} /> Back to Pricing
+                            </Link>
                         </div>
-
-                        <form className={styles.paymentForm} onSubmit={handleSubmit}>
-                            <div className={styles.inputGroup}>
-                                <label>Email Address</label>
-                                <input type="text" value={user?.email || ''} disabled className={styles.inputDisabled} />
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <label>Payment Method</label>
-                                <select 
-                                    value={paymentMethod} 
-                                    onChange={(e) => setPaymentMethod(e.target.value)}
-                                    className={styles.select}
-                                >
-                                    <option value="paypal">PayPal</option>
-                                    <option value="usdt">Crypto (USDT)</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <label>Transaction ID / Payment Email</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="Enter ID or email used for payment"
-                                    value={transactionId}
-                                    onChange={(e) => setTransactionId(e.target.value)}
-                                    className={styles.input}
-                                    required
-                                />
-                            </div>
-
-                            {error && <p className={styles.errorText}>{error}</p>}
-
-                            <button 
-                                type="submit" 
-                                className={styles.submitBtn}
-                                disabled={submitting}
-                            >
-                                {submitting ? (
-                                    <><Loader2 className={styles.spin} size={20} /> Processing...</>
-                                ) : (
-                                    <><Send size={18} /> Request Activation</>
-                                )}
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
