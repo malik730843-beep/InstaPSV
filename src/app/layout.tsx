@@ -252,6 +252,9 @@ export default async function RootLayout({
             })(window, document, "clarity", "script", "v3qtewuzks");
           `}
         </Script>
+
+        {/* Google Identity Services */}
+        <Script src="https://accounts.google.com/gsi/client" strategy="beforeInteractive" />
       </body>
     </html >
   );

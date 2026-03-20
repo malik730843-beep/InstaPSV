@@ -2,6 +2,7 @@
     "nav": {
         "home": "Startseite",
         "features": "Funktionen",
+        "pricing": "Preise",
         "blog": "Blog",
         "about": "Über uns",
         "contact": "Kontakt",
@@ -41,28 +42,69 @@
             }
         }
     },
+    "security": {
+        "badge": "Datenschutz zuerst",
+        "title": "Wie wir Sie vor Instagrams-Tracking zu 100% unsichtbar machen",
+        "subtitle": "Vergleichen Sie die Risiken des Standard-Betrachtens mit unserem sicheren, anonymen Gateway.",
+        "tracks": {
+            "title": "Wie Instagram Sie verfolgt",
+            "items": [
+                {
+                    "title": "Story-Benachrichtigungen",
+                    "text": "Der Besitzer sieht Ihren Namen auf seiner Zuschauerliste. Ihre Identität ist aufgedeckt."
+                },
+                {
+                    "title": "Suchverlauf",
+                    "text": "Instagram protokolliert jedes von Ihnen besuchte Profil, um ein detailliertes Werbeprofil über Sie zu erstellen."
+                },
+                {
+                    "title": "IP-Protokollierung",
+                    "text": "Ihr permanenter digitaler Fußabdruck ist mit Ihrem persönlichen Instagram-Konto verknüpft."
+                }
+            ]
+        },
+        "protects": {
+            "title": "Wie InstaPSV Sie schützt",
+            "items": [
+                {
+                    "title": "Sichere Proxy-Anfragen",
+                    "text": "Wir fungieren als Schild und rufen Daten ab, sodass Ihre Identität niemals zu Instagram gelangt."
+                },
+                {
+                    "title": "Zero-Log-Richtlinie",
+                    "text": "Wir speichern niemals Ihre Suchanfragen oder persönlichen Daten. Kein digitaler Fußabdruck, niemals."
+                },
+                {
+                    "title": "Keine Anmeldung erforderlich",
+                    "text": "Surfen Sie frei, ohne Gefahr zu laufen, versehentlich einen Beitrag zu 'liken' oder in Empfehlungen aufzutauchen."
+                }
+            ]
+        },
+        "cta": "Meine Privatsphäre schützen & Suche starten"
+    },
     "features": {
         "badge": "Funktionen",
-        "titleStart": "Entdecken Sie die",
-        "titleHighlight": "Magie",
-        "titleEnd": "von InstaPSV",
-        "subtitle": "Leistungsstarke Tools zum anonymen und sicheren Erkunden von Instagram-Inhalten.",
+        "titleStart": "Jedes Detail",
+        "titleHighlight": "heimlich",
+        "titleEnd": "durchsuchen",
+        "subtitle": "Greifen Sie mit unserem umfassenden Viewer-Tool auf alle Medientypen von öffentlichen Konten zu.",
         "storyViewer": {
             "title": "Story Viewer",
-            "description": "Sehen Sie Instagram Stories anonym, ohne dass der Benutzer es weiß. Speichern Sie Stories, bevor sie verschwinden."
+            "description": "Aktive Stories diskret ansehen. Sie verschwinden nach 24 Stunden, aber Sie können sie vorher jederzeit ansehen."
         },
-        "followersParser": {
-            "title": "Follower Parser",
-            "description": "Sehen Sie vollständige Follower- und Following-Listen jedes öffentlichen Instagram-Profils."
+        "highlightsViewer": {
+            "title": "Highlights Viewer",
+            "description": "Durchsuchen Sie gespeicherte Story-Highlights. Perfekt zum erneuten Ansehen kuratierter Inhalte."
         },
-        "reelsViewer": {
-            "title": "Reels Viewer",
-            "description": "Sehen und laden Sie Instagram Reels in hoher Qualität herunter, ohne sich anzumelden."
+        "postGrid": {
+            "title": "Profil- & Beitragsraster",
+            "description": "Sehen Sie das vollständige Feed-Layout. Sehen Sie hochauflösende Fotos und Karussells."
         },
-        "photoSaver": {
-            "title": "Foto Speicher",
-            "description": "Laden Sie Instagram-Fotos und Profilbilder in Originalqualität herunter."
+        "reelsPlayer": {
+            "title": "Reels Video-Player",
+            "description": "Spielen Sie Reels-Videos reibungslos ab, ohne sofort das nächste automatisch zu starten oder den Ersteller zu benachrichtigen."
         },
+        "cta": "Jetzt loslegen",
         "learnMore": "Mehr erfahren"
     },
     "howItWorks": {
@@ -83,6 +125,95 @@
             "title": "Inhalte herunterladen",
             "description": "Speichern Sie jedes Foto, Video oder jede Story mit einem einzigen Klick."
         }
+    },
+    "comparison": {
+        "title": "Wie InstaPSV besser ist als andere",
+        "headers": {
+            "feature": "Funktion",
+            "app": "App mit Anmeldung",
+            "others": "Andere Viewer-Seiten",
+            "instapsv": "InstaPSV"
+        },
+        "rows": [
+            {
+                "feature": "Für Profilinhaber sichtbar",
+                "app": "Ja",
+                "others": "Nein",
+                "instapsv": "Nein",
+                "status": [
+                    "risk",
+                    "safe",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "Anmeldung erforderlich",
+                "app": "Ja",
+                "others": "Nein",
+                "instapsv": "Nein",
+                "status": [
+                    "risk",
+                    "safe",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "Werbeaufdringlichkeit",
+                "app": "Mittel",
+                "others": "Extrem",
+                "instapsv": "Minimal",
+                "status": [
+                    "neutral",
+                    "risk",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "IP-Schutz",
+                "app": "Kein",
+                "others": "Teilweise",
+                "instapsv": "Vollständiger Proxy",
+                "status": [
+                    "risk",
+                    "neutral",
+                    "safe"
+                ]
+            },
+            {
+                "feature": "Reels/Stories ansehen",
+                "app": "Ja",
+                "others": "Manchmal",
+                "instapsv": "Ja (HD)",
+                "status": [
+                    "safe",
+                    "neutral",
+                    "safe"
+                ]
+            }
+        ]
+    },
+    "useCases": {
+        "badge": "Lösungen",
+        "title": "Beliebte Anwendungsfälle, um Insta anonym zu sehen",
+        "subtitle": "Sicherheit sollte immer an erster Stelle stehen, folgend sind die beliebtesten Gründe, warum Leute InstaPSV nutzen",
+        "items": [
+            {
+                "title": "Konkurrenten unentdeckt überwachen",
+                "text": "Recherchieren Sie Markttrends und analysieren Sie Content-Strategien von Wettbewerbern, ohne deren Team zu alarmieren oder in deren Zuschauerlisten zu erscheinen. Perfekt für Marketer und Geschäftsinhaber."
+            },
+            {
+                "title": "Inhalte kuratieren ohne Spuren hinterlassen",
+                "text": "Durchsuchen Sie Profile, um visuelle Referenzen und Trendideen zu finden. Sammeln Sie Inspirationen für Ihr nächstes Projekt, ohne dass der Kontoinhaber jemals erfährt, dass Sie ihn besucht haben."
+            },
+            {
+                "title": "Sicher bleiben auf gemeinsam genutzten Geräten",
+                "text": "Greifen Sie auf Arbeits- oder Familiencomputern auf Stories und Reels zu, ohne Gefahr zu laufen, dass Ihr persönliches Konto angemeldet bleibt. Surfen Sie frei auf jedem Gerät, ohne dass ein Verlauf aufgezeichnet wird."
+            },
+            {
+                "title": "Tiefgehende Recherche für Journalisten & Ermittler",
+                "text": "Führen Sie wichtige Recherchen oder elterliche Überwachung auf öffentlichen Profilen mit einer garantierten 'No-Logs'-Richtlinie durch. Kein digitaler Fußabdruck, keine IP-Protokollierung und kein Konto erforderlich."
+            }
+        ]
     },
     "faq": {
         "badge": "Support",

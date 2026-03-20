@@ -1,225 +1,35 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import styles from './ParticleBackground.module.css';
+import { useMemo } from 'react';
 
 interface ParticleBackgroundProps {
     className?: string;
 }
 
+const COLORS = ['#ff0080', '#7928ca', '#00d4ff', '#ff00ff', '#ffffff'];
+
+function randomBetween(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+}
+
 export default function ParticleBackground({ className }: ParticleBackgroundProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-    const sceneRef = useRef<THREE.Scene | null>(null);
-    const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-    const particlesRef = useRef<THREE.Points | null>(null);
-    const mouseRef = useRef({ x: 0, y: 0 });
-    const frameIdRef = useRef<number>(0);
-
-    useEffect(() => {
-        if (!containerRef.current) return;
-
-        const container = containerRef.current;
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-
-        // Scene
-        const scene = new THREE.Scene();
-        sceneRef.current = scene;
-
-        // Camera
-        const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-        camera.position.z = 50;
-        cameraRef.current = camera;
-
-        // Renderer initialization with more robust error handling
-        let renderer: THREE.WebGLRenderer;
-        try {
-            const canvas = document.createElement('canvas');
-            // Try to get context first to verify support
-            const gl = canvas.getContext('webgl', { failIfMajorPerformanceCaveat: true }) ||
-                canvas.getContext('experimental-webgl', { failIfMajorPerformanceCaveat: true });
-
-            if (!gl) {
-                console.warn('WebGL not supported or major performance caveat detected, using fallback background');
-                container.classList.add(styles.fallback);
-                return;
-            }
-
-            // Even if we have a context, Three.js might still fail to create its own internal version
-            // we catch that here.
-            renderer = new THREE.WebGLRenderer({
-                alpha: true,
-                antialias: true,
-                powerPreference: 'default',
-                failIfMajorPerformanceCaveat: false,
-                precision: 'mediump'
-            });
-
-            renderer.setSize(width, height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-            renderer.setClearColor(0x000000, 0);
-            container.appendChild(renderer.domElement);
-            rendererRef.current = renderer;
-        } catch (error) {
-            // Suppress full stack trace for known hardware incompatibility
-            console.warn('WebGL initialization failed (hardware/driver incompatibility), using static fallback.');
-            container.classList.add(styles.fallback);
-            return;
-        }
-
-        // Particles
-        const particleCount = 150;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
-        const sizes = new Float32Array(particleCount);
-
-        const colorPalette = [
-            new THREE.Color('#ff0080'), // Pink
-            new THREE.Color('#7928ca'), // Purple
-            new THREE.Color('#00d4ff'), // Cyan
-            new THREE.Color('#ff00ff'), // Magenta
-            new THREE.Color('#ffffff'), // White
-        ];
-
-        for (let i = 0; i < particleCount; i++) {
-            const i3 = i * 3;
-
-            // Spread particles across the scene
-            positions[i3] = (Math.random() - 0.5) * 100;
-            positions[i3 + 1] = (Math.random() - 0.5) * 100;
-            positions[i3 + 2] = (Math.random() - 0.5) * 50;
-
-            // Random color from palette
-            const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            colors[i3] = color.r;
-            colors[i3 + 1] = color.g;
-            colors[i3 + 2] = color.b;
-
-            // Random sizes
-            sizes[i] = Math.random() * 3 + 1;
-        }
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-        // Custom shader material for better looking particles
-        const material = new THREE.ShaderMaterial({
-            uniforms: {
-                time: { value: 0 },
-                pixelRatio: { value: renderer.getPixelRatio() }
-            },
-            vertexShader: `
-        attribute float size;
-        attribute vec3 color;
-        varying vec3 vColor;
-        uniform float time;
-        uniform float pixelRatio;
-        
-        void main() {
-          vColor = color;
-          
-          vec3 pos = position;
-          pos.y += sin(time * 0.5 + position.x * 0.1) * 2.0;
-          pos.x += cos(time * 0.3 + position.y * 0.1) * 2.0;
-          
-          vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-          gl_PointSize = size * pixelRatio * (300.0 / -mvPosition.z);
-          gl_Position = projectionMatrix * mvPosition;
-        }
-      `,
-            fragmentShader: `
-        varying vec3 vColor;
-        
-        void main() {
-          float dist = length(gl_PointCoord - vec2(0.5));
-          if (dist > 0.5) discard;
-          
-          float alpha = 1.0 - smoothstep(0.3, 0.5, dist);
-          gl_FragColor = vec4(vColor, alpha * 0.8);
-        }
-      `,
-            transparent: true,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
-        });
-
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
-        particlesRef.current = particles;
-
-        // Mouse movement
-        const handleMouseMove = (event: MouseEvent) => {
-            mouseRef.current.x = (event.clientX / width) * 2 - 1;
-            mouseRef.current.y = -(event.clientY / height) * 2 + 1;
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        // Animation
-        let time = 0;
-        const animate = () => {
-            frameIdRef.current = requestAnimationFrame(animate);
-            time += 0.01;
-
-            if (material.uniforms) {
-                material.uniforms.time.value = time;
-            }
-
-            // Subtle camera movement based on mouse
-            if (cameraRef.current) {
-                cameraRef.current.position.x += (mouseRef.current.x * 5 - cameraRef.current.position.x) * 0.02;
-                cameraRef.current.position.y += (mouseRef.current.y * 5 - cameraRef.current.position.y) * 0.02;
-                cameraRef.current.lookAt(0, 0, 0);
-            }
-
-            // Rotate particles slowly
-            if (particlesRef.current) {
-                particlesRef.current.rotation.y += 0.001;
-                particlesRef.current.rotation.x += 0.0005;
-            }
-
-            renderer.render(scene, camera);
-        };
-
-        animate();
-
-        // Resize handler
-        const handleResize = () => {
-            if (!containerRef.current || !cameraRef.current || !rendererRef.current) return;
-
-            const newWidth = containerRef.current.clientWidth;
-            const newHeight = containerRef.current.clientHeight;
-
-            cameraRef.current.aspect = newWidth / newHeight;
-            cameraRef.current.updateProjectionMatrix();
-            rendererRef.current.setSize(newWidth, newHeight);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        // Cleanup
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(frameIdRef.current);
-
-            if (rendererRef.current && containerRef.current) {
-                containerRef.current.removeChild(rendererRef.current.domElement);
-                rendererRef.current.dispose();
-            }
-
-            geometry.dispose();
-            material.dispose();
-        };
+    const particles = useMemo(() => {
+        return Array.from({ length: 120 }, (_, i) => ({
+            id: i,
+            x: randomBetween(0, 100),
+            y: randomBetween(0, 100),
+            size: randomBetween(8, 20),
+            color: COLORS[Math.floor(Math.random() * COLORS.length)],
+            duration: randomBetween(10, 30),
+            delay: randomBetween(0, 15),
+            driftX: randomBetween(-40, 40),
+            driftY: randomBetween(-50, 50),
+            opacity: randomBetween(0.4, 0.95),
+        }));
     }, []);
 
     return (
         <div
-            ref={containerRef}
             className={className}
             style={{
                 position: 'absolute',
@@ -229,7 +39,58 @@ export default function ParticleBackground({ className }: ParticleBackgroundProp
                 height: '100%',
                 pointerEvents: 'none',
                 zIndex: 0,
+                overflow: 'hidden',
             }}
-        />
+        >
+            {particles.map((p) => (
+                <div
+                    key={p.id}
+                    style={{
+                        position: 'absolute',
+                        left: `${p.x}%`,
+                        top: `${p.y}%`,
+                        width: `${p.size}px`,
+                        height: `${p.size}px`,
+                        borderRadius: '50%',
+                        backgroundColor: p.color,
+                        opacity: p.opacity,
+                        boxShadow: `0 0 ${p.size * 3}px ${p.color}, 0 0 ${p.size * 1.5}px ${p.color}`,
+                        filter: 'blur(1.5px)',
+                        animation: `particleDrift${p.id % 4} ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
+                    }}
+                />
+            ))}
+
+            <style>{`
+                @keyframes particleDrift0 {
+                    0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+                    25% { transform: translate(20px, -30px) scale(1.2); opacity: 0.8; }
+                    50% { transform: translate(-15px, -50px) scale(0.8); opacity: 0.5; }
+                    75% { transform: translate(25px, -20px) scale(1.1); opacity: 0.9; }
+                    100% { transform: translate(-10px, -40px) scale(1); opacity: 0.4; }
+                }
+                @keyframes particleDrift1 {
+                    0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+                    25% { transform: translate(-25px, 20px) scale(0.9); opacity: 0.7; }
+                    50% { transform: translate(30px, 40px) scale(1.3); opacity: 0.5; }
+                    75% { transform: translate(-20px, 15px) scale(0.7); opacity: 0.8; }
+                    100% { transform: translate(15px, 35px) scale(1); opacity: 0.3; }
+                }
+                @keyframes particleDrift2 {
+                    0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+                    33% { transform: translate(35px, -25px) scale(1.4); opacity: 0.9; }
+                    66% { transform: translate(-20px, 30px) scale(0.6); opacity: 0.4; }
+                    100% { transform: translate(10px, -15px) scale(1.1); opacity: 0.7; }
+                }
+                @keyframes particleDrift3 {
+                    0% { transform: translate(0, 0) scale(0.8); opacity: 0.6; }
+                    20% { transform: translate(-30px, -20px) scale(1.2); opacity: 0.3; }
+                    40% { transform: translate(20px, 25px) scale(0.9); opacity: 0.8; }
+                    60% { transform: translate(-10px, -35px) scale(1.3); opacity: 0.5; }
+                    80% { transform: translate(25px, 10px) scale(0.7); opacity: 0.9; }
+                    100% { transform: translate(-15px, -10px) scale(1); opacity: 0.4; }
+                }
+            `}</style>
+        </div>
     );
 }

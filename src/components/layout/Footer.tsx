@@ -33,12 +33,21 @@ export default async function Footer() {
                     {/* Brand */}
                     <div className={styles.brand}>
                         <Link href="/" className={styles.logo}>
-                            <img
-                                src="/logo.png"
-                                alt="InstaPSV Logo"
-                                className={styles.logoImage}
-                                style={{ height: '40px', width: 'auto' }}
-                            />
+                            <div style={{ width: '56px', height: '40px', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+                                <img
+                                    src="/logo.png"
+                                    alt="InstaPSV Logo"
+                                    className={styles.logoImage}
+                                    style={{ 
+                                        height: '40px', 
+                                        width: 'auto',
+                                        objectFit: 'cover',
+                                        objectPosition: 'left',
+                                        mixBlendMode: 'lighten',
+                                        filter: 'contrast(1.1) brightness(1.2)'
+                                    }}
+                                />
+                            </div>
                         </Link>
                         <p className={styles.brandDescription}>
                             {t('description')}

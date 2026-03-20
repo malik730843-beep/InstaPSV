@@ -1,0 +1,467 @@
+/* ============================================
+   Pricing Page — InstaPSV Premium Design
+   ============================================ */
+
+.pricingHero {
+    position: relative;
+    background: var(--gradient-hero-bg);
+    color: var(--color-text-primary);
+    padding: 8rem 0 6rem;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Background orbs */
+.orb1, .orb2, .orb3 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.orb1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 0, 128, 0.15);
+    top: -100px;
+    left: -150px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.orb2 {
+    width: 400px;
+    height: 400px;
+    background: rgba(121, 40, 202, 0.12);
+    top: 40%;
+    right: -100px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+.orb3 {
+    width: 350px;
+    height: 350px;
+    background: rgba(0, 212, 255, 0.08);
+    bottom: 5%;
+    left: 20%;
+    animation: float 12s ease-in-out infinite;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Hero Content */
+.heroContent {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ff0080;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.gradientText {
+    background: var(--gradient-text);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradient-shift 3s ease infinite;
+}
+
+.subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-light-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Cards Grid */
+.cardsGrid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.card {
+    flex: 1;
+    min-width: 320px;
+    max-width: 400px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Card */
+.card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(20px);
+    transition: all 0.35s ease;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Highlighted card (Monthly) */
+.cardHighlighted {
+    background: rgba(255, 0, 128, 0.06);
+    border-color: rgba(255, 0, 128, 0.3);
+    box-shadow: 0 0 40px rgba(255, 0, 128, 0.1);
+}
+
+.cardHighlighted:hover {
+    border-color: rgba(255, 0, 128, 0.5);
+    box-shadow: 0 0 60px rgba(255, 0, 128, 0.2), 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Badge on card */
+.cardBadge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-primary);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 1.25rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4);
+}
+
+/* Card header */
+.cardHeader {
+    margin-bottom: 1.5rem;
+}
+
+.planName {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-light-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+}
+
+.priceRow {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--color-text-light-muted);
+    font-weight: 500;
+}
+
+.planDesc {
+    font-size: 0.9rem;
+    color: var(--color-text-light-muted);
+    line-height: 1.5;
+}
+
+/* Credits box */
+.creditsBox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.creditsValue {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ff0080;
+}
+
+.creditsDetail {
+    font-size: 0.8rem;
+    color: var(--color-text-light-muted);
+}
+
+/* Feature list */
+.featureList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    flex-grow: 1;
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.featureItem:last-child {
+    border-bottom: none;
+}
+
+.checkIcon {
+    flex-shrink: 0;
+    color: var(--color-accent-success);
+}
+
+/* CTA buttons */
+.ctaBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-family);
+}
+
+.ctaPrimary {
+    background: var(--gradient-primary);
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 0, 128, 0.3);
+}
+
+.ctaPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(255, 0, 128, 0.5);
+}
+
+.ctaSecondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ctaSecondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 0, 128, 0.4);
+}
+
+/* Trust row */
+.trustRow {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+.trustItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-light-muted);
+}
+
+.trustItem svg {
+    color: var(--color-accent-success);
+}
+
+/* FAQ */
+.faqSection {
+    margin-bottom: 5rem;
+}
+
+.faqTitle {
+    text-align: center;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 2.5rem;
+}
+
+.faqGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.faqCard {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.faqCard:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.faqQuestion {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.faqAnswer {
+    font-size: 0.9rem;
+    color: var(--color-text-light-muted);
+    line-height: 1.6;
+}
+
+/* Bottom CTA */
+.bottomCta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.5rem;
+}
+
+.bottomCtaTitle {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.75rem;
+}
+
+.bottomCtaDesc {
+    font-size: 1rem;
+    color: var(--color-text-light-muted);
+    margin-bottom: 1.5rem;
+}
+
+.bottomCtaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--gradient-primary);
+    color: #fff;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.3);
+    transition: all 0.3s ease;
+}
+
+.bottomCtaBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 45px rgba(255, 0, 128, 0.5);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 960px) {
+    .cardsGrid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cardHighlighted {
+        order: -1;
+    }
+
+    .faqGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .trustRow {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricingHero {
+        padding: 6rem 0 4rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .price {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricingHero {
+        padding: 5rem 0 3rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

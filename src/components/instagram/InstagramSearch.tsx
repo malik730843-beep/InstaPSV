@@ -4,6 +4,14 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import styles from './InstagramSearch.module.css';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import LoginModal from '@/components/ui/LoginModal';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 const MediaViewer = dynamic(() => import('./MediaViewer'), {
     ssr: false,
@@ -20,10 +28,48 @@ export default function InstagramSearch() {
     const [selectedMedia, setSelectedMedia] = useState<any>(null);
     const resultsRef = useRef<HTMLDivElement>(null);
 
+    // Credit System State
+    const [userEmail, setUserEmail] = useState<string | null>(null);
+    const [creditsRemaining, setCreditsRemaining] = useState<number>(2);
+    const [userPlan, setUserPlan] = useState<string>('free');
+    const [authChecked, setAuthChecked] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [loginModalMessage, setLoginModalMessage] = useState('');
+
     // History State
     const [searchHistory, setSearchHistory] = useState<string[]>([]);
     const [showHistory, setShowHistory] = useState(false);
     const historyRef = useRef<HTMLDivElement>(null);
+
+    // Load credits and auth
+    useEffect(() => {
+        const checkAuthAndCredits = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            const email = session?.user?.email;
+
+            if (email) {
+                setUserEmail(email);
+                const res = await fetch(`/api/credits?email=${encodeURIComponent(email)}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setCreditsRemaining(data.credits_remaining);
+                    setUserPlan(data.plan);
+                }
+            } else {
+                setUserEmail(null);
+                const localStr = localStorage.getItem('insta_free_credits');
+                if (localStr) {
+                    setCreditsRemaining(parseInt(localStr, 10));
+                } else {
+                    setCreditsRemaining(2);
+                    localStorage.setItem('insta_free_credits', '2');
+                }
+                setUserPlan('free');
+            }
+            setAuthChecked(true);
+        };
+        checkAuthAndCredits();
+    }, []);
 
     // Load history from localStorage
     useEffect(() => {
@@ -75,6 +121,16 @@ export default function InstagramSearch() {
     const performSearch = async (targetUsername: string) => {
         if (!targetUsername) return;
 
+        if (userPlan !== 'monthly' && creditsRemaining < 2) {
+            if (!userEmail) {
+                setLoginModalMessage('🔒 Your free credits have run out! Create an account or sign in to get more credits and continue searching.');
+                setShowLoginModal(true);
+            } else {
+                setError('Not enough credits. Please upgrade your plan to continue searching.');
+            }
+            return;
+        }
+
         setLoading(true);
         setError('');
         setProfile(null);
@@ -90,6 +146,29 @@ export default function InstagramSearch() {
             } else {
                 setProfile(data);
                 setActiveTab('POSTS');
+
+                // Deduct credits on success
+                if (userPlan !== 'monthly') {
+                    if (userEmail) {
+                        const deductRes = await fetch('/api/credits', {
+                            method: 'POST',
+                            body: JSON.stringify({ email: userEmail, username_searched: cleanUsername }),
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                        if (deductRes.ok) {
+                            const dData = await deductRes.json();
+                            setCreditsRemaining(dData.credits_remaining);
+                            setUserPlan(dData.plan || userPlan);
+                        } else {
+                            const dData = await deductRes.json();
+                            if (dData.error) setError(dData.error);
+                        }
+                    } else {
+                        const newCredits = Math.max(0, creditsRemaining - 2);
+                        setCreditsRemaining(newCredits);
+                        localStorage.setItem('insta_free_credits', newCredits.toString());
+                    }
+                }
 
                 // Add to history
                 const updatedHistory = [
@@ -138,13 +217,31 @@ export default function InstagramSearch() {
                             }}
                             placeholder=""
                             className={styles.input}
-                            disabled={loading}
+                            disabled={loading || !authChecked}
                         />
                     </div>
-                    <button type="submit" className={styles.button} disabled={loading || !username}>
+                    <button type="submit" className={styles.button} disabled={loading || !username || !authChecked}>
                         {loading ? <span className={styles.loader}></span> : t('viewProfile')}
                     </button>
                 </form>
+
+                {/* Credits Display */}
+                {authChecked && (
+                    <div style={{ marginTop: '0.75rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--color-text-light-muted)' }}>
+                        {userPlan === 'monthly' ? (
+                            <span style={{ color: '#10b981', fontWeight: '500' }}>✨ Unlimited Search Access</span>
+                        ) : (
+                            <>
+                                <span>{creditsRemaining / 2} Profile Searches Remaining</span>
+                                {creditsRemaining < 2 && (
+                                    <Link href="/pricing" style={{ color: '#ff0080', marginLeft: '0.5rem', fontWeight: 'bold' }}>
+                                        Upgrade Plan →
+                                    </Link>
+                                )}
+                            </>
+                        )}
+                    </div>
+                )}
 
                 {/* Search History Dropdown */}
                 {showHistory && searchHistory.length > 0 && (
@@ -298,7 +395,18 @@ export default function InstagramSearch() {
                             {activeTab === 'HIGHLIGHTS' ? (
                                 /* Highlights Grid - Circular thumbnails */
                                 <div className={styles.highlightsGrid}>
-                                    {getFilteredMedia().length > 0 ? (
+                                    {userPlan === 'free' ? (
+                                        <div className={styles.lockedItem} style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 1rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '1rem', border: '1px dashed rgba(255, 255, 255, 0.1)' }}>
+                                            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🔒</div>
+                                            <h3 style={{ marginBottom: '0.5rem', color: '#fff' }}>Pro Plan Required</h3>
+                                            <p style={{ color: 'var(--color-text-light-muted)', marginBottom: '1.5rem', maxWidth: '400px', margin: '0 auto 1.5rem' }}>
+                                                Viewing <strong>Highlights</strong> is a premium feature available only on the Pro plan.
+                                            </p>
+                                            <Link href="/pricing" className={styles.button} style={{ display: 'inline-block', width: 'auto', padding: '0.75rem 2rem' }}>
+                                                Upgrade to Pro
+                                            </Link>
+                                        </div>
+                                    ) : getFilteredMedia().length > 0 ? (
                                         getFilteredMedia().map((item: any) => (
                                             <div
                                                 key={item.id}
@@ -331,7 +439,18 @@ export default function InstagramSearch() {
                             ) : (
                                 /* Regular Media Grid - Posts, Reels, Stories */
                                 <div className={styles.mediaGrid}>
-                                    {getFilteredMedia().length > 0 ? (
+                                    {(activeTab === 'REELS' || activeTab === 'STORIES') && userPlan === 'free' ? (
+                                        <div className={styles.lockedItem} style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 1rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '1rem', border: '1px dashed rgba(255, 255, 255, 0.1)' }}>
+                                            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🔒</div>
+                                            <h3 style={{ marginBottom: '0.5rem', color: '#fff' }}>Pro Plan Required</h3>
+                                            <p style={{ color: 'var(--color-text-light-muted)', marginBottom: '1.5rem', maxWidth: '400px', margin: '0 auto 1.5rem' }}>
+                                                Viewing <strong>{activeTab === 'REELS' ? 'Reels' : 'Stories'}</strong> is a premium feature available only on the Pro plan.
+                                            </p>
+                                            <Link href="/pricing" className={styles.button} style={{ display: 'inline-block', width: 'auto', padding: '0.75rem 2rem' }}>
+                                                Upgrade to Pro
+                                            </Link>
+                                        </div>
+                                    ) : getFilteredMedia().length > 0 ? (
                                         getFilteredMedia().map((item: any) => (
                                             <div
                                                 key={item.id}
@@ -417,6 +536,12 @@ export default function InstagramSearch() {
                     onClose={() => setSelectedMedia(null)}
                 />
             )}
+
+            <LoginModal
+                isOpen={showLoginModal}
+                onClose={() => setShowLoginModal(false)}
+                message={loginModalMessage}
+            />
         </div>
     );
 }

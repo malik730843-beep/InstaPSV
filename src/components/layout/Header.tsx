@@ -5,6 +5,7 @@ import styles from './Header.module.css';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import HeaderShell from './HeaderShell';
 import MobileMenu from './MobileMenu';
+import AuthButton from './AuthButton';
 
 import { createClient } from '@supabase/supabase-js';
 
@@ -37,6 +38,7 @@ export default async function Header({ alwaysDark }: HeaderProps) {
     const navLinks = [
         { href: '/', label: t('home') },
         { href: '/#features', label: t('features') },
+        { href: '/pricing', label: t('pricing') },
         { href: '/blog', label: t('blog') },
         { href: '/about', label: t('about') },
     ];
@@ -45,15 +47,23 @@ export default async function Header({ alwaysDark }: HeaderProps) {
         <HeaderShell alwaysDark={alwaysDark}>
             {/* Logo */}
             <Link href="/" className={styles.logo}>
-                <Image
-                    src="/logo.png"
-                    alt="InstaPSV Logo"
-                    width={150}
-                    height={32}
-                    className={styles.logoImage}
-                    style={{ height: '32px', width: 'auto' }}
-                    priority
-                />
+                <div style={{ height: '32px', display: 'flex', alignItems: 'center' }}>
+                    <Image
+                        src="/logo.png"
+                        alt="InstaPSV Logo"
+                        width={150}
+                        height={32}
+                        className={styles.logoImage}
+                        style={{ 
+                            height: '32px', 
+                            width: 'auto',
+                            objectFit: 'contain',
+                            mixBlendMode: 'lighten',
+                            filter: 'contrast(1.1) brightness(1.2)'
+                        }}
+                        priority
+                    />
+                </div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -66,7 +76,8 @@ export default async function Header({ alwaysDark }: HeaderProps) {
             </nav>
 
             {/* Actions */}
-            <div className={styles.actions}>
+            <div className={styles.actions} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <AuthButton />
                 <LanguageSwitcher />
             </div>
 
