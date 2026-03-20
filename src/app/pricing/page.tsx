@@ -53,10 +53,10 @@ const plans = [
             'Fastest search priority',
             'Priority email support',
         ],
-        cta: 'Coming Soon',
-        ctaHref: '#',
+        cta: 'Upgrade to Pro',
+        ctaHref: '/checkout?plan=pro',
         highlighted: true,
-        badge: 'Coming Soon',
+        badge: 'Best Value',
     },
 ];
 

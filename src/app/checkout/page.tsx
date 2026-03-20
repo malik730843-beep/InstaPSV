@@ -142,14 +142,73 @@ function CheckoutContent() {
                     </div>
 
                     {/* Right: Payment Instructions & Form */}
-                    <div className={styles.comingSoonCard}>
-                        <div className={styles.comingSoonContent}>
-                            <Loader2 className={styles.comingSoonIcon} size={48} />
-                            <h2>Payments Coming Soon</h2>
-                            <p>We are currently integrating a more seamless payment experience. Pro features will be available for purchase again very soon!</p>
-                            <Link href="/pricing" className={styles.backToPricingBtn}>
-                                <ArrowLeft size={18} /> Back to Pricing
-                            </Link>
+                    <div className={styles.paymentCard}>
+                        <h2 className={styles.cardSectionTitle}>Complete Your Upgrade</h2>
+                        
+                        <div className={styles.instructions}>
+                            <p>To upgrade your account to <strong>Pro</strong>, please follow these steps:</p>
+                            <div className={styles.paymentInfo}>
+                                <p><strong>1. Send Payment:</strong> $5.00 USD</p>
+                                <p><strong>2. PayPal Email:</strong> payments@instapsv.com</p>
+                                <p><strong>3. Note:</strong> Include your email ({user?.email})</p>
+                            </div>
+                            <p className={styles.instructionNote}>
+                                * Once paid, enter your Transaction ID or PayPal Email below to notify our team.
+                            </p>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className={styles.paymentForm}>
+                            <div className={styles.inputGroup}>
+                                <label htmlFor="method">Payment Method</label>
+                                <select 
+                                    id="method"
+                                    className={styles.select}
+                                    value={paymentMethod}
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                >
+                                    <option value="paypal">PayPal</option>
+                                    <option value="crypto">Crypto (Manual)</option>
+                                    <option value="card">Credit/Debit Card</option>
+                                </select>
+                            </div>
+
+                            <div className={styles.inputGroup}>
+                                <label htmlFor="txnId">Transaction ID / Payment Email</label>
+                                <input 
+                                    id="txnId"
+                                    type="text" 
+                                    className={styles.input}
+                                    placeholder="e.g. 5TR08432XX..."
+                                    value={transactionId}
+                                    onChange={(e) => setTransactionId(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            {error && <p className={styles.errorText}>{error}</p>}
+
+                            <button 
+                                type="submit" 
+                                className={styles.submitBtn}
+                                disabled={submitting}
+                            >
+                                {submitting ? (
+                                    <>
+                                        <Loader2 size={20} className={styles.spin} />
+                                        Processing Request...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send size={20} />
+                                        Submit for Verification
+                                    </>
+                                )}
+                            </button>
+                        </form>
+
+                        <div className={styles.securitySeal} style={{ marginTop: '30px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '20px' }}>
+                            <ShieldCheck size={18} />
+                            <span>Manual verification ensures 100% privacy</span>
                         </div>
                     </div>
                 </div>
