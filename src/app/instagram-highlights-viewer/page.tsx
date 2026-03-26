@@ -26,7 +26,7 @@ export default function InstagramHighlightsViewerPage() {
             badge="⭐ Instagram Highlights Viewer"
             h1="Instagram Highlights Viewer —"
             h1Highlight="View Highlights Anonymously"
-            subtitle="Browse and download Instagram Highlights from any public account anonymously. Unlike stories that disappear in 24 hours, highlights are permanent — view them anytime without login or account. Free and unlimited."
+            subtitle="Browse and download Instagram Highlights from any public account anonymously. Unlike stories that disappear in 24 hours, highlights are permanent — view them anytime with a Pro plan. Professional Instagram research tool."
             schemaName="Instagram Highlights Viewer"
             schemaDescription="View and download Instagram Highlights anonymously. Browse saved story highlights without login."
             contentBlocks={[
@@ -38,9 +38,9 @@ export default function InstagramHighlightsViewerPage() {
                     heading: 'Features of Our Instagram Highlights Viewer',
                     body: 'InstaPSV provides the most feature-rich way to view Instagram Highlights online. Here\'s what you get:',
                     list: [
-                        'View all highlight collections from any public profile',
-                        'Browse individual stories within each highlight category',
-                        'Download highlight videos and photos in HD quality',
+                        'View all highlight collections with a Pro account',
+                        'Browse individual stories within each highlight category (Pro)',
+                        'Download highlight videos and photos in HD quality (Pro)',
                         'Anonymous viewing — profile owner is never notified',
                         'Access highlights that were originally posted weeks or months ago',
                         'No Instagram account or app installation required',
@@ -56,7 +56,7 @@ export default function InstagramHighlightsViewerPage() {
             steps={[
                 { title: 'Search Username', description: 'Enter the Instagram username of the account whose highlights you want to view.' },
                 { title: 'Browse Highlights', description: 'See all their highlight collections organized by category. Click any highlight to view its stories.' },
-                { title: 'Download & Save', description: 'Download individual highlight stories as photos or videos in original quality.' },
+                { title: 'Download & Save', description: 'Download individual highlight stories as photos or videos in original quality with a Pro subscription.' },
             ]}
             faqs={[
                 { question: 'Can I view Instagram Highlights without an account?', answer: 'Yes! InstaPSV lets you view all public Instagram Highlights without needing any account or login. Just enter the username and start browsing.' },
@@ -64,7 +64,7 @@ export default function InstagramHighlightsViewerPage() {
                 { question: 'Can I download Instagram Highlights?', answer: 'Yes, you can download individual stories from any highlight collection in HD quality. Photos are saved as JPG and videos as MP4.' },
                 { question: 'Are highlights always available to view?', answer: 'Yes, unlike regular stories that expire in 24 hours, highlights remain on a profile until the owner removes them. You can view them anytime.' },
                 { question: 'Can I view highlights from private accounts?', answer: 'No, only public account highlights are accessible through our viewer. We respect Instagram\'s privacy settings for private profiles.' },
-                { question: 'How many highlights can I view?', answer: 'There are no limits. Browse as many highlights and profiles as you want — completely free and unlimited.' },
+                { question: 'How many highlights can I view?', answer: 'With a Pro plan, there are no limits. Browse as many highlights and profiles as you want — private and secure.' }
             ]}
             relatedTools={[
                 { href: '/instagram-story-viewer', label: 'Instagram Story Viewer' },

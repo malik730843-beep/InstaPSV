@@ -86,23 +86,26 @@ export default function LoginModal({ isOpen, onClose, message }: LoginModalProps
                 }
                 .modal-card {
                     position: relative;
-                    background: rgba(12, 12, 20, 0.95);
-                    border: 1px solid rgba(255, 255, 255, 0.08);
-                    border-radius: 24px;
-                    padding: 2.5rem;
+                    background: rgba(10, 10, 15, 0.9);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 28px;
+                    padding: 3rem 2.5rem;
                     width: 100%;
-                    max-width: 420px;
+                    max-width: 440px;
                     backdrop-filter: blur(40px);
-                    box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 60px rgba(255,0,128,0.06);
-                    animation: modalSlideUp 0.3s ease;
+                    box-shadow: 
+                        0 25px 80px rgba(0,0,0,0.8),
+                        0 0 0 1px rgba(255,255,255,0.05),
+                        0 0 100px rgba(255,0,128,0.08);
+                    animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
                 }
                 .modal-card::before {
                     content: '';
                     position: absolute;
                     inset: 0;
-                    border-radius: 24px;
+                    border-radius: 28px;
                     padding: 1px;
-                    background: linear-gradient(135deg, rgba(255,0,128,0.25), transparent 50%, rgba(0,212,255,0.25));
+                    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 40%, rgba(255,255,255,0.05));
                     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
                     -webkit-mask-composite: xor;
                     mask-composite: exclude;
@@ -110,144 +113,148 @@ export default function LoginModal({ isOpen, onClose, message }: LoginModalProps
                 }
                 .modal-close {
                     position: absolute;
-                    top: 1rem;
-                    right: 1rem;
-                    background: rgba(255,255,255,0.05);
-                    border: 1px solid rgba(255,255,255,0.1);
+                    top: 1.5rem;
+                    right: 1.5rem;
+                    background: rgba(255,255,255,0.03);
+                    border: 1px solid rgba(255,255,255,0.08);
                     border-radius: 50%;
-                    width: 36px;
-                    height: 36px;
+                    width: 38px;
+                    height: 38px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    color: rgba(255,255,255,0.5);
+                    color: rgba(255,255,255,0.4);
                     cursor: pointer;
-                    transition: all 0.2s;
-                    font-size: 1.1rem;
-                    font-family: inherit;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    font-size: 1.2rem;
                 }
                 .modal-close:hover {
-                    background: rgba(255,255,255,0.1);
+                    background: rgba(255,255,255,0.08);
                     color: #fff;
+                    transform: rotate(90deg);
+                    border-color: rgba(255,255,255,0.2);
                 }
                 .modal-title {
-                    font-size: 1.5rem;
+                    font-size: 1.75rem;
                     font-weight: 800;
                     text-align: center;
-                    margin-bottom: 0.35rem;
-                    background: linear-gradient(135deg, #fff, #d1d5db);
+                    margin-bottom: 0.5rem;
+                    letter-spacing: -0.02em;
+                    background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.7));
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
-                    background-clip: text;
                 }
                 .modal-subtitle {
-                    font-size: 0.85rem;
-                    color: rgba(255,255,255,0.45);
+                    font-size: 0.9rem;
+                    color: rgba(255,255,255,0.5);
                     text-align: center;
-                    margin-bottom: 1.5rem;
-                    line-height: 1.5;
+                    margin-bottom: 2rem;
+                    line-height: 1.6;
+                    font-weight: 400;
                 }
                 .modal-promo {
-                    background: linear-gradient(135deg, rgba(255,0,128,0.1), rgba(121,40,202,0.1));
-                    border: 1px solid rgba(255,0,128,0.15);
-                    border-radius: 12px;
-                    padding: 0.75rem 1rem;
-                    margin-bottom: 1.5rem;
+                    background: rgba(255, 0, 128, 0.08);
+                    border: 1px solid rgba(255, 0, 128, 0.2);
+                    border-radius: 16px;
+                    padding: 1rem 1.25rem;
+                    margin-bottom: 2rem;
                     text-align: center;
-                    font-size: 0.8rem;
-                    color: rgba(255,255,255,0.7);
-                    line-height: 1.4;
+                    font-size: 0.85rem;
+                    color: #ff4d94;
+                    font-weight: 500;
+                    line-height: 1.5;
+                    box-shadow: 0 4px 20px rgba(255, 0, 128, 0.1);
                 }
                 .modal-google {
                     width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    gap: 0.65rem;
-                    padding: 0.8rem;
-                    border-radius: 12px;
-                    border: 1px solid rgba(255,255,255,0.1);
-                    background: rgba(255,255,255,0.04);
+                    padding: 0.9rem;
+                    border-radius: 50px;
+                    border: 1px solid rgba(255,255,255,0.15);
+                    background: transparent;
                     color: #fff;
-                    font-size: 0.9rem;
+                    font-size: 0.95rem;
                     font-weight: 600;
                     cursor: pointer;
-                    transition: all 0.25s;
-                    font-family: inherit;
+                    transition: all 0.3s ease;
                 }
                 .modal-google:hover {
-                    background: rgba(255,255,255,0.08);
-                    border-color: rgba(255,255,255,0.18);
-                    transform: translateY(-1px);
+                    background: rgba(255,255,255,0.05);
+                    border-color: rgba(255,255,255,0.3);
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
                 }
-                .modal-google:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
                 .modal-divider {
                     display: flex;
                     align-items: center;
-                    gap: 0.75rem;
-                    margin: 1.25rem 0;
+                    gap: 1rem;
+                    margin: 2rem 0;
                 }
                 .modal-divider-line {
                     flex: 1;
                     height: 1px;
-                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
                 }
                 .modal-divider-text {
-                    font-size: 0.7rem;
-                    color: rgba(255,255,255,0.25);
-                    text-transform: uppercase;
-                    letter-spacing: 0.08em;
-                }
-                .modal-form { display: flex; flex-direction: column; gap: 1rem; }
-                .modal-input-group { display: flex; flex-direction: column; gap: 0.35rem; }
-                .modal-label {
                     font-size: 0.75rem;
-                    font-weight: 600;
-                    color: rgba(255,255,255,0.5);
+                    color: rgba(255,255,255,0.3);
                     text-transform: uppercase;
-                    letter-spacing: 0.04em;
+                    letter-spacing: 0.1em;
+                    font-weight: 500;
+                }
+                .modal-form { display: flex; flex-direction: column; gap: 1.25rem; }
+                .modal-input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+                .modal-label {
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    color: rgba(255,255,255,0.6);
+                    margin-left: 0.2rem;
                 }
                 .modal-input {
                     width: 100%;
-                    padding: 0.75rem 0.9rem;
-                    border-radius: 10px;
-                    background: rgba(0,0,0,0.35);
+                    padding: 0.9rem 1.1rem;
+                    border-radius: 14px;
+                    background: rgba(255,255,255,0.03);
                     border: 1px solid rgba(255,255,255,0.08);
                     color: #fff;
-                    font-size: 0.9rem;
+                    font-size: 0.95rem;
                     outline: none;
-                    transition: all 0.25s;
-                    font-family: inherit;
+                    transition: all 0.3s ease;
                 }
-                .modal-input::placeholder { color: rgba(255,255,255,0.2); }
+                .modal-input::placeholder { color: rgba(255,255,255,0.15); }
                 .modal-input:focus {
-                    border-color: rgba(255,0,128,0.4);
-                    box-shadow: 0 0 0 3px rgba(255,0,128,0.08);
+                    background: rgba(255,255,255,0.05);
+                    border-color: rgba(255,0,128,0.5);
+                    box-shadow: 0 0 20px rgba(255,0,128,0.1);
                 }
                 .modal-submit {
                     width: 100%;
-                    padding: 0.8rem;
-                    border-radius: 12px;
+                    padding: 1rem;
+                    border-radius: 16px;
                     border: none;
                     background: linear-gradient(135deg, #ff0080, #7928ca);
                     color: #fff;
-                    font-size: 0.95rem;
+                    font-size: 1rem;
                     font-weight: 700;
                     cursor: pointer;
-                    transition: all 0.25s;
-                    font-family: inherit;
-                    margin-top: 0.25rem;
+                    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                    margin-top: 0.5rem;
+                    box-shadow: 0 10px 30px rgba(255,0,128,0.2);
                 }
                 .modal-submit:hover {
-                    transform: translateY(-1px);
-                    box-shadow: 0 8px 25px rgba(255,0,128,0.3);
+                    transform: translateY(-2px);
+                    box-shadow: 0 15px 35px rgba(255,0,128,0.4);
+                    filter: brightness(1.1);
                 }
+                .modal-submit:active { transform: translateY(0); }
                 .modal-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
                 .modal-toggle {
-                    margin-top: 1.25rem;
+                    margin-top: 2rem;
                     text-align: center;
-                    font-size: 0.85rem;
-                    color: rgba(255,255,255,0.35);
+                    font-size: 0.9rem;
+                    color: rgba(255,255,255,0.4);
                 }
                 .modal-toggle-btn {
                     background: none;
@@ -255,11 +262,14 @@ export default function LoginModal({ isOpen, onClose, message }: LoginModalProps
                     color: #ff0080;
                     font-weight: 700;
                     cursor: pointer;
-                    padding: 0;
-                    font-size: 0.85rem;
-                    font-family: inherit;
+                    padding: 0 0.4rem;
+                    font-size: 0.9rem;
+                    transition: all 0.2s;
                 }
-                .modal-toggle-btn:hover { color: #ff3399; }
+                .modal-toggle-btn:hover { 
+                    color: #ff3399;
+                    text-decoration: underline;
+                }
                 .modal-msg {
                     padding: 0.7rem;
                     border-radius: 10px;

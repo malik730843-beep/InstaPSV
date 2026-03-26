@@ -33,7 +33,7 @@ export default function AnonymousInstagramViewerPage() {
             steps={[
                 { title: '1. Enter the Username', description: 'Simply type or paste the public Instagram handle you want to explore. There’s no need to log in or link your own account.' },
                 { title: '2. Secure Anonymous Search', description: 'Our private servers retrieve the profile data through an anonymous gateway. This ensures your personal IP address and identity are never exposed to Instagram.' },
-                { title: '3. View Stories & Reels Secretly', description: 'Explore stories, reels, and highlights with total peace of mind. You leave zero digital footprint, and the profile owner will never know you visited.' },
+                { title: '3. View Reels & Profiles Secretly', description: 'Explore posts, reels, and profiles with total peace of mind. Stories and Highlights are available for Pro users. You leave zero digital footprint.' },
             ]}
             comparisonGrid={{
                 title: "How We Make You 100% Invisible to Instagram's Tracking",
@@ -59,10 +59,10 @@ export default function AnonymousInstagramViewerPage() {
                     heading: 'Browse Every Detail Secretly',
                     body: 'Access all media types from public accounts with our comprehensive viewer tool. Our platform allows you to explore every corner of a profile without leaving any trace behind.',
                     list: [
-                        'Story Viewer: Watch active stories discreetly. They expire after 24 hours but you can view them anytime before then.',
-                        'Highlights Viewer: Browse saved story highlights from profiles. Perfect for revisiting curated content.',
+                        'Story Viewer: Watch active stories discreetly. (Pro Feature)',
+                        'Highlights Viewer: Browse saved story highlights from profiles. (Pro Feature)',
                         'Profile & Post Grid: See the full feed layout. View high-resolution photos and carousels.',
-                        'Reels Video Player: Play Reels videos smoothly without auto-playing the next one or notifying the creator.'
+                        'Reels Video Player: Play Reels videos smoothly for free without notifies the creator.'
                     ],
                 },
                 {
@@ -92,8 +92,8 @@ export default function AnonymousInstagramViewerPage() {
                 { question: 'How is this different from viewing Instagram in a browser?', answer: 'When you view Instagram in a browser (even without logging in), Instagram can still track your IP and browsing patterns. InstaPSV acts as an intermediary, so Instagram never sees your connection.' },
                 { question: 'Can I view private Instagram profiles anonymously?', answer: 'No. Our anonymous Instagram viewer only accesses publicly available content. Private accounts are protected by Instagram\'s privacy settings, which we fully respect.' },
                 { question: 'Do I need to create an account?', answer: 'No. InstaPSV requires zero registration, zero login, and zero personal information. Just type a username and start browsing.' },
-                { question: 'Is this anonymous Instagram viewer really free?', answer: 'Yes, completely free. No trial periods, no premium tiers, no hidden fees. All features are available to everyone without charge.' },
-                { question: 'What content can I view anonymously?', answer: 'You can view profile information, posts, stories (before they expire), reels, highlights, and followers/following lists of any public Instagram account.' }
+                { question: 'Is this anonymous Instagram viewer really free?', answer: 'Yes, you can watch reels and view profiles for free. Advanced features like Stories, Highlights, and Downloads require a Pro plan.' },
+                { question: 'What content can I view anonymously?', answer: 'You can view profile information, posts, and reels for free. Stories and highlights are available on the Pro plan.' }
             ]}
             relatedTools={[
                 { href: '/instagram-story-viewer', label: 'Instagram Story Viewer' },

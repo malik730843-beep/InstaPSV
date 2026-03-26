@@ -82,12 +82,11 @@ export default function GoogleLogin({ onSuccess, onError }: GoogleLoginProps) {
         // Render the official Google button
         if (containerRef.current) {
             (window as any).google.accounts.id.renderButton(containerRef.current, {
-                theme: 'filled_black',
+                theme: 'outline',
                 size: 'large',
                 type: 'standard',
-                shape: 'rectangular',
+                shape: 'pill',
                 text: 'continue_with',
-                width: 320, // Strict width to match the login modal
                 logo_alignment: 'left'
             });
         }

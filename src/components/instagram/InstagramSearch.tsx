@@ -439,12 +439,12 @@ export default function InstagramSearch() {
                             ) : (
                                 /* Regular Media Grid - Posts, Reels, Stories */
                                 <div className={styles.mediaGrid}>
-                                    {(activeTab === 'REELS' || activeTab === 'STORIES') && userPlan === 'free' ? (
+                                    {activeTab === 'STORIES' && userPlan === 'free' ? (
                                         <div className={styles.lockedItem} style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 1rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '1rem', border: '1px dashed rgba(255, 255, 255, 0.1)' }}>
                                             <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🔒</div>
                                             <h3 style={{ marginBottom: '0.5rem', color: '#fff' }}>Pro Plan Required</h3>
                                             <p style={{ color: 'var(--color-text-light-muted)', marginBottom: '1.5rem', maxWidth: '400px', margin: '0 auto 1.5rem' }}>
-                                                Viewing <strong>{activeTab === 'REELS' ? 'Reels' : 'Stories'}</strong> is a premium feature available only on the Pro plan.
+                                                Viewing <strong>Stories</strong> is a premium feature available only on the Pro plan.
                                             </p>
                                             <Link href="/pricing" className={styles.button} style={{ display: 'inline-block', width: 'auto', padding: '0.75rem 2rem' }}>
                                                 Upgrade to Pro
@@ -504,14 +504,23 @@ export default function InstagramSearch() {
                                                         className={styles.overlayDownloadBtn}
                                                         onClick={(e) => {
                                                             e.stopPropagation();
+                                                            if (userPlan === 'free') {
+                                                                setLoginModalMessage('🔒 Downloading media is a premium feature. Upgrade to Pro to save posts and reels directly to your device!');
+                                                                setShowLoginModal(true);
+                                                                return;
+                                                            }
                                                             const isVideo = item.media_type === 'VIDEO';
                                                             const fileUrl = item.media_url;
                                                             const filename = `insta-${item.id}.${isVideo ? 'mp4' : 'jpg'}`;
                                                             window.location.href = `/api/download?url=${encodeURIComponent(fileUrl)}&filename=${filename}`;
                                                         }}
-                                                        title="Download"
+                                                        title={userPlan === 'free' ? "Download (Pro)" : "Download"}
                                                     >
-                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                        {userPlan === 'free' ? (
+                                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                                        ) : (
+                                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                                        )}
                                                     </button>
                                                 </div>
                                             </div>
@@ -530,11 +539,16 @@ export default function InstagramSearch() {
             )}
 
             {selectedMedia && (
-                <MediaViewer
-                    media={selectedMedia}
-                    profile={profile}
-                    onClose={() => setSelectedMedia(null)}
-                />
+                    <MediaViewer
+                        media={selectedMedia}
+                        profile={profile}
+                        userPlan={userPlan}
+                        onClose={() => setSelectedMedia(null)}
+                        onShowLogin={(msg) => {
+                            setLoginModalMessage(msg);
+                            setShowLoginModal(true);
+                        }}
+                    />
             )}
 
             <LoginModal

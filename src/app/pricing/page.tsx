@@ -23,11 +23,11 @@ const plans = [
         price: '$0',
         period: 'forever',
         credits: '1 Profile Search',
-        creditsDetail: 'Full access to posts only',
+        creditsDetail: 'Full access to posts & reels',
         description: 'Try it out — see how it works.',
         features: [
             'View public profiles anonymously',
-            'Posts access only',
+            'Posts & Reels access',
             'HD media viewing',
             '1 profile search included',
             'No account required',
@@ -46,7 +46,8 @@ const plans = [
         description: 'Best value for power users.',
         features: [
             'View public profiles anonymously',
-            'Stories, Reels & Highlights',
+            'Stories & Highlights access',
+            'HD media downloads',
             'HD media viewing',
             'Unlimited searches',
             'No credit limits',
@@ -84,7 +85,7 @@ export default async function PricingPage() {
                                 Browse Instagram <span className={styles.gradientText}>Without Limits</span>
                             </h1>
                             <p className={styles.subtitle}>
-                                Start free with 1 profile search. Upgrade for reels, stories and highlights.
+                                Start free with 1 profile search. Upgrade for stories, highlights and downloads.
                             </p>
                         </div>
 
