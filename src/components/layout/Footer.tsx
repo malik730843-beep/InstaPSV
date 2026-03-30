@@ -7,6 +7,9 @@ export default async function Footer() {
     const navT = await getTranslations('nav');
 
     const footerLinks = {
+        tools: [
+            { href: '/instagram-story-viewer', label: 'Instagram Story Viewer' },
+        ],
         product: [
             { href: '/features', label: navT('features') },
             { href: '/highlights-viewer', label: navT('highlights') },
@@ -56,6 +59,19 @@ export default async function Footer() {
 
                     {/* Links */}
                     <div className={styles.linksContainer}>
+                        <div className={styles.linkGroup}>
+                            <h3 className={styles.linkGroupTitle}>Tools</h3>
+                            <ul className={styles.linkList}>
+                                {footerLinks.tools.map((link) => (
+                                    <li key={link.href}>
+                                        <Link href={link.href} className={styles.link} scroll={false}>
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
                         <div className={styles.linkGroup}>
                             <h3 className={styles.linkGroupTitle}>{t('company')}</h3>
                             <ul className={styles.linkList}>
