@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
+import AuthButton from './AuthButton';
 import styles from './Header.module.css';
 
 interface NavLink {
@@ -57,6 +58,11 @@ export default function MobileMenu({ links }: MobileMenuProps) {
                         {link.label}
                     </Link>
                 ))}
+                
+                {/* Mobile Auth Button */}
+                <div className={styles.mobileAuthWrapper} onClick={closeMenu}>
+                    <AuthButton />
+                </div>
             </nav>
         </div>
     );

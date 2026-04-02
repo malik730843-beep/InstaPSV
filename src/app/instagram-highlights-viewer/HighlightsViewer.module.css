@@ -5,7 +5,7 @@
 .page {
     min-height: 100vh;
     background: var(--color-primary-darker);
-    color: var(--color-white);
+    color: #ffffff;
 }
 
 /* ---- Hero (Top Fold) ---- */
@@ -101,9 +101,9 @@
 
 .heroSub {
     display: block;
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
     font-weight: 500;
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.9);
     margin-top: var(--spacing-md);
     max-width: 700px;
     margin-left: auto;
@@ -167,7 +167,7 @@
     align-items: center;
     gap: var(--spacing-sm);
     font-size: var(--font-size-sm);
-    color: var(--color-text-light-muted);
+    color: #ffffff;
 }
 
 .statusDot {
@@ -225,12 +225,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     font-size: var(--font-size-sm);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* ---- Shared Layout Classes ---- */
@@ -261,7 +261,7 @@
 
 .sectionIntro {
     text-align: center;
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.95);
     max-width: 700px;
     margin: 0 auto var(--spacing-3xl);
     font-size: var(--font-size-lg);
@@ -327,7 +327,7 @@
 }
 
 .psCard p {
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.7;
     margin-bottom: var(--spacing-md);
 }
@@ -342,7 +342,7 @@
     position: relative;
     padding-left: 24px;
     margin-bottom: 12px;
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     line-height: 1.5;
 }
 
@@ -402,7 +402,7 @@
 }
 
 .featureCard p {
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.9);
     font-size: var(--font-size-sm);
     line-height: 1.6;
     flex-grow: 1;
@@ -437,6 +437,7 @@
     font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, #00d4ff, #7928ca);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: var(--spacing-md);
@@ -450,7 +451,7 @@
 }
 
 .stepBlock p {
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     font-size: var(--font-size-base);
     line-height: 1.6;
 }
@@ -490,7 +491,7 @@
     position: relative;
     padding-left: 24px;
     margin-bottom: 12px;
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.95);
     line-height: 1.6;
 }
 
@@ -574,7 +575,7 @@
 
 .faqAnswerInner p {
     padding: 1.25rem 1.5rem;
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     margin: 0;
     line-height: 1.6;
 }
@@ -609,7 +610,7 @@
 
 .bottomCta p {
     font-size: var(--font-size-xl);
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.9);
     max-width: 600px;
     margin: 0 auto var(--spacing-2xl);
     position: relative;
@@ -624,9 +625,15 @@
 }
 
 @media (max-width: 768px) {
-    .hero { min-height: auto; padding-top: 100px; }
+    .hero { min-height: auto; padding-top: 120px; }
     .problemSolution, .infoGrid { grid-template-columns: 1fr; }
     .threeColGrid, .stepsBlocks { grid-template-columns: 1fr; }
     .searchSection { margin-top: 0; padding-top: 2rem; }
     .sectionTitle { font-size: 2rem; }
+    .heroTitle { font-size: 2.22rem; }
+}
+
+@media (max-width: 480px) {
+    .heroTitle { font-size: 1.8rem; }
+    .heroSub { font-size: 0.9rem; }
 }

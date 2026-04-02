@@ -77,7 +77,9 @@ export default async function Header({ alwaysDark }: HeaderProps) {
 
             {/* Actions */}
             <div className={styles.actions} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <AuthButton />
+                <div className={styles.desktopAuth}>
+                    <AuthButton />
+                </div>
                 <LanguageSwitcher />
             </div>
 

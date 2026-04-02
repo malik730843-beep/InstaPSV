@@ -136,8 +136,8 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
-  color: var(--color-text-dark);
-  background-color: var(--color-white);
+  color: var(--color-white);
+  background-color: var(--color-primary-darker);
   overflow-x: hidden;
 }
 
@@ -146,10 +146,14 @@ body {
    ============================================ */
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family);
   font-weight: 800;
   line-height: var(--line-height-tight);
+  color: var(--color-white);
 }
 
 h1 {
@@ -169,7 +173,7 @@ h3 {
 p {
   font-size: var(--font-size-base);
   line-height: var(--line-height-relaxed);
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 a {
@@ -219,13 +223,13 @@ a {
 }
 
 .section-light {
-  background: var(--color-light-bg);
-  color: var(--color-text-dark);
+  background: var(--color-primary-dark);
+  color: var(--color-white);
 }
 
 .section-white {
-  background: var(--color-white);
-  color: var(--color-text-dark);
+  background: var(--color-primary-darker);
+  color: var(--color-white);
 }
 
 /* ============================================

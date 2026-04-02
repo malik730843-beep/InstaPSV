@@ -55,11 +55,11 @@
     /* Body Text Weights */
     --text-base-weight: 400;
 
-    /* Text Colors for SaaS */
-    --text-heading: #1a1a2e;
-    --text-body: #374151;
-    --text-muted: #6b7280;
-    --text-caption: #9ca3af;
+    /* Text Colors for Dark Theme */
+    --text-heading: #ffffff;
+    --text-body: rgba(255, 255, 255, 0.9);
+    --text-muted: rgba(255, 255, 255, 0.65);
+    --text-caption: rgba(255, 255, 255, 0.5);
     --text-light: #ffffff;
 
     /* Mobile Layout Spacing */
@@ -115,9 +115,9 @@
     /* H1 - Page Title / Blog Title (One per page for SEO) */
     h1,
     .typography-h1 {
-        font-size: var(--heading-h1-size) !important;
-        font-weight: var(--heading-h1-weight) !important;
-        line-height: var(--heading-h1-lh) !important;
+        font-size: var(--heading-h1-size);
+        font-weight: var(--heading-h1-weight);
+        line-height: var(--heading-h1-lh);
         margin-top: 0;
         margin-bottom: 1rem;
         letter-spacing: -0.025em;
@@ -136,9 +136,9 @@
     /* H3 - Subsections / FAQ Questions */
     h3,
     .typography-h3 {
-        font-size: var(--heading-h3-size) !important;
-        font-weight: var(--heading-h3-weight) !important;
-        line-height: var(--heading-h3-lh) !important;
+        font-size: var(--heading-h3-size);
+        font-weight: var(--heading-h3-weight);
+        line-height: var(--heading-h3-lh);
         margin-top: 2rem;
         margin-bottom: 0.75rem;
     }
@@ -146,9 +146,9 @@
     /* H4 - Sub-subsections */
     h4,
     .typography-h4 {
-        font-size: var(--heading-h4-size) !important;
-        font-weight: var(--heading-h4-weight) !important;
-        line-height: var(--heading-h4-lh) !important;
+        font-size: var(--heading-h4-size);
+        font-weight: var(--heading-h4-weight);
+        line-height: var(--heading-h4-lh);
         margin-top: 1.75rem;
         margin-bottom: 0.625rem;
     }
@@ -156,9 +156,9 @@
     /* H5 - Minor headings */
     h5,
     .typography-h5 {
-        font-size: var(--heading-h5-size) !important;
-        font-weight: var(--heading-h5-weight) !important;
-        line-height: var(--heading-h5-lh) !important;
+        font-size: var(--heading-h5-size);
+        font-weight: var(--heading-h5-weight);
+        line-height: var(--heading-h5-lh);
         margin-top: 1.5rem;
         margin-bottom: 0.5rem;
     }
@@ -166,9 +166,9 @@
     /* H6 - Smallest headings */
     h6,
     .typography-h6 {
-        font-size: var(--heading-h6-size) !important;
-        font-weight: var(--heading-h6-weight) !important;
-        line-height: var(--heading-h6-lh) !important;
+        font-size: var(--heading-h6-size);
+        font-weight: var(--heading-h6-weight);
+        line-height: var(--heading-h6-lh);
         margin-top: 1.25rem;
         margin-bottom: 0.5rem;
         text-transform: uppercase;
@@ -340,10 +340,10 @@
     code {
         font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
         font-size: 0.875em;
-        background-color: #f3f4f6;
+        background-color: rgba(255, 255, 255, 0.1);
         padding: 0.125rem 0.375rem;
         border-radius: 4px;
-        color: #1a1a2e;
+        color: #ffffff;
     }
 
     pre {

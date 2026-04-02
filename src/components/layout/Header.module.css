@@ -105,6 +105,10 @@
     gap: var(--spacing-md);
 }
 
+.desktopAuth {
+    display: block;
+}
+
 
 /* Mobile Menu Button */
 .mobileMenuBtn {
@@ -213,6 +217,15 @@
     padding-left: var(--spacing-md);
 }
 
+.mobileAuthWrapper {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .mobileCta {
     display: inline-flex;
     align-items: center;
@@ -230,6 +243,10 @@
 /* Responsive */
 @media (max-width: 768px) {
     .nav {
+        display: none;
+    }
+
+    .desktopAuth {
         display: none;
     }
 

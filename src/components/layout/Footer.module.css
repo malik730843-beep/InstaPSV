@@ -53,7 +53,8 @@
 
 .brandDescription {
     font-size: var(--font-size-sm);
-    color: var(--color-text-light-muted);
+    color: #ffffff;
+    opacity: 0.8;
     line-height: var(--line-height-relaxed);
     margin-bottom: var(--spacing-xl);
 }
@@ -73,7 +74,7 @@
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     transition: all var(--transition-fast);
 }
 
@@ -115,13 +116,15 @@
 
 .link {
     font-size: var(--font-size-sm);
-    color: var(--color-text-light-muted);
+    color: #ffffff;
+    opacity: 0.85;
     text-decoration: none;
     transition: all var(--transition-fast);
 }
 
 .link:hover {
     color: var(--color-white);
+    opacity: 1;
     padding-left: var(--spacing-sm);
 }
 
@@ -137,7 +140,8 @@
 
 .copyright {
     font-size: var(--font-size-sm);
-    color: var(--color-text-light-muted);
+    color: #ffffff;
+    opacity: 0.7;
 }
 
 .bottomRight {
@@ -154,10 +158,11 @@
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     font-size: var(--font-size-sm);
     cursor: pointer;
     transition: all var(--transition-fast);
+    opacity: 0.8;
 }
 
 .languageSelect:hover {
@@ -171,7 +176,8 @@
 
 .disclaimer {
     font-size: var(--font-size-xs);
-    color: var(--color-text-muted);
+    color: #ffffff;
+    opacity: 0.6;
 }
 
 /* Responsive */

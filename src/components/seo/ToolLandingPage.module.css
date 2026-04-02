@@ -1,9 +1,8 @@
 .landing {
     min-height: 100vh;
     background: var(--color-primary-darker);
-    color: var(--color-white);
+    color: #ffffff;
     padding-top: 0;
-    /* Let hero handle padding */
 }
 
 /* Hero Section */
@@ -106,7 +105,7 @@
     border-radius: var(--radius-full);
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     margin-bottom: var(--spacing-xl);
     backdrop-filter: blur(10px);
 }
@@ -145,7 +144,7 @@
 
 .subtitle {
     font-size: var(--font-size-lg);
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.9);
     max-width: 600px;
     margin: 0 auto var(--spacing-2xl);
     line-height: var(--line-height-relaxed);
@@ -197,7 +196,7 @@
 }
 
 .contentBlock p {
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     line-height: var(--line-height-relaxed);
     margin-bottom: var(--spacing-lg);
 }
@@ -211,7 +210,7 @@
     padding: var(--spacing-xs) 0;
     padding-left: var(--spacing-lg);
     position: relative;
-    color: var(--color-text-light-muted);
+    color: #ffffff;
 }
 
 .contentBlock ul li::before {
@@ -364,7 +363,7 @@
 }
 
 .compItem p {
-    color: var(--color-text-light-muted);
+    color: rgba(255, 255, 255, 0.9);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
 }
@@ -401,7 +400,7 @@
 .table td {
     padding: var(--spacing-lg);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--color-text-light-muted);
+    color: #ffffff;
 }
 
 .featureName {
@@ -450,7 +449,7 @@
 }
 
 .faqItem p {
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     line-height: var(--line-height-relaxed);
 }
 
@@ -501,6 +500,10 @@
         min-height: auto;
     }
 
+    .title {
+        font-size: 2.2rem;
+    }
+
     .searchSection {
         margin-top: 0;
         padding-top: var(--spacing-xl);
@@ -510,14 +513,27 @@
         grid-template-columns: 1fr;
     }
 
+    .compColumn {
+        padding: 2rem;
+    }
+
     .stepsTitle,
     .sectionTitle,
     .faqTitle {
-        font-size: var(--font-size-3xl);
+        font-size: 1.8rem;
     }
 
     .toolsGrid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    .subtitle {
+        font-size: 0.95rem;
     }
 }
 
@@ -643,7 +659,7 @@
     align-items: center;
     gap: var(--spacing-xs);
     font-size: 13px;
-    color: var(--color-text-light-muted);
+    color: #ffffff;
     font-weight: 600;
 }
 
