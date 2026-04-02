@@ -155,20 +155,13 @@
 .searchSection {
     position: relative;
     z-index: 10;
-    margin-top: -100px;
-    /* Overlap with hero */
-    padding: 0 1.5rem 6rem;
+    margin-top: 0;
+    padding: 0 1.5rem 4rem;
 }
 
 .searchWrapper {
     max-width: 700px;
-    margin: 0 auto;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-2xl);
-    padding: var(--spacing-xl);
-    box-shadow: var(--glass-shadow);
+    margin: 0 auto var(--spacing-4xl);
 }
 
 /* Content Section */
@@ -311,9 +304,20 @@
     box-shadow: 0 0 40px rgba(255, 0, 128, 0.5);
 }
 
+/* Shared Titles */
+.sectionTitle {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+    color: var(--color-white);
+    font-weight: 800;
+}
+
 /* Comparison Grid Section */
 .comparisonGridSection {
     padding: var(--spacing-5xl) 1.5rem;
+    margin-top: var(--spacing-4xl);
+    margin-bottom: var(--spacing-4xl);
     background: var(--color-primary-darker);
 }
 

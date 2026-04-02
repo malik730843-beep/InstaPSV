@@ -16,7 +16,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 120px var(--container-padding) var(--spacing-5xl);
+    padding: 100px var(--container-padding) var(--spacing-3xl);
     background: var(--gradient-hero-bg);
     overflow: hidden;
     text-align: center;
@@ -126,20 +126,14 @@
 .searchSection {
     position: relative;
     z-index: 10;
-    margin-top: -80px;
-    padding: 0 1.5rem 4rem;
+    margin-top: 0;
+    padding: 0 1.5rem 2rem;
     scroll-margin-top: 120px;
 }
 
 .searchWrapper {
     max-width: 700px;
     margin: 0 auto;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-2xl);
-    padding: var(--spacing-xl);
-    box-shadow: var(--glass-shadow);
 }
 
 /* ---- Shared ---- */
@@ -151,12 +145,12 @@
 }
 
 .section {
-    padding: var(--spacing-5xl) 0;
+    padding: var(--spacing-3xl) 0;
     background: var(--color-primary-darker);
 }
 
 .sectionAlt {
-    padding: var(--spacing-5xl) 0;
+    padding: var(--spacing-3xl) 0;
     background: var(--color-primary-dark);
 }
 
@@ -595,7 +589,7 @@
 
 /* ---- CTA Section ---- */
 .ctaSection {
-    padding: var(--spacing-5xl) 0;
+    padding: var(--spacing-4xl) 0;
     background: var(--gradient-hero-bg);
     text-align: center;
 }

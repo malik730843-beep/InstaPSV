@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Shield, Sparkles, Download, Search, Lightbulb } from 'lucide-react';
 import InstagramSearch from '@/components/instagram/InstagramSearch';
+import MediaTabs from '@/components/ui/MediaTabs';
 import dynamic from 'next/dynamic';
 import styles from './StoryViewer.module.css';
 
@@ -68,7 +69,8 @@ export default function StoryViewerContent({ header, footer }: StoryViewerConten
                 {/* ========== SEARCH TOOL ========== */}
                 <section className={styles.searchSection} id="search-tool">
                     <div className={styles.searchWrapper}>
-                        <InstagramSearch />
+                        <MediaTabs />
+                        <InstagramSearch restrictedTo="STORIES" />
                     </div>
                 </section>
 

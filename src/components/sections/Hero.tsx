@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
 import InstagramSearch from '../instagram/InstagramSearch';
+import MediaTabs from '../ui/MediaTabs';
 import dynamic from 'next/dynamic';
 
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
@@ -48,6 +49,8 @@ export default function Hero() {
 
                 {/* Main Action Area - Centered Column */}
                 <div className={styles.centeredColumn}>
+                    <MediaTabs />
+                    
                     {/* Interactive Search Component */}
                     <div className={styles.searchContainer}>
                         <InstagramSearch />

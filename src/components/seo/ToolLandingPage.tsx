@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import InstagramSearch from '@/components/instagram/InstagramSearch';
+import MediaTabs from '@/components/ui/MediaTabs';
 import styles from './ToolLandingPage.module.css';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
@@ -215,6 +216,7 @@ export default function ToolLandingPage({
                 {/* Search Tool */}
                 <section className={styles.searchSection} id="search-tool">
                     <div className={styles.searchWrapper}>
+                        <MediaTabs />
                         <InstagramSearch />
                     </div>
 

@@ -32,25 +32,22 @@ export default function InstagramProfileViewerPage() {
             contentBlocks={[
                 {
                     heading: 'What is an Instagram Profile Viewer?',
-                    body: 'An Instagram profile viewer lets you browse any public Instagram account without logging in or revealing your identity. With InstaPSV\'s profile viewer, you can see their bio, post count, follower and following lists, profile picture in full HD, and all their public posts — completely anonymously. Unlike using the Instagram app, your visit is never recorded or shown to the account owner.',
+                    body: 'Browse public accounts securely without a login. View bios, follower lists, HD profile pictures, and posts in complete anonymity—leaving no digital footprint or trace.',
                 },
                 {
-                    heading: 'Features of Our Instagram Profile Viewer',
-                    body: 'InstaPSV provides the most comprehensive Instagram profile viewing experience available online. Here\'s everything you can access from a single username search:',
+                    heading: 'Premium Features Included',
+                    body: 'Our comprehensive tool unlocks robust profile functionality:',
                     list: [
-                        'Full profile information — bio, website, category, and verification status',
-                        'Profile picture in full HD resolution (Pro download available)',
-                        'Complete post gallery with likes and comment counts',
-                        'Follower and following list browser with parsing capability',
-                        'Reels available for free, Stories & Highlights (Pro)',
-                        'Anonymous viewing — account owner is never notified',
-                        'Works without any Instagram account or app installation',
-                        'Export follower/following data for research and analysis',
+                        'Full bios & verification data',
+                        'HD profile pictures & downloads',
+                        'Post galleries with full metrics',
+                        'Anonymous Story & Reels viewer',
+                        'Export follower data (Pro)',
                     ],
                 },
                 {
-                    heading: 'Instagram Profile Viewer for Research & Analysis',
-                    body: 'Many professionals use Instagram profile viewers for legitimate research. Digital marketers analyze competitor profiles, brands scope out potential influencer partnerships, researchers study social media trends, and journalists verify public figures\' posts. InstaPSV provides all this data anonymously and for free, making it the ideal tool for professional Instagram research without the need for a logged-in account.',
+                    heading: 'Built for Research & Analysis',
+                    body: 'Ideal for professional use. Marketers analyze competitors, brands scope out influencers, and journalists verify posts safely without needing an active Instagram session.',
                 },
             ]}
             steps={[

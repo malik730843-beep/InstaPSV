@@ -9,6 +9,9 @@ export default async function Footer() {
     const footerLinks = {
         tools: [
             { href: '/instagram-story-viewer', label: 'Instagram Story Viewer' },
+            { href: '/instagram-highlights-viewer', label: 'Instagram Highlights Viewer' },
+            { href: '/instagram-profile-viewer', label: 'Instagram Profile Viewer' },
+            { href: '/anonymous-instagram-downloader', label: 'Anonymous Instagram Downloader' },
         ],
         product: [
             { href: '/features', label: navT('features') },
