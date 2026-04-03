@@ -12,6 +12,7 @@ export default async function Footer() {
             { href: '/instagram-highlights-viewer', label: 'Instagram Highlights Viewer' },
             { href: '/instagram-profile-viewer', label: 'Instagram Profile Viewer' },
             { href: '/anonymous-instagram-downloader', label: 'Anonymous Instagram Downloader' },
+            { href: '/instagram-hashtag-generator', label: 'Instagram Hashtag Generator' },
         ],
         product: [
             { href: '/features', label: navT('features') },
