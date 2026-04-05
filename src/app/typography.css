@@ -72,6 +72,15 @@
     --list-spacing: 0.5rem;
 }
 
+/* Light Theme Override Scope */
+.typography-light {
+    --text-heading: #111827;
+    --text-body: #374151;
+    --text-muted: #6b7280;
+    --text-caption: #9ca3af;
+    --text-light: #000000;
+}
+
 /* ============================================
    Base Typography Styles (Mobile-First)
    ============================================ */

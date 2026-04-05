@@ -73,9 +73,14 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+.content > * {
+    color: #666;
+}
+
 .content p {
     margin-bottom: 1em;
     font-weight: 400;
+    color: #666;
 }
 
 .content h1,
@@ -122,6 +127,11 @@
 
 .content li {
     margin-bottom: 10px;
+    color: #666;
+}
+
+.content span {
+    color: inherit;
 }
 
 .content img {

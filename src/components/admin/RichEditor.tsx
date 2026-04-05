@@ -223,7 +223,7 @@ const RichEditor = forwardRef<HTMLDivElement, RichEditorProps>(({ content, onCha
     };
 
     return (
-        <div className="rich-editor-container">
+        <div className="rich-editor-container typography-light">
             {showToolbar && createPortal(
                 <div
                     ref={toolbarRef}

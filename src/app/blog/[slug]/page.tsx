@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { getTranslations, getLocale } from 'next-intl/server';
 import { supabaseAdmin } from '@/lib/supabase';
+import TableOfContents from '@/components/blog/TableOfContents';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -178,7 +179,7 @@ export default async function BlogPostPage({
             <>
                 <Header alwaysDark />
                 <main className={styles.main}>
-                    <div className={styles.articleContainer}>
+                    <div className={`${styles.articleContainer} typography-light`}>
                         {/* Header */}
                         <header className={styles.postHeader}>
                             {/* Featured Image */}
@@ -217,6 +218,7 @@ export default async function BlogPostPage({
 
 
                         <div className={styles.content}>
+                            <TableOfContents />
                             <div dangerouslySetInnerHTML={{ __html: post.content || '' }} />
                         </div>
                     </div>

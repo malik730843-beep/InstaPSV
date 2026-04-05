@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FileText } from 'lucide-react';
+import { FileText, Eye, Layers, UserSquare, Download, Hash, Zap } from 'lucide-react';
 
 interface DashboardStats {
     totalPosts: number;
@@ -21,11 +21,7 @@ export default function AdminDashboard() {
         draftPosts: 0,
     });
     const [recentPosts, setRecentPosts] = useState<any[]>([]);
-    const [searchAnalytics, setSearchAnalytics] = useState<any>({
-        topSearches: [],
-        recentSearches: [],
-        stats: { totalSearches: 0, todaySearches: 0 }
-    });
+
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -35,17 +31,15 @@ export default function AdminDashboard() {
     const loadDashboardData = async () => {
         try {
             // Load posts, pages, categories (parallel)
-            const [postsRes, pagesRes, categoriesRes, analyticsRes] = await Promise.all([
+            const [postsRes, pagesRes, categoriesRes] = await Promise.all([
                 fetch('/api/admin/posts'),
                 fetch('/api/admin/pages'),
-                fetch('/api/admin/categories'),
-                fetch('/api/admin/analytics/searches')
+                fetch('/api/admin/categories')
             ]);
 
             const postsData = await postsRes.json();
             const pagesData = await pagesRes.json();
             const categoriesData = await categoriesRes.json();
-            const analyticsData = await analyticsRes.json();
 
             const posts = postsData.posts || [];
             const pages = pagesData.pages || [];
@@ -60,7 +54,6 @@ export default function AdminDashboard() {
             });
 
             setRecentPosts(posts.slice(0, 5));
-            setSearchAnalytics(analyticsData);
         } catch (error) {
             console.error('Failed to load dashboard data:', error);
         }
@@ -145,91 +138,8 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            {/* Search Analytics Overview */}
-            <div className="stats-grid" style={{ marginBottom: '32px' }}>
-                <div className="stat-card">
-                    <div className="stat-content">
-                        <div className="stat-value">{searchAnalytics.stats.todaySearches}</div>
-                        <div className="stat-label">Searches Today</div>
-                    </div>
-                    <div className="stat-icon-wrapper green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-content">
-                        <div className="stat-value">{searchAnalytics.stats.totalSearches}</div>
-                        <div className="stat-label">Total Searches</div>
-                    </div>
-                    <div className="stat-icon-wrapper blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    </div>
-                </div>
-            </div>
-
             {/* Content Layout */}
             <div className="dashboard-grid">
-                {/* Search Analytics */}
-                <div className="admin-card">
-                    <div className="admin-card-header">
-                        <h2 className="admin-card-title">🔥 Trending Profiles</h2>
-                        <span className="text-muted" style={{ fontSize: '0.8rem' }}>Most Searched</span>
-                    </div>
-                    <div className="table-responsive">
-                        <table className="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Searches</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {searchAnalytics.topSearches.map((item: any, i: number) => (
-                                    <tr key={i}>
-                                        <td>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                <span style={{ color: 'var(--admin-primary)', fontWeight: '600' }}>#{i + 1}</span>
-                                                <span>@{item.username}</span>
-                                            </div>
-                                        </td>
-                                        <td style={{ fontWeight: '500' }}>{item.count}</td>
-                                    </tr>
-                                ))}
-                                {searchAnalytics.topSearches.length === 0 && (
-                                    <tr><td colSpan={2} style={{ textAlign: 'center' }}>No search data yet</td></tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                {/* Recent Activity */}
-                <div className="admin-card">
-                    <div className="admin-card-header">
-                        <h2 className="admin-card-title">🕒 Search Activity</h2>
-                    </div>
-                    <div className="table-responsive">
-                        <table className="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {searchAnalytics.recentSearches.map((item: any, i: number) => (
-                                    <tr key={i}>
-                                        <td>@{item.username_searched}</td>
-                                        <td className="text-muted">{new Date(item.created_at).toLocaleTimeString()}</td>
-                                    </tr>
-                                ))}
-                                {searchAnalytics.recentSearches.length === 0 && (
-                                    <tr><td colSpan={2} style={{ textAlign: 'center' }}>No activity yet</td></tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
                 {/* Recent Posts */}
                 <div className="admin-card">
