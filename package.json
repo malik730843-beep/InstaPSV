@@ -11,7 +11,7 @@
     "clean": "if exist .next (rd /s /q .next)"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.89.0",
+    "@supabase/supabase-js": "^2.101.1",
     "@types/three": "^0.182.0",
     "@upstash/redis": "^1.35.8",
     "dotenv": "^17.3.1",

@@ -55,14 +55,14 @@ export default function PagesListPage() {
                     <p className="page-subtitle">Manage your static pages and access core tools</p>
                 </div>
                 <Link href="/admin/pages/new" className="btn btn-primary">
-                    ➕ New Page
+                     New Page
                 </Link>
             </div>
 
             {/* Core Tools Section */}
             <div className="admin-card" style={{ marginBottom: '24px' }}>
                 <div className="admin-card-header">
-                    <h2 className="admin-card-title">🚀 Core Tools Quick Access</h2>
+                    <h2 className="admin-card-title"> Core Tools Quick Access</h2>
                 </div>
                 <table className="admin-table">
                     <thead>
@@ -74,27 +74,27 @@ export default function PagesListPage() {
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Instagram Story Viewer</strong></td>
+                            <td><strong style={{ color: 'var(--admin-text)' }}>Instagram Story Viewer</strong></td>
                             <td style={{ color: 'var(--admin-text-muted)', fontSize: '13px' }}>/instagram-story-viewer</td>
                             <td><a href="/instagram-story-viewer" target="_blank" className="btn btn-secondary btn-sm">View Page</a></td>
                         </tr>
                         <tr>
-                            <td><strong>Instagram Highlights Viewer</strong></td>
+                            <td><strong style={{ color: 'var(--admin-text)' }}>Instagram Highlights Viewer</strong></td>
                             <td style={{ color: 'var(--admin-text-muted)', fontSize: '13px' }}>/instagram-highlights-viewer</td>
                             <td><a href="/instagram-highlights-viewer" target="_blank" className="btn btn-secondary btn-sm">View Page</a></td>
                         </tr>
                         <tr>
-                            <td><strong>Instagram Profile Viewer</strong></td>
+                            <td><strong style={{ color: 'var(--admin-text)' }}>Instagram Profile Viewer</strong></td>
                             <td style={{ color: 'var(--admin-text-muted)', fontSize: '13px' }}>/instagram-profile-viewer</td>
                             <td><a href="/instagram-profile-viewer" target="_blank" className="btn btn-secondary btn-sm">View Page</a></td>
                         </tr>
                         <tr>
-                            <td><strong>Anonymous Instagram Downloader</strong></td>
+                            <td><strong style={{ color: 'var(--admin-text)' }}>Anonymous Instagram Downloader</strong></td>
                             <td style={{ color: 'var(--admin-text-muted)', fontSize: '13px' }}>/anonymous-instagram-downloader</td>
                             <td><a href="/anonymous-instagram-downloader" target="_blank" className="btn btn-secondary btn-sm">View Page</a></td>
                         </tr>
                         <tr>
-                            <td><strong>Instagram Hashtag Generator</strong></td>
+                            <td><strong style={{ color: 'var(--admin-text)' }}>Instagram Hashtag Generator</strong></td>
                             <td style={{ color: 'var(--admin-text-muted)', fontSize: '13px' }}>/instagram-hashtag-generator</td>
                             <td><a href="/instagram-hashtag-generator" target="_blank" className="btn btn-secondary btn-sm">View Page</a></td>
                         </tr>
@@ -105,7 +105,7 @@ export default function PagesListPage() {
             {/* Dynamic Pages Section */}
             <div className="admin-card">
                 <div className="admin-card-header" style={{ marginBottom: '16px' }}>
-                    <h2 className="admin-card-title">📄 Static Pages</h2>
+                    <h2 className="admin-card-title"> Static Pages</h2>
                 </div>
                 {loading ? (
                     <div className="admin-loading" style={{ minHeight: '200px' }}>
@@ -113,7 +113,7 @@ export default function PagesListPage() {
                     </div>
                 ) : pages.length === 0 ? (
                     <div className="empty-state">
-                        <div className="empty-state-icon">📄</div>
+                        <div className="empty-state-icon"></div>
                         <h3>No pages yet</h3>
                         <p>Create pages like About, Privacy, Terms, etc.</p>
                         <Link href="/admin/pages/new" className="btn btn-primary">
@@ -168,7 +168,7 @@ export default function PagesListPage() {
                                                 title="View Page"
                                                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                             >
-                                                👁️
+                                                ️
                                             </a>
                                             <button
                                                 className="btn btn-danger btn-sm"

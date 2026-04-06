@@ -219,7 +219,7 @@ export default async function BlogPostPage({
 
                         <div className={styles.content}>
                             <TableOfContents />
-                            <div dangerouslySetInnerHTML={{ __html: post.content || '' }} />
+                            <div className="blog-post-body" dangerouslySetInnerHTML={{ __html: post.content || '' }} />
                         </div>
                     </div>
                 </main>

@@ -400,7 +400,7 @@ export default function EditPostPage() {
                         disabled={saving}
                         style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-primary)', color: 'var(--admin-primary)' }}
                     >
-                        🚀 Save & Preview
+                         Save & Preview
                     </button>
                     <button
                         className="btn btn-secondary"
@@ -467,7 +467,7 @@ export default function EditPostPage() {
                                             minWidth: '100px'
                                         }}
                                     />
-                                    <span style={{ cursor: 'pointer' }} title="Copy Link">🔗</span>
+                                    <span style={{ cursor: 'pointer' }} title="Copy Link"></span>
                                 </div>
                             </div>
                         </div>
@@ -642,7 +642,7 @@ export default function EditPostPage() {
                     {/* Excerpt with Premium Box */}
                     <div className="admin-card">
                         <div className="admin-card-header">
-                            <h2 className="admin-card-title">📝 Excerpt</h2>
+                            <h2 className="admin-card-title"> Excerpt</h2>
                             <p style={{ margin: 0, fontSize: '12px', color: 'var(--admin-text-muted)' }}>Short summary for blog list</p>
                         </div>
                         <textarea
@@ -676,9 +676,9 @@ export default function EditPostPage() {
                                     value={formData.status}
                                     onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
                                 >
-                                    <option value="draft">📁 Draft</option>
-                                    <option value="published">✅ Published</option>
-                                    <option value="scheduled">⏰ Scheduled</option>
+                                    <option value="draft"> Draft</option>
+                                    <option value="published"> Published</option>
+                                    <option value="scheduled"> Scheduled</option>
                                 </select>
                             </div>
 
@@ -802,7 +802,7 @@ export default function EditPostPage() {
                                     </div>
                                 ) : (
                                     <div onClick={() => fileInputRef.current?.click()} style={{ cursor: 'pointer' }}>
-                                        <div style={{ fontSize: '32px', marginBottom: '12px' }}>🖼️</div>
+                                        <div style={{ fontSize: '32px', marginBottom: '12px' }}>️</div>
                                         <input
                                             type="text"
                                             className="form-input"

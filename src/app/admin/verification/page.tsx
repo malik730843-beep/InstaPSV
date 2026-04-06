@@ -98,13 +98,13 @@ export default function VerificationPage() {
 
     const getServiceLabel = (service: string) => {
         const labels: Record<string, string> = {
-            google: '🔍 Google Search Console',
-            adsense: '💰 Google AdSense',
-            analytics: '📊 Google Analytics',
-            bing: '🔎 Bing Webmaster Tools',
-            yandex: '🔴 Yandex Webmaster',
-            pinterest: '📌 Pinterest',
-            other: '🌐 Other',
+            google: ' Google Search Console',
+            adsense: ' Google AdSense',
+            analytics: ' Google Analytics',
+            bing: ' Bing Webmaster Tools',
+            yandex: ' Yandex Webmaster',
+            pinterest: ' Pinterest',
+            other: ' Other',
         };
         return labels[service] || service;
     };
@@ -122,11 +122,11 @@ export default function VerificationPage() {
         <div>
             <div className="page-header">
                 <div>
-                    <h1 className="page-title">✅ Site Verification</h1>
+                    <h1 className="page-title"> Site Verification</h1>
                     <p className="page-subtitle">Verify site ownership for search engines</p>
                 </div>
                 <button className="btn btn-primary" onClick={() => { resetForm(); setShowModal(true); }}>
-                    ➕ Add Verification
+                     Add Verification
                 </button>
             </div>
 
@@ -137,7 +137,7 @@ export default function VerificationPage() {
                     </div>
                 ) : verifications.length === 0 ? (
                     <div className="empty-state">
-                        <div className="empty-state-icon">✅</div>
+                        <div className="empty-state-icon"></div>
                         <h3>No verifications yet</h3>
                         <p>Add verification codes for Google, Bing, and other search engines</p>
                         <button className="btn btn-primary" onClick={() => setShowModal(true)}>
@@ -194,19 +194,19 @@ export default function VerificationPage() {
                 <h3 className="admin-card-title" style={{ marginBottom: '16px' }}>How it works</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
                     <div>
-                        <h4 style={{ marginBottom: '8px' }}>🏷️ Meta Tag</h4>
+                        <h4 style={{ marginBottom: '8px' }}>️ Meta Tag</h4>
                         <p style={{ fontSize: '13px', color: 'var(--admin-text-muted)' }}>
                             We automatically inject the verification meta tag into your site's &lt;head&gt; section.
                         </p>
                     </div>
                     <div>
-                        <h4 style={{ marginBottom: '8px' }}>📄 HTML File</h4>
+                        <h4 style={{ marginBottom: '8px' }}> HTML File</h4>
                         <p style={{ fontSize: '13px', color: 'var(--admin-text-muted)' }}>
                             We serve the verification file at the root URL (e.g., /google123abc.html).
                         </p>
                     </div>
                     <div>
-                        <h4 style={{ marginBottom: '8px' }}>🌐 DNS TXT Record</h4>
+                        <h4 style={{ marginBottom: '8px' }}> DNS TXT Record</h4>
                         <p style={{ fontSize: '13px', color: 'var(--admin-text-muted)' }}>
                             You'll need to add the TXT record manually through your DNS provider.
                         </p>

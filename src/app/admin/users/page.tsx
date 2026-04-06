@@ -148,7 +148,7 @@ export default function AdminUsersPage() {
         <div>
             <div className="page-header">
                 <div>
-                    <h1 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <h1 className="page-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: 0 }}>
                         <Users size={28} color="#60a5fa" /> User Management
                     </h1>
                     <p style={{ color: '#9ca3af', marginTop: '0.25rem' }}>
@@ -203,7 +203,7 @@ export default function AdminUsersPage() {
                             {users.map((user) => (
                                 <tr key={user.id}>
                                     <td>
-                                        <strong>{user.email}</strong>
+                                        <strong style={{ color: 'var(--admin-text)' }}>{user.email}</strong>
                                     </td>
                                     <td>
                                         <span className={`badge ${getPlanBadgeClass(user.plan)}`}>

@@ -97,7 +97,7 @@ export default function SitemapPage() {
         <div>
             <div className="page-header">
                 <div>
-                    <h1 className="page-title">🗺️ Sitemap</h1>
+                    <h1 className="page-title">️ Sitemap</h1>
                     <p className="page-subtitle">Auto-generate XML sitemap for search engines</p>
                 </div>
                 <div style={{ display: 'flex', gap: '12px' }}>
@@ -109,7 +109,7 @@ export default function SitemapPage() {
                         onClick={generateSitemap}
                         disabled={generating}
                     >
-                        {generating ? 'Generating...' : '🔄 Generate Sitemap'}
+                        {generating ? 'Generating...' : ' Generate Sitemap'}
                     </button>
                 </div>
             </div>

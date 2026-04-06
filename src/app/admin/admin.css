@@ -22,6 +22,24 @@ body {
     background-color: var(--admin-bg);
 }
 
+.admin-container {
+    color: var(--admin-text);
+}
+
+/* Force dark text on common elements that inherit from the main site's dark mode */
+.admin-container h1,
+.admin-container h2,
+.admin-container h3,
+.admin-container h4,
+.admin-container h5,
+.admin-container h6,
+.admin-container strong,
+.admin-container b,
+.admin-container td,
+.admin-container th {
+    color: var(--admin-text);
+}
+
 /* Sidebar */
 .admin-sidebar {
     width: 260px;

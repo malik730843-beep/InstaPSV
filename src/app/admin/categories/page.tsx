@@ -98,7 +98,7 @@ export default function CategoriesPage() {
                     <p className="page-subtitle">Organize your posts</p>
                 </div>
                 <button onClick={openNewModal} className="btn btn-primary">
-                    ➕ New Category
+                     New Category
                 </button>
             </div>
 
@@ -109,7 +109,7 @@ export default function CategoriesPage() {
                     </div>
                 ) : categories.length === 0 ? (
                     <div className="empty-state">
-                        <div className="empty-state-icon">📁</div>
+                        <div className="empty-state-icon"></div>
                         <h3>No categories yet</h3>
                         <p>Create categories to organize your posts</p>
                         <button onClick={openNewModal} className="btn btn-primary">

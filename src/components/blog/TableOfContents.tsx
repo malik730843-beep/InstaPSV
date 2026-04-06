@@ -14,7 +14,7 @@ export default function TableOfContents() {
     const [activeId, setActiveId] = useState<string>('');
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('h2, h3'))
+        const elements = Array.from(document.querySelectorAll('.blog-post-body h2'))
             .map((elem) => {
                 const text = elem.textContent || '';
                 // Create an ID from the text if it doesn't have one
@@ -27,7 +27,7 @@ export default function TableOfContents() {
                 return {
                     id: elem.id,
                     text: text,
-                    level: Number(elem.tagName.replace('H', '')),
+                    level: 2,
                 };
             });
         setHeadings(elements);
@@ -40,10 +40,10 @@ export default function TableOfContents() {
                     }
                 });
             },
-            { rootMargin: '0% 0% -80% 0%' }
+            { rootMargin: '-10% 0% -80% 0%' }
         );
 
-        document.querySelectorAll('h2, h3').forEach((elem) => observer.observe(elem));
+        document.querySelectorAll('.blog-post-body h2').forEach((elem) => observer.observe(elem));
 
         return () => observer.disconnect();
     }, []);
@@ -54,18 +54,25 @@ export default function TableOfContents() {
         <nav className={styles.tocContainer}>
             <h3 className={styles.tocTitle}>Table of Contents</h3>
             <ul className={styles.tocList}>
-                {headings.map((heading) => (
+                {headings.map((heading, index) => (
                     <li
-                        key={heading.id}
+                        key={heading.id || `toc-${index}`}
                         className={`${styles.tocItem} ${heading.level === 3 ? styles.tocSubItem : ''} ${
                             activeId === heading.id ? styles.active : ''
                         }`}
                     >
                         <a href={`#${heading.id}`} onClick={(e) => {
                             e.preventDefault();
-                            document.getElementById(heading.id)?.scrollIntoView({
-                                behavior: 'smooth'
-                            });
+                            const element = document.getElementById(heading.id);
+                            if (element) {
+                                const headerOffset = 100;
+                                const elementPosition = element.getBoundingClientRect().top;
+                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                window.scrollTo({
+                                     top: offsetPosition,
+                                     behavior: 'smooth'
+                                });
+                            }
                         }}>
                             {heading.text}
                         </a>

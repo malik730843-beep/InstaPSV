@@ -75,7 +75,7 @@ export default function SEOSettingsPage() {
         <div>
             <div className="page-header">
                 <div>
-                    <h1 className="page-title">🔍 SEO Settings</h1>
+                    <h1 className="page-title"> SEO Settings</h1>
                     <p className="page-subtitle">Configure default SEO settings (RankMath-style)</p>
                 </div>
                 <button className="btn btn-primary" onClick={handleSave} disabled={saving}>

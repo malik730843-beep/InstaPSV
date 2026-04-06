@@ -192,11 +192,20 @@
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 0;
+    border-radius: 28px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
 }
 
 .postCard:first-child .postImage {
-    aspect-ratio: 4/3;
-    border-radius: 24px 0 0 24px;
+    aspect-ratio: auto;
+    border-radius: 28px 0 0 28px;
+    min-height: 100%;
+    background: #1a1a2e;
+}
+
+.postCard:first-child .postImage img {
+    object-fit: cover;
+    object-position: center;
 }
 
 .postCard:first-child .postContent {
@@ -221,33 +230,55 @@
     background: #fff;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .postCard:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    border-color: rgba(255, 0, 128, 0.1);
+    transform: translateY(-4px);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(255, 0, 128, 0.06);
+    border-color: rgba(255, 0, 128, 0.12);
 }
 
 .postImage {
     position: relative;
-    aspect-ratio: 16/10;
-    background: linear-gradient(135deg, #ff008015, #7928ca15);
+    aspect-ratio: 16/9;
+    background: #1a1a2e;
     overflow: hidden;
+}
+
+.postImage::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.08), transparent);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.4s ease;
+}
+
+.postCard:hover .postImage::after {
+    opacity: 0.5;
 }
 
 .postImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .postCard:hover .postImage img {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .imagePlaceholder {
@@ -257,58 +288,67 @@
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    background: linear-gradient(135deg, #ff008010, #7928ca10);
+    background: linear-gradient(160deg, #f8f0ff 0%, #fff0f5 50%, #f0f0ff 100%);
 }
 
 .postCategory {
     position: absolute;
     top: 16px;
     left: 16px;
-    padding: 8px 16px;
-    background: linear-gradient(135deg, #ff0080, #7928ca);
-    color: #fff;
-    font-size: 12px;
+    padding: 7px 16px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #1a1a1a;
+    font-size: 11px;
     font-weight: 700;
     border-radius: 100px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4);
+    letter-spacing: 1px;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .postContent {
-    padding: 28px;
+    padding: 24px 28px 28px;
 }
 
 .postMeta {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 13px;
+    gap: 10px;
+    font-size: 12px;
     color: #999;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
 }
 
 .postMeta span:nth-child(2) {
     color: #ddd;
+    font-size: 8px;
 }
 
 .postTitle {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 12px;
-    line-height: 1.35;
+    color: #111;
+    margin-bottom: 10px;
+    line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    letter-spacing: -0.3px;
 }
 
 .postTitle a {
     color: inherit;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.3s ease;
 }
 
 .postTitle a:hover {
@@ -316,8 +356,8 @@
 }
 
 .postExcerpt {
-    font-size: 15px;
-    color: #666;
+    font-size: 14px;
+    color: #777;
     line-height: 1.7;
     margin-bottom: 20px;
     display: -webkit-box;
@@ -330,21 +370,25 @@
 .readMore {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
+    gap: 6px;
+    font-size: 13px;
     font-weight: 700;
     color: #ff0080;
     text-decoration: none;
-    transition: all 0.2s ease;
-    padding: 10px 0;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .readMore svg {
-    transition: transform 0.2s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 14px;
+    height: 14px;
 }
 
 .readMore:hover {
-    gap: 12px;
+    gap: 10px;
 }
 
 .readMore:hover svg {
@@ -496,7 +540,8 @@
 
     .postCard:first-child .postImage {
         aspect-ratio: 16/9;
-        border-radius: 24px 24px 0 0;
+        border-radius: 28px 28px 0 0;
+        min-height: auto;
     }
 
     .postCard:first-child .postContent {

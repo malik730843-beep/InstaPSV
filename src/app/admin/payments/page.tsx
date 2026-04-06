@@ -113,7 +113,7 @@ export default function AdminPaymentsPage() {
         <div className="payment-tracking-container">
             <div className="page-header">
                 <div>
-                    <h1 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <h1 className="page-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: 0 }}>
                         <CreditCard size={28} color="#f59e0b" /> Payment Tracking System
                     </h1>
                     <p style={{ color: '#9ca3af', marginTop: '0.25rem' }}>

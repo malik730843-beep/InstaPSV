@@ -162,7 +162,7 @@ export default function PostsPage() {
                 <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
                     {/* Search Field with Icon */}
                     <div style={{ position: 'relative', flex: '1', minWidth: '300px' }}>
-                        <span style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--admin-text-muted)', fontSize: '18px' }}>🔍</span>
+                        <span style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--admin-text-muted)', fontSize: '18px' }}></span>
                         <input
                             type="text"
                             className="form-input"
@@ -191,7 +191,7 @@ export default function PostsPage() {
 
                     {/* Refresh Button */}
                     <button className="btn btn-secondary" onClick={loadPosts} title="Refresh List" style={{ padding: '12px' }}>
-                        🔄
+                        
                     </button>
 
                     {/* Bulk Actions (Overlay style) */}
@@ -245,7 +245,7 @@ export default function PostsPage() {
                     </div>
                 ) : error ? (
                     <div className="empty-state">
-                        <div className="empty-state-icon" style={{ color: '#ef4444' }}>⚠️</div>
+                        <div className="empty-state-icon" style={{ color: '#ef4444' }}>️</div>
                         <h3 style={{ color: '#ef4444' }}>Error Loading Posts</h3>
                         <p>{error}</p>
                         <button className="btn btn-secondary" onClick={loadPosts}>
@@ -254,7 +254,7 @@ export default function PostsPage() {
                     </div>
                 ) : filteredPosts.length === 0 ? (
                     <div className="empty-state">
-                        <div className="empty-state-icon">📝</div>
+                        <div className="empty-state-icon"></div>
                         <h3>No posts found</h3>
                         <p>Your search or filter didn't return any results.</p>
                         <button className="btn btn-secondary" onClick={() => { setSearchQuery(''); setStatusFilter('all'); }}>
@@ -333,7 +333,7 @@ export default function PostsPage() {
                                                 className="btn btn-secondary btn-sm"
                                                 style={{ background: '#f1f5f9', border: 'none' }}
                                             >
-                                                ✏️ Edit
+                                                ️ Edit
                                             </Link>
                                             <a
                                                 href={`/blog/${post.slug}`}
@@ -342,14 +342,14 @@ export default function PostsPage() {
                                                 style={{ background: '#f1f5f9', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                                 title="View Post"
                                             >
-                                                👁️
+                                                ️
                                             </a>
                                             <button
                                                 className="btn btn-danger btn-sm"
                                                 style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444' }}
                                                 onClick={() => handleDelete(post.id)}
                                             >
-                                                🗑️
+                                                ️
                                             </button>
                                         </div>
                                     </td>

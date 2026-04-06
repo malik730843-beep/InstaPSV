@@ -129,14 +129,14 @@ export default function CacheManagerPage() {
                         style={styles.buttonDanger}
                         disabled={loading}
                     >
-                        🗑️ Clear Profile Cache
+                        ️ Clear Profile Cache
                     </button>
                     <button
                         onClick={handleRefreshProfile}
                         style={styles.buttonPrimary}
                         disabled={loading}
                     >
-                        🔄 Force Refresh
+                         Force Refresh
                     </button>
                 </div>
             </div>
@@ -151,7 +151,7 @@ export default function CacheManagerPage() {
                     style={styles.buttonDangerLarge}
                     disabled={loading}
                 >
-                    💥 Clear ALL Cache
+                     Clear ALL Cache
                 </button>
             </div>
         </div>

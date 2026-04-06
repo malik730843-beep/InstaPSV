@@ -382,7 +382,7 @@ export default function NewPostPage() {
                         disabled={saving}
                         style={{ background: 'var(--admin-bg)', border: '1px solid var(--admin-primary)', color: 'var(--admin-primary)' }}
                     >
-                        🚀 Save & Preview
+                         Save & Preview
                     </button>
                     <button
                         className="btn btn-secondary"
@@ -663,9 +663,9 @@ export default function NewPostPage() {
                                     value={formData.status}
                                     onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
                                 >
-                                    <option value="draft">📁 Draft</option>
-                                    <option value="published">✅ Published</option>
-                                    <option value="scheduled">⏰ Scheduled</option>
+                                    <option value="draft"> Draft</option>
+                                    <option value="published"> Published</option>
+                                    <option value="scheduled"> Scheduled</option>
                                 </select>
                             </div>
 
