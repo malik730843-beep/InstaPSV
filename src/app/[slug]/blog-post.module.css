@@ -1,23 +1,20 @@
-/* Main container for the centered layout */
+/* Blog Post Detail Styles (moved from /blog/[slug]) */
+
 .main {
     min-height: 100vh;
     background: #ffffff;
-    /* White background as per reference */
     padding-bottom: 100px;
     padding-top: 110px;
 }
 
 .articleContainer {
     max-width: 80%;
-    /* Reference likely uses ~700-740px for content */
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Header Section (Title, Meta, Image) */
 .postHeader {
     text-align: left;
-    /* Left aligned as per reference */
     padding-top: 60px;
     margin-bottom: 40px;
 }
@@ -54,9 +51,17 @@
     font-weight: 500;
 }
 
+.separator {
+    margin: 0 8px;
+}
+
+.category {
+    color: #6366f1;
+    font-weight: 600;
+}
+
 .title {
     font-size: 42px;
-    /* Large bold title */
     font-weight: 800;
     color: #000000 !important;
     line-height: 1.2;
@@ -64,12 +69,47 @@
     margin-bottom: 16px;
 }
 
-/* Content Typography - Mimicking the readability focused design */
+.author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.authorAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff0080, #7928ca);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.authorInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.authorName {
+    font-weight: 600;
+    color: #111;
+    font-size: 14px;
+}
+
+.authorRole {
+    color: #888;
+    font-size: 13px;
+}
+
+/* Content Typography */
 .content {
     font-size: 18px;
     color: #666;
     line-height: 1.7;
-    /* Generous line height */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -124,7 +164,6 @@
     padding-left: 20px;
 }
 
-
 .content li {
     margin-bottom: 10px;
     color: #666;
@@ -143,48 +182,6 @@
 
 .content a {
     color: #0070f3;
-    /* Or brand color */
     text-decoration: underline;
     text-underline-offset: 2px;
-}
-
-/* Share Buttons - Simple and clean */
-.shareSection {
-    margin-top: 60px;
-    border-top: 1px solid #eaeaea;
-    padding-top: 32px;
-}
-
-.shareTitle {
-    font-size: 14px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    margin-bottom: 16px;
-}
-
-.shareButtons {
-    display: flex;
-    gap: 12px;
-}
-
-.shareBtn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid #eaeaea;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #555;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.shareBtn:hover {
-    background: #f5f5f5;
-    color: #000;
-    border-color: #ddd;
 }

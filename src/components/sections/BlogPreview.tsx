@@ -91,7 +91,7 @@ export default async function BlogPreview() {
                         const date = new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
                         return (
-                            <Link key={post.id} href={`/blog/${post.slug}`} className={styles.card}>
+                            <Link key={post.id} href={`/${post.slug}`} className={styles.card}>
                                 <div className={styles.cardImage}>
                                     {post.featured_image ? (
                                         <img src={post.featured_image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

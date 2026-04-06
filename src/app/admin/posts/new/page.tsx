@@ -196,7 +196,7 @@ export default function NewPostPage() {
                 const data = await res.json();
 
                 if (openPreview) {
-                    window.open(`/blog/${payload.slug}?preview=true`, '_blank');
+                    window.open(`/${payload.slug}?preview=true`, '_blank');
                     // If we are on 'new' page, we should still redirect to 'edit' page for the newly created post
                     if (data.post && data.post.id) {
                         router.push(`/admin/posts/${data.post.id}/edit`);
@@ -434,7 +434,7 @@ export default function NewPostPage() {
                                     borderRadius: '8px',
                                     fontSize: '13px'
                                 }}>
-                                    <span style={{ color: 'var(--admin-text-muted)' }}>/blog/</span>
+                                    <span style={{ color: 'var(--admin-text-muted)' }}>/</span>
                                     <input
                                         type="text"
                                         value={formData.slug}

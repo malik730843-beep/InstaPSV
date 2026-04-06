@@ -24,7 +24,7 @@ export async function GET() {
         if (posts) {
             posts.forEach(post => {
                 if (!post.robots?.includes('noindex')) {
-                    urls.push(`${baseUrl}/blog/${post.slug}`);
+                    urls.push(`${baseUrl}/${post.slug}`);
                 }
             });
         }

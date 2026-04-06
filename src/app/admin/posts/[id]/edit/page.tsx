@@ -235,7 +235,7 @@ export default function EditPostPage() {
 
             if (res.ok) {
                 if (openPreview) {
-                    window.open(`/blog/${formData.slug}?preview=true`, '_blank');
+                    window.open(`/${formData.slug}?preview=true`, '_blank');
                 } else {
                     router.push('/admin/posts');
                 }
@@ -452,7 +452,7 @@ export default function EditPostPage() {
                                     borderRadius: '8px',
                                     fontSize: '13px'
                                 }}>
-                                    <span style={{ color: 'var(--admin-text-muted)' }}>/blog/</span>
+                                    <span style={{ color: 'var(--admin-text-muted)' }}>/</span>
                                     <input
                                         type="text"
                                         value={formData.slug}
@@ -703,7 +703,7 @@ export default function EditPostPage() {
 
                             {formData.slug && (
                                 <a
-                                    href={`/blog/${formData.slug}`}
+                                    href={`/${formData.slug}`}
                                     target="_blank"
                                     className="btn btn-secondary"
                                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px', marginTop: '12px', textDecoration: 'none', width: '100%' }}

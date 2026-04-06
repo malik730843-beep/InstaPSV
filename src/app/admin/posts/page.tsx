@@ -304,7 +304,7 @@ export default function PostsPage() {
                                                 {post.title}
                                             </Link>
                                             <span style={{ color: 'var(--admin-text-muted)', fontSize: '12px', marginTop: '4px' }}>
-                                                /blog/{post.slug}
+                                                /{post.slug}
                                             </span>
                                         </div>
                                     </td>
@@ -336,7 +336,7 @@ export default function PostsPage() {
                                                 ️ Edit
                                             </Link>
                                             <a
-                                                href={`/blog/${post.slug}`}
+                                                href={`/${post.slug}`}
                                                 target="_blank"
                                                 className="btn btn-secondary btn-sm"
                                                 style={{ background: '#f1f5f9', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}

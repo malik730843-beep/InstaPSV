@@ -77,7 +77,7 @@ export default function PostsArchivePage() {
                                                     <span className={styles.postDate}>
                                                         {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                                     </span>
-                                                    <Link href={`/blog/${post.slug}`} className={styles.postLink}>
+                                                    <Link href={`/${post.slug}`} className={styles.postLink}>
                                                         {post.title}
                                                     </Link>
                                                 </li>

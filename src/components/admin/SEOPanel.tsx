@@ -446,7 +446,7 @@ export default function SEOPanel({ formData, setFormData }: SEOPanelProps) {
                                 <input
                                     type="text"
                                     className="form-input"
-                                    placeholder={`https://instapsv.com/blog/${formData.slug || 'slug'}`}
+                                    placeholder={`https://instapsv.com/${formData.slug || 'slug'}`}
                                     value={formData.canonical_url}
                                     onChange={(e) => setFormData((prev: any) => ({ ...prev, canonical_url: e.target.value }))}
                                 />

@@ -155,10 +155,10 @@ export default async function BlogPage() {
                                                     <span>{readTime} {t('minRead')}</span>
                                                 </div>
                                                 <h2 className={styles.postTitle}>
-                                                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                                                    <Link href={`/${post.slug}`}>{post.title}</Link>
                                                 </h2>
                                                 <p className={styles.postExcerpt}>{post.excerpt}</p>
-                                                <Link href={`/blog/${post.slug}`} className={styles.readMore}>
+                                                <Link href={`/${post.slug}`} className={styles.readMore}>
                                                     {t('readArticle')}
                                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                                         <path d="M5 12h14M12 5l7 7-7 7" />
