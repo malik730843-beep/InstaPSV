@@ -40,7 +40,8 @@
                 "point2": "No tracking pixels.",
                 "point3": "IP Masked."
             }
-        }
+        },
+        "getStarted": "Get Started For Free"
     },
     "security": {
         "badge": "Privacy First",
@@ -87,25 +88,31 @@
         "titleStart": "Browse Every Detail",
         "titleHighlight": "Secretly",
         "titleEnd": "",
-        "subtitle": "Access all media types from public accounts with our comprehensive viewer tool.",
+        "subtitle": "Access all media types from public accounts with our comprehensive, 100% anonymous viewer tool.",
         "storyViewer": {
-            "title": "Story Viewer",
-            "description": "Watch active stories discreetly. They expire after 24 hours but you can view them anytime before then."
+            "title": "Anonymous Instagram Story Viewer",
+            "description": "Watch active Instagram stories anonymously and stay 100% hidden. Experience total privacy without leaving a digital footprint.",
+            "cta": "Open Story Viewer",
+            "interlink": "Try Highlights Viewer"
         },
         "highlightsViewer": {
-            "title": "Highlights Viewer",
-            "description": "Browse saved story highlights from profiles. Perfect for revisiting curated content."
+            "title": "Instagram Highlights Viewer & Downloader",
+            "description": "Browse and download saved Instagram highlights from public profiles in high definition. Access archived content securely.",
+            "cta": "View Highlights",
+            "interlink": "Go to Story Viewer"
         },
         "postGrid": {
-            "title": "Profile & Post Grid",
-            "description": "See the full feed layout. View high-resolution photos and carousels."
+            "title": "Anonymous IG Profile & Post Viewer",
+            "description": "Access the full Instagram feed layout privately. View high-resolution photos and carousels without notifying the user.",
+            "cta": "Explore Profiles"
         },
         "reelsPlayer": {
-            "title": "Reels Video Player",
-            "description": "Play Reels videos smoothly without auto-playing the next one or notifying the creator."
+            "title": "Instagram Reels Viewer & Downloader",
+            "description": "Play and download Instagram Reels in HD from any public account, without auto-playing or tracking your activity.",
+            "cta": "Download Reels"
         },
         "cta": "Get Started Now",
-        "learnMore": "Learn more"
+        "learnMore": "Learn More"
     },
     "howItWorks": {
         "badge": "How It Works",

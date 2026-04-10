@@ -14,7 +14,7 @@ export default function TableOfContents() {
     const [activeId, setActiveId] = useState<string>('');
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('.blog-post-body h2'))
+        const elements = Array.from(document.querySelectorAll('.blog-post-body h2, .blog-post-body h3'))
             .map((elem) => {
                 const text = elem.textContent || '';
                 // Create an ID from the text if it doesn't have one
@@ -27,7 +27,7 @@ export default function TableOfContents() {
                 return {
                     id: elem.id,
                     text: text,
-                    level: 2,
+                    level: Number(elem.tagName.replace('H', '')),
                 };
             });
         setHeadings(elements);
@@ -43,7 +43,7 @@ export default function TableOfContents() {
             { rootMargin: '-10% 0% -80% 0%' }
         );
 
-        document.querySelectorAll('.blog-post-body h2').forEach((elem) => observer.observe(elem));
+        document.querySelectorAll('.blog-post-body h2, .blog-post-body h3').forEach((elem) => observer.observe(elem));
 
         return () => observer.disconnect();
     }, []);
@@ -54,9 +54,9 @@ export default function TableOfContents() {
         <nav className={styles.tocContainer}>
             <h3 className={styles.tocTitle}>Table of Contents</h3>
             <ul className={styles.tocList}>
-                {headings.map((heading, index) => (
+                {headings.map((heading) => (
                     <li
-                        key={heading.id || `toc-${index}`}
+                        key={heading.id}
                         className={`${styles.tocItem} ${heading.level === 3 ? styles.tocSubItem : ''} ${
                             activeId === heading.id ? styles.active : ''
                         }`}

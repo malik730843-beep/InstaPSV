@@ -1,33 +1,36 @@
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import styles from './Features.module.css';
-import ScrollToSearch from '../ui/ScrollToSearch';
+import Link from 'next/link';
 
-export default async function Features() {
-    const t = await getTranslations('features');
+export default function Features() {
+    const t = useTranslations('features');
 
     const features = [
         {
+            key: 'storyViewer',
             icon: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 6v6l4 2" />
                 </svg>
             ),
-            title: t('storyViewer.title'),
-            description: t('storyViewer.description'),
+            path: '/instagram-story-viewer',
+            interlinkPath: '/instagram-highlights-viewer',
             gradient: 'linear-gradient(135deg, #ff0080, #ff00ff)',
         },
         {
+            key: 'highlightsViewer',
             icon: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
             ),
-            title: t('highlightsViewer.title'),
-            description: t('highlightsViewer.description'),
+            path: '/instagram-highlights-viewer',
+            interlinkPath: '/instagram-story-viewer',
             gradient: 'linear-gradient(135deg, #7928ca, #00d4ff)',
         },
         {
+            key: 'postGrid',
             icon: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -37,11 +40,11 @@ export default async function Features() {
                     <line x1="15" y1="3" x2="15" y2="21" />
                 </svg>
             ),
-            title: t('postGrid.title'),
-            description: t('postGrid.description'),
+            path: '/instagram-profile-viewer',
             gradient: 'linear-gradient(135deg, #00d4ff, #7928ca)',
         },
         {
+            key: 'reelsPlayer',
             icon: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polygon points="23 7 16 12 23 17 23 7" />
@@ -49,8 +52,7 @@ export default async function Features() {
                     <circle cx="8" cy="12" r="3" />
                 </svg>
             ),
-            title: t('reelsPlayer.title'),
-            description: t('reelsPlayer.description'),
+            path: '/instagram-reels-downloader',
             gradient: 'linear-gradient(135deg, #ff00ff, #ff0080)',
         },
     ];
@@ -84,14 +86,18 @@ export default async function Features() {
                             >
                                 {feature.icon}
                             </div>
-                            <h3 className={styles.cardTitle}>{feature.title}</h3>
-                            <p className={styles.cardDescription}>{feature.description}</p>
-                            <a href="/features" className={styles.cardLink}>
+                            <h3 className={styles.cardTitle}>{t(`${feature.key}.title`)}</h3>
+                            <p className={styles.cardDescription}>
+                                {t.rich(`${feature.key}.description`, {
+                                    link: (chunks) => <Link href={feature.interlinkPath || '#'} className={styles.descriptionLink}>{chunks}</Link>
+                                })}
+                            </p>
+                            <Link href={feature.path} className={styles.cardLink}>
                                 {t('learnMore')}
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
                                 </svg>
-                            </a>
+                            </Link>
                         </div>
                     ))}
                 </div>

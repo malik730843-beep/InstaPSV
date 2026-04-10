@@ -20,6 +20,11 @@ const supabase = createClient(
 
 const navItems = [
     { name: 'Dashboard', href: '/admin', icon: <LayoutDashboard size={20} /> },
+    { name: 'Story Viewer', href: '/instagram-story-viewer', icon: <Eye size={20} /> },
+    { name: 'Highlights Viewer', href: '/instagram-highlights-viewer', icon: <Layers size={20} /> },
+    { name: 'Profile Viewer', href: '/instagram-profile-viewer', icon: <UserSquare size={20} /> },
+    { name: 'Downloader', href: '/anonymous-instagram-downloader', icon: <Download size={20} /> },
+    { name: 'Hashtag Gen', href: '/instagram-hashtag-generator', icon: <Hash size={20} /> },
     { name: 'Users', href: '/admin/users', icon: <Users size={20} /> },
     { name: 'Posts', href: '/admin/posts', icon: <FileText size={20} /> },
     { name: 'Pages', href: '/admin/pages', icon: <Files size={20} /> },

@@ -286,6 +286,7 @@
     border-radius: var(--radius-2xl);
     backdrop-filter: blur(20px);
     width: fit-content;
+    margin-top: var(--spacing-5xl);
 }
 
 .stat {
@@ -625,5 +626,50 @@
     .badge {
         padding: var(--spacing-xs) var(--spacing-md);
         font-size: var(--font-size-xs);
+    }
+}
+
+.getStartedButton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-3xl);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-white);
+    background: linear-gradient(135deg, #ff0080 0%, #7928ca 50%, #00d4ff 100%);
+    background-size: 200% auto;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(121, 40, 202, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    animation: gradientShift 4s ease infinite;
+    z-index: 10;
+    margin-top: var(--spacing-xl);
+}
+
+.getStartedButton:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(121, 40, 202, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.2);
+    background-position: right center;
+}
+
+.getStartedButton:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.buttonIcon {
+    transition: transform 0.3s ease;
+}
+
+.getStartedButton:hover .buttonIcon {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .getStartedButton {
+        padding: var(--spacing-md) var(--spacing-2xl);
+        font-size: var(--font-size-base);
+        width: auto;
     }
 }

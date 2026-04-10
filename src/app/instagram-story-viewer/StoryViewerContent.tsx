@@ -21,13 +21,7 @@ export default function StoryViewerContent({ header, footer }: StoryViewerConten
     const toggleFaq = (index: number) => {
         setOpenFaq(openFaq === index ? null : index);
     };
-    const scrollToSearch = () => {
-        const el = document.getElementById('search-tool');
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => { const input = el.querySelector('input'); if (input) input.focus(); }, 600);
-        }
-    };
+
 
     return (
         <div className={styles.page}>
@@ -60,9 +54,7 @@ export default function StoryViewerContent({ header, footer }: StoryViewerConten
                             <span className={styles.highlight}>View &amp; Download Discreetly</span>
                             <span className={styles.heroSub}>(No Login Required)</span>
                         </h1>
-                        <button onClick={scrollToSearch} className={styles.ctaButton}>
-                            Try Our Anonymous Instagram Story Viewer Today
-                        </button>
+
                     </div>
                 </section>
 
@@ -280,9 +272,6 @@ export default function StoryViewerContent({ header, footer }: StoryViewerConten
                         <p className={styles.ctaText}>Online privacy is harder to come by these days. This tool gives you a simple, secure way to view public Instagram stories without being seen. You can also download stories if you want to keep them for later.</p>
                         <p className={styles.ctaText}>You don&apos;t have to deal with privacy worries, ads, or complicated steps. View public stories on your own terms.</p>
                         <p className={styles.ctaHighlight}>Ready to experience true anonymity?</p>
-                        <button onClick={scrollToSearch} className={styles.ctaButton}>
-                            Try Our Anonymous Instagram Story Viewer Today
-                        </button>
                         <p className={styles.ctaTagline}>Take control of your privacy online.</p>
                     </div>
                 </section>

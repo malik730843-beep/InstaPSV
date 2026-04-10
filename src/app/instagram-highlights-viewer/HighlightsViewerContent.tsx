@@ -1,20 +1,3 @@
-'use client';
-
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { 
-    ShieldCheck, 
-    EyeOff, 
-    Lock, 
-    Search,
-    Zap,
-    Download,
-    Cpu,
-    Smartphone,
-    Globe,
-    AlertCircle,
-    CheckCircle2
-} from 'lucide-react';
 import InstagramSearch from '@/components/instagram/InstagramSearch';
 import MediaTabs from '@/components/ui/MediaTabs';
 import dynamic from 'next/dynamic';
@@ -49,17 +32,11 @@ export default function HighlightsViewerContent({ header, footer }: HighlightsVi
                 "@context": "https://schema.org", "@type": "FAQPage",
                 "mainEntity": faqData.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
             }) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-                "@context": "https://schema.org", "@type": "WebApplication",
-                "name": "Anonymous Instagram Highlights Viewer", "applicationCategory": "BrowserApplication", "operatingSystem": "Any",
-                "description": "View and download public Instagram highlights anonymously securely without logging in.",
-                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-            }) }} />
             
             {header}
 
             <main>
-                {/* 1. HERO SECTION (Entity-based, semantic outcome-driven) */}
+                {/* 1. Introduction & Hook (PAS Style) */}
                 <section className={styles.hero}>
                     <ParticleBackground className={styles.particles} />
                     <div className={styles.floatingElements}>
@@ -69,38 +46,29 @@ export default function HighlightsViewerContent({ header, footer }: HighlightsVi
                     </div>
                     
                     <div className={styles.heroContent}>
-                        <span className={styles.badge}><ShieldCheck size={16} /> Privacy-First Viewer</span>
+                        <div className={styles.badge}><ShieldCheck size={16} /> 100% Private & Secure</div>
                         <h1 className={styles.heroTitle}>
-                            Anonymous Instagram Highlights Viewer<br />
-                            <span className={styles.highlight}>View & Download Discreetly</span>
+                            Anonymous Instagram Highlights Viewer:<br />
+                            <span className={styles.highlight}>View & Download IG Stories Discreetly</span>
                         </h1>
                         <p className={styles.heroSub}>
-                            Imagine exploring Instagram highlights without leaving a trace, without logging in, and without your activity being tracked. Our free, web-based viewer provides a truly anonymous gateway to public content.
+                            Are you tired of Instagram's limitations, wishing you could save your favorite Highlights or watch them anonymously? The frustration of wanting to archive a cherished memory or monitor competitor content without appearing in their viewer list is over. Welcome to the ultimate solution for privacy-conscious users.
                         </p>
                         
                         <button onClick={scrollToSearch} className={styles.ctaButton}>
-                            Try Our Highlights Viewer Now
+                            Start Viewing Highlights Anonymously
                         </button>
 
-                        {/* Hero Resource: Live Status Indicator */}
                         <div className={styles.liveStatus}>
                             <div className={styles.statusItem}>
                                 <div className={styles.statusDot}></div>
-                                <span>Service Status: <span className={styles.statusValue}>Online & Fast</span></span>
-                            </div>
-                            <div className={styles.statusItem}>
-                                <Zap size={16} color="#10b981" />
-                                <span>Avg Retrieval Time: <span className={styles.statusValue}>0.8s</span></span>
-                            </div>
-                            <div className={styles.statusItem}>
-                                <CheckCircle2 size={16} color="#00d4ff" />
-                                <span>Secure Connections: <span className={styles.statusValue}>Active</span></span>
+                                <span>Service Status: <span className={styles.statusValue}>Online & Secure</span></span>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* 2. SEARCH TOOL (Instant Access) */}
+                {/* 2. Interactive Search Tool */}
                 <section className={styles.searchSection} id="search-tool">
                     <div className={styles.searchWrapper}>
                          <MediaTabs />
@@ -108,173 +76,140 @@ export default function HighlightsViewerContent({ header, footer }: HighlightsVi
                     </div>
                 </section>
 
-                {/* 3. AUTHORITY SIGNALS */}
                 <div className={styles.authorityBar}>
                     <div className={styles.container}>
                         <div className={styles.trustBadges}>
-                            <div className={styles.trustBadge}><Lock size={20} /> 256-bit SSL Secure</div>
-                            <div className={styles.trustBadge}><EyeOff size={20} /> Zero Data Retention</div>
-                            <div className={styles.trustBadge}><ShieldCheck size={20} /> Verified Anonymous</div>
-                            <div className={styles.trustBadge}><Cpu size={20} /> No App Install Needed</div>
+                            <div className={styles.trustBadge}><EyeOff size={20} /> Zero Tracking</div>
+                            <div className={styles.trustBadge}><Lock size={20} /> No Login Required</div>
+                            <div className={styles.trustBadge}><ShieldCheck size={20} /> HIPAA-Level Privacy</div>
                         </div>
                     </div>
                 </div>
 
-                {/* 4. PROBLEM vs SOLUTION (Side-by-side framework) */}
+                {/* 3. The Problem: Hidden Risks of Normal Viewing */}
                 <section className={styles.sectionAlt}>
                     <div className={styles.container}>
-                        <h2 className={styles.sectionTitle}>Overcome Privacy Concerns</h2>
-                        <p className={styles.sectionIntro}>Experience public Instagram content on your terms, freely and privately.</p>
+                        <h2 className={styles.sectionTitle}>The Problem: Risks of standard Highlights Viewing</h2>
+                        <p className={styles.sectionIntro}>Traditional browsing exposes your identity and limits your freedom.</p>
                         
                         <div className={styles.problemSolution}>
                             <div className={`${styles.psCard} ${styles.problemCard}`}>
                                 <div className={styles.psHeader}>
                                     <div className={styles.iconWrap}><AlertCircle size={24} /></div>
-                                    <h3>The Problem</h3>
+                                    <h3>Frustrations & Risks</h3>
                                 </div>
-                                <p>Many users want to stay informed or revisit content discreetly, but the worry of being seen or compromising personal data holds them back.</p>
                                 <ul>
-                                    <li>Fear of identity exposure in viewer lists.</li>
-                                    <li>Forced to log in to view specific highlights.</li>
-                                    <li>Leaving a digital footprint tied to your account.</li>
+                                    <li>Exposure: Your name appearing in "Seen by" lists of story highlights.</li>
+                                    <li>Data Tracking: Instagram logs every profile you visit to build an ad profile.</li>
+                                    <li>Accidental Interactions: The risk of an accidental \"like\" while browsing privately.</li>
                                 </ul>
                             </div>
                             
                             <div className={`${styles.psCard} ${styles.solutionCard}`}>
                                 <div className={styles.psHeader}>
                                     <div className={styles.iconWrap}><CheckCircle2 size={24} /></div>
-                                    <h3>Our Solution</h3>
+                                    <h3>The InstaPSV Advantage</h3>
                                 </div>
-                                <p>Our Anonymous Viewer acts as a secure proxy layout, offering you a seamlessly private gateway to public highlights and stories.</p>
                                 <ul>
-                                    <li>View content discreetly without exposure.</li>
-                                    <li>Access highlights with no Instagram account required.</li>
-                                    <li>Avoid profile visits entirely.</li>
+                                    <li>Ultimate Anonymity: Our secure proxy ensures your name never reaches their list.</li>
+                                    <li>No Digital Trace: We never log your searches or store your personal identity.</li>
+                                    <li>Safety: Browse without the risk of accidental account interactions.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* 5. CAPABILITIES & OUTCOMES (Why Choose Us Array) */}
+                {/* 4. Core Benefits */}
                 <section className={styles.section}>
                     <div className={styles.container}>
-                        <h2 className={styles.sectionTitle}>Why Choose Our Viewer?</h2>
-                        <p className={styles.sectionIntro}>We provide a superior viewing experience built on unwavering anonymity.</p>
-                        
+                        <h2 className={styles.sectionTitle}>Why Choose Our Highlights Viewer?</h2>
                         <div className={styles.threeColGrid}>
                             <div className={styles.featureCard}>
                                 <div className={styles.featureIcon}><ShieldCheck size={32} /></div>
-                                <h3>Privacy-First Approach</h3>
-                                <p>View content discreetly. We minimize digital footprints often associated with social media browsing and never ask for account credentials.</p>
-                            </div>
-                            <div className={styles.featureCard}>
-                                <div className={styles.featureIcon}><Zap size={32} /></div>
-                                <h3>Cleaner, Ad-Free UI</h3>
-                                <p>Enjoy a distraction-free, intuitive interface designed for quick and hassle-free highlight access. Fast, lightweight, and responsive.</p>
+                                <h3>Total Privacy</h3>
+                                <p>Stay 100% invisible. View any public highlight without notifying the content creator or leaving a digital footprint.</p>
                             </div>
                             <div className={styles.featureCard}>
                                 <div className={styles.featureIcon}><Download size={32} /></div>
-                                <h3>Prominent Download Feature</h3>
-                                <p>A seamless and reliable option to download highlights directly to your device for offline viewing. completely cost-free.</p>
+                                <h3>HD Downloads</h3>
+                                <p>Save highlights in their original high-resolution quality directly to your device for offline viewing anytime.</p>
+                            </div>
+                            <div className={styles.featureCard}>
+                                <div className={styles.featureIcon}><Zap size={32} /></div>
+                                <h3>Instant Speed</h3>
+                                <p>No wait times, no lag. Our ultra-fast servers retrieve and present content in milliseconds.</p>
+                            </div>
+                             <div className={styles.featureCard}>
+                                <div className={styles.featureIcon}><Smartphone size={32} /></div>
+                                <h3>No App Required</h3>
+                                <p>A fully web-based tool. Access all features directly from your browser without installing risky third-party apps.</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* 6. HOW IT WORKS (3 Steps Layout mapping) */}
+                {/* 5. How-To Guide */}
                 <section className={styles.sectionAlt}>
                     <div className={styles.container}>
-                        <h2 className={styles.sectionTitle}>A Simple Guide to Seamless Use</h2>
-                        <p className={styles.sectionIntro}>Accessing highlights is as simple as 1-2-3.</p>
-                        
+                        <h2 className={styles.sectionTitle}>How to Watch Instagram Highlights Privately</h2>
                         <div className={styles.stepsBlocks}>
                             <div className={styles.stepBlock}>
                                 <div className={styles.stepNumber}>1</div>
-                                <h3>Locate the Content</h3>
-                                <p>Find the public Instagram username or the specific highlight/story link you wish to view. Ensure the account is public.</p>
+                                <h3>Copy the Username</h3>
+                                <p>Copy the Instagram username of the public account you wish to view from your browser or the IG app.</p>
                             </div>
                             <div className={styles.stepBlock}>
                                 <div className={styles.stepNumber}>2</div>
-                                <h3>Enter into Our Viewer</h3>
-                                <p>Paste the copied username or link into the designated input field at the top of our website.</p>
+                                <h3>Paste & Search</h3>
+                                <p>Paste the username into the search bar above and click the "Watch Highlights" button.</p>
                             </div>
                             <div className={styles.stepBlock}>
                                 <div className={styles.stepNumber}>3</div>
-                                <h3>View or Download</h3>
-                                <p>Click to process. Choose to view the highlights directly on the page anonymously or initiate a download for offline access.</p>
+                                <h3>Browse & Download</h3>
+                                <p>Click on any highlight cover to view its contents anonymously or save them to your device.</p>
+                            </div>
+                        </div>
+                        <div style={{ marginTop: '3rem', textAlign: 'center' }}>
+                            <div className={styles.expertTip} style={{ maxWidth: '600px', margin: '0 auto' }}>
+                                <Zap size={20} />
+                                <div><strong>Expert Tip:</strong> Use our tool for market research to analyze competitor Highlights without alerting their marketing team.</div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* 7. TECHNICAL & LIMITATIONS (Info Grid) */}
+                {/* 6. Privacy & Security Deep Dive */}
                 <section className={styles.section}>
                     <div className={styles.container}>
-                        <h2 className={styles.sectionTitle}>Understanding the Platform</h2>
-                        <p className={styles.sectionIntro}>Transparency on our tech methodology and Instagram's boundaries.</p>
-
+                        <h2 className={styles.sectionTitle}>Privacy & Security Deep Dive</h2>
                         <div className={styles.infoGrid}>
                             <div className={styles.infoCard}>
-                                <h3><Lock className={styles.iconLock} size={28} /> Data Security & Tech</h3>
-                                <p>Our platform operates on a strict zero-data retention policy. No logins required.</p>
+                                <h3><Lock className={styles.iconLock} size={28} /> Our Safety Protocol</h3>
+                                <p>We take your digital safety seriously. Our architecture is built with a zero-trust model to ensure your data stays yours.</p>
                                 <ul>
-                                    <li><strong>Proxy System:</strong> We access public data on Instagram's servers on your behalf.</li>
-                                    <li><strong>Server-side Processing:</strong> Operations are handled securely off your device.</li>
-                                    <li><strong>Malware Free:</strong> Regularly scanned to be free of intrusive ads or malware.</li>
+                                    <li>Zero logs: Your activity is never stored on our servers.</li>
+                                    <li>IP Masking: Your real IP is hidden through our anonymous proxy gateway.</li>
+                                    <li>SSL Encryption: All data transfers are protected with banking-grade encryption.</li>
                                 </ul>
                             </div>
-                            
                             <div className={styles.infoCard}>
-                                <h3><AlertCircle className={styles.iconAlert} size={28} /> Important Limitations</h3>
-                                <p>We respect Instagram's core security frameworks.</p>
+                                <h3><AlertCircle className={styles.iconAlert} size={28} /> Responsible Usage</h3>
+                                <p>Please respect creators and use our tool ethically. Private accounts are protected for a reason, and we only operate with public content.</p>
                                 <ul>
-                                    <li><strong>Private Accounts:</strong> Cannot access highlights/stories from private accounts. This is a fundamental Instagram security feature.</li>
-                                    <li><strong>No Interaction:</strong> You cannot like, comment, or share via our viewer.</li>
-                                    <li><strong>Real-time Availability:</strong> Only active content published by public accounts is accessible.</li>
+                                    <li>Respect intellectual property: Downloaded content is for personal use only.</li>
+                                    <li>No private account bypass: We prioritize Instagram's security boundaries.</li>
+                                    <li>Independent service: We are not affiliated with Meta or Instagram.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* 8. DEVICE COMPATIBILITY */}
+                {/* 7. FAQs */}
                 <section className={styles.sectionAlt}>
                     <div className={styles.container}>
-                        <div className={styles.problemSolution} style={{ alignItems: 'center' }}>
-                            <div>
-                                <h2 className={styles.sectionTitle} style={{ textAlign: 'left' }}>Universal Compatibility Across All Devices</h2>
-                                <p className={styles.sectionIntro} style={{ textAlign: 'left', marginLeft: '0', marginBottom: '2rem' }}>
-                                    Our web-based tool is optimized for responsive design ensuring a consistent experience wherever you are.
-                                </p>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                    <div className={styles.trustBadge} style={{ color: 'var(--color-white)', fontSize: '1rem' }}>
-                                        <Globe size={24} color="#00d4ff" /> Works on Desktop & Laptops (Windows, macOS)
-                                    </div>
-                                    <div className={styles.trustBadge} style={{ color: 'var(--color-white)', fontSize: '1rem' }}>
-                                        <Smartphone size={24} color="#7928ca" /> Optimized for Mobile (iOS, Android)
-                                    </div>
-                                    <div className={styles.trustBadge} style={{ color: 'var(--color-white)', fontSize: '1rem' }}>
-                                        <Search size={24} color="#ff0080" /> Supports Chrome, Safari, Firefox, Edge
-                                    </div>
-                                </div>
-                            </div>
-                            <div style={{ background: 'var(--glass-bg)', padding: '3rem', borderRadius: 'var(--radius-xl)', border: '1px solid var(--glass-border)', textAlign: 'center' }}>
-                                <h3>Ethical Usage & Legal Standing</h3>
-                                <p style={{ color: 'var(--color-text-light-muted)', lineHeight: '1.6', marginTop: '1rem' }}>
-                                    This tool is an independent third-party service not affiliated with Instagram or Meta. While viewing public content is generally permissible, ensure you respect creators' intellectual property rights. Downloaded content should be used responsibly.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 9. FAQs */}
-                <section className={styles.section}>
-                    <div className={styles.container}>
-                        <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-                        <p className={styles.sectionIntro}>Clear answers regarding functionality, privacy, and technical queries.</p>
-
+                        <h2 className={styles.sectionTitle}>FAQs: Highlights Viewer & Downloader</h2>
                         <div className={styles.faqWrapper}>
                             {faqData.map((faq, index) => (
                                 <div key={index} className={`${styles.faqItem} ${openFaq === index ? styles.faqOpen : ''}`}>
@@ -284,7 +219,7 @@ export default function HighlightsViewerContent({ header, footer }: HighlightsVi
                                         aria-expanded={openFaq === index}
                                     >
                                         <h3>{faq.q}</h3>
-                                        <span className={styles.faqIcon}></span>
+                                        <div className={styles.faqIcon}></div>
                                     </button>
                                     <div className={styles.faqAnswer}>
                                         <div className={styles.faqAnswerInner}>
@@ -297,13 +232,13 @@ export default function HighlightsViewerContent({ header, footer }: HighlightsVi
                     </div>
                 </section>
 
-                {/* 10. FINAL CTA SECTION (Exit Intent) */}
+                {/* 10. Final CTA */}
                 <section className={styles.bottomCta}>
                     <div className={styles.container}>
-                        <h2>View Highlights with Confidence</h2>
-                        <p>Empower yourself with the freedom to explore public Instagram highlights without compromise. Try our Anonymous Viewer today and discover a truly secure way to stay connected.</p>
+                        <h2>Ready to View Discreetly?</h2>
+                        <p>Join thousands of privacy-conscious users who enjoy Instagram content on their own terms. Secure, fast, and 100% anonymous.</p>
                         <button onClick={scrollToSearch} className={styles.ctaButton} style={{ marginTop: '1rem' }}>
-                            Access The Viewer Now
+                            Access The Highlights Viewer Now
                         </button>
                     </div>
                 </section>
@@ -313,16 +248,30 @@ export default function HighlightsViewerContent({ header, footer }: HighlightsVi
     );
 }
 
-/* ===== FAQ DATA (From Prompt Outline) ===== */
 const faqData = [
-    { q: 'Is this service truly anonymous?', a: 'Yes, our service is designed for complete anonymity. You do not need an Instagram account or login, and your activity is not traceable to your personal identity.' },
-    { q: 'Do I need an Instagram account to use this?', a: 'No, you do not need an Instagram account to view or download highlights using our tool. Simply input the public username or highlight link.' },
-    { q: 'Is my data safe?', a: 'Absolutely. We do not collect, store, or request any personal data, login credentials, or browsing history. All connections are secured with SSL/HTTPS encryption.' },
-    { q: 'Can I view highlights from private accounts?', a: 'No, our tool can only access highlights and stories from public Instagram accounts due to Instagram\'s privacy settings. Private account content is not accessible.' },
-    { q: 'Is it legal to download Instagram highlights?', a: 'Viewing publicly available content is generally permissible. However, downloading and repurposing content may have copyright implications. Always respect intellectual property rights and use downloaded content responsibly.' },
-    { q: 'What if the tool isn\'t working?', a: 'Ensure the Instagram account is public, the username/link is correct, and your internet is stable. Check our Live Service Status. You can also try clearing your browser cache.' },
-    { q: 'Are there any hidden costs or subscriptions?', a: 'No, our Anonymous Instagram Highlights Viewer is completely free to use, with no hidden costs, subscriptions, or premium features requiring payment.' },
-    { q: 'Can I download stories as well as highlights?', a: 'Yes, if stories are currently active and from a public account, you can view and download them using our tool.' },
-    { q: 'What devices and browsers are compatible?', a: 'Our web-based tool is compatible with all major devices (desktop, mobile, tablet) and browsers (Chrome, Firefox, Safari, Edge, etc.) that support modern web standards.' },
-    { q: 'How often is the tool updated to Instagram changes?', a: 'We strive to keep our tool updated regularly to ensure compatibility with Instagram\'s platform changes, maintaining consistent functionality and reliability.' }
+    { q: 'Is it truly anonymous?', a: 'Yes. Our server fetches the content for you, so your personal account and IP address never interact with Instagram\'s servers directly. The owner sees 0 trace of you.' },
+    { q: 'Do I need to sign in with my IG account?', a: 'Never. We will never ask for your password or account details. Our tool is 100% web-based and requires no login.' },
+    { q: 'Can I view highlights from private accounts?', a: 'No. Our tool respects Instagram’s privacy settings and only works with publicly available account content.' },
+    { q: 'Is there a limit on how many highlights I can watch?', a: 'No, you can enjoy unlimited anonymous viewing and downloading with no daily or monthly caps.' },
+    { q: 'What is the quality of the downloaded content?', a: 'All Highlights are downloaded in their original High-Definition (HD) quality as uploaded to the platform.' }
 ];
+
+const faqSchemaItem = faqData.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+}));
+
+import { 
+    ShieldCheck, 
+    EyeOff, 
+    Lock, 
+    Search,
+    Zap,
+    Download,
+    Cpu,
+    Smartphone,
+    Globe,
+    AlertCircle,
+    CheckCircle2
+} from 'lucide-react';
