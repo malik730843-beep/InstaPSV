@@ -1,3 +1,5 @@
+'use client';
+import React, { useState } from 'react';
 import InstagramSearch from '@/components/instagram/InstagramSearch';
 import MediaTabs from '@/components/ui/MediaTabs';
 import dynamic from 'next/dynamic';
