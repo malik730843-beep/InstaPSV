@@ -178,6 +178,7 @@ export default async function RootLayout({
         {/* SoftwareApplication Schema */}
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -192,6 +193,7 @@ export default async function RootLayout({
         {/* BreadcrumbList Schema */}
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",

@@ -45,14 +45,24 @@ export default function AdminDashboard() {
                 fetch('/api/admin/posts'),
                 fetch('/api/admin/pages'),
                 fetch('/api/admin/categories'),
-                fetch('/api/admin/analytics').catch(() => ({ json: () => ({ stats: { todaySearches: 0, totalSearches: 0 } }) }))
+                fetch('/api/admin/analytics').catch(() => ({ ok: false }))
             ]);
 
-            const postsData = await postsRes.json();
-            const pagesData = await pagesRes.json();
-            const categoriesData = await categoriesRes.json();
-            const analyticsData = await analyticsRes.json();
-
+            // Helper to safely parse JSON
+            const safeJson = async (res: Response | { ok: boolean }, fallback: any) => {
+                if (!('ok' in res) || !res.ok) return fallback;
+                try {
+                    return await (res as Response).json();
+                } catch (e) {
+                    return fallback;
+                }
+            };
+            
+            const postsData = await safeJson(postsRes, { posts: [] });
+            const pagesData = await safeJson(pagesRes, { pages: [] });
+            const categoriesData = await safeJson(categoriesRes, { categories: [] });
+            const analyticsData = await safeJson(analyticsRes, { stats: { todaySearches: 0, totalSearches: 0 } });
+            
             const posts = postsData.posts || [];
             const pages = pagesData.pages || [];
             const categories = categoriesData.categories || [];
@@ -148,40 +158,6 @@ export default function AdminDashboard() {
                             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
                         </svg>
                     </div>
-                </div>
-            </div>
-
-            {/* Core Tools Quick Access */}
-            <div className="admin-card" style={{ marginBottom: '32px', padding: '24px' }}>
-                <div className="admin-card-header" style={{ marginBottom: '20px' }}>
-                    <h2 className="admin-card-title">🚀 Core Tools Quick Access</h2>
-                    <p className="text-muted" style={{ fontSize: '0.85rem' }}>Direct links to your live tools</p>
-                </div>
-                <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-                    gap: '16px' 
-                }}>
-                    <Link href="/anonymous-instagram-viewer" className="action-btn" style={{ padding: '16px', background: 'var(--admin-bg-hover)' }}>
-                        <Eye size={20} style={{ color: '#A855F7' }} />
-                        <span style={{ fontWeight: '600' }}>Instagram Viewer</span>
-                    </Link>
-                    <Link href="/instagram-highlights-viewer" className="action-btn" style={{ padding: '16px', background: 'var(--admin-bg-hover)' }}>
-                        <Layers size={20} style={{ color: '#EC4899' }} />
-                        <span style={{ fontWeight: '600' }}>Highlights Viewer</span>
-                    </Link>
-                    <Link href="/instagram-profile-viewer" className="action-btn" style={{ padding: '16px', background: 'var(--admin-bg-hover)' }}>
-                        <UserSquare size={20} style={{ color: '#3B82F6' }} />
-                        <span style={{ fontWeight: '600' }}>Profile Viewer</span>
-                    </Link>
-                    <Link href="/anonymous-instagram-downloader" className="action-btn" style={{ padding: '16px', background: 'var(--admin-bg-hover)' }}>
-                        <Download size={20} style={{ color: '#10B981' }} />
-                        <span style={{ fontWeight: '600' }}>Downloader</span>
-                    </Link>
-                    <Link href="/instagram-hashtag-generator" className="action-btn" style={{ padding: '16px', background: 'var(--admin-bg-hover)' }}>
-                        <Hash size={20} style={{ color: '#F59E0B' }} />
-                        <span style={{ fontWeight: '600' }}>Hashtag Gen</span>
-                    </Link>
                 </div>
             </div>
 

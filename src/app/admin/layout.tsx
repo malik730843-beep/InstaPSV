@@ -65,8 +65,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     if (loading) {
         return (
-            <div className="admin-loading">
-                <div className="admin-spinner"></div>
+            <div className="admin-loading" suppressHydrationWarning>
+                <div className="admin-spinner" suppressHydrationWarning></div>
                 <p>Loading...</p>
             </div>
         );
@@ -81,7 +81,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     };
 
     return (
-        <div className="admin-container">
+        <div className="admin-container" suppressHydrationWarning>
             {/* Mobile Menu Overlay */}
             {mobileMenuOpen && (
                 <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)} />
