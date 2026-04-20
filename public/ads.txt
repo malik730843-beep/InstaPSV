@@ -939,3 +939,8 @@ admanmedia.com, 2063, RESELLER
 datawrkz.com, 2639, DIRECT
 appnexus.com, 2741, RESELLER, f5ab79cb980f11d1
 xandr.com, 2741, RESELLER, f5ab79cb980f11d1
+ogury.com,f00b15ea-6210-4e34-bb76-384d7003d8e8,DIRECT
+smartadserver.com,5589,RESELLER,060d053dcf45cbf3
+sharethrough.com,5589,RESELLER,d53b998a7bd4ecd2
+pubmatic.com,162412,RESELLER,5d62403b186f2ace
+rubiconproject.com,24434,RESELLER,0bfd66d529a55807
