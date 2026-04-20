@@ -175,56 +175,72 @@ export default async function DynamicPage({
     }
 
     // ========== 2. Try Blog Post ==========
+    let postResult;
     try {
-        const { post, error, recentSlugs } = await getPost(slug, isPreview);
-        const t = await getTranslations('blog');
-        const locale = await getLocale();
+        postResult = await getPost(slug, isPreview);
+    } catch (err: any) {
+        console.error("DB FETCH ERROR for slug:", slug, err);
+        return (
+            <div style={{ padding: '40px', background: '#fff', color: '#000', fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
+                <h1>Critical Server Error (Caught During Fetch)</h1>
+                <p>Message: {err.message}</p>
+                <p>Stack: {err.stack}</p>
+                <hr />
+                <p>Please share this with the developer to fix the database connection.</p>
+            </div>
+        );
+    }
 
-        if (!post) {
-            if (isPreview) {
-                const hasServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
-                return (
-                    <>
-                        <Header alwaysDark />
-                        <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
-                            <div style={{ maxWidth: '600px', width: '100%', padding: '40px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-                                <h1 style={{ color: '#ef4444', marginBottom: '16px', fontSize: '24px' }}>Preview Not Found</h1>
-                                <p style={{ color: '#374151', fontSize: '16px', lineHeight: '1.6' }}>
-                                    We couldn't find a draft or published post with the slug: <br />
-                                    <strong style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>{slug}</strong>
-                                </p>
+    const { post, error, recentSlugs } = postResult;
+    const t = await getTranslations('blog');
+    const locale = await getLocale();
 
-                                <div style={{ marginTop: '24px', padding: '16px', borderRadius: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '13px' }}>
-                                    <div style={{ marginBottom: '8px' }}><strong>Debug Status:</strong></div>
-                                    <div>URL Preview Mode: <span style={{ color: isPreview ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{String(isPreview)}</span></div>
-                                    <div>Service Role Key: <span style={{ color: hasServiceKey ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{hasServiceKey ? 'Detected' : 'MISSING'}</span></div>
-                                    {error && <div style={{ marginTop: '8px', color: '#991b1b' }}>DB Error: {error.message}</div>}
+    if (!post) {
+        console.log(`[Slug-Page] No post found for slug: "${slug}" (Preview: ${isPreview})`);
+        if (isPreview) {
+            const hasServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
+            return (
+                <>
+                    <Header alwaysDark />
+                    <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
+                        <div style={{ maxWidth: '600px', width: '100%', padding: '40px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+                            <h1 style={{ color: '#ef4444', marginBottom: '16px', fontSize: '24px' }}>Preview Not Found</h1>
+                            <p style={{ color: '#374151', fontSize: '16px', lineHeight: '1.6' }}>
+                                We couldn't find a draft or published post with the slug: <br />
+                                <strong style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>{slug}</strong>
+                            </p>
 
-                                    {recentSlugs && recentSlugs.length > 0 && (
-                                        <div style={{ marginTop: '12px', borderTop: '1px solid #e2e8f0', paddingTop: '12px' }}>
-                                            <div style={{ marginBottom: '4px' }}><strong>Last 5 Slugs in DB:</strong></div>
-                                            {recentSlugs.map((s, i) => (
-                                                <div key={i} style={{ color: '#475569', fontSize: '12px' }}>{s}</div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
+                            <div style={{ marginTop: '24px', padding: '16px', borderRadius: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '13px' }}>
+                                <div style={{ marginBottom: '8px' }}><strong>Debug Status:</strong></div>
+                                <div>URL Preview Mode: <span style={{ color: isPreview ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{String(isPreview)}</span></div>
+                                <div>Service Role Key: <span style={{ color: hasServiceKey ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{hasServiceKey ? 'Detected' : 'MISSING'}</span></div>
+                                {error && <div style={{ marginTop: '8px', color: '#991b1b' }}>DB Error: {error.message}</div>}
 
-                                <a
-                                    href={`/${slug}?preview=true&t=${Date.now()}`}
-                                    style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}
-                                >
-                                    Refresh Preview
-                                </a>
+                                {recentSlugs && recentSlugs.length > 0 && (
+                                    <div style={{ marginTop: '12px', borderTop: '1px solid #e2e8f0', paddingTop: '12px' }}>
+                                        <div style={{ marginBottom: '4px' }}><strong>Last 5 Slugs in DB:</strong></div>
+                                        {recentSlugs.map((s, i) => (
+                                            <div key={i} style={{ color: '#475569', fontSize: '12px' }}>{s}</div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
+
+                            <a
+                                href={`/${slug}?preview=true&t=${Date.now()}`}
+                                style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}
+                            >
+                                Refresh Preview
+                            </a>
                         </div>
-                        <Footer />
-                    </>
-                );
-            }
-            // Neither a page nor a post — 404
-            notFound();
+                    </div>
+                    <Footer />
+                </>
+            );
         }
+        // Neither a page nor a post — 404
+        notFound();
+    }
 
         // Render blog post
         const categoryName = (await getCategoryName(post.categories?.[0])) || t('defaultCategory');
