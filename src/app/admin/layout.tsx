@@ -8,8 +8,7 @@ import Image from 'next/image';
 import { 
     LayoutDashboard, Users, FileText, Files, FolderOpen, 
     Settings, Search, Megaphone, Map, ShieldCheck, Database,
-    ExternalLink, LogOut, Menu, ChevronLeft, ChevronRight, CreditCard,
-    Eye, Layers, UserSquare, Download, Hash
+    ExternalLink, LogOut, Menu, ChevronLeft, ChevronRight, CreditCard
 } from 'lucide-react';
 import './admin.css';
 

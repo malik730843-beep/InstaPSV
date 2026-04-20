@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FileText, Eye, Layers, UserSquare, Download, Hash, Zap } from 'lucide-react';
+import { FileText } from 'lucide-react';
 
 interface DashboardStats {
     totalPosts: number;
