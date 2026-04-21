@@ -163,6 +163,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 {/* Top Header */}
                 <header className="admin-header">
                     <div className="header-left">
+                        <button 
+                            className="sidebar-toggle"
+                            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                            title={sidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+                        >
+                            {sidebarCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+                        </button>
                         <nav className="breadcrumb">
                             {getBreadcrumbs().map((crumb: {name: string, href: string}, i: number) => (
                                 <span key={crumb.href}>

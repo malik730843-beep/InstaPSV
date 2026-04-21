@@ -14,38 +14,64 @@ export default function TableOfContents() {
     const [activeId, setActiveId] = useState<string>('');
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('.blog-post-body h2, .blog-post-body h3'))
-            .map((elem) => {
-                const text = elem.textContent || '';
-                // Create an ID from the text if it doesn't have one
-                if (!elem.id) {
-                    elem.id = text
+        // Use a small delay to ensure dangerouslySetInnerHTML has populated the DOM
+        const timer = setTimeout(() => {
+            const usedIds = new Set<string>();
+            const contentBody = document.querySelector('.blog-post-body');
+            
+            if (!contentBody) return;
+
+            const elements = Array.from(contentBody.querySelectorAll('h2, h3'))
+                .map((elem) => {
+                    const text = (elem.textContent || '').trim();
+                    if (!text) return null;
+
+                    let baseId = elem.id || text
                         .toLowerCase()
                         .replace(/[^\w\s-]/g, '')
                         .replace(/\s+/g, '-');
-                }
-                return {
-                    id: elem.id,
-                    text: text,
-                    level: Number(elem.tagName.replace('H', '')),
-                };
-            });
-        setHeadings(elements);
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveId(entry.target.id);
+                    
+                    let id = baseId;
+                    let counter = 1;
+                    while (usedIds.has(id)) {
+                        id = `${baseId}-${counter}`;
+                        counter++;
                     }
+                    
+                    usedIds.add(id);
+                    elem.id = id;
+
+                    return {
+                        id: id,
+                        text: text,
+                        level: Number(elem.tagName.replace('H', '')),
+                    };
+                }).filter(Boolean) as ToCItem[];
+
+            setHeadings(elements);
+
+            if (elements.length > 0) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                setActiveId(entry.target.id);
+                            }
+                        });
+                    },
+                    { rootMargin: '-10% 0% -80% 0%' }
+                );
+
+                elements.forEach((h) => {
+                    const el = document.getElementById(h.id);
+                    if (el) observer.observe(el);
                 });
-            },
-            { rootMargin: '-10% 0% -80% 0%' }
-        );
 
-        document.querySelectorAll('.blog-post-body h2, .blog-post-body h3').forEach((elem) => observer.observe(elem));
+                return () => observer.disconnect();
+            }
+        }, 300); // 300ms delay for content stabilization
 
-        return () => observer.disconnect();
+        return () => clearTimeout(timer);
     }, []);
 
     if (headings.length === 0) return null;
