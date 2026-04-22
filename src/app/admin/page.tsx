@@ -3,6 +3,12 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FileText } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 interface DashboardStats {
     totalPosts: number;
@@ -12,12 +18,7 @@ interface DashboardStats {
     draftPosts: number;
 }
 
-interface SearchAnalytics {
-    stats: {
-        todaySearches: number;
-        totalSearches: number;
-    };
-}
+
 
 export default function AdminDashboard() {
     const [stats, setStats] = useState<DashboardStats>({
@@ -27,9 +28,7 @@ export default function AdminDashboard() {
         publishedPosts: 0,
         draftPosts: 0,
     });
-    const [searchAnalytics, setSearchAnalytics] = useState<SearchAnalytics>({
-        stats: { todaySearches: 0, totalSearches: 0 }
-    });
+
     const [recentPosts, setRecentPosts] = useState<any[]>([]);
 
     const [loading, setLoading] = useState(true);
@@ -40,12 +39,17 @@ export default function AdminDashboard() {
 
     const loadDashboardData = async () => {
         try {
-            // Load posts, pages, categories, and analytics (parallel)
-            const [postsRes, pagesRes, categoriesRes, analyticsRes] = await Promise.all([
-                fetch('/api/admin/posts'),
-                fetch('/api/admin/pages'),
-                fetch('/api/admin/categories'),
-                fetch('/api/admin/analytics').catch(() => ({ ok: false }))
+            // Get session for authenticated requests
+            const { data: { session } } = await supabase.auth.getSession();
+            const headers = {
+                'Authorization': `Bearer ${session?.access_token}`
+            };
+
+            // Load posts, pages, categories (parallel)
+            const [postsRes, pagesRes, categoriesRes] = await Promise.all([
+                fetch('/api/admin/posts', { headers }),
+                fetch('/api/admin/pages', { headers }), // Optional but good practice
+                fetch('/api/admin/categories', { headers }) // Optional but good practice
             ]);
 
             // Helper to safely parse JSON
@@ -61,7 +65,6 @@ export default function AdminDashboard() {
             const postsData = await safeJson(postsRes, { posts: [] });
             const pagesData = await safeJson(pagesRes, { pages: [] });
             const categoriesData = await safeJson(categoriesRes, { categories: [] });
-            const analyticsData = await safeJson(analyticsRes, { stats: { todaySearches: 0, totalSearches: 0 } });
             
             const posts = postsData.posts || [];
             const pages = pagesData.pages || [];
@@ -75,7 +78,6 @@ export default function AdminDashboard() {
                 draftPosts: posts.filter((p: any) => p.status === 'draft').length,
             });
 
-            setSearchAnalytics(analyticsData);
             setRecentPosts(posts.slice(0, 5));
         } catch (error) {
             console.error('Failed to load dashboard data:', error);
@@ -161,27 +163,7 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            {/* Search Analytics Overview */}
-            <div className="stats-grid" style={{ marginBottom: '32px' }}>
-                <div className="stat-card">
-                    <div className="stat-content">
-                        <div className="stat-value">{searchAnalytics.stats.todaySearches}</div>
-                        <div className="stat-label">Searches Today</div>
-                    </div>
-                    <div className="stat-icon-wrapper green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-content">
-                        <div className="stat-value">{searchAnalytics.stats.totalSearches}</div>
-                        <div className="stat-label">Total Searches</div>
-                    </div>
-                    <div className="stat-icon-wrapper blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    </div>
-                </div>
-            </div>
+
             {/* Content Layout */}
             <div className="dashboard-grid">
 
