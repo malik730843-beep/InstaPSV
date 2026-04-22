@@ -26,7 +26,10 @@ export async function verifyAdmin(request: Request) {
     // STRICT SECURITY: Only allow specific email
     // STRICT SECURITY: Only allow specific email
     const allowedEmails = ['malik730843@gmail.com'];
-    if (ADMIN_EMAIL) allowedEmails.push(ADMIN_EMAIL);
+    if (ADMIN_EMAIL) {
+        const envEmails = ADMIN_EMAIL.split(',').map(e => e.trim());
+        allowedEmails.push(...envEmails);
+    }
 
     if (!allowedEmails.includes(user.email || '')) {
         console.warn(`Unauthorized access attempt by ${user.email}`);
