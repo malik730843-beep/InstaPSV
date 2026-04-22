@@ -190,7 +190,7 @@ export default function RichEditor({ content, onChange, placeholder = 'Start wri
     useEffect(() => {
         if (editor && content !== editor.getHTML()) {
             const { from, to } = editor.state.selection;
-            editor.commands.setContent(content || '', false);
+            editor.commands.setContent(content || '', { emitUpdate: false });
             try { editor.commands.setTextSelection({ from, to }); } catch {}
         }
     }, [content]);
@@ -200,8 +200,8 @@ export default function RichEditor({ content, onChange, placeholder = 'Start wri
         const prev = editor.getAttributes('link').href || '';
         const url = window.prompt('Enter URL:', prev);
         if (url === null) return;
-        if (url === '') { editor.chain().focus().extendMarkToWholeWord().unsetLink().run(); return; }
-        editor.chain().focus().extendMarkToWholeWord().setLink({ href: url }).run();
+        if (url === '') { editor.chain().focus().unsetLink().run(); return; }
+        editor.chain().focus().setLink({ href: url }).run();
     }, [editor]);
 
     const addImage = useCallback(() => {
@@ -224,7 +224,7 @@ export default function RichEditor({ content, onChange, placeholder = 'Start wri
     return (
         <div style={{ border: '1px solid #e5e7eb', borderRadius: '12px', overflow: 'hidden', background: '#fff' }}>
             {/* Bubble Menu — appears on text selection */}
-            <BubbleMenu editor={editor} tippyOptions={{ duration: 150 }}>
+            <BubbleMenu editor={editor}>
                 <div style={{
                     display: 'flex', gap: '4px', background: '#1f2937', padding: '6px 8px',
                     borderRadius: '8px', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
