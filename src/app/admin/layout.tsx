@@ -135,9 +135,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </nav>
 
                 <div className="sidebar-footer">
-                    {!sidebarCollapsed && (
-                        <p className="user-email">{user?.email}</p>
-                    )}
+
                     <Link
                         href="/"
                         target="_blank"
