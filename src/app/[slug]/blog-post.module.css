@@ -140,21 +140,21 @@
    Targets .blog-post-body which wraps the HTML
    ============================================= */
 
-/* Base */
 :global(.blog-post-body) {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 17px;
-    color: #374151;
+    font-weight: 400;
+    color: #555555;
     line-height: 1.8;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 
-/* Paragraphs */
 :global(.blog-post-body p) {
     margin-bottom: 1.5rem;
-    color: #374151;
+    color: #555555;
     font-size: 17px;
+    font-weight: 400;
     line-height: 1.8;
 }
 
@@ -211,7 +211,7 @@
 :global(.blog-post-body ol) {
     padding-left: 1.75rem;
     margin-bottom: 1.5rem;
-    color: #374151;
+    color: #555555;
 }
 
 :global(.blog-post-body ul) { list-style-type: disc; }
@@ -220,9 +220,10 @@
 
 :global(.blog-post-body li) {
     font-size: 17px;
+    font-weight: 400;
     line-height: 1.7;
     margin-bottom: 0.6rem;
-    color: #374151;
+    color: #555555;
 }
 
 :global(.blog-post-body li strong) {
