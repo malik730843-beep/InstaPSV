@@ -42,7 +42,7 @@ body {
 
 /* Sidebar */
 .admin-sidebar {
-    width: 240px;
+    width: 220px;
     background: var(--admin-sidebar);
     color: #fff;
     display: flex;
@@ -152,7 +152,7 @@ body {
 
 /* Main Content */
 .admin-main {
-    margin-left: 240px;
+    margin-left: 220px;
     padding: 24px 32px; /* Slightly reduced top padding */
     transition: var(--admin-transition);
     min-height: 100vh;
@@ -1413,7 +1413,7 @@ body {
    ======================================== */
 .post-editor-grid {
     display: grid;
-    grid-template-columns: 1fr minmax(280px, 300px);
+    grid-template-columns: minmax(0, 1fr) 280px;
     gap: 32px;
     align-items: start;
     width: 100%;
