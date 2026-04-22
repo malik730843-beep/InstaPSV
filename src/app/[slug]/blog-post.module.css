@@ -4,7 +4,7 @@
 
 .main {
     min-height: 100vh;
-    background: #f5f7fa;
+    background: #fafafa;
     padding-bottom: 100px;
     padding-top: 110px;
 }
@@ -13,7 +13,7 @@
     max-width: 860px;
     margin: 0 auto;
     padding: 0 24px;
-    background: #f5f7fa; /* Match page background */
+    background: #fafafa; /* Match page background */
 }
 
 /* =============================================
