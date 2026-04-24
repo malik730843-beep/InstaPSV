@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import styles from './InstagramSearch.module.css';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Script from 'next/script';
 import LoginModal from '@/components/ui/LoginModal';
 import { createClient } from '@supabase/supabase-js';
 
@@ -287,6 +288,13 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                         </div>
                     </div>
                 )}
+            </div>
+
+            {/* Ad Tag Below Search Bar */}
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem 0' }}>
+                <Script id="nap5k-searchbar-ad" strategy="afterInteractive">
+                    {`(function(s){s.dataset.zone='10919820',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
+                </Script>
             </div>
 
             {error && (
