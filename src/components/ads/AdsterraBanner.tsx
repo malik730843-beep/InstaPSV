@@ -2,12 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 
-export default function MonetagAd() {
+export default function AdsterraBanner() {
     const bannerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!bannerRef.current) return;
-        // Check if ad is already injected to prevent duplicates in dev mode
         if (bannerRef.current.childElementCount > 0) return;
 
         const conf = document.createElement('script');

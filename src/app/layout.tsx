@@ -207,8 +207,6 @@ export default async function RootLayout({
             })
           }}
         />
-        {/* Monetag Script */}
-        <script src="https://quge5.com/88/tag.min.js" data-zone="233107" async data-cfasync="false"></script>
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>

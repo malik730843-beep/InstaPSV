@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import MonetagAd from '../ads/MonetagAd';
+import AdsterraBanner from '../ads/AdsterraBanner';
 
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
     ssr: false,
@@ -56,7 +56,7 @@ export default function Hero() {
                         </svg>
                     </Link>
                     
-                    <MonetagAd />
+                    <AdsterraBanner />
                 </div>
 
                 {/* Stats */}

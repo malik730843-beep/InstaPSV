@@ -650,6 +650,30 @@
     width: 100%;
 }
 
+.profileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.sidebarAd {
+    display: none;
+    flex-shrink: 0;
+    width: 160px; /* Standard sidebar ad width */
+    position: sticky;
+    top: 100px;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .sidebarAd {
+        display: block;
+    }
+}
+
 /* ===== Mobile Responsive ===== */
 @media (max-width: 768px) {
     .wrapper {
