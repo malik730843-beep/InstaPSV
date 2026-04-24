@@ -11,6 +11,7 @@ import ComparisonTable from '@/components/sections/ComparisonTable';
 import CTASection from '@/components/sections/CTASection';
 import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
 import FAQSchema from '@/components/seo/FAQSchema';
+import MonetagAd from '@/components/ads/MonetagAd';
 import dynamic from 'next/dynamic';
 
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
@@ -24,13 +25,21 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <MonetagAd />
         <SecurityComparison />
+        <MonetagAd />
         <Features />
+        <MonetagAd />
         <HowItWorks />
+        <MonetagAd />
         <ComparisonTable />
+        <MonetagAd />
         <UseCases />
+        <MonetagAd />
         <FAQ />
+        <MonetagAd />
         <Testimonials />
+        <MonetagAd />
         <FeatureSuggestion />
       </main>
       <Footer />
