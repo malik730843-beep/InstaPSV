@@ -290,13 +290,6 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                 )}
             </div>
 
-            {/* Ad Tag Below Search Bar */}
-            <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem 0' }}>
-                <Script id="nap5k-searchbar-ad" strategy="afterInteractive">
-                    {`(function(s){s.dataset.zone='10919820',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
-                </Script>
-            </div>
-
             {error && (
                 <div className={styles.errorCard}>
                     <div className={styles.errorIcon}>⚠️</div>
