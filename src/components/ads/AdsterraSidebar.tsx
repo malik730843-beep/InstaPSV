@@ -19,7 +19,6 @@ export default function AdsterraSidebar() {
         }
     }, []);
 
-    // Return an empty div because this script appends to the document body natively
-    // We still render a spacer div to take up the sidebar layout space if needed
-    return <div style={{ width: '100%', height: '100%', minHeight: '600px' }}></div>;
+    // Return null because this script appends to the document body natively
+    return null;
 }
