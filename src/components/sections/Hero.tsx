@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import AdsterraSidebar from '../ads/AdsterraSidebar';
 
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
     ssr: false,
@@ -57,12 +58,8 @@ export default function Hero() {
                 </div>
 
                 {/* Monetag Ad */}
-                <div style={{ marginTop: '2rem', minHeight: '90px', display: 'flex', justifyContent: 'center' }}>
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `(function(s){s.dataset.zone='10919820',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
-                        }}
-                    />
+                <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                    <AdsterraSidebar />
                 </div>
 
                 {/* Stats */}
