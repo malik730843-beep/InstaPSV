@@ -299,8 +299,7 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
             )}
 
             {profile && (
-                    {/* Main Results Layout */}
-                    <div className={styles.profileBox} ref={resultsRef}>
+                <div className={styles.profileBox} ref={resultsRef}>
                         {/* Full Width Hero Area (Header + Highlights) */}
                         <div className={styles.profileHeader}>
                             <div
