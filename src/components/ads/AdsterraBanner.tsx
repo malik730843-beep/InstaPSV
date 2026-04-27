@@ -15,14 +15,14 @@ export default function AdsterraBanner() {
                     <body>
                         <script type="text/javascript">
                             atOptions = {
-                                'key' : '06d7516f56b7c747ae02a0028f55071f',
+                                'key' : '593354ffe4f9cbe99ac9c6ba4c93023d',
                                 'format' : 'iframe',
                                 'height' : 90,
                                 'width' : 728,
                                 'params' : {}
                             };
                         </script>
-                        <script type="text/javascript" src="https://www.highperformanceformat.com/06d7516f56b7c747ae02a0028f55071f/invoke.js"></script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/593354ffe4f9cbe99ac9c6ba4c93023d/invoke.js"></script>
                     </body>
                     </html>
                 `}
