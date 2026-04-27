@@ -7,6 +7,7 @@ import styles from './Viewer.module.css';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { Shield, Lock, EyeOff, Info } from 'lucide-react';
+import AdsterraBanner from '@/components/ads/AdsterraBanner';
 
 const ParticleBackground = dynamic(() => import('@/components/ui/ParticleBackground'), {
     ssr: false,
@@ -53,6 +54,9 @@ export default function ViewerContent({ header, footer }: ViewerContentProps) {
                     <div className={styles.searchWrapper}>
                         <MediaTabs />
                         <InstagramSearch />
+                        <div style={{ marginTop: '2rem' }}>
+                            <AdsterraBanner />
+                        </div>
                     </div>
 
                     {/* Anonymity Level Check - Semantic Optimization */}
@@ -110,6 +114,9 @@ export default function ViewerContent({ header, footer }: ViewerContentProps) {
                                     </div>
                                 </div>
                             </article>
+                        </div>
+                        <div style={{ marginTop: '2rem' }}>
+                            <AdsterraBanner />
                         </div>
                     </div>
                 </section>
