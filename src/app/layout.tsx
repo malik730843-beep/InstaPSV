@@ -207,6 +207,7 @@ export default async function RootLayout({
             })
           }}
         />
+        <script src="https://quge5.com/88/tag.min.js" data-zone="234128" async data-cfasync="false"></script>
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
