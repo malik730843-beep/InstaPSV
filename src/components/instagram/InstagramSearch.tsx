@@ -6,7 +6,6 @@ import styles from './InstagramSearch.module.css';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Script from 'next/script';
-import AdsterraSidebar from '../ads/AdsterraSidebar';
 import LoginModal from '@/components/ui/LoginModal';
 import { createClient } from '@supabase/supabase-js';
 
@@ -300,14 +299,8 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
             )}
 
             {profile && (
-                <div className={styles.profileContainer}>
-                    {/* Left Ad Sidebar */}
-                    <div className={styles.sidebarAd}>
-                        <AdsterraSidebar />
-                    </div>
-
                     {/* Main Results Layout */}
-                    <div className={styles.profileBox} ref={resultsRef} style={{ flex: '1', maxWidth: '100%', minWidth: 0 }}>
+                    <div className={styles.profileBox} ref={resultsRef}>
                         {/* Full Width Hero Area (Header + Highlights) */}
                         <div className={styles.profileHeader}>
                             <div
@@ -551,11 +544,6 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                                 </div>
                             )}
                         </div>
-                    </div>
-
-                    {/* Right Ad Sidebar */}
-                    <div className={styles.sidebarAd}>
-                        <AdsterraSidebar />
                     </div>
                 </div>
             )}
