@@ -37,7 +37,7 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
 
     // Credit System State
     const [userEmail, setUserEmail] = useState<string | null>(null);
-    const [creditsRemaining, setCreditsRemaining] = useState<number>(2);
+    const [creditsRemaining, setCreditsRemaining] = useState<number>(6);
     const [userPlan, setUserPlan] = useState<string>('free');
     const [authChecked, setAuthChecked] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -68,8 +68,8 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                 if (localStr) {
                     setCreditsRemaining(parseInt(localStr, 10));
                 } else {
-                    setCreditsRemaining(2);
-                    localStorage.setItem('insta_free_credits', '2');
+                    setCreditsRemaining(6);
+                    localStorage.setItem('insta_free_credits', '6');
                 }
                 setUserPlan('free');
             }

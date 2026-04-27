@@ -13,7 +13,7 @@ export async function GET(request: Request) {
 
     if (!email) {
         // Anonymous user — use localStorage credits on client side
-        return NextResponse.json({ plan: 'free', credits_remaining: 2, credits_total: 2 });
+        return NextResponse.json({ plan: 'free', credits_remaining: 6, credits_total: 6 });
     }
 
     const { data, error } = await supabase
@@ -26,7 +26,7 @@ export async function GET(request: Request) {
         // New user — create entry with free plan
         const { data: newUser, error: createError } = await supabase
             .from('user_subscriptions')
-            .insert({ email, plan: 'free', credits_remaining: 2, credits_total: 2 })
+            .insert({ email, plan: 'free', credits_remaining: 6, credits_total: 6 })
             .select()
             .single();
 
@@ -44,7 +44,7 @@ export async function GET(request: Request) {
             // Plan expired — revert to free with 0 credits
             const { data: updated } = await supabase
                 .from('user_subscriptions')
-                .update({ plan: 'free', credits_remaining: 0, credits_total: 2, plan_expires_at: null, updated_at: new Date().toISOString() })
+                .update({ plan: 'free', credits_remaining: 0, credits_total: 6, plan_expires_at: null, updated_at: new Date().toISOString() })
                 .eq('email', email)
                 .select()
                 .single();
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
         if (now > expires) {
             await supabase
                 .from('user_subscriptions')
-                .update({ plan: 'free', credits_remaining: 0, credits_total: 2, plan_expires_at: null, updated_at: new Date().toISOString() })
+                .update({ plan: 'free', credits_remaining: 0, credits_total: 6, plan_expires_at: null, updated_at: new Date().toISOString() })
                 .eq('email', email);
             return NextResponse.json({ error: 'Plan expired. Please upgrade.', credits_remaining: 0 }, { status: 402 });
         }
