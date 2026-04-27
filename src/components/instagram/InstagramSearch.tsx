@@ -544,7 +544,6 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                             )}
                         </div>
                     </div>
-                </div>
             )}
 
             {selectedMedia && (
