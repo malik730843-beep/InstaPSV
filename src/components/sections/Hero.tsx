@@ -56,6 +56,15 @@ export default function Hero() {
                     </Link>
                 </div>
 
+                {/* Monetag Ad */}
+                <div style={{ marginTop: '2rem', minHeight: '90px', display: 'flex', justifyContent: 'center' }}>
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `(function(s){s.dataset.zone='10919820',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
+                        }}
+                    />
+                </div>
+
                 {/* Stats */}
                 <div className={styles.stats}>
                     <div className={styles.stat}>
