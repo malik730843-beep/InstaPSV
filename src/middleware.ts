@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
     const country = request.headers.get('x-vercel-ip-country');
     
     if (country && BLOCKED_COUNTRIES.includes(country)) {
-        return new NextResponse(
+        return new Response(
             `
             <!DOCTYPE html>
             <html>
