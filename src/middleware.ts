@@ -10,7 +10,7 @@ export const config = {
 };
 
 // List of blocked country codes (ISO 3166-1 alpha-2)
-const BLOCKED_COUNTRIES = ['PK', 'IN', 'SA', 'IL'];
+const BLOCKED_COUNTRIES = ['IN', 'SA', 'IL'];
 
 export async function middleware(request: NextRequest) {
     // 1. Country Blocking
