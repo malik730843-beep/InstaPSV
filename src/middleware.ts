@@ -10,7 +10,7 @@ export const config = {
 };
 
 // List of blocked country codes (ISO 3166-1 alpha-2)
-const BLOCKED_COUNTRIES = ['PK', 'IN'];
+const BLOCKED_COUNTRIES = ['PK', 'IN', 'SA', 'IL'];
 
 export async function middleware(request: NextRequest) {
     // 1. Country Blocking
@@ -27,13 +27,14 @@ export async function middleware(request: NextRequest) {
                     <style>
                         body { background: #0a0a1a; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
                         .container { text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
-                        h1 { color: #ff0080; }
+                        h1 { color: #ff0080; margin-bottom: 1rem; }
+                        p { font-size: 1.1rem; line-height: 1.5; opacity: 0.9; }
                     </style>
                 </head>
                 <body>
                     <div class="container">
                         <h1>Access Denied</h1>
-                        <p>Sorry, this service is currently not available in your region.</p>
+                        <p>Use IP of USA, UK or Canada to access the site.</p>
                     </div>
                 </body>
             </html>
