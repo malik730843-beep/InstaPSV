@@ -1,6 +1,34 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+
 export default function AdsterraBanner() {
+    const bannerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!bannerRef.current) return;
+        if (bannerRef.current.hasChildNodes()) return; // Prevent multiple loads
+
+        const conf = document.createElement('script');
+        conf.type = 'text/javascript';
+        conf.innerHTML = `
+            atOptions = {
+                'key' : '593354ffe4f9cbe99ac9c6ba4c93023d',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        `;
+        
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://www.highperformanceformat.com/593354ffe4f9cbe99ac9c6ba4c93023d/invoke.js';
+
+        bannerRef.current.appendChild(conf);
+        bannerRef.current.appendChild(script);
+    }, []);
+
     return (
         <div style={{
             display: 'flex',
@@ -26,32 +54,16 @@ export default function AdsterraBanner() {
                     }
                     @media (max-width: 768px) {
                         .adsterra-wrapper {
-                            transform: scale(0.43); /* scales 728 down to ~313px for mobile */
-                        }
-                        .adsterra-container {
-                            height: 40px !important; /* adjust height to match scaled down banner */
+                            transform: scale(0.43);
                         }
                     }
                     @media (max-width: 480px) {
                         .adsterra-wrapper {
-                            transform: scale(0.40); /* scales 728 down to ~290px */
-                        }
-                        .adsterra-container {
-                            height: 38px !important;
+                            transform: scale(0.40);
                         }
                     }
                 `}</style>
-                <div className="adsterra-wrapper">
-                    <iframe
-                        src="/adsterra-728x90.html"
-                        width="728"
-                        height="90"
-                        frameBorder="0"
-                        scrolling="no"
-                        style={{ overflow: 'hidden', border: 'none', background: 'transparent' }}
-                        title="Advertisement"
-                    ></iframe>
-                </div>
+                <div className="adsterra-wrapper" ref={bannerRef}></div>
             </div>
         </div>
     );
