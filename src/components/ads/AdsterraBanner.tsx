@@ -1,70 +1,55 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-
 export default function AdsterraBanner() {
-    const bannerRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!bannerRef.current) return;
-        if (bannerRef.current.hasChildNodes()) return; // Prevent multiple loads
-
-        const conf = document.createElement('script');
-        conf.type = 'text/javascript';
-        conf.innerHTML = `
-            atOptions = {
-                'key' : '593354ffe4f9cbe99ac9c6ba4c93023d',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        `;
-        
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://www.highperformanceformat.com/593354ffe4f9cbe99ac9c6ba4c93023d/invoke.js';
-
-        bannerRef.current.appendChild(conf);
-        bannerRef.current.appendChild(script);
-    }, []);
-
     return (
         <div style={{
             display: 'flex',
             justifyContent: 'center',
+            alignItems: 'center',
             margin: '2rem auto',
             width: '100%',
             maxWidth: '100vw',
-            overflow: 'hidden'
+            overflow: 'hidden',
         }}>
+            {/* Responsive wrapper: scales the fixed 728x90 down on small screens */}
             <div style={{
-                position: 'relative',
                 width: '728px',
                 height: '90px',
                 maxWidth: '100%',
-                display: 'flex',
-                justifyContent: 'center',
+                overflow: 'hidden',
             }}>
-                <style>{`
-                    .adsterra-wrapper {
-                        width: 728px;
-                        height: 90px;
-                        transform-origin: center top;
-                    }
-                    @media (max-width: 768px) {
-                        .adsterra-wrapper {
-                            transform: scale(0.43);
-                        }
-                    }
-                    @media (max-width: 480px) {
-                        .adsterra-wrapper {
-                            transform: scale(0.40);
-                        }
-                    }
-                `}</style>
-                <div className="adsterra-wrapper" ref={bannerRef}></div>
+                <iframe
+                    src="/ads/horizontal-banner.html"
+                    width="728"
+                    height="90"
+                    frameBorder="0"
+                    scrolling="no"
+                    style={{
+                        overflow: 'hidden',
+                        border: 'none',
+                        background: 'transparent',
+                        display: 'block',
+                        // Scale down on smaller screens via inline CSS transform
+                        // We achieve this with a CSS class below
+                        transformOrigin: 'left top',
+                    }}
+                    title="Advertisement"
+                    loading="lazy"
+                    className="adsterra-horizontal"
+                />
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .adsterra-horizontal {
+                        transform: scale(0.43);
+                    }
+                }
+                @media (max-width: 480px) {
+                    .adsterra-horizontal {
+                        transform: scale(0.38);
+                    }
+                }
+            `}</style>
         </div>
     );
 }
