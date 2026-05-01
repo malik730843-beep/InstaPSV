@@ -11,7 +11,6 @@ import ComparisonTable from '@/components/sections/ComparisonTable';
 import CTASection from '@/components/sections/CTASection';
 import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
 import FAQSchema from '@/components/seo/FAQSchema';
-import AdsterraBanner from '@/components/ads/AdsterraBanner';
 import dynamic from 'next/dynamic';
 
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
@@ -27,25 +26,18 @@ export default function Home() {
         <Hero />
         
         <SecurityComparison />
-        <AdsterraBanner />
         
         <Features />
-        <AdsterraBanner />
         
         <HowItWorks />
-        <AdsterraBanner />
         
         <ComparisonTable />
-        <AdsterraBanner />
         
         <UseCases />
-        <AdsterraBanner />
         
         <FAQ />
-        <AdsterraBanner />
         
         <Testimonials />
-        <AdsterraBanner />
         
         <FeatureSuggestion />
       </main>

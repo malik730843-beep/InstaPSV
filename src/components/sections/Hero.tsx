@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import AdsterraBanner from '../ads/AdsterraBanner';
 
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
     ssr: false,
@@ -55,11 +54,6 @@ export default function Hero() {
                             <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                     </Link>
-                </div>
-
-                {/* Adsterra Ad */}
-                <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                    <AdsterraBanner />
                 </div>
 
                 {/* Stats */}

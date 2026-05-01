@@ -7,7 +7,6 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Script from 'next/script';
 import LoginModal from '@/components/ui/LoginModal';
-import AdsterraVerticalBanner from '@/components/ads/AdsterraVerticalBanner';
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
@@ -301,12 +300,7 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
 
             {profile && (
                 <div className={styles.resultsContainer}>
-                    <div className={styles.sidebarAd}>
-                        <AdsterraVerticalBanner />
-                    </div>
-
                     <div className={styles.profileBox} ref={resultsRef}>
-                        {/* Full Width Hero Area (Header + Highlights) */}
                         <div className={styles.profileHeader}>
                             <div
                                 className={`${styles.avatarWrapper} ${profile.stories?.data?.length > 0 ? styles.hasStory : ''}`}
@@ -549,10 +543,6 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                                 </div>
                             )}
                         </div>
-                    </div>
-                    
-                    <div className={styles.sidebarAd}>
-                        <AdsterraVerticalBanner />
                     </div>
                 </div>
             )}
