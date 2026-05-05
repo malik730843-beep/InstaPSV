@@ -9,9 +9,7 @@ export const metadata: Metadata = {
     title: 'Anonymous Instagram Viewer — Browse Profiles & Stories Secretly | InstaPSV',
     description: 'View any public Instagram profile, stories, reels, and highlights completely anonymously. No login, no account, no digital trace. 100% free and secure.',
     keywords: 'anonymous instagram viewer, view instagram anonymously, ig profile viewer, watch stories secretly, instagram ghost mode',
-    alternates: {
-        canonical: `${BASE_URL}/anonymous-instagram-viewer`,
-    },
+
     openGraph: {
         title: 'Anonymous Instagram Viewer — Browse Profiles Secretly | InstaPSV',
         description: 'Watch public Instagram content anonymously with no login required. Total privacy and security.',

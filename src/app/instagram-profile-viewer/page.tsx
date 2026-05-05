@@ -9,9 +9,7 @@ export const metadata: Metadata = {
     title: 'Instagram Profile Viewer — View Any Public Profile | InstaPSV',
     description: 'View any public Instagram profile anonymously. Browse posts, followers, following lists, bio, and profile picture in HD. Free Instagram profile viewer — no login required.',
     keywords: 'instagram profile viewer, view instagram profile, instagram profile viewer online, anonymous instagram profile viewer, ig profile viewer, view instagram profile picture',
-    alternates: {
-        canonical: `${BASE_URL}/instagram-profile-viewer`,
-    },
+
     openGraph: {
         title: 'Instagram Profile Viewer — View Any Public Profile | InstaPSV',
         description: 'View any public Instagram profile anonymously. Browse posts, followers, and profile picture in HD.',

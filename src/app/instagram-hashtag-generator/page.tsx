@@ -10,9 +10,7 @@ export const metadata: Metadata = {
     title: 'Instagram Hashtag Generator: Top Trending Hashtags 100% Free',
     description: 'Boost your reach with our free Instagram Hashtag Generator. Discover trending, relevant hashtags for travel, fitness, tech, and more. 100% shadowban safe.',
     keywords: 'instagram hashtag generator, trending hashtags, hashtag finder, free hashtag tool, ig reach boost',
-    alternates: {
-        canonical: `${BASE_URL}/instagram-hashtag-generator`,
-    },
+
     openGraph: {
         title: 'Instagram Hashtag Generator: Trending & Relevant',
         description: 'Skyrocket your engagement with curated hashtag lists. Effortless discovery, one-click copy, and categorized for your niche.',

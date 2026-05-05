@@ -13,7 +13,7 @@ export default function SEOSettingsPage() {
         default_keywords: '',
         robots_default: 'index,follow',
         robots_txt: '',
-        canonical_base: '',
+
         og_type: 'website',
         twitter_site: '',
         google_analytics_id: '',
@@ -152,19 +152,7 @@ export default function SEOSettingsPage() {
                 <div className="admin-card">
                     <h3 className="admin-card-title" style={{ marginBottom: '20px' }}>Social & Advanced</h3>
 
-                    <div className="form-group">
-                        <label className="form-label">Canonical URL Base</label>
-                        <input
-                            type="text"
-                            className="form-input"
-                            value={seo.canonical_base}
-                            onChange={(e) => setSeo(prev => ({ ...prev, canonical_base: e.target.value }))}
-                            placeholder="https://example.com"
-                        />
-                        <p style={{ fontSize: '12px', color: 'var(--admin-text-muted)', marginTop: '4px' }}>
-                            Leave empty to use current domain
-                        </p>
-                    </div>
+
 
                     <div className="form-group">
                         <label className="form-label">Open Graph Type</label>
@@ -255,7 +243,7 @@ export default function SEOSettingsPage() {
                         {seo.default_title || 'Your Site Title'}
                     </div>
                     <div style={{ color: '#006621', fontSize: '13px', marginBottom: '4px' }}>
-                        {seo.canonical_base || 'https://example.com'}
+                        {'https://instapsv.com'}
                     </div>
                     <div style={{ color: '#545454', fontSize: '13px' }}>
                         {seo.default_description || 'Your site description will appear here...'}

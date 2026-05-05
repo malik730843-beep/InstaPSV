@@ -9,9 +9,7 @@ export const metadata: Metadata = {
     title: 'Instagram Photo Downloader: High-Quality Downloads Anonymously',
     description: 'Download Instagram photos and carousels in original resolution securely and anonymously. No login required, 100% free.',
     keywords: 'instagram photo downloader, save photos, download ig photos anonymously, free photo downloader',
-    alternates: {
-        canonical: `${BASE_URL}/instagram-photo-downloader`,
-    },
+
     openGraph: {
         title: 'Instagram Photo Downloader: Secure & Fast',
         description: 'Save Instagram photos with ease and 100% anonymity. Our tool is fast, free, and secure.',

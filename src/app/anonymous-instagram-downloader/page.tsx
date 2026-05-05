@@ -9,9 +9,7 @@ export const metadata: Metadata = {
     title: 'Anonymous Instagram Downloader: Secure, Fast & Free for Photos, Videos & Reels',
     description: 'Download Instagram photos, videos, and reels securely and anonymously. Enjoy high-quality fast downloads without leaving a trace or logging in. 100% free.',
     keywords: 'anonymous instagram downloader, download instagram anonymously, save ig videos discreetly, free instagram downloader private',
-    alternates: {
-        canonical: `${BASE_URL}/anonymous-instagram-downloader`,
-    },
+
     openGraph: {
         title: 'Anonymous Instagram Downloader: Secure, Fast & Free',
         description: 'Download Instagram photos, videos, and reels securely and anonymously without logging in. Protect your privacy with our fast, free tool.',

@@ -94,21 +94,7 @@ export async function generateMetadata(): Promise<Metadata> {
       google: "Fnn-go67eU4kNaQBJ5Y_wXWSWxu8W2zCs5cIv8e1Tck",
       other: otherMeta
     },
-    alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-      languages: {
-        'en': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'de': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'fr': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'es': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'it': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'nl': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'sv': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'no': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'da': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-        'x-default': `${process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'}/`,
-      },
-    },
+
     openGraph: {
       title,
       description,

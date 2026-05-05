@@ -40,7 +40,7 @@ export default function NewPostPage() {
         meta_description: '',
         meta_keywords: '',
         // SEO - Advanced
-        canonical_url: '',
+
         robots: 'index,follow',
         robots_advanced: [] as string[],
         schema_type: 'Article',

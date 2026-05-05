@@ -441,19 +441,7 @@ export default function SEOPanel({ formData, setFormData }: SEOPanelProps) {
                                 </div>
                             </div>
 
-                            <div className="form-group">
-                                <label className="form-label">Canonical URL</label>
-                                <input
-                                    type="text"
-                                    className="form-input"
-                                    placeholder={`https://instapsv.com/${formData.slug || 'slug'}`}
-                                    value={formData.canonical_url}
-                                    onChange={(e) => setFormData((prev: any) => ({ ...prev, canonical_url: e.target.value }))}
-                                />
-                                <p style={{ fontSize: '12px', color: 'var(--admin-text-muted)', marginTop: '4px' }}>
-                                    Leave empty to use the default permalink.
-                                </p>
-                            </div>
+
 
                             <div className="form-group">
                                 <label className="form-label">Schema Type</label>

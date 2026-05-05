@@ -9,9 +9,7 @@ export const metadata: Metadata = {
     title: 'Instagram Reels Downloader: Save High-Quality Reels Anonymously',
     description: 'Download Instagram Reels in high definition securely and anonymously. No login required, 100% free, and fast processing.',
     keywords: 'instagram reels downloader, save reels, download ig reels anonymously, free reels downloader',
-    alternates: {
-        canonical: `${BASE_URL}/instagram-reels-downloader`,
-    },
+
     openGraph: {
         title: 'Instagram Reels Downloader: Secure & Fast',
         description: 'Download high-quality Instagram Reels without leaving a trace. No account needed, completely free.',
