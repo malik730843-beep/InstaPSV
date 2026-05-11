@@ -6,6 +6,9 @@ import StoryViewerContent from './StoryViewerContent';
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com';
 
 export const metadata: Metadata = {
+    alternates: {
+        canonical: '/instagram-story-viewer',
+    },
     title: 'Anonymous Instagram Story Viewer: View & Download Discreetly (No Login Required) | InstaPSV',
     description: 'View and download public Instagram stories anonymously without showing up in the viewer list. No login required. 100% free, private, and secure.',
     keywords: 'anonymous instagram story viewer, view instagram stories anonymously, download instagram stories, ig story viewer, watch instagram stories secretly, anonymous story viewer no login',

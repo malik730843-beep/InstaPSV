@@ -32,6 +32,9 @@ export async function generateMetadata() {
     return {
         title: page?.meta_title || `${t('about')} - InstaPSV`,
         description: page?.meta_description || 'Learn about InstaPSV, the free Instagram viewer tool.',
+        alternates: {
+            canonical: '/about',
+        },
     };
 }
 

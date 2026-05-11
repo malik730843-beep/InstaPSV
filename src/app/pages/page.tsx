@@ -41,6 +41,9 @@ export async function generateMetadata() {
     return {
         title: `${t('badge')} - InstaPSV`,
         description: t('subtitle'),
+        alternates: {
+            canonical: '/pages',
+        },
     };
 }
 

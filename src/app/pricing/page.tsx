@@ -7,6 +7,9 @@ import PricingCards from '@/components/pricing/PricingCards';
 import PricingFaq from '@/components/pricing/PricingFaq';
 
 export const metadata: Metadata = {
+    alternates: {
+        canonical: '/pricing',
+    },
     title: 'Pricing — InstaPSV | Anonymous Instagram Viewer Plans',
     description: 'Choose a plan to view Instagram profiles, stories, reels, and highlights anonymously. Start free with 5 credits or go unlimited with our Monthly plan.',
     keywords: 'InstaPSV pricing, anonymous Instagram viewer plans, Instagram story viewer credits',

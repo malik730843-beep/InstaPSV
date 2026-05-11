@@ -6,6 +6,9 @@ import AnonymousDownloaderContent from '../anonymous-instagram-downloader/Anonym
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com';
 
 export const metadata: Metadata = {
+    alternates: {
+        canonical: '/instagram-photo-downloader',
+    },
     title: 'Instagram Photo Downloader: High-Quality Downloads Anonymously',
     description: 'Download Instagram photos and carousels in original resolution securely and anonymously. No login required, 100% free.',
     keywords: 'instagram photo downloader, save photos, download ig photos anonymously, free photo downloader',

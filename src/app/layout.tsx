@@ -85,6 +85,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com'),
     title,
     description,
     keywords,
@@ -93,6 +94,9 @@ export async function generateMetadata(): Promise<Metadata> {
       ...verification,
       google: "Fnn-go67eU4kNaQBJ5Y_wXWSWxu8W2zCs5cIv8e1Tck",
       other: otherMeta
+    },
+    alternates: {
+      canonical: '/',
     },
 
     openGraph: {

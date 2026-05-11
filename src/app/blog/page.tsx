@@ -11,6 +11,9 @@ export async function generateMetadata() {
     return {
         title: `${t('title')} - InstaPSV | Instagram Tips, Tutorials & Insights`,
         description: t('subtitle'),
+        alternates: {
+            canonical: '/blog',
+        },
     };
 }
 

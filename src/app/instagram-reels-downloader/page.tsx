@@ -6,6 +6,9 @@ import AnonymousDownloaderContent from '../anonymous-instagram-downloader/Anonym
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com';
 
 export const metadata: Metadata = {
+    alternates: {
+        canonical: '/instagram-reels-downloader',
+    },
     title: 'Instagram Reels Downloader: Save High-Quality Reels Anonymously',
     description: 'Download Instagram Reels in high definition securely and anonymously. No login required, 100% free, and fast processing.',
     keywords: 'instagram reels downloader, save reels, download ig reels anonymously, free reels downloader',

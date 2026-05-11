@@ -29,6 +29,9 @@ export async function generateMetadata() {
     return {
         title: page?.meta_title || `${t('title')} ${t('highlight')} - InstaPSV`,
         description: page?.meta_description || t('subtitle'),
+        alternates: {
+            canonical: '/contact',
+        },
     };
 }
 

@@ -7,11 +7,13 @@ const supabase = createClient(
 );
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-    let rules = {
-        userAgent: '*',
-        allow: '/',
-        disallow: '/admin/',
-    };
+    let rules: MetadataRoute.Robots['rules'] = [
+        {
+            userAgent: '*',
+            allow: '/',
+            disallow: ['/admin/', '/site.webmanifest'],
+        },
+    ];
 
     try {
         const { data } = await supabase

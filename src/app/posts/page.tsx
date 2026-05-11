@@ -42,6 +42,9 @@ const archiveData = [
 ];
 
 export const metadata = {
+    alternates: {
+        canonical: '/posts',
+    },
     title: 'Post Archive - InstaPSV Blog',
     description: 'Browse all blog posts from InstaPSV organized by date.',
 };

@@ -7,6 +7,9 @@ import HashtagGeneratorContent from './HashtagGeneratorContent';
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com';
 
 export const metadata: Metadata = {
+    alternates: {
+        canonical: '/instagram-hashtag-generator',
+    },
     title: 'Instagram Hashtag Generator: Top Trending Hashtags 100% Free',
     description: 'Boost your reach with our free Instagram Hashtag Generator. Discover trending, relevant hashtags for travel, fitness, tech, and more. 100% shadowban safe.',
     keywords: 'instagram hashtag generator, trending hashtags, hashtag finder, free hashtag tool, ig reach boost',

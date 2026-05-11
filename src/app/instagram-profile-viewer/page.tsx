@@ -6,6 +6,9 @@ import Footer from '@/components/layout/Footer';
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com';
 
 export const metadata: Metadata = {
+    alternates: {
+        canonical: '/instagram-profile-viewer',
+    },
     title: 'Instagram Profile Viewer — View Any Public Profile | InstaPSV',
     description: 'View any public Instagram profile anonymously. Browse posts, followers, following lists, bio, and profile picture in HD. Free Instagram profile viewer — no login required.',
     keywords: 'instagram profile viewer, view instagram profile, instagram profile viewer online, anonymous instagram profile viewer, ig profile viewer, view instagram profile picture',

@@ -120,6 +120,9 @@ export async function generateMetadata({
         return {
             title: page.meta_title || `${page.title} - InstaPSV`,
             description: page.meta_description || page.excerpt || '',
+            alternates: {
+                canonical: `/${slug}`,
+            },
         };
     }
 
@@ -130,6 +133,9 @@ export async function generateMetadata({
         return {
             title: `${post.title} - InstaPSV ${isPreview ? '[PREVIEW]' : t('title')}`,
             description: post.excerpt || post.content.slice(0, 160),
+            alternates: {
+                canonical: `/${slug}`,
+            },
         };
     }
 
