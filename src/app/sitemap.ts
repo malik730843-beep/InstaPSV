@@ -9,21 +9,51 @@ const supabase = createClient(
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    // 1. Static Routes
-    const routes = [
-        '',
-        '/blog',
-        '/features',
-        '/about',
-        '/contact',
+    // 1. Core Static Routes
+    const coreRoutes = [
+        { route: '', priority: 1.0, freq: 'weekly' as const },
+        { route: '/blog', priority: 0.8, freq: 'weekly' as const },
+        { route: '/features', priority: 0.7, freq: 'monthly' as const },
+        { route: '/about', priority: 0.6, freq: 'monthly' as const },
+        { route: '/contact', priority: 0.6, freq: 'monthly' as const },
+        { route: '/pricing', priority: 0.7, freq: 'monthly' as const },
+    ].map(({ route, priority, freq }) => ({
+        url: `${BASE_URL}${route}`,
+        lastModified: new Date(),
+        changeFrequency: freq,
+        priority,
+    }));
+
+    // 2. Tool Pages — high priority, these are the main product pages
+    const toolRoutes = [
+        '/anonymous-instagram-viewer',
+        '/anonymous-instagram-downloader',
+        '/instagram-story-viewer',
+        '/instagram-reels-downloader',
+        '/instagram-profile-viewer',
+        '/instagram-photo-downloader',
+        '/instagram-highlights-viewer',
+        '/instagram-hashtag-generator',
     ].map((route) => ({
         url: `${BASE_URL}${route}`,
         lastModified: new Date(),
-        changeFrequency: route === '' ? 'weekly' as const : 'monthly' as const,
-        priority: route === '' ? 1 : 0.8,
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
     }));
 
-    // 2. Blog Posts
+    // 3. Legal / Policy Pages
+    const legalRoutes = [
+        '/privacy-policy',
+        '/terms-of-use',
+        '/disclaimer',
+    ].map((route) => ({
+        url: `${BASE_URL}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'yearly' as const,
+        priority: 0.4,
+    }));
+
+    // 4. Blog Posts (from DB)
     let posts: any[] = [];
     try {
         const { data } = await supabase
@@ -40,14 +70,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
-    // 3. Pages (Dynamic)
+    // 5. CMS Pages (from DB) — exclude legal pages already listed above to avoid duplicates
+    const legalSlugs = new Set(['privacy-policy', 'terms-of-use', 'disclaimer']);
     let pages: any[] = [];
     try {
         const { data } = await supabase
             .from('pages')
             .select('slug, updated_at')
             .eq('status', 'published');
-        if (data) pages = data;
+        if (data) pages = data.filter((p: any) => !legalSlugs.has(p.slug));
     } catch (e) { }
 
     const pageRoutes = pages.map((page) => ({
@@ -57,17 +88,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
-    // 4. Additional Static Routes
-    const extraRoutes = [
-        '/privacy-policy',
-        '/terms-of-use',
-        '/disclaimer',
-    ].map((route) => ({
-        url: `${BASE_URL}${route}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
-        priority: 0.5,
-    }));
+    // Deduplicate by URL (last-wins)
+    const allRoutes = [...coreRoutes, ...toolRoutes, ...legalRoutes, ...postRoutes, ...pageRoutes];
+    const seen = new Map<string, (typeof allRoutes)[number]>();
+    for (const r of allRoutes) {
+        seen.set(r.url, r);
+    }
 
-    return [...routes, ...postRoutes, ...pageRoutes, ...extraRoutes];
+    return Array.from(seen.values());
 }
