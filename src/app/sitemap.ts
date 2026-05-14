@@ -1,6 +1,10 @@
 import { MetadataRoute } from 'next';
 import { createClient } from '@supabase/supabase-js';
 
+// Stable last-modified date for static/legal pages (update manually when content changes)
+const STATIC_LAST_MODIFIED = new Date('2026-05-14');
+
+
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -19,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { route: '/pricing', priority: 0.7, freq: 'monthly' as const },
     ].map(({ route, priority, freq }) => ({
         url: `${BASE_URL}${route}`,
-        lastModified: new Date(),
+        lastModified: STATIC_LAST_MODIFIED,
         changeFrequency: freq,
         priority,
     }));
@@ -41,16 +45,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9,
     }));
 
-    // 3. Legal / Policy Pages
+    // 3. Legal / Policy Pages — explicit dedicated routes, required for AdSense
     const legalRoutes = [
         '/privacy-policy',
         '/terms-of-use',
         '/disclaimer',
     ].map((route) => ({
         url: `${BASE_URL}${route}`,
-        lastModified: new Date(),
+        lastModified: STATIC_LAST_MODIFIED,
         changeFrequency: 'yearly' as const,
-        priority: 0.4,
+        priority: 0.5,
     }));
 
     // 4. Blog Posts (from DB)
@@ -71,7 +75,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // 5. CMS Pages (from DB) — exclude legal pages already listed above to avoid duplicates
-    const legalSlugs = new Set(['privacy-policy', 'terms-of-use', 'disclaimer']);
+    // Also exclude 'about' and 'contact' since they have dedicated routes in coreRoutes
+    const legalSlugs = new Set(['privacy-policy', 'terms-of-use', 'disclaimer', 'about', 'contact']);
     let pages: any[] = [];
     try {
         const { data } = await supabase
