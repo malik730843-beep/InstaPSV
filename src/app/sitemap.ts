@@ -17,6 +17,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const coreRoutes = [
         { route: '', priority: 1.0, freq: 'weekly' as const },
         { route: '/blog', priority: 0.8, freq: 'weekly' as const },
+        { route: '/posts', priority: 0.7, freq: 'weekly' as const }, // Blog archive
+        { route: '/pages', priority: 0.6, freq: 'monthly' as const }, // Pages archive
         { route: '/features', priority: 0.7, freq: 'monthly' as const },
         { route: '/about', priority: 0.6, freq: 'monthly' as const },
         { route: '/contact', priority: 0.6, freq: 'monthly' as const },
@@ -40,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/instagram-hashtag-generator',
     ].map((route) => ({
         url: `${BASE_URL}${route}`,
-        lastModified: new Date(),
+        lastModified: STATIC_LAST_MODIFIED,
         changeFrequency: 'weekly' as const,
         priority: 0.9,
     }));
