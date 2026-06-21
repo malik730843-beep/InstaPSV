@@ -41,8 +41,8 @@ export default function PricingCards({ plans }: PricingCardsProps) {
         checkAuth();
     }, []);
 
-    const handleCtaClick = (e: React.MouseEvent) => {
-        if (!isLoggedIn) {
+    const handleCtaClick = (e: React.MouseEvent, planName: string) => {
+        if (planName !== 'Free' && !isLoggedIn) {
             e.preventDefault();
             setShowLogin(true);
         }
@@ -85,7 +85,7 @@ export default function PricingCards({ plans }: PricingCardsProps) {
 
                     <a
                         href={plan.ctaHref}
-                        onClick={handleCtaClick}
+                        onClick={(e) => handleCtaClick(e, plan.name)}
                         className={`${styles.ctaBtn} ${plan.highlighted ? styles.ctaPrimary : styles.ctaSecondary}`}
                     >
                         {plan.cta}

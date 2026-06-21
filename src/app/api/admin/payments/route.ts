@@ -68,16 +68,17 @@ export async function PUT(request: Request) {
 
         const { error: upgradeError } = await supabase
             .from('user_subscriptions')
-            .update({
+            .upsert({
+                email,
                 plan: 'monthly', // We only have 'monthly' as paid right now
                 credits_remaining: -1,
                 credits_total: -1,
                 plan_expires_at: expiresAt.toISOString(),
                 updated_at: new Date().toISOString()
-            })
-            .eq('email', email);
+            }, { onConflict: 'email' });
 
         if (upgradeError) {
+            console.error('Upgrade Error:', upgradeError);
             return NextResponse.json({ error: 'Request approved but failed to upgrade user' }, { status: 500 });
         }
     }
