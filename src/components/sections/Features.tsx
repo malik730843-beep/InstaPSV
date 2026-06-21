@@ -40,7 +40,7 @@ export default function Features() {
                     <line x1="15" y1="3" x2="15" y2="21" />
                 </svg>
             ),
-            path: '/instagram-profile-viewer',
+            path: '/anonymous-instagram-viewer',
             gradient: 'linear-gradient(135deg, #00d4ff, #7928ca)',
         },
         {

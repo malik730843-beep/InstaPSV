@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
-import Link from 'next/link';
+import InstagramSearch from '../instagram/InstagramSearch';
 import dynamic from 'next/dynamic';
 
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
@@ -48,12 +48,7 @@ export default function Hero() {
 
                 {/* Main Action Area - Centered Column */}
                 <div className={styles.centeredColumn}>
-                    <Link href="/anonymous-instagram-viewer" className={styles.getStartedButton}>
-                        {t('getStarted')}
-                        <svg className={styles.buttonIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </Link>
+                    <InstagramSearch />
                 </div>
 
                 {/* Stats */}

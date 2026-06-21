@@ -5,18 +5,16 @@ import { getTranslations } from 'next-intl/server';
 export default async function Footer() {
     const t = await getTranslations('footer');
     const navT = await getTranslations('nav');
-
     const footerLinks = {
         tools: [
+            { href: '/anonymous-instagram-viewer', label: 'Anonymous Instagram Viewer' },
             { href: '/instagram-story-viewer', label: 'Instagram Story Viewer' },
             { href: '/instagram-highlights-viewer', label: 'Instagram Highlights Viewer' },
-            { href: '/instagram-profile-viewer', label: 'Instagram Profile Viewer' },
-            { href: '/anonymous-instagram-downloader', label: 'Anonymous Instagram Downloader' },
+            { href: '/instagram-reels-downloader', label: 'Instagram Reels Downloader' },
             { href: '/instagram-hashtag-generator', label: 'Instagram Hashtag Generator' },
         ],
         product: [
-            { href: '/features', label: navT('features') },
-            { href: '/highlights-viewer', label: navT('highlights') },
+            { href: '/#features', label: navT('features') },
             { href: '/#how-it-works', label: navT('howItWorks') },
             { href: '/faq', label: navT('faq') },
         ],

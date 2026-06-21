@@ -48,7 +48,6 @@ import {
     Target,
     BarChart3
 } from 'lucide-react';
-import MediaTabs from '@/components/ui/MediaTabs';
 import { HASHTAG_CATEGORIES, getRandomHashtags } from '@/lib/hashtag-data';
 import styles from './HashtagGenerator.module.css';
 
@@ -311,53 +310,59 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                 </section>
 
                 {/* STRATEGY SECTION */}
-                <section style={{ padding: '100px 0', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <div className={styles.container} style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
-                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>The Perfect Hashtag Strategy</h2>
-                            <p style={{ opacity: 0.7 }}>Don't just use tags—use a scientifically proven growth strategy.</p>
+                <section className={styles.strategySection}>
+                    <div className={`${styles.container} ${styles.textContainer}`}>
+                        <div className={styles.sectionHeader}>
+                            <h2>The Perfect Hashtag Strategy</h2>
+                            <p>Don't just use tags—use a scientifically proven growth strategy.</p>
                         </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem' }}>
-                            <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '2.5rem', borderRadius: '2rem', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                <div style={{ background: 'rgba(0, 212, 255, 0.1)', color: '#00d4ff', width: '56px', height: '56px', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                        <div className={styles.strategyList}>
+                            <div className={styles.strategyBlock}>
+                                <div className={styles.strategyIcon} style={{ background: 'rgba(0, 212, 255, 0.1)', color: '#00d4ff' }}>
                                     <Globe size={28} />
                                 </div>
-                                <h3 style={{ marginBottom: '1rem' }}>Broad Tags (3-5)</h3>
-                                <p style={{ opacity: 0.7 }}>High-volume hashtags (1M+ posts) that establish your general theme (e.g., #photography, #travel).</p>
+                                <div className={styles.strategyContent}>
+                                    <h3>Broad Tags (3-5)</h3>
+                                    <p>High-volume hashtags (1M+ posts) that establish your general theme (e.g., #photography, #travel).</p>
+                                </div>
                             </div>
-                            <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '2.5rem', borderRadius: '2rem', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                <div style={{ background: 'rgba(121, 40, 202, 0.1)', color: '#7928ca', width: '56px', height: '56px', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                            <div className={styles.strategyBlock}>
+                                <div className={styles.strategyIcon} style={{ background: 'rgba(121, 40, 202, 0.1)', color: '#7928ca' }}>
                                     <Target size={28} />
                                 </div>
-                                <h3 style={{ marginBottom: '1rem' }}>Niche Tags (5-10)</h3>
-                                <p style={{ opacity: 0.7 }}>Medium-volume tags (100k-500k) where your specific audience hangs out (e.g., #streetphotography).</p>
+                                <div className={styles.strategyContent}>
+                                    <h3>Niche Tags (5-10)</h3>
+                                    <p>Medium-volume tags (100k-500k) where your specific audience hangs out (e.g., #streetphotography).</p>
+                                </div>
                             </div>
-                            <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '2.5rem', borderRadius: '2rem', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                                <div style={{ background: 'rgba(255, 0, 128, 0.1)', color: '#ff0080', width: '56px', height: '56px', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                            <div className={styles.strategyBlock}>
+                                <div className={styles.strategyIcon} style={{ background: 'rgba(255, 0, 128, 0.1)', color: '#ff0080' }}>
                                     <BarChart3 size={28} />
                                 </div>
-                                <h3 style={{ marginBottom: '1rem' }}>Branded Tags (1-2)</h3>
-                                <p style={{ opacity: 0.7 }}>Your unique tags that build community and track user-generated content (e.g., #YourBrand).</p>
+                                <div className={styles.strategyContent}>
+                                    <h3>Branded Tags (1-2)</h3>
+                                    <p>Your unique tags that build community and track user-generated content (e.g., #YourBrand).</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* PRO TIPS SECTION */}
-                <section style={{ padding: '80px 0', background: 'rgba(255, 255, 255, 0.01)' }}>
-                    <div className={styles.container} style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem' }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                <section className={styles.tipsSection}>
+                    <div className={styles.container}>
+                        <div className={styles.tipsGrid}>
                             <div className={styles.hideMobile}>
-                                <div style={{ position: 'relative' }}>
-                                    <div style={{ position: 'absolute', inset: '-20px', background: 'var(--gradient-primary)', opacity: 0.2, filter: 'blur(40px)', borderRadius: '2rem' }}></div>
-                                    <div style={{ position: 'relative', background: 'var(--glass-bg)', padding: '3rem', borderRadius: '2rem', border: '1px solid var(--glass-border)' }}>
-                                        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
-                                            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }}></div>
-                                            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }}></div>
-                                            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }}></div>
+                                <div className={styles.codeBlockWrapper}>
+                                    <div className={styles.codeBlockGlow}></div>
+                                    <div className={styles.codeBlock}>
+                                        <div className={styles.codeHeader}>
+                                            <div className={`${styles.codeDot} ${styles.codeDotRed}`}></div>
+                                            <div className={`${styles.codeDot} ${styles.codeDotYellow}`}></div>
+                                            <div className={`${styles.codeDot} ${styles.codeDotGreen}`}></div>
                                         </div>
-                                        <div style={{ fontFamily: 'monospace', color: '#00d4ff', fontSize: '1.1rem' }}>
+                                        <div className={styles.codeContent}>
                                             {"// Perfect Post Formula"}<br/>
                                             {"const reach = (content) => {"}<br/>
                                             {"  return content"}<br/>
@@ -369,20 +374,26 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>Engagement Pro-Tips</h2>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                    <div style={{ display: 'flex', gap: '1rem' }}>
-                                        <div style={{ color: '#00d4ff', flexShrink: 0 }}><Lightbulb size={24} /></div>
-                                        <p style={{ opacity: 0.8 }}><strong>Mix Tag Sizes:</strong> Don't just use 1M+ hashtags. You'll get buried. Use 50% niche tags to stay at the top longer.</p>
+                            <div className={styles.tipsContent}>
+                                <h2>Engagement Pro-Tips</h2>
+                                <div className={styles.tipsList}>
+                                    <div className={styles.tipItem}>
+                                        <div className={styles.tipIcon}><Lightbulb size={24} /></div>
+                                        <div className={styles.tipText}>
+                                            <p><strong>Mix Tag Sizes:</strong> Don't just use 1M+ hashtags. You'll get buried. Use 50% niche tags to stay at the top longer.</p>
+                                        </div>
                                     </div>
-                                    <div style={{ display: 'flex', gap: '1rem' }}>
-                                        <div style={{ color: '#00d4ff', flexShrink: 0 }}><Lightbulb size={24} /></div>
-                                        <p style={{ opacity: 0.8 }}><strong>Stay Relevant:</strong> Only use tags that actually match your photo. Instagram's AI scans your image and detects irrelevant tags.</p>
+                                    <div className={styles.tipItem}>
+                                        <div className={styles.tipIcon}><Lightbulb size={24} /></div>
+                                        <div className={styles.tipText}>
+                                            <p><strong>Stay Relevant:</strong> Only use tags that actually match your photo. Instagram's AI scans your image and detects irrelevant tags.</p>
+                                        </div>
                                     </div>
-                                    <div style={{ display: 'flex', gap: '1rem' }}>
-                                        <div style={{ color: '#00d4ff', flexShrink: 0 }}><Lightbulb size={24} /></div>
-                                        <p style={{ opacity: 0.8 }}><strong>Hide Your Tags:</strong> Use dots or spaces to push hashtags down in your caption so it looks cleaner for followers.</p>
+                                    <div className={styles.tipItem}>
+                                        <div className={styles.tipIcon}><Lightbulb size={24} /></div>
+                                        <div className={styles.tipText}>
+                                            <p><strong>Hide Your Tags:</strong> Use dots or spaces to push hashtags down in your caption so it looks cleaner for followers.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -391,29 +402,31 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                 </section>
 
                 {/* HOW TO USE */}
-                <section style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '80px 0' }}>
-                    <div className={styles.container} style={{ maxWidth: '900px', margin: '0 auto', padding: '0 2rem' }}>
-                        <h2 style={{ textAlign: 'center', marginBottom: '3rem' }}>How to Use the Hashtag Generator</h2>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-                            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                                <div style={{ background: 'var(--gradient-primary)', width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 'bold', fontSize: '1.25rem', boxShadow: '0 0 20px rgba(255, 0, 128, 0.3)' }}>1</div>
-                                <div>
-                                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Select Your Industry</h3>
-                                    <p style={{ opacity: 0.7, fontSize: '1.1rem' }}>Choose the high-intent category that best aligns with your content to load curated trending hashtags.</p>
+                <section className={styles.howToSection}>
+                    <div className={`${styles.container} ${styles.textContainer}`}>
+                        <div className={styles.sectionHeader}>
+                            <h2>How to Use the Hashtag Generator</h2>
+                        </div>
+                        <div className={styles.howToList}>
+                            <div className={styles.howToItem}>
+                                <div className={styles.howToNum}>1</div>
+                                <div className={styles.howToContent}>
+                                    <h3>Select Your Industry</h3>
+                                    <p>Choose the high-intent category that best aligns with your content to load curated trending hashtags.</p>
                                 </div>
                             </div>
-                            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                                <div style={{ background: 'var(--gradient-primary)', width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 'bold', fontSize: '1.25rem', boxShadow: '0 0 20px rgba(255, 0, 128, 0.3)' }}>2</div>
-                                <div>
-                                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Curate Your Strategy</h3>
-                                    <p style={{ opacity: 0.7, fontSize: '1.1rem' }}>Manually select the most relevant tags. We recommend a balanced strategy of 10-15 highly targeted hashtags.</p>
+                            <div className={styles.howToItem}>
+                                <div className={styles.howToNum}>2</div>
+                                <div className={styles.howToContent}>
+                                    <h3>Curate Your Strategy</h3>
+                                    <p>Manually select the most relevant tags. We recommend a balanced strategy of 10-15 highly targeted hashtags.</p>
                                 </div>
                             </div>
-                            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                                <div style={{ background: 'var(--gradient-primary)', width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 'bold', fontSize: '1.25rem', boxShadow: '0 0 20px rgba(255, 0, 128, 0.3)' }}>3</div>
-                                <div>
-                                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Export & Go Live</h3>
-                                    <p style={{ opacity: 0.7, fontSize: '1.1rem' }}>Copy your curated list instantly and integrate them into your post caption for immediate discovery.</p>
+                            <div className={styles.howToItem}>
+                                <div className={styles.howToNum}>3</div>
+                                <div className={styles.howToContent}>
+                                    <h3>Export & Go Live</h3>
+                                    <p>Copy your curated list instantly and integrate them into your post caption for immediate discovery.</p>
                                 </div>
                             </div>
                         </div>
@@ -421,21 +434,23 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                 </section>
 
                 {/* FAQ SECTION */}
-                <section style={{ padding: '80px 0' }}>
-                    <div className={styles.container} style={{ maxWidth: '800px', margin: '0 auto', padding: '0 2rem' }}>
-                        <h2 style={{ textAlign: 'center', marginBottom: '3rem' }}>Frequently Asked Questions</h2>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '1rem', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                                <h4 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>How many hashtags should I use?</h4>
-                                <p style={{ opacity: 0.7 }}>While Instagram allows up to 30 hashtags, recent data suggests that using 10-15 highly targeted tags is more effective than using the maximum amount of generic ones.</p>
+                <section className={styles.faqSection}>
+                    <div className={`${styles.container} ${styles.textContainer}`}>
+                        <div className={styles.sectionHeader}>
+                            <h2>Frequently Asked Questions</h2>
+                        </div>
+                        <div className={styles.faqList}>
+                            <div className={styles.faqItem}>
+                                <h4>How many hashtags should I use?</h4>
+                                <p>While Instagram allows up to 30 hashtags, recent data suggests that using 10-15 highly targeted tags is more effective than using the maximum amount of generic ones.</p>
                             </div>
-                            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '1rem', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                                <h4 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>What is a shadowban?</h4>
-                                <p style={{ opacity: 0.7 }}>A shadowban is when Instagram limits your content's reach. This usually happens when you use banned or repetitive hashtags. Our list is regularly updated to include only safe, engagement-boosting tags.</p>
+                            <div className={styles.faqItem}>
+                                <h4>What is a shadowban?</h4>
+                                <p>A shadowban is when Instagram limits your content's reach. This usually happens when you use banned or repetitive hashtags. Our list is regularly updated to include only safe, engagement-boosting tags.</p>
                             </div>
-                            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '2rem', borderRadius: '1rem', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                                <h4 style={{ color: '#00d4ff', marginBottom: '0.5rem' }}>Should I put hashtags in the caption or comments?</h4>
-                                <p style={{ opacity: 0.7 }}>Both work! Placing them in the caption is better for searchability, while placing them in the first comment keeps your caption look cleaner. The performance difference is minimal.</p>
+                            <div className={styles.faqItem}>
+                                <h4>Should I put hashtags in the caption or comments?</h4>
+                                <p>Both work! Placing them in the caption is better for searchability, while placing them in the first comment keeps your caption look cleaner. The performance difference is minimal.</p>
                             </div>
                         </div>
                     </div>

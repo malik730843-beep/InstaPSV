@@ -30,15 +30,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority,
     }));
 
-    // 2. Tool Pages — high priority, these are the main product pages
     const toolRoutes = [
         '/anonymous-instagram-viewer',
-        '/anonymous-instagram-downloader',
         '/instagram-story-viewer',
-        '/instagram-reels-downloader',
-        '/instagram-profile-viewer',
-        '/instagram-photo-downloader',
         '/instagram-highlights-viewer',
+        '/instagram-reels-downloader',
         '/instagram-hashtag-generator',
     ].map((route) => ({
         url: `${BASE_URL}${route}`,

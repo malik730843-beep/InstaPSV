@@ -211,6 +211,38 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
 
     return (
         <div className={styles.wrapper}>
+            {!restrictedTo && (
+                <div className={styles.topTabs}>
+                    <button
+                        type="button"
+                        className={`${styles.topTab} ${activeTab === 'POSTS' ? styles.activeTopTab : ''}`}
+                        onClick={() => setActiveTab('POSTS')}
+                    >
+                        {t('posts')?.toUpperCase() || 'POSTS'}
+                    </button>
+                    <button
+                        type="button"
+                        className={`${styles.topTab} ${activeTab === 'REELS' ? styles.activeTopTab : ''}`}
+                        onClick={() => setActiveTab('REELS')}
+                    >
+                        REELS
+                    </button>
+                    <button
+                        type="button"
+                        className={`${styles.topTab} ${activeTab === 'STORIES' ? styles.activeTopTab : ''}`}
+                        onClick={() => setActiveTab('STORIES')}
+                    >
+                        STORIES
+                    </button>
+                    <button
+                        type="button"
+                        className={`${styles.topTab} ${activeTab === 'HIGHLIGHTS' ? styles.activeTopTab : ''}`}
+                        onClick={() => setActiveTab('HIGHLIGHTS')}
+                    >
+                        HIGHLIGHTS
+                    </button>
+                </div>
+            )}
             <div className={styles.searchContainer} ref={historyRef}>
                 <form onSubmit={handleSearch} className={styles.searchForm}>
                     <div className={styles.inputGroup}>
@@ -366,41 +398,8 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                             </div>
                         )}
 
-                        {/* Main Content with Tabs + Grid */}
+                        {/* Main Content with Grid */}
                         <div className={styles.mainContent}>
-                            {!restrictedTo && (
-                                <div className={styles.tabs}>
-                                    <button
-                                        className={`${styles.tab} ${activeTab === 'POSTS' ? styles.activeTab : ''}`}
-                                        onClick={() => setActiveTab('POSTS')}
-                                    >
-                                        <svg aria-label="" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12"><rect fill="none" height="18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" width="18" x="3" y="3"></rect><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="9.015" x2="9.015" y1="3" y2="21"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="14.985" x2="14.985" y1="3" y2="21"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="21" x2="3" y1="9.015" y2="9.015"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="21" x2="3" y1="14.985" y2="14.985"></line></svg>
-                                        <span>{t('posts').toUpperCase()}</span>
-                                    </button>
-                                    <button
-                                        className={`${styles.tab} ${activeTab === 'REELS' ? styles.activeTab : ''}`}
-                                        onClick={() => setActiveTab('REELS')}
-                                    >
-                                        <svg aria-label="" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12"><line fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2" x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line><line fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line><path d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><path d="M9.763 17.664a.908.908 0 0 1-.455-1.655l4.1-2.408a.91.91 0 0 1 0-.916l-4.1-2.408a.908.908 0 0 1-.913.065.909.909 0 0 1-.445-.838v4.818a.909.909 0 0 1-.914.918" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                                        <span>REELS</span>
-                                    </button>
-                                    <button
-                                        className={`${styles.tab} ${activeTab === 'STORIES' ? styles.activeTab : ''}`}
-                                        onClick={() => setActiveTab('STORIES')}
-                                    >
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-                                        <span>STORIES</span>
-                                    </button>
-                                    <button
-                                        className={`${styles.tab} ${activeTab === 'HIGHLIGHTS' ? styles.activeTab : ''}`}
-                                        onClick={() => setActiveTab('HIGHLIGHTS')}
-                                    >
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                        <span>HIGHLIGHTS</span>
-                                    </button>
-                                </div>
-                            )}
-
                             {activeTab === 'HIGHLIGHTS' ? (
                                 /* Highlights Grid - Circular thumbnails */
                                 <div className={styles.highlightsGrid}>
