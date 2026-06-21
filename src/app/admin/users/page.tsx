@@ -27,6 +27,7 @@ export default function AdminUsersPage() {
     const [editForm, setEditForm] = useState({ plan: '', credits_remaining: 0, plan_expires_at: '' });
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState('');
+    const [activeFilter, setActiveFilter] = useState<'all' | 'free' | 'paid' | 'expired'>('all');
 
     const fetchUsers = async () => {
         setLoading(true);
@@ -187,21 +188,97 @@ export default function AdminUsersPage() {
                     <p>No users found. Users appear here after they perform a search.</p>
                 </div>
             ) : (
-                <div className="table-container">
-                    <table className="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Plan</th>
-                                <th>Credits</th>
-                                <th>Expires</th>
-                                <th>Joined</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user) => (
-                                <tr key={user.id}>
+                <div>
+                    {/* Filter Tabs */}
+                    <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.75rem', flexWrap: 'wrap' }}>
+                        <button
+                            onClick={() => setActiveFilter('all')}
+                            style={{
+                                background: activeFilter === 'all' ? '#2563eb' : 'rgba(255, 255, 255, 0.05)',
+                                color: '#fff',
+                                border: 'none',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '0.375rem',
+                                cursor: 'pointer',
+                                fontWeight: '600',
+                                fontSize: '0.85rem',
+                                transition: 'all 0.2s'
+                            }}
+                        >
+                            All ({users.length})
+                        </button>
+                        <button
+                            onClick={() => setActiveFilter('free')}
+                            style={{
+                                background: activeFilter === 'free' ? '#2563eb' : 'rgba(255, 255, 255, 0.05)',
+                                color: '#fff',
+                                border: 'none',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '0.375rem',
+                                cursor: 'pointer',
+                                fontWeight: '600',
+                                fontSize: '0.85rem',
+                                transition: 'all 0.2s'
+                            }}
+                        >
+                            Free ({users.filter(u => u.plan === 'free').length})
+                        </button>
+                        <button
+                            onClick={() => setActiveFilter('paid')}
+                            style={{
+                                background: activeFilter === 'paid' ? '#10b981' : 'rgba(255, 255, 255, 0.05)',
+                                color: '#fff',
+                                border: 'none',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '0.375rem',
+                                cursor: 'pointer',
+                                fontWeight: '600',
+                                fontSize: '0.85rem',
+                                transition: 'all 0.2s'
+                            }}
+                        >
+                            Paid ({users.filter(u => u.plan !== 'free' && !isExpired(u.plan_expires_at)).length})
+                        </button>
+                        <button
+                            onClick={() => setActiveFilter('expired')}
+                            style={{
+                                background: activeFilter === 'expired' ? '#ef4444' : 'rgba(255, 255, 255, 0.05)',
+                                color: '#fff',
+                                border: 'none',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '0.375rem',
+                                cursor: 'pointer',
+                                fontWeight: '600',
+                                fontSize: '0.85rem',
+                                transition: 'all 0.2s'
+                            }}
+                        >
+                            Expired ({users.filter(u => u.plan !== 'free' && isExpired(u.plan_expires_at)).length})
+                        </button>
+                    </div>
+
+                    <div className="table-container">
+                        <table className="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Plan</th>
+                                    <th>Credits</th>
+                                    <th>Expires</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {users
+                                    .filter((user) => {
+                                        if (activeFilter === 'free') return user.plan === 'free';
+                                        if (activeFilter === 'paid') return user.plan !== 'free' && !isExpired(user.plan_expires_at);
+                                        if (activeFilter === 'expired') return user.plan !== 'free' && isExpired(user.plan_expires_at);
+                                        return true;
+                                    })
+                                    .map((user) => (
+                                        <tr key={user.id}>
                                     <td>
                                         <strong style={{ color: 'var(--admin-text)' }}>{user.email}</strong>
                                     </td>
@@ -302,6 +379,7 @@ export default function AdminUsersPage() {
                         </tbody>
                     </table>
                 </div>
+            </div>
             )}
         </div>
     );
