@@ -12,6 +12,7 @@ const supabase = createClient(
 interface UserSub {
     id: string;
     email: string;
+    name?: string;
     plan: string;
     credits_remaining: number;
     credits_total: number;
@@ -261,6 +262,7 @@ export default function AdminUsersPage() {
                         <table className="admin-table">
                             <thead>
                                 <tr>
+                                    <th>Name</th>
                                     <th>Email</th>
                                     <th>Plan</th>
                                     <th>Credits</th>
@@ -280,7 +282,10 @@ export default function AdminUsersPage() {
                                     .map((user) => (
                                         <tr key={user.id}>
                                     <td>
-                                        <strong style={{ color: 'var(--admin-text)' }}>{user.email}</strong>
+                                        <span style={{ color: 'var(--admin-text)', fontWeight: '600' }}>{user.name || '—'}</span>
+                                    </td>
+                                    <td>
+                                        <strong style={{ color: '#9ca3af' }}>{user.email}</strong>
                                     </td>
                                     <td>
                                         <span className={`badge ${getPlanBadgeClass(user.plan)}`}>

@@ -8,7 +8,8 @@ const supabase = createClient(
 
 // GET: List all users
 export async function GET() {
-    const { data, error } = await supabase
+    // 1. Fetch user subscriptions
+    const { data: subscriptions, error } = await supabase
         .from('user_subscriptions')
         .select('*')
         .order('created_at', { ascending: false });
@@ -17,7 +18,63 @@ export async function GET() {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    return NextResponse.json(data);
+    // 2. Fetch auth users to get names from user_metadata
+    try {
+        const { data: { users: authUsers }, error: authError } = await supabase.auth.admin.listUsers();
+        
+        if (!authError && authUsers) {
+            // Map auth users by email for easy lookup
+            const userMetadataMap = new Map();
+            authUsers.forEach(u => {
+                if (u.email) {
+                    const name = u.user_metadata?.full_name || u.user_metadata?.name || '';
+                    userMetadataMap.set(u.email.toLowerCase(), name);
+                }
+            });
+
+            // Merge name into subscription data
+            const mergedData = subscriptions.map(sub => {
+                const emailKey = sub.email ? sub.email.toLowerCase() : '';
+                let name = userMetadataMap.get(emailKey) || '';
+                
+                // Fallback: if no name in metadata, format the email prefix
+                if (!name && sub.email) {
+                    const prefix = sub.email.split('@')[0];
+                    name = prefix
+                        .split(/[\._-]/)
+                        .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                }
+
+                return {
+                    ...sub,
+                    name: name
+                };
+            });
+
+            return NextResponse.json(mergedData);
+        }
+    } catch (e) {
+        console.error('Failed to fetch auth users list:', e);
+    }
+
+    // Fallback: if listUsers fails, map names from emails only
+    const fallbackData = subscriptions.map(sub => {
+        let name = '';
+        if (sub.email) {
+            const prefix = sub.email.split('@')[0];
+            name = prefix
+                .split(/[\._-]/)
+                .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+        return {
+            ...sub,
+            name
+        };
+    });
+
+    return NextResponse.json(fallbackData);
 }
 
 // PUT: Update a user's plan
