@@ -427,7 +427,8 @@
         "following": "Following",
         "noMedia": "No {type} found.",
         "storyTip": "Stories usually expire after 24 hours.",
-        "viewStory": "View Story"
+        "viewStory": "View Story",
+        "errorTip": "Tip: Make sure it is a public Business or Creator account."
     },
     "footer": {
         "description": "The most powerful and secure tool to view Instagram stories, profiles, and followers anonymously. No login required.",
