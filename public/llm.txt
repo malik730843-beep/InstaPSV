@@ -1,0 +1,61 @@
+# InstaPSV — Developer & System Specifications Guide
+
+InstaPSV is a premium, high-performance web platform designed for anonymous Instagram content interaction. It provides users with a secure way to view profiles, stories, highlights, and reels without leaving a trace.
+
+## 1. Technical Stack Overview
+- **Framework**: Next.js 16+ (App Router)
+- **Database**: Supabase (PostgreSQL)
+- **Cache / Rate Limiting**: Upstash Redis
+- **Styling**: Vanilla CSS & Modules
+- **Authentication**: Supabase Auth
+
+## 2. Core User-Facing Routes
+- `/` — Homepage offering general search capabilities and promotional landing page elements.
+- `/instagram-story-viewer` — Viewer for active public Instagram stories (fetches anonymously).
+- `/instagram-highlights-viewer` — Viewer and downloader for public profile highlights.
+- `/anonymous-instagram-viewer` — Viewer for public profile stats, bios, and posts.
+- `/instagram-reels-downloader` — Play and download reels in high definition.
+- `/pricing` — Landing page detailing Free vs. Pro subscription features.
+- `/checkout` — Form to upgrade accounts using Payoneer verification requests.
+
+## 3. Database Schema
+- **`user_subscriptions`**: Tracks user accounts and their subscription plans.
+  - `id` (UUID, Primary Key)
+  - `email` (TEXT, Unique)
+  - `plan` (TEXT: 'free', 'weekly', 'monthly')
+  - `credits_remaining` (INT, default 5)
+  - `credits_total` (INT, default 5)
+  - `plan_expires_at` (TIMESTAMPTZ)
+  - `created_at` / `updated_at` (TIMESTAMPTZ)
+- **`subscription_requests`**: Logs Payoneer transaction verification requests sent by users.
+  - `id` (UUID, Primary Key)
+  - `email` (TEXT)
+  - `plan_name` (TEXT)
+  - `amount` (NUMERIC)
+  - `payment_method` (TEXT)
+  - `transaction_id` (TEXT)
+  - `status` (TEXT: 'pending', 'approved', 'rejected')
+  - `created_at` / `processed_at` (TIMESTAMPTZ)
+  - `rejection_reason` (TEXT)
+- **`search_logs`**: Tracks analytics on profile searches.
+  - `id` (UUID, Primary Key)
+  - `user_email` (TEXT)
+  - `username_searched` (TEXT)
+  - `credits_used` (INT)
+  - `created_at` (TIMESTAMPTZ)
+
+## 4. Key API Endpoints
+- **`POST /api/subscriptions/request`**: Submits a new payment request to the database (`subscription_requests` table).
+- **`GET /api/credits?email={email}`**: Validates if user has credits. Creates a new record in `user_subscriptions` if the email is first-time.
+- **`POST /api/credits`**: Deducts credits on successful searches (reverts Pro users as unlimited).
+- **`GET /api/admin/payments`**: Lists all pending and processed payment requests.
+- **`PUT /api/admin/payments`**: Approves/rejects transaction requests and upgrades user's plan in `user_subscriptions`.
+- **`GET /api/admin/users`**: Lists all registered users and merges display names from Supabase Auth user metadata.
+- **`PUT /api/admin/users`**: Updates user subscription plan, credits, and expiry dates manually.
+
+## 5. Development Configuration
+- Environment variables are defined in `.env.local`:
+  - `INSTAGRAM_ACCESS_TOKEN`: The token used to call Meta business discovery endpoints.
+  - `INSTAGRAM_BUSINESS_ACCOUNT_ID`: Your owned IG business ID used as a search proxy client.
+  - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Client access tokens for database interface.
+  - `SUPABASE_SERVICE_ROLE_KEY`: Service role bypass permissions for administrative tasks.
