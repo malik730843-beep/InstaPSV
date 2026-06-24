@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Nunito, Inter } from 'next/font/google';
 import "./globals.css";
 import "./typography.css";
 import { NextIntlClientProvider } from 'next-intl';
@@ -7,6 +8,18 @@ import { createClient } from '@supabase/supabase-js';
 import Script from 'next/script';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import NextTopLoader from 'nextjs-toploader';
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-nunito',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 // Initialize Supabase Client
 const supabase = createClient(
@@ -159,8 +172,6 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* SoftwareApplication Schema */}
         <script
           type="application/ld+json"
@@ -194,7 +205,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body className={`${nunito.variable} ${inter.variable}`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <NextTopLoader
             color="#A855F7"
@@ -217,9 +228,9 @@ export default async function RootLayout({
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${analyticsCode}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+            <Script id="google-analytics" strategy="lazyOnload">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
@@ -231,7 +242,7 @@ export default async function RootLayout({
         )}
 
         {/* Microsoft Clarity */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -242,7 +253,7 @@ export default async function RootLayout({
         </Script>
 
         {/* Google Identity Services */}
-        <Script src="https://accounts.google.com/gsi/client" strategy="beforeInteractive" />
+        <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive" />
       </body>
     </html >
   );

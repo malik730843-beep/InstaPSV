@@ -4,15 +4,15 @@
    Optimized for Mobile Devices (≤ 767px)
    ============================================ */
 
-/* Google Fonts - Inter (Modern Sans-Serif) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Google Fonts - Inter (Preloaded via Next.js Layout) */
+
 
 /* ============================================
    CSS Custom Properties - Typography Tokens
    ============================================ */
 :root {
     /* Typography Font Family */
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-primary: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
     /* Mobile Heading Sizes (≤ 767px) */
     --heading-h1-size: 30px;
