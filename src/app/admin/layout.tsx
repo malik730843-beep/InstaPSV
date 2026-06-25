@@ -106,13 +106,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             />
                         ) : (
                             <Image 
-                                src="/logo.png" 
-                                alt="InstaPSV Logo" 
-                                width={40} 
-                                height={40} 
+                                src="/apple-touch-icon.png" 
+                                alt="InstaPSV Icon" 
+                                width={36} 
+                                height={36} 
                                 style={{ 
-                                    objectFit: 'cover', 
-                                    objectPosition: 'left',
+                                    objectFit: 'contain', 
                                     mixBlendMode: 'lighten',
                                 }} 
                             />
