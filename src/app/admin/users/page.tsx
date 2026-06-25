@@ -191,15 +191,15 @@ export default function AdminUsersPage() {
             ) : (
                 <div>
                     {/* Filter Tabs */}
-                    <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.75rem', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid #c3c4c7', paddingBottom: '0.75rem', flexWrap: 'wrap' }}>
                         <button
                             onClick={() => setActiveFilter('all')}
                             style={{
-                                background: activeFilter === 'all' ? '#2563eb' : 'rgba(255, 255, 255, 0.05)',
-                                color: '#fff',
-                                border: 'none',
+                                background: activeFilter === 'all' ? '#2271b1' : '#f6f7f7',
+                                color: activeFilter === 'all' ? '#fff' : '#2c3338',
+                                border: activeFilter === 'all' ? '1px solid #2271b1' : '1px solid #c3c4c7',
                                 padding: '0.5rem 1rem',
-                                borderRadius: '0.375rem',
+                                borderRadius: '3px',
                                 cursor: 'pointer',
                                 fontWeight: '600',
                                 fontSize: '0.85rem',
@@ -211,11 +211,11 @@ export default function AdminUsersPage() {
                         <button
                             onClick={() => setActiveFilter('free')}
                             style={{
-                                background: activeFilter === 'free' ? '#2563eb' : 'rgba(255, 255, 255, 0.05)',
-                                color: '#fff',
-                                border: 'none',
+                                background: activeFilter === 'free' ? '#2271b1' : '#f6f7f7',
+                                color: activeFilter === 'free' ? '#fff' : '#2c3338',
+                                border: activeFilter === 'free' ? '1px solid #2271b1' : '1px solid #c3c4c7',
                                 padding: '0.5rem 1rem',
-                                borderRadius: '0.375rem',
+                                borderRadius: '3px',
                                 cursor: 'pointer',
                                 fontWeight: '600',
                                 fontSize: '0.85rem',
@@ -227,11 +227,11 @@ export default function AdminUsersPage() {
                         <button
                             onClick={() => setActiveFilter('paid')}
                             style={{
-                                background: activeFilter === 'paid' ? '#10b981' : 'rgba(255, 255, 255, 0.05)',
-                                color: '#fff',
-                                border: 'none',
+                                background: activeFilter === 'paid' ? '#10b981' : '#f6f7f7',
+                                color: activeFilter === 'paid' ? '#fff' : '#2c3338',
+                                border: activeFilter === 'paid' ? '1px solid #10b981' : '1px solid #c3c4c7',
                                 padding: '0.5rem 1rem',
-                                borderRadius: '0.375rem',
+                                borderRadius: '3px',
                                 cursor: 'pointer',
                                 fontWeight: '600',
                                 fontSize: '0.85rem',
@@ -243,11 +243,11 @@ export default function AdminUsersPage() {
                         <button
                             onClick={() => setActiveFilter('expired')}
                             style={{
-                                background: activeFilter === 'expired' ? '#ef4444' : 'rgba(255, 255, 255, 0.05)',
-                                color: '#fff',
-                                border: 'none',
+                                background: activeFilter === 'expired' ? '#ef4444' : '#f6f7f7',
+                                color: activeFilter === 'expired' ? '#fff' : '#2c3338',
+                                border: activeFilter === 'expired' ? '1px solid #ef4444' : '1px solid #c3c4c7',
                                 padding: '0.5rem 1rem',
-                                borderRadius: '0.375rem',
+                                borderRadius: '3px',
                                 cursor: 'pointer',
                                 fontWeight: '600',
                                 fontSize: '0.85rem',
