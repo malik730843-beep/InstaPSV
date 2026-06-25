@@ -58,16 +58,24 @@ export default async function ContactPage() {
 
                 <section className={styles.content}>
                     <div className={styles.container}>
-                        {page ? (
-                            <div
-                                className={styles.contactContent}
-                                dangerouslySetInnerHTML={{ __html: page.content }}
-                            />
-                        ) : (
-                            <div className={styles.contactContent}>
-                                <p>{commonT('contentNotFound')}</p>
-                            </div>
-                        )}
+                        <div
+                            className={styles.contactContent}
+                            dangerouslySetInnerHTML={{
+                                __html: page?.content || `
+                                    <h2>Get in Touch</h2>
+                                    <p>Have questions, feedback, technical suggestions, or advertising inquiries? The InstaPSV team is here to help! We strive to respond to all inquiries within 24–48 hours.</p>
+
+                                    <h3>General Inquiries & Support</h3>
+                                    <p>For help using our tools, reporting bugs, or recommending new features, please send us a message using the contact form below or reach out to our team via email at <a href="mailto:support@instapsv.com">support@instapsv.com</a>.</p>
+
+                                    <h3>Copyright and DMCA Takedown Requests</h3>
+                                    <p>If you are a copyright owner or an authorized agent thereof and believe that any content streamed through our tool infringes upon your copyright, you may submit a formal notification. Please include the specific username and URLs, and send your request to <a href="mailto:dmca@instapsv.com">dmca@instapsv.com</a>. We will process and respond to legitimate requests promptly by blacklisting the specific profile from being viewed or downloaded through our tool.</p>
+
+                                    <h3>Ad Partnership Inquiries</h3>
+                                    <p>If you are interested in advertising on InstaPSV or setting up sponsorship campaigns, please contact us with the subject line "Advertising" at <a href="mailto:ads@instapsv.com">ads@instapsv.com</a>.</p>
+                                `
+                            }}
+                        />
 
                         <div className={styles.formCard}>
                             <h3>{t('sendMessage')}</h3>
