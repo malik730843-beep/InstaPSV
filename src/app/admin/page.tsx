@@ -221,15 +221,6 @@ export default function AdminDashboard() {
                                 </span>
                                 Create New Post
                             </Link>
-                            <Link href="/admin/pages/new" className="action-btn">
-                                <span className="action-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-                                        <polyline points="13 2 13 9 20 9" />
-                                    </svg>
-                                </span>
-                                Create New Page
-                            </Link>
                             <Link href="/admin/categories" className="action-btn">
                                 <span className="action-icon">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -247,35 +238,6 @@ export default function AdminDashboard() {
                                 </span>
                                 Site Settings
                             </Link>
-                        </div>
-                    </div>
-
-                    <div className="admin-card">
-                        <div className="admin-card-header">
-                            <h2 className="admin-card-title">System Status</h2>
-                        </div>
-                        <div className="system-status-list">
-                            <div className="status-item">
-                                <span className="status-indicator active"></span>
-                                <div>
-                                    <strong>Redis Cache</strong>
-                                    <p className="status-sub">Connected</p>
-                                </div>
-                            </div>
-                            <div className="status-item">
-                                <span className="status-indicator active"></span>
-                                <div>
-                                    <strong>Supabase</strong>
-                                    <p className="status-sub">Connected</p>
-                                </div>
-                            </div>
-                            <div className="status-item">
-                                <span className="status-indicator active"></span>
-                                <div>
-                                    <strong>Meta API</strong>
-                                    <p className="status-sub">Active</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

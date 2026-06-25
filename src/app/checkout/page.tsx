@@ -14,6 +14,10 @@ export const metadata: Metadata = {
     alternates: {
         canonical: '/checkout', // Defines the canonical permalink for SEO
     },
+    robots: {
+        index: false,
+        follow: false,
+    },
     title: 'Subscribe to Pro Plan — InstaPSV',
     description: 'Complete your upgrade to InstaPSV Pro. Get unlimited anonymous searches, view stories, highlights, and download media in HD quality.',
     keywords: 'InstaPSV checkout, buy anonymous instagram viewer, upgrade instapsv',

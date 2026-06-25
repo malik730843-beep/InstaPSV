@@ -1,7 +1,16 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Features from '@/components/sections/Features';
 import CTASection from '@/components/sections/CTASection';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/features',
+  },
+  title: 'Advanced Features — InstaPSV',
+  description: 'Explore the powerful tools we\'ve built to help you navigate and enjoy Instagram content anonymously and securely.',
+};
 
 export default function FeaturesPage() {
   return (
