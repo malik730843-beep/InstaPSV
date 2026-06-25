@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { createClient } from '@supabase/supabase-js';
 
 // Stable last-modified date for static/legal pages (update manually when content changes)
-const STATIC_LAST_MODIFIED = new Date('2026-05-14');
+const STATIC_LAST_MODIFIED = new Date('2026-06-25');
 
 
 const supabase = createClient(
@@ -15,13 +15,11 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://instapsv.com';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // 1. Core Static Routes
     const coreRoutes = [
-        { route: '', priority: 1.0, freq: 'weekly' as const },
-        { route: '/blog', priority: 0.8, freq: 'weekly' as const },
-        { route: '/posts', priority: 0.7, freq: 'weekly' as const }, // Blog archive
-        { route: '/pages', priority: 0.6, freq: 'monthly' as const }, // Pages archive
+        { route: '', priority: 1.0, freq: 'daily' as const },
+        { route: '/blog', priority: 0.9, freq: 'weekly' as const },
         { route: '/features', priority: 0.7, freq: 'monthly' as const },
-        { route: '/about', priority: 0.6, freq: 'monthly' as const },
-        { route: '/contact', priority: 0.6, freq: 'monthly' as const },
+        { route: '/about', priority: 0.5, freq: 'monthly' as const },
+        { route: '/contact', priority: 0.5, freq: 'monthly' as const },
         { route: '/pricing', priority: 0.7, freq: 'monthly' as const },
     ].map(({ route, priority, freq }) => ({
         url: `${BASE_URL}${route}`,
@@ -40,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${BASE_URL}${route}`,
         lastModified: STATIC_LAST_MODIFIED,
         changeFrequency: 'weekly' as const,
-        priority: 0.9,
+        priority: 1.0,
     }));
 
     // 3. Legal / Policy Pages — explicit dedicated routes, required for AdSense

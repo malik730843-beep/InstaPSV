@@ -15,8 +15,22 @@ import FAQSchema from '@/components/seo/FAQSchema';
 import dynamic from 'next/dynamic';
 
 export const metadata: Metadata = {
+  title: 'InstaPSV — Anonymous Instagram Viewer | No Login Required',
+  description: 'View Instagram stories, profiles, reels & highlights anonymously — no login, no account needed. 100% free, private, and works on any device. Try it now.',
+  keywords: 'anonymous instagram viewer, instagram story viewer, view instagram stories anonymously, ig story viewer no login, instagram profile viewer, browse instagram without account',
   alternates: {
     canonical: '/',
+  },
+  openGraph: {
+    title: 'InstaPSV — Anonymous Instagram Viewer | No Login Required',
+    description: 'View Instagram stories, profiles, reels & highlights anonymously. No login, no account. 100% free & private.',
+    type: 'website',
+    url: 'https://instapsv.com/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'InstaPSV — Anonymous Instagram Viewer | No Login Required',
+    description: 'View Instagram stories, profiles, reels & highlights anonymously. No login needed.',
   },
 };
 
