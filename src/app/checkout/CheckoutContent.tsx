@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Sparkles, Loader2, CheckCircle, AlertCircle, Lock } from 'lucide-react';
+import { Sparkles, Loader2, CheckCircle, AlertCircle, Lock, CreditCard, Building2 } from 'lucide-react';
 import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
 import styles from './checkout.module.css';
@@ -16,21 +16,16 @@ const supabase = createClient(
 );
 
 export default function CheckoutContent() {
-    // 1. Read query parameters from URL (e.g. /checkout?plan=pro)
     const searchParams = useSearchParams();
     const plan = searchParams.get('plan') || 'pro';
-    
-    // 2. Define Form Inputs State variables
+
     const [email, setEmail] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('Payoneer'); // Accepts 'Payoneer' or 'Bank Transfer'
+    const [paymentMethod, setPaymentMethod] = useState('Payoneer');
     const [transactionId, setTransactionId] = useState('');
-    
-    // 3. Define Form Submission Status State variables
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
 
-    // 4. Autofill Email: If user is logged in, grab their email from Supabase session
     useEffect(() => {
         const getSession = async () => {
             const { data: { session } } = await supabase.auth.getSession();
@@ -41,11 +36,9 @@ export default function CheckoutContent() {
         getSession();
     }, []);
 
-    // 5. Handle Form Submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
-        // Simple client validation
+
         if (!email || !transactionId) {
             setError('Please fill in all fields.');
             return;
@@ -55,15 +48,14 @@ export default function CheckoutContent() {
         setError('');
 
         try {
-            // POST request to subscription upgrades queue
             const res = await fetch('/api/subscriptions/request', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email,
-                    plan_name: 'monthly', // Maps to the 'monthly' Pro plan in DB
+                    plan_name: 'monthly',
                     amount: 5.00,
-                    payment_method: paymentMethod, // 'Payoneer'
+                    payment_method: paymentMethod,
                     transaction_id: transactionId
                 })
             });
@@ -71,10 +63,8 @@ export default function CheckoutContent() {
             const data = await res.json();
 
             if (!res.ok) {
-                // Show errors returned by the API
                 setError(data.error || 'Failed to submit request.');
             } else {
-                // Toggle success state to display confirmation UI
                 setSuccess(true);
             }
         } catch (err) {
@@ -85,7 +75,7 @@ export default function CheckoutContent() {
     };
 
     // ===================================================
-    // SUCCESS VIEW (Rendered after successful submission)
+    // SUCCESS VIEW
     // ===================================================
     if (success) {
         return (
@@ -110,7 +100,7 @@ export default function CheckoutContent() {
     }
 
     // ===================================================
-    // FORM VIEW (Main checkout instructions and form)
+    // FORM VIEW
     // ===================================================
     return (
         <div className={styles.checkoutGrid}>
@@ -120,7 +110,7 @@ export default function CheckoutContent() {
                     <Sparkles size={14} /> PRO PLAN
                 </span>
                 <h2 className={styles.planName}>Monthly Membership</h2>
-                
+
                 <div className={styles.priceSection}>
                     <span className={styles.currency}>$</span>
                     <span className={styles.amount}>5.00</span>
@@ -147,18 +137,37 @@ export default function CheckoutContent() {
                 </div>
             </div>
 
-            {/* RIGHT COLUMN: Payment Details and Form Submission */}
+            {/* RIGHT COLUMN: Payment Details and Form */}
             <div className={styles.paymentCard}>
                 <h2 className={styles.cardSectionTitle}>Payment Details</h2>
-                
-                {/* Payment Instructions block */}
+
+                {/* Payment Method Tabs */}
+                <div className={styles.paymentTabs}>
+                    <button
+                        type="button"
+                        className={`${styles.paymentTab} ${paymentMethod === 'Payoneer' ? styles.paymentTabActive : ''}`}
+                        onClick={() => { setPaymentMethod('Payoneer'); setTransactionId(''); setError(''); }}
+                    >
+                        <CreditCard size={16} />
+                        Payoneer
+                    </button>
+                    <button
+                        type="button"
+                        className={`${styles.paymentTab} ${paymentMethod === 'Bank Transfer' ? styles.paymentTabActive : ''}`}
+                        onClick={() => { setPaymentMethod('Bank Transfer'); setTransactionId(''); setError(''); }}
+                    >
+                        <Building2 size={16} />
+                        Bank Transfer
+                    </button>
+                </div>
+
+                {/* Payment Instructions */}
                 <div className={styles.instructions}>
                     {paymentMethod === 'Payoneer' ? (
                         <>
                             <p>
-                                To activate your account, please send <strong>$5.00 USD</strong> via Payoneer:
+                                Send <strong>$5.00 USD</strong> to the Payoneer account below:
                             </p>
-                            
                             <div className={styles.paymentInfo}>
                                 <p><strong>Payoneer Email:</strong> payoneer@instapsv.com</p>
                             </div>
@@ -166,9 +175,8 @@ export default function CheckoutContent() {
                     ) : (
                         <>
                             <p>
-                                To activate your account, please send <strong>$5.00 USD</strong> via US Bank Transfer (ACH):
+                                Send <strong>$5.00 USD</strong> via US Bank Transfer (ACH) to:
                             </p>
-                            
                             <div className={styles.paymentInfo}>
                                 <p><strong>Account Name:</strong> Muhammad Rizwan</p>
                                 <p><strong>Bank Name:</strong> JP Morgan Chase NA</p>
@@ -177,15 +185,14 @@ export default function CheckoutContent() {
                             </div>
                         </>
                     )}
-                    
+
                     <p className={styles.instructionNote}>
-                        After sending payment, enter your email and transaction ID / reference number below. Our support team will verify and activate your Pro plan.
+                        After sending payment, enter your email and transaction reference below. Our team will verify and activate your Pro plan.
                     </p>
                 </div>
 
-                {/* Form Elements */}
+                {/* Form */}
                 <form onSubmit={handleSubmit} className={styles.paymentForm}>
-                    {/* Account email input */}
                     <div className={styles.inputGroup}>
                         <label htmlFor="email">Your Account Email</label>
                         <input
@@ -199,42 +206,27 @@ export default function CheckoutContent() {
                         />
                     </div>
 
-                    {/* Payment Method Select Dropdown */}
                     <div className={styles.inputGroup}>
-                        <label htmlFor="paymentMethod">Payment Method</label>
-                        <select
-                            id="paymentMethod"
-                            value={paymentMethod}
-                            onChange={(e) => setPaymentMethod(e.target.value)}
-                            className={styles.select}
-                        >
-                            <option value="Payoneer">Payoneer</option>
-                            <option value="Bank Transfer">US Bank Transfer (nsave)</option>
-                        </select>
-                    </div>
-
-                    {/* Transaction ID / Reference Number */}
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="transactionId">Transaction ID / Reference Number</label>
+                        <label htmlFor="transactionId">
+                            {paymentMethod === 'Payoneer' ? 'Payoneer Transaction ID' : 'Bank Transfer Reference / ID'}
+                        </label>
                         <input
                             id="transactionId"
                             type="text"
                             value={transactionId}
                             onChange={(e) => setTransactionId(e.target.value)}
-                            placeholder={paymentMethod === 'Payoneer' ? "Paste your Payoneer Transaction ID" : "Enter your Bank Transfer Reference / ID"}
+                            placeholder={paymentMethod === 'Payoneer' ? 'Paste your Payoneer Transaction ID' : 'Enter your Bank Transfer Reference Number'}
                             className={styles.input}
                             required
                         />
                     </div>
 
-                    {/* Error Notice block */}
                     {error && (
                         <div className={styles.errorText} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <AlertCircle size={16} /> {error}
                         </div>
                     )}
 
-                    {/* Submit Button */}
                     <button type="submit" className={styles.submitBtn} disabled={loading}>
                         {loading ? (
                             <>
