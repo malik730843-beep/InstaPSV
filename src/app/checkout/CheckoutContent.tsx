@@ -22,7 +22,7 @@ export default function CheckoutContent() {
     
     // 2. Define Form Inputs State variables
     const [email, setEmail] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('Payoneer'); // Only Payoneer is accepted
+    const [paymentMethod, setPaymentMethod] = useState('Payoneer'); // Accepts 'Payoneer' or 'Bank Transfer'
     const [transactionId, setTransactionId] = useState('');
     
     // 3. Define Form Submission Status State variables
@@ -151,18 +151,37 @@ export default function CheckoutContent() {
             <div className={styles.paymentCard}>
                 <h2 className={styles.cardSectionTitle}>Payment Details</h2>
                 
-                {/* Payoneer Address & How-to-pay block */}
+                {/* Payment Instructions block */}
                 <div className={styles.instructions}>
-                    <p>
-                        To activate your account, please send <strong>$5.00 USD</strong> via Payoneer:
-                    </p>
-                    
-                    <div className={styles.paymentInfo}>
-                        <p><strong>Payoneer Email:</strong> payoneer@instapsv.com</p>
-                    </div>
+                    {paymentMethod === 'Payoneer' ? (
+                        <>
+                            <p>
+                                To activate your account, please send <strong>$5.00 USD</strong> via Payoneer:
+                            </p>
+                            
+                            <div className={styles.paymentInfo}>
+                                <p><strong>Payoneer Email:</strong> payoneer@instapsv.com</p>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <p>
+                                To activate your account, please send <strong>$5.00 USD</strong> via US Bank Transfer (ACH):
+                            </p>
+                            
+                            <div className={styles.paymentInfo}>
+                                <p><strong>Account Name:</strong> Muhammad Rizwan</p>
+                                <p><strong>Bank Name:</strong> JP Morgan Chase NA</p>
+                                <p><strong>Routing Number:</strong> 028000024</p>
+                                <p><strong>Account Number:</strong> 30000002936888</p>
+                                <p><strong>Account Type:</strong> Checking (Current)</p>
+                                <p><strong>Bank Address:</strong> 270 Park Avenue, New York, NY 10017</p>
+                            </div>
+                        </>
+                    )}
                     
                     <p className={styles.instructionNote}>
-                        After sending payment, enter your email and transaction ID below. Our support team will verify and activate your Pro plan.
+                        After sending payment, enter your email and transaction ID / reference number below. Our support team will verify and activate your Pro plan.
                     </p>
                 </div>
 
@@ -182,20 +201,21 @@ export default function CheckoutContent() {
                         />
                     </div>
 
-                    {/* Payoneer indicator input (read-only) */}
+                    {/* Payment Method Select Dropdown */}
                     <div className={styles.inputGroup}>
                         <label htmlFor="paymentMethod">Payment Method</label>
-                        <input
+                        <select
                             id="paymentMethod"
-                            type="text"
                             value={paymentMethod}
-                            className={styles.input}
-                            disabled
-                            readOnly
-                        />
+                            onChange={(e) => setPaymentMethod(e.target.value)}
+                            className={styles.select}
+                        >
+                            <option value="Payoneer">Payoneer</option>
+                            <option value="Bank Transfer">US Bank Transfer (nsave)</option>
+                        </select>
                     </div>
 
-                    {/* Payoneer Transaction ID reference number */}
+                    {/* Transaction ID / Reference Number */}
                     <div className={styles.inputGroup}>
                         <label htmlFor="transactionId">Transaction ID / Reference Number</label>
                         <input
@@ -203,7 +223,7 @@ export default function CheckoutContent() {
                             type="text"
                             value={transactionId}
                             onChange={(e) => setTransactionId(e.target.value)}
-                            placeholder="Paste your Payoneer Transaction ID"
+                            placeholder={paymentMethod === 'Payoneer' ? "Paste your Payoneer Transaction ID" : "Enter your Bank Transfer Reference / ID"}
                             className={styles.input}
                             required
                         />
