@@ -174,8 +174,6 @@ export default function CheckoutContent() {
                                 <p><strong>Bank Name:</strong> JP Morgan Chase NA</p>
                                 <p><strong>Routing Number:</strong> 028000024</p>
                                 <p><strong>Account Number:</strong> 30000002936888</p>
-                                <p><strong>Account Type:</strong> Checking (Current)</p>
-                                <p><strong>Bank Address:</strong> 270 Park Avenue, New York, NY 10017</p>
                             </div>
                         </>
                     )}
