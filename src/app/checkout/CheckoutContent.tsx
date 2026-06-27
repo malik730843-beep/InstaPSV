@@ -20,7 +20,7 @@ export default function CheckoutContent() {
     const plan = searchParams.get('plan') || 'pro';
 
     const [email, setEmail] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('Payoneer');
+    const [paymentMethod, setPaymentMethod] = useState('Bank Transfer');
     const [transactionId, setTransactionId] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -141,50 +141,17 @@ export default function CheckoutContent() {
             <div className={styles.paymentCard}>
                 <h2 className={styles.cardSectionTitle}>Payment Details</h2>
 
-                {/* Payment Method Tabs */}
-                <div className={styles.paymentTabs}>
-                    <button
-                        type="button"
-                        className={`${styles.paymentTab} ${paymentMethod === 'Payoneer' ? styles.paymentTabActive : ''}`}
-                        onClick={() => { setPaymentMethod('Payoneer'); setTransactionId(''); setError(''); }}
-                    >
-                        <CreditCard size={16} />
-                        Payoneer
-                    </button>
-                    <button
-                        type="button"
-                        className={`${styles.paymentTab} ${paymentMethod === 'Bank Transfer' ? styles.paymentTabActive : ''}`}
-                        onClick={() => { setPaymentMethod('Bank Transfer'); setTransactionId(''); setError(''); }}
-                    >
-                        <Building2 size={16} />
-                        Bank Transfer
-                    </button>
-                </div>
-
                 {/* Payment Instructions */}
                 <div className={styles.instructions}>
-                    {paymentMethod === 'Payoneer' ? (
-                        <>
-                            <p>
-                                Send <strong>$5.00 USD</strong> to the Payoneer account below:
-                            </p>
-                            <div className={styles.paymentInfo}>
-                                <p><strong>Payoneer Email:</strong> payoneer@instapsv.com</p>
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <p>
-                                Send <strong>$5.00 USD</strong> via US Bank Transfer (ACH) to:
-                            </p>
-                            <div className={styles.paymentInfo}>
-                                <p><strong>Account Name:</strong> Muhammad Rizwan</p>
-                                <p><strong>Bank Name:</strong> JP Morgan Chase NA</p>
-                                <p><strong>Routing Number:</strong> 028000024</p>
-                                <p><strong>Account Number:</strong> 30000002936888</p>
-                            </div>
-                        </>
-                    )}
+                    <p>
+                        Send <strong>$5.00 USD</strong> via US Bank Transfer (ACH) to:
+                    </p>
+                    <div className={styles.paymentInfo}>
+                        <p><strong>Account Name:</strong> Muhammad Rizwan</p>
+                        <p><strong>Bank Name:</strong> JP Morgan Chase NA</p>
+                        <p><strong>Routing Number:</strong> 028000024</p>
+                        <p><strong>Account Number:</strong> 30000002936888</p>
+                    </div>
 
                     <p className={styles.instructionNote}>
                         After sending payment, enter your email and transaction reference below. Our team will verify and activate your Pro plan.
@@ -208,14 +175,14 @@ export default function CheckoutContent() {
 
                     <div className={styles.inputGroup}>
                         <label htmlFor="transactionId">
-                            {paymentMethod === 'Payoneer' ? 'Payoneer Transaction ID' : 'Bank Transfer Reference / ID'}
+                            Bank Transfer Reference / ID
                         </label>
                         <input
                             id="transactionId"
                             type="text"
                             value={transactionId}
                             onChange={(e) => setTransactionId(e.target.value)}
-                            placeholder={paymentMethod === 'Payoneer' ? 'Paste your Payoneer Transaction ID' : 'Enter your Bank Transfer Reference Number'}
+                            placeholder="Enter your Bank Transfer Reference Number"
                             className={styles.input}
                             required
                         />
