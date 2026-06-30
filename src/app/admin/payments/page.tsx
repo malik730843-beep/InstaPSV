@@ -39,14 +39,16 @@ export default function AdminPaymentsPage() {
                 setRequests(data);
             }
 
-            // Fetch active pro count
-            const { count, error } = await supabase
+            // Fetch active pro count (excluding expired ones)
+            const { data: subsData, error } = await supabase
                 .from('user_subscriptions')
-                .select('*', { count: 'exact', head: true })
+                .select('plan_expires_at')
                 .eq('plan', 'monthly');
             
-            if (!error && count !== null) {
-                setActiveProsCount(count);
+            if (!error && subsData) {
+                const now = new Date();
+                const activeCount = subsData.filter(s => !s.plan_expires_at || new Date(s.plan_expires_at) > now).length;
+                setActiveProsCount(activeCount);
             }
         } catch (err) {
             console.error('Fetch requests error:', err);
