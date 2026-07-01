@@ -1,0 +1,35 @@
+# InstaPSV
+
+> Anonymous Instagram Story Viewer, Reels Downloader, and Web Utility Toolsuite
+
+InstaPSV is a high-performance web utility designed for anonymous Instagram interaction (profile viewing, story watching, highlight downloads, and hashtags generation). It is built using Next.js, Supabase, and Upstash Redis.
+
+## Core Features
+
+- **Anonymous Story Viewer:** View active Instagram stories privately without logging in or leaving a trace.
+- **Profile Viewer:** Browse public profile metrics, bios, followers count, and post grids.
+- **Highlights Viewer:** View and download media from public highlights folders.
+- **Reels Downloader:** Download Instagram Reels in high-definition quality.
+- **Hashtag Generator:** Generate niche-specific trending hashtags to boost social visibility.
+
+## Tech Stack
+
+- **Frontend:** Next.js 16 (App Router) + TypeScript + CSS Modules
+- **Backend:** Supabase (PostgreSQL) + Node.js API Routes
+- **Caching:** Upstash Redis (bypasses Meta API rate limits and keeps queries ultra-fast)
+
+## Key Sitemap & Pages
+
+- [Homepage](/) - Main portal and anonymous grid viewer.
+- [Instagram Story Viewer](/instagram-story-viewer) - Anonymous story watcher.
+- [Instagram Reels Downloader](/instagram-reels-downloader) - HD Reels media downloader.
+- [Instagram Highlights Viewer](/instagram-highlights-viewer) - Highlights gallery and downloader.
+- [Instagram Hashtag Generator](/instagram-hashtag-generator) - Trending hashtag generator.
+- [Pricing](/pricing) - Pro Plan details ($5.00/month for unlimited queries).
+- [About Us](/about) - Information about the team and mission.
+- [Privacy Policy](/privacy-policy) - Data retention and privacy terms.
+- [Terms of Use](/terms-of-use) - Platform guidelines and usage rules.
+- [Disclaimer](/disclaimer) - Legal notice regarding Instagram and Meta.
+- [Contact](/contact) - Support and inquiry page.
+- [Sitemap Index](/sitemap.xml) - Main XML sitemap.
+- [Robots Config](/robots.txt) - Search engine directives.
