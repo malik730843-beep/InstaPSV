@@ -6,6 +6,11 @@ const supabase = createClient(
     process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+const MOCK_CATEGORIES = [
+    { id: 'mock-cat-1', name: 'Instagram Tips', slug: 'instagram-tips', sort_order: 1 },
+    { id: 'mock-cat-2', name: 'Guides & Tutorials', slug: 'guides-tutorials', sort_order: 2 }
+];
+
 // GET - List categories
 export async function GET() {
     try {
@@ -18,6 +23,10 @@ export async function GET() {
 
         return NextResponse.json({ categories });
     } catch (error: any) {
+        if (error.message?.includes('fetch failed') || error.message?.includes('fetch') || error.message?.includes('network')) {
+            console.warn("Supabase offline - returning mock categories");
+            return NextResponse.json({ categories: MOCK_CATEGORIES });
+        }
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }

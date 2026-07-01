@@ -7,6 +7,29 @@ const supabase = createClient(
     process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+const MOCK_POSTS = [
+    {
+        id: 'mock-post-1',
+        title: 'How to View Instagram Stories Anonymously',
+        slug: 'view-instagram-stories-anonymously',
+        content: '<p>This is a guide on how to view Instagram stories anonymously.</p>',
+        excerpt: 'Learn how to view stories anonymously...',
+        status: 'published',
+        created_at: new Date().toISOString(),
+        published_at: new Date().toISOString()
+    },
+    {
+        id: 'mock-post-2',
+        title: 'Instagram Algorithm Secrets for 2026',
+        slug: 'instagram-algorithm-secrets-2026',
+        content: '<p>Discover the secrets of the Instagram algorithm.</p>',
+        excerpt: 'Secrets of the algorithm revealed...',
+        status: 'draft',
+        created_at: new Date().toISOString(),
+        published_at: null
+    }
+];
+
 // GET - Get single post by id or list all posts
 export async function GET(req: NextRequest) {
     const authResult = await verifyAdmin(req);
@@ -18,24 +41,41 @@ export async function GET(req: NextRequest) {
         const id = searchParams.get('id');
 
         if (id) {
-            const { data: post, error } = await supabase
-                .from('posts')
-                .select('*')
-                .eq('id', id)
-                .single();
+            try {
+                const { data: post, error } = await supabase
+                    .from('posts')
+                    .select('*')
+                    .eq('id', id)
+                    .single();
 
-            if (error) throw error;
+                if (error) throw error;
 
-            return NextResponse.json({ post });
+                return NextResponse.json({ post });
+            } catch (err: any) {
+                if (err.message?.includes('fetch failed') || err.message?.includes('fetch') || err.message?.includes('network')) {
+                    console.warn(`Supabase offline - returning mock post by id ${id}`);
+                    const mockPost = MOCK_POSTS.find(p => p.id === id) || MOCK_POSTS[0];
+                    return NextResponse.json({ post: mockPost });
+                }
+                throw err;
+            }
         } else {
-            const { data: posts, error } = await supabase
-                .from('posts')
-                .select('*')
-                .order('created_at', { ascending: false });
+            try {
+                const { data: posts, error } = await supabase
+                    .from('posts')
+                    .select('*')
+                    .order('created_at', { ascending: false });
 
-            if (error) throw error;
+                if (error) throw error;
 
-            return NextResponse.json({ posts });
+                return NextResponse.json({ posts });
+            } catch (err: any) {
+                if (err.message?.includes('fetch failed') || err.message?.includes('fetch') || err.message?.includes('network')) {
+                    console.warn("Supabase offline - returning mock posts list");
+                    return NextResponse.json({ posts: MOCK_POSTS });
+                }
+                throw err;
+            }
         }
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });

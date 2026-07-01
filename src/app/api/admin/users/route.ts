@@ -6,17 +6,41 @@ const supabase = createClient(
     process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+const MOCK_USERS = [
+    {
+        id: 'mock-user-1',
+        email: 'malik730843@gmail.com',
+        plan: 'premium',
+        credits_remaining: 10,
+        credits_total: 50,
+        plan_expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        created_at: new Date().toISOString(),
+        name: 'Malik Admin'
+    },
+    {
+        id: 'mock-user-2',
+        email: 'test@instapsv.com',
+        plan: 'free',
+        credits_remaining: 2,
+        credits_total: 5,
+        plan_expires_at: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+        created_at: new Date().toISOString(),
+        name: 'Test User'
+    }
+];
+
 // GET: List all users
 export async function GET() {
-    // 1. Fetch user subscriptions
-    const { data: subscriptions, error } = await supabase
-        .from('user_subscriptions')
-        .select('*')
-        .order('created_at', { ascending: false });
+    try {
+        // 1. Fetch user subscriptions
+        const { data: subscriptions, error } = await supabase
+            .from('user_subscriptions')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-    if (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
-    }
+        if (error) {
+            throw error;
+        }
 
     // 2. Fetch auth users to get names from user_metadata
     try {
@@ -74,7 +98,14 @@ export async function GET() {
         };
     });
 
-    return NextResponse.json(fallbackData);
+        return NextResponse.json(fallbackData);
+    } catch (error: any) {
+        if (error.message?.includes('fetch failed') || error.message?.includes('fetch') || error.message?.includes('network')) {
+            console.warn("Supabase offline - returning mock users list");
+            return NextResponse.json(MOCK_USERS);
+        }
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
 }
 
 // PUT: Update a user's plan

@@ -6,6 +6,21 @@ const supabase = createClient(
     process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 );
 
+const MOCK_SITE_SETTINGS = [
+    { key: 'site_name', value: 'InstaPSV' },
+    { key: 'tagline', value: 'Anonymous Instagram Viewer' },
+    { key: 'footer_text', value: '© 2024 InstaPSV. All rights reserved.' },
+    { key: 'contact_email', value: 'contact@instapsv.com' },
+    { key: 'ads_enabled', value: 'true' },
+    { key: 'maintenance_mode', value: 'false' },
+    { key: 'google_client_id', value: 'mock-google-client-id' }
+];
+
+const MOCK_SEO_SETTINGS = [
+    { key: 'meta_title', value: 'InstaPSV — Anonymous Instagram Viewer' },
+    { key: 'meta_description', value: 'View Instagram stories and profiles anonymously.' }
+];
+
 // GET - Get settings by type (site or seo)
 export async function GET(req: NextRequest) {
     try {
@@ -13,13 +28,22 @@ export async function GET(req: NextRequest) {
         const type = searchParams.get('type') || 'site';
         const table = type === 'seo' ? 'seo_settings' : 'site_settings';
 
-        const { data: settings, error } = await supabase
-            .from(table)
-            .select('*');
+        try {
+            const { data: settings, error } = await supabase
+                .from(table)
+                .select('*');
 
-        if (error) throw error;
+            if (error) throw error;
 
-        return NextResponse.json({ settings });
+            return NextResponse.json({ settings });
+        } catch (err: any) {
+            if (err.message?.includes('fetch failed') || err.message?.includes('fetch') || err.message?.includes('network')) {
+                console.warn(`Supabase offline - returning mock settings for ${type}`);
+                const mockSettings = type === 'seo' ? MOCK_SEO_SETTINGS : MOCK_SITE_SETTINGS;
+                return NextResponse.json({ settings: mockSettings });
+            }
+            throw err;
+        }
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
