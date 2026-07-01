@@ -5,13 +5,14 @@ import { Redis } from '@upstash/redis';
 const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
 const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 
-// Only initialize if credentials exist
-export const redis = (redisUrl && redisToken)
+// Only initialize if credentials exist and we are NOT in development mode
+const isDev = process.env.NODE_ENV === 'development';
+export const redis = (redisUrl && redisToken && !isDev)
     ? new Redis({ url: redisUrl, token: redisToken })
     : null;
 
 if (!redis) {
-    console.warn("⚠️ Redis credentials not found. Caching and rate limiting will be disabled.");
+    console.warn(`⚠️ Redis caching and rate limiting are disabled (Credentials missing or running in ${process.env.NODE_ENV || 'development'} mode).`);
 }
 
 /**
