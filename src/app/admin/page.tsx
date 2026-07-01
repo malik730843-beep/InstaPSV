@@ -36,9 +36,14 @@ export default function AdminDashboard() {
         try {
             // Get session for authenticated requests
             const { data: { session } } = await supabase.auth.getSession();
-            const headers = {
+            const isOfflineBypass = typeof window !== 'undefined' && localStorage.getItem('admin_offline_bypass') === 'true';
+
+            const headers: any = {
                 'Authorization': `Bearer ${session?.access_token}`
             };
+            if (isOfflineBypass) {
+                headers['X-Admin-Offline-Bypass'] = 'true';
+            }
 
             // Load posts, pages, categories (parallel)
             const [postsRes, pagesRes, categoriesRes] = await Promise.all([

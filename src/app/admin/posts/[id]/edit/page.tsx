@@ -84,17 +84,21 @@ export default function EditPostPage() {
         if (!formData.title) return;
 
         const { data: { session } } = await supabase.auth.getSession();
-        if (!session) return;
+        const isOfflineBypass = typeof window !== 'undefined' && localStorage.getItem('admin_offline_bypass') === 'true';
+        if (!session && !isOfflineBypass) return;
 
         try {
             // Save to server only if it's a draft
             if (formData.status === 'draft') {
+                const headers: any = {
+                    'Content-Type': 'application/json'
+                };
+                if (session) headers['Authorization'] = `Bearer ${session.access_token}`;
+                if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
+
                 await fetch('/api/admin/posts', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${session.access_token}`
-                    },
+                    headers,
                     body: JSON.stringify({
                         id: postId,
                         ...formData,
@@ -124,8 +128,14 @@ export default function EditPostPage() {
     const loadPost = async () => {
         try {
             const { data: { session } } = await supabase.auth.getSession();
+            const isOfflineBypass = typeof window !== 'undefined' && localStorage.getItem('admin_offline_bypass') === 'true';
+
+            const headers: any = {};
+            if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
+            if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
+
             const res = await fetch(`/api/admin/posts?id=${postId}`, {
-                headers: { 'Authorization': `Bearer ${session?.access_token || ''}` }
+                headers
             });
             const data = await res.json();
 
@@ -190,18 +200,23 @@ export default function EditPostPage() {
             };
 
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session?.access_token) {
+            const isOfflineBypass = typeof window !== 'undefined' && localStorage.getItem('admin_offline_bypass') === 'true';
+
+            if (!session?.access_token && !isOfflineBypass) {
                 alert('Session expired');
                 setSaving(false);
                 return;
             }
 
+            const headers: any = {
+                'Content-Type': 'application/json'
+            };
+            if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
+            if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
+
             const res = await fetch('/api/admin/posts', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${session.access_token}`
-                },
+                headers,
                 body: JSON.stringify(payload),
             });
 
@@ -236,10 +251,15 @@ export default function EditPostPage() {
             const formDataUpload = new FormData();
             formDataUpload.append('file', compressedFile);
             const { data: { session } } = await supabase.auth.getSession();
+            const isOfflineBypass = typeof window !== 'undefined' && localStorage.getItem('admin_offline_bypass') === 'true';
+
+            const headers: any = {};
+            if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
+            if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
             
             const res = await fetch('/api/admin/upload', {
                 method: 'POST',
-                headers: { 'Authorization': `Bearer ${session?.access_token || ''}` },
+                headers,
                 body: formDataUpload,
             });
 
