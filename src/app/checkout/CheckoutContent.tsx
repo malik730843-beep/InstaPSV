@@ -2,18 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Sparkles, Loader2, CheckCircle, AlertCircle, Lock, CreditCard, Building2 } from 'lucide-react';
+import { Sparkles, Loader2, CheckCircle, AlertCircle, Lock } from 'lucide-react';
 import Link from 'next/link';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabaseClient';
 import styles from './checkout.module.css';
-
-// ===================================================
-// SUPABASE CLIENT INITIALIZATION (CLIENT SIDE)
-// ===================================================
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export default function CheckoutContent() {
     const searchParams = useSearchParams();
