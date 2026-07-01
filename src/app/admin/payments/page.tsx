@@ -117,7 +117,7 @@ export default function AdminPaymentsPage() {
                         Track revenue, monitor subscriptions, and manage pending approvals
                     </p>
                 </div>
-                <button className="btn-primary" onClick={fetchRequests} disabled={loading} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <button className="btn btn-primary" onClick={fetchRequests} disabled={loading} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                     <RefreshCw size={18} className={loading ? "spin" : ""} /> {loading ? 'Updating...' : 'Refresh Data'}
                 </button>
             </div>
@@ -280,7 +280,7 @@ export default function AdminPaymentsPage() {
                                         {req.status === 'pending' ? (
                                             <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'center' }}>
                                                 <button 
-                                                    className="btn-small btn-success" 
+                                                    className="btn btn-sm btn-success" 
                                                     onClick={() => handleAction(req.id, 'approved')}
                                                     disabled={!!processing}
                                                     title="Approve & Activate"
@@ -288,7 +288,7 @@ export default function AdminPaymentsPage() {
                                                     {processing === req.id ? '...' : <CheckCircle size={14} />}
                                                 </button>
                                                 <button 
-                                                    className="btn-small btn-danger" 
+                                                    className="btn btn-sm btn-danger" 
                                                     onClick={() => handleAction(req.id, 'rejected')}
                                                     disabled={!!processing}
                                                     title="Reject Request"

@@ -152,7 +152,7 @@ export default function AdminUsersPage() {
                         Manage subscriptions and credits for all users
                     </p>
                 </div>
-                <button className="btn-primary" onClick={fetchUsers} disabled={loading} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <button className="btn btn-primary" onClick={fetchUsers} disabled={loading} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                     <RefreshCw size={18} className={loading ? "spin" : ""} /> {loading ? 'Loading...' : 'Refresh'}
                 </button>
             </div>
@@ -334,7 +334,7 @@ export default function AdminUsersPage() {
                                                 )}
                                                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                                                     <button
-                                                        className="btn-primary"
+                                                        className="btn btn-primary"
                                                         onClick={() => saveEdit(user.id)}
                                                         disabled={saving}
                                                         style={{ flex: 1, padding: '0.4rem' }}
@@ -342,7 +342,7 @@ export default function AdminUsersPage() {
                                                         {saving ? '...' : 'Save'}
                                                     </button>
                                                     <button
-                                                        className="btn-secondary"
+                                                        className="btn btn-secondary"
                                                         onClick={cancelEdit}
                                                         style={{ flex: 1, padding: '0.4rem' }}
                                                     >
@@ -353,7 +353,7 @@ export default function AdminUsersPage() {
                                         ) : (
                                             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                                                 <button
-                                                    className="btn-small"
+                                                    className="btn btn-sm btn-secondary"
                                                     onClick={() => startEdit(user)}
                                                     title="Edit user plan"
                                                     style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}
@@ -362,7 +362,7 @@ export default function AdminUsersPage() {
                                                 </button>
                                                 {user.plan !== 'monthly' && (
                                                     <button
-                                                        className="btn-small btn-success"
+                                                        className="btn btn-sm btn-success"
                                                         onClick={() => quickUpgrade(user.id, 'monthly')}
                                                         disabled={saving}
                                                         title="Quick Upgrade to Pro"
