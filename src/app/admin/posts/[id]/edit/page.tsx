@@ -3,15 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabaseClient';
 import RichEditor from '@/components/admin/RichEditor';
 import { compressImage } from '@/lib/imageUtils';
 import SEOPanel from '@/components/admin/SEOPanel';
-
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 interface Category {
     id: string;

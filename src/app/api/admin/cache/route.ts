@@ -1,26 +1,27 @@
 import { NextResponse } from 'next/server';
 import { verifyAdmin, unauthorizedResponse } from '@/lib/adminAuth';
 import { deleteCache, flushAllCache, setCache } from '@/lib/redis';
-import { getMyIGBusinessId, discoverProfile } from '@/lib/instagram';
+import { getMyIGBusinessId, discoverProfile, parseUsername } from '@/lib/instagram';
 
 export async function DELETE(request: Request) {
     const user = await verifyAdmin(request);
     if (!user) return unauthorizedResponse();
 
     const { searchParams } = new URL(request.url);
-    const username = searchParams.get('username');
+    const rawUsername = searchParams.get('username');
     const clearAll = searchParams.get('all') === 'true';
 
     try {
         if (clearAll) {
             await flushAllCache();
-            return NextResponse.json({ message: 'All caches cleared' });
+            return NextResponse.json({ message: 'All caches cleared successfully (Redis & In-Memory)' });
         }
 
-        if (username) {
+        if (rawUsername) {
+            const username = parseUsername(rawUsername).toLowerCase();
             const cacheKey = `profile:${username}`;
             await deleteCache(cacheKey);
-            return NextResponse.json({ message: `Cache cleared for ${username}` });
+            return NextResponse.json({ message: `Cache cleared for @${username}` });
         }
 
         return NextResponse.json({ error: 'Username or all=true required' }, { status: 400 });
@@ -34,14 +35,16 @@ export async function POST(request: Request) {
     const user = await verifyAdmin(request);
     if (!user) return unauthorizedResponse();
 
-    const { username } = await request.json();
+    const { username: rawUsername } = await request.json();
 
-    if (!username) {
+    if (!rawUsername) {
         return NextResponse.json({ error: 'Username is required' }, { status: 400 });
     }
 
+    const username = parseUsername(rawUsername).toLowerCase();
+
     try {
-        let myIgId = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID;
+        let myIgId = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID?.trim();
         if (!myIgId) {
             myIgId = await getMyIGBusinessId();
         }
