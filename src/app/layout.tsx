@@ -122,7 +122,10 @@ export async function generateMetadata(): Promise<Metadata> {
     verification: {
       ...verification,
       google: "Fnn-go67eU4kNaQBJ5Y_wXWSWxu8W2zCs5cIv8e1Tck",
-      other: otherMeta
+      other: {
+        'google-adsense-account': 'ca-pub-4159510249644161',
+        ...otherMeta
+      }
     },
     openGraph: {
       title,
