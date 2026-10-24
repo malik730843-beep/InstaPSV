@@ -5,7 +5,7 @@ import { checkRateLimit } from '@/lib/redis';
 // Config: Apply to all routes except static files and images
 export const config = {
     matcher: [
-        '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+        '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|ads.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
 };
 
