@@ -13,11 +13,13 @@ export const config = {
 const BLOCKED_COUNTRIES = ['IL'];
 
 export async function middleware(request: NextRequest) {
-    // 1. Country Blocking
-    // Vercel provides the country code in this header
+    const userAgent = request.headers.get('user-agent') ?? '';
+    const isAdSenseCrawler = /(?:Mediapartners-Google|AdsBot-Google)/i.test(userAgent);
+
+    // Vercel provides the country code in this header.
     const country = request.headers.get('x-vercel-ip-country');
     
-    if (country && BLOCKED_COUNTRIES.includes(country)) {
+    if (!isAdSenseCrawler && country && BLOCKED_COUNTRIES.includes(country)) {
         return new Response(
             `
             <!DOCTYPE html>
