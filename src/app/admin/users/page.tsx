@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useEffect, useState } from 'react';
 import { Users, RefreshCw, UserX, Edit2, Zap, Rocket } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
@@ -27,7 +29,7 @@ export default function AdminUsersPage() {
 
     const fetchUsers = async () => {
         setLoading(true);
-        const res = await fetch('/api/admin/users');
+        const res = await adminFetch('/api/admin/users');
         const data = await res.json();
         if (Array.isArray(data)) {
             setUsers(data);
@@ -69,7 +71,7 @@ export default function AdminUsersPage() {
             creditsTotal = -1;
         }
 
-        const res = await fetch('/api/admin/users', {
+        const res = await adminFetch('/api/admin/users', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -103,7 +105,7 @@ export default function AdminUsersPage() {
         creditsTotal = -1;
 
         setSaving(true);
-        const res = await fetch('/api/admin/users', {
+        const res = await adminFetch('/api/admin/users', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

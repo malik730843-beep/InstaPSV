@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import React, { useState, useEffect } from 'react';
 
 interface Ad {
@@ -96,7 +98,7 @@ export default function AdsManagerPage() {
 
     const loadAds = async () => {
         try {
-            const res = await fetch('/api/admin/adunits');
+            const res = await adminFetch('/api/admin/adunits');
             const data = await res.json();
             // Add mock analytics data
             const adsWithAnalytics = (data.ads || []).map((ad: Ad) => ({
@@ -120,7 +122,7 @@ export default function AdsManagerPage() {
         try {
             const payload = editingAd ? { ...formData, id: editingAd.id } : formData;
 
-            const res = await fetch('/api/admin/adunits', {
+            const res = await adminFetch('/api/admin/adunits', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -148,7 +150,7 @@ export default function AdsManagerPage() {
 
         try {
             const url = `/api/admin/adunits?id=${id}`;
-            const res = await fetch(url, { method: 'DELETE' });
+            const res = await adminFetch(url, { method: 'DELETE' });
             const data = await res.json();
 
             if (!res.ok) {
@@ -165,7 +167,7 @@ export default function AdsManagerPage() {
 
     const toggleAdStatus = async (ad: Ad) => {
         try {
-            const res = await fetch('/api/admin/adunits', {
+            const res = await adminFetch('/api/admin/adunits', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -195,9 +197,9 @@ export default function AdsManagerPage() {
 
         for (const id of selectedAds) {
             if (action === 'delete') {
-                await fetch(`/api/admin/adunits?id=${id}`, { method: 'DELETE' });
+                await adminFetch(`/api/admin/adunits?id=${id}`, { method: 'DELETE' });
             } else {
-                await fetch('/api/admin/adunits', {
+                await adminFetch('/api/admin/adunits', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ id, enabled: action === 'enable' }),

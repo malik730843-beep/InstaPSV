@@ -23,32 +23,16 @@ export default function AdminLoginPage() {
             });
 
             if (error) {
-                // If it is a fetch/network error, or any error when offline/blocked
-                if (error.message === 'Failed to fetch' || error.message.toLowerCase().includes('fetch')) {
-                    if (email === 'admin@instapsv.com' || email === 'malik730843@gmail.com') {
-                        localStorage.setItem('admin_offline_bypass', 'true');
-                        localStorage.setItem('admin_offline_email', email);
-                        router.push('/admin');
-                    } else {
-                        setError('Failed to fetch. Local bypass requires admin email (admin@instapsv.com or malik730843@gmail.com).');
-                        setLoading(false);
-                    }
-                } else {
-                    setError(error.message);
-                    setLoading(false);
-                }
+                setError(error.message);
             } else {
+                localStorage.removeItem('admin_offline_bypass');
+                localStorage.removeItem('admin_offline_email');
                 router.push('/admin');
             }
-        } catch (err: any) {
-            if (email === 'admin@instapsv.com' || email === 'malik730843@gmail.com') {
-                localStorage.setItem('admin_offline_bypass', 'true');
-                localStorage.setItem('admin_offline_email', email);
-                router.push('/admin');
-            } else {
-                setError('Failed to fetch. Please check connection or enter admin email.');
-                setLoading(false);
-            }
+        } catch {
+            setError('Unable to sign in. Please check your connection and try again.');
+        } finally {
+            setLoading(false);
         }
     };
 

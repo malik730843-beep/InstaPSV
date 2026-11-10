@@ -210,9 +210,9 @@ export default async function BlogPage() {
                 <section className={styles.newsletterSection}>
                     <div className={styles.container}>
                         <div className={styles.newsletterCard}>
-                            <h2 className={styles.newsletterTitle}>{t('stayUpdated')}</h2>
+                            <h2 className={styles.newsletterTitle}>Questions about our guides?</h2>
                             <p className={styles.newsletterText}>
-                                {t('newsletterText')}
+                                Contact the team with questions, corrections, or ideas for future articles.
                             </p>
                             <NewsletterForm />
                         </div>

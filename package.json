@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "dev:safe": "next dev --webpack",
+    "prebuild": "node scripts/check-ads.mjs",
+    "check:ads": "node scripts/check-ads.mjs",
+    "test:publishing": "node scripts/test-publishing.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { checkRateLimit } from '@/lib/redis';
+import { verifyAdmin, unauthorizedResponse } from '@/lib/adminAuth';
 
 // Config: Apply to all routes except static files and images
 export const config = {
@@ -13,6 +14,12 @@ export const config = {
 const BLOCKED_COUNTRIES = ['IL'];
 
 export async function middleware(request: NextRequest) {
+    const pathname = request.nextUrl.pathname;
+    if (pathname === '/api/admin' || pathname.startsWith('/api/admin/')) {
+        const user = await verifyAdmin(request);
+        if ('error' in user) return unauthorizedResponse(user.error);
+    }
+
     const userAgent = request.headers.get('user-agent') ?? '';
     const isAdSenseCrawler = /(?:Mediapartners-Google|AdsBot-Google)/i.test(userAgent);
 

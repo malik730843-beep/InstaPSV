@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useState } from 'react';
 
 export default function CacheManagerPage() {
@@ -17,7 +19,7 @@ export default function CacheManagerPage() {
 
         setLoading(true);
         try {
-            const res = await fetch(`/api/admin/cache?username=${username}`, {
+            const res = await adminFetch(`/api/admin/cache?username=${username}`, {
                 method: 'DELETE',
             });
             const data = await res.json();
@@ -44,7 +46,7 @@ export default function CacheManagerPage() {
 
         setLoading(true);
         try {
-            const res = await fetch('/api/admin/cache?all=true', {
+            const res = await adminFetch('/api/admin/cache?all=true', {
                 method: 'DELETE',
             });
             const data = await res.json();
@@ -72,7 +74,7 @@ export default function CacheManagerPage() {
 
         setLoading(true);
         try {
-            const res = await fetch('/api/admin/cache', {
+            const res = await adminFetch('/api/admin/cache', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username }),

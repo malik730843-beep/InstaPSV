@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -98,7 +100,7 @@ export default function NewPostPage() {
             if (session) headers['Authorization'] = `Bearer ${session.access_token}`;
             if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
 
-            const res = await fetch('/api/admin/posts', {
+            const res = await adminFetch('/api/admin/posts', {
                 method: 'POST',
                 headers,
                 body: JSON.stringify(payload),
@@ -122,7 +124,7 @@ export default function NewPostPage() {
 
     const loadCategories = async () => {
         try {
-            const res = await fetch('/api/admin/categories');
+            const res = await adminFetch('/api/admin/categories');
             const data = await res.json();
             setCategories(data.categories || []);
         } catch (error) {
@@ -175,7 +177,7 @@ export default function NewPostPage() {
             if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
             if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
 
-            const res = await fetch('/api/admin/posts', {
+            const res = await adminFetch('/api/admin/posts', {
                 method: 'POST',
                 headers,
                 body: JSON.stringify(payload),
@@ -232,7 +234,7 @@ export default function NewPostPage() {
             if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
             if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
 
-            const res = await fetch('/api/admin/upload', {
+            const res = await adminFetch('/api/admin/upload', {
                 method: 'POST',
                 headers,
                 body: formDataUpload,

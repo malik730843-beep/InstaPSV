@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useState, useEffect } from 'react';
 
 export default function SEOSettingsPage() {
@@ -26,7 +28,7 @@ export default function SEOSettingsPage() {
 
     const loadSettings = async () => {
         try {
-            const res = await fetch('/api/admin/settings?type=seo');
+            const res = await adminFetch('/api/admin/settings?type=seo');
             const data = await res.json();
             if (data.settings) {
                 const settingsObj: any = {};
@@ -44,7 +46,7 @@ export default function SEOSettingsPage() {
     const handleSave = async () => {
         setSaving(true);
         try {
-            const res = await fetch('/api/admin/settings', {
+            const res = await adminFetch('/api/admin/settings', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

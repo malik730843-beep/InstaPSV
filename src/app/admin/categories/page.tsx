@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useEffect, useState } from 'react';
 
 interface Category {
@@ -24,7 +26,7 @@ export default function CategoriesPage() {
     const loadCategories = async () => {
         setLoading(true);
         try {
-            const res = await fetch('/api/admin/categories');
+            const res = await adminFetch('/api/admin/categories');
             const data = await res.json();
             setCategories(data.categories || []);
         } catch (error) {
@@ -48,7 +50,7 @@ export default function CategoriesPage() {
                 ? { ...formData, id: editingCategory.id }
                 : { ...formData, slug: formData.slug || generateSlug(formData.name) };
 
-            const res = await fetch('/api/admin/categories', {
+            const res = await adminFetch('/api/admin/categories', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -69,7 +71,7 @@ export default function CategoriesPage() {
         if (!confirm('Delete this category?')) return;
 
         try {
-            const res = await fetch(`/api/admin/categories?id=${id}`, {
+            const res = await adminFetch(`/api/admin/categories?id=${id}`, {
                 method: 'DELETE',
             });
             if (res.ok) loadCategories();

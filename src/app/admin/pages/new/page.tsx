@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -47,7 +49,7 @@ export default function NewPagePage() {
                 slug: formData.slug || generateSlug(formData.title),
             };
 
-            const res = await fetch('/api/admin/pages', {
+            const res = await adminFetch('/api/admin/pages', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),

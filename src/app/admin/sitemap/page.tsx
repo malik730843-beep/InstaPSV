@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useState, useEffect } from 'react';
 
 export default function SitemapPage() {
@@ -26,7 +28,7 @@ export default function SitemapPage() {
 
     const loadSettings = async () => {
         try {
-            const res = await fetch('/api/admin/sitemap/settings');
+            const res = await adminFetch('/api/admin/sitemap/settings');
             const data = await res.json();
             if (data.settings) {
                 setSettings(prev => ({ ...prev, ...data.settings }));
@@ -39,7 +41,7 @@ export default function SitemapPage() {
 
     const loadPreview = async () => {
         try {
-            const res = await fetch('/api/admin/sitemap/preview');
+            const res = await adminFetch('/api/admin/sitemap/preview');
             const data = await res.json();
             setSitemapUrls(data.urls || []);
         } catch (error) {
@@ -49,7 +51,7 @@ export default function SitemapPage() {
 
     const handleSave = async () => {
         try {
-            const res = await fetch('/api/admin/sitemap/settings', {
+            const res = await adminFetch('/api/admin/sitemap/settings', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(settings),
@@ -67,7 +69,7 @@ export default function SitemapPage() {
     const generateSitemap = async () => {
         setGenerating(true);
         try {
-            const res = await fetch('/api/admin/sitemap/generate', {
+            const res = await adminFetch('/api/admin/sitemap/generate', {
                 method: 'POST',
             });
 

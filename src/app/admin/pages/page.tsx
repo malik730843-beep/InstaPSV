@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
@@ -22,7 +24,7 @@ export default function PagesListPage() {
     const loadPages = async () => {
         setLoading(true);
         try {
-            const res = await fetch('/api/admin/pages');
+            const res = await adminFetch('/api/admin/pages');
             const data = await res.json();
             setPages(data.pages || []);
         } catch (error) {
@@ -35,7 +37,7 @@ export default function PagesListPage() {
         if (!confirm('Are you sure you want to delete this page?')) return;
 
         try {
-            const res = await fetch(`/api/admin/pages?id=${id}`, {
+            const res = await adminFetch(`/api/admin/pages?id=${id}`, {
                 method: 'DELETE',
             });
 

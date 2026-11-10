@@ -9,7 +9,7 @@ export default async function FAQ() {
     const faqItems = t.raw('items') as Array<{ question: string; answer: string }>;
 
     return (
-        <section className={styles.faq}>
+        <section id="faq" className={styles.faq}>
             <div className={styles.container}>
                 {/* Section Header */}
                 <div className={styles.header}>

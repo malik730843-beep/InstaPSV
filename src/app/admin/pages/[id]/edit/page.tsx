@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
@@ -30,7 +32,7 @@ export default function EditPagePage() {
 
     const loadPage = async () => {
         try {
-            const res = await fetch(`/api/admin/pages?id=${pageId}`);
+            const res = await adminFetch(`/api/admin/pages?id=${pageId}`);
             const data = await res.json();
 
             if (data.page) {
@@ -65,7 +67,7 @@ export default function EditPagePage() {
                 status: status || formData.status,
             };
 
-            const res = await fetch('/api/admin/pages', {
+            const res = await adminFetch('/api/admin/pages', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),

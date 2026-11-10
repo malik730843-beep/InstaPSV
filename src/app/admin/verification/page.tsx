@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useState, useEffect } from 'react';
 
 interface Verification {
@@ -30,7 +32,7 @@ export default function VerificationPage() {
 
     const loadVerifications = async () => {
         try {
-            const res = await fetch('/api/admin/verification');
+            const res = await adminFetch('/api/admin/verification');
             const data = await res.json();
             setVerifications(data.verifications || []);
         } catch (error) {
@@ -48,7 +50,7 @@ export default function VerificationPage() {
         try {
             const payload = editingItem ? { ...formData, id: editingItem.id } : formData;
 
-            const res = await fetch('/api/admin/verification', {
+            const res = await adminFetch('/api/admin/verification', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -68,7 +70,7 @@ export default function VerificationPage() {
         if (!confirm('Remove this verification?')) return;
 
         try {
-            const res = await fetch(`/api/admin/verification?id=${id}`, { method: 'DELETE' });
+            const res = await adminFetch(`/api/admin/verification?id=${id}`, { method: 'DELETE' });
             if (res.ok) loadVerifications();
         } catch (error) {
             console.error('Failed to delete');

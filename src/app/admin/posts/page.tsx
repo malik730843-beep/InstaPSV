@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
@@ -43,7 +45,7 @@ export default function PostsPage() {
             if (session) headers['Authorization'] = `Bearer ${session.access_token}`;
             if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
 
-            const res = await fetch('/api/admin/posts', { headers });
+            const res = await adminFetch('/api/admin/posts', { headers });
 
             if (!res.ok) {
                 const errData = await res.json();
@@ -71,7 +73,7 @@ export default function PostsPage() {
             if (session) headers['Authorization'] = `Bearer ${session.access_token}`;
             if (isOfflineBypass) headers['X-Admin-Offline-Bypass'] = 'true';
 
-            const res = await fetch(`/api/admin/posts?id=${id}`, {
+            const res = await adminFetch(`/api/admin/posts?id=${id}`, {
                 method: 'DELETE',
                 headers
             });
@@ -105,7 +107,7 @@ export default function PostsPage() {
 
             for (const id of selectedPosts) {
                 if (action === 'delete') {
-                    await fetch(`/api/admin/posts?id=${id}`, {
+                    await adminFetch(`/api/admin/posts?id=${id}`, {
                         method: 'DELETE',
                         headers
                     });
@@ -114,7 +116,7 @@ export default function PostsPage() {
                         ...headers,
                         'Content-Type': 'application/json'
                     };
-                    await fetch('/api/admin/posts', {
+                    await adminFetch('/api/admin/posts', {
                         method: 'POST',
                         headers: postHeaders,
                         body: JSON.stringify({ id, status: action === 'publish' ? 'published' : 'draft' }),

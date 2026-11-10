@@ -123,8 +123,9 @@ export async function generateMetadata(): Promise<Metadata> {
       ...verification,
       google: "Fnn-go67eU4kNaQBJ5Y_wXWSWxu8W2zCs5cIv8e1Tck",
       other: {
+        ...otherMeta,
+        // Keep the ownership ID consistent with the versioned public/ads.txt.
         'google-adsense-account': 'ca-pub-4159510249644161',
-        ...otherMeta
       }
     },
     openGraph: {
@@ -226,13 +227,6 @@ export default async function RootLayout({
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "1247",
-                "bestRating": "5",
-                "worstRating": "1"
               }
             })
           }}

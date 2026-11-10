@@ -16,7 +16,7 @@ export default async function Footer() {
         product: [
             { href: '/#features', label: navT('features') },
             { href: '/#how-it-works', label: navT('howItWorks') },
-            { href: '/faq', label: navT('faq') },
+            { href: '/#faq', label: navT('faq') },
         ],
         company: [
             { href: '/about', label: navT('about') },

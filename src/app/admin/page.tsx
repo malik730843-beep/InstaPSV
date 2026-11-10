@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FileText } from 'lucide-react';
@@ -47,9 +49,9 @@ export default function AdminDashboard() {
 
             // Load posts, pages, categories (parallel)
             const [postsRes, pagesRes, categoriesRes] = await Promise.all([
-                fetch('/api/admin/posts', { headers }),
-                fetch('/api/admin/pages', { headers }), // Optional but good practice
-                fetch('/api/admin/categories', { headers }) // Optional but good practice
+                adminFetch('/api/admin/posts', { headers }),
+                adminFetch('/api/admin/pages', { headers }), // Optional but good practice
+                adminFetch('/api/admin/categories', { headers }) // Optional but good practice
             ]);
 
             // Helper to safely parse JSON

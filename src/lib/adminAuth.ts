@@ -9,15 +9,6 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export async function verifyAdmin(request: Request) {
-    const offlineBypassHeader = request.headers.get('X-Admin-Offline-Bypass');
-    if (offlineBypassHeader === 'true' && process.env.NODE_ENV === 'development') {
-        return {
-            id: 'offline-admin-id',
-            email: 'malik730843@gmail.com',
-            role: 'service_role',
-        } as any;
-    }
-
     const authHeader = request.headers.get('Authorization');
 
     if (!authHeader) {
@@ -36,15 +27,9 @@ export async function verifyAdmin(request: Request) {
         return { error: `Invalid Token: ${error?.message || 'User not found'}` };
     }
 
-    // STRICT SECURITY: Only allow specific email
-    // STRICT SECURITY: Only allow specific email
-    const allowedEmails = ['malik730843@gmail.com'];
-    if (ADMIN_EMAIL) {
-        const envEmails = ADMIN_EMAIL.split(',').map(e => e.trim());
-        allowedEmails.push(...envEmails);
-    }
+    const allowedEmails = (ADMIN_EMAIL || '').split(',').map(email => email.trim().toLowerCase()).filter(Boolean);
 
-    if (!allowedEmails.includes(user.email || '')) {
+    if (!allowedEmails.includes(user.email?.toLowerCase() || '')) {
         console.warn(`Unauthorized access attempt by ${user.email}`);
         return { error: `Unauthorized Email: ${user.email} is not admin` };
     }

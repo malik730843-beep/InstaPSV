@@ -1,5 +1,7 @@
 'use client';
 
+import { adminFetch } from '@/lib/adminFetch';
+
 import { useEffect, useState } from 'react';
 import { CreditCard, RefreshCw, CheckCircle, XCircle, Clock, Mail, Hash, DollarSign, Users, Search } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
@@ -28,7 +30,7 @@ export default function AdminPaymentsPage() {
     const fetchRequests = async () => {
         setLoading(true);
         try {
-            const res = await fetch('/api/admin/payments');
+            const res = await adminFetch('/api/admin/payments');
             const data = await res.json();
             if (Array.isArray(data)) {
                 setRequests(data);
@@ -72,7 +74,7 @@ export default function AdminPaymentsPage() {
         setMessage('');
 
         try {
-            const res = await fetch('/api/admin/payments', {
+            const res = await adminFetch('/api/admin/payments', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ requestId, status }),
