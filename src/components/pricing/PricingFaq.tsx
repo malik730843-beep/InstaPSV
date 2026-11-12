@@ -10,30 +10,12 @@ interface FAQ {
 }
 
 const faqs: FAQ[] = [
-    {
-        q: 'What’s included in the Free plan?',
-        a: 'You get 1 profile search credit. You can view all posts of any public profile anonymously. Stories, Reels, and Highlights are reserved for Pro users to ensure high-speed service for premium members.',
-    },
-    {
-        q: 'What are the benefits of the Pro plan?',
-        a: 'The Pro plan ($5/mo) gives you Unlimited Searches and full access to Stories, Reels, and Highlights. You also get high-speed HD downloads, priority search results, and 24/7 email support.',
-    },
-    {
-        q: 'How do I pay and get activated?',
-        a: 'We use a secure manual payment system. After choosing Pro, you will receive payment instructions. Once you submit your Transaction ID via the checkout form, our admin team verifies it (usually in under 15 minutes) and your account is upgraded instantly.',
-    },
-    {
-        q: 'Is my browsing truly anonymous?',
-        a: 'Yes, 100%. We use specialized servers to fetch data directly from Instagram. Your personal account is never linked, and the profile owner will never see your name in their viewer list.',
-    },
-    {
-        q: 'Can I view private accounts?',
-        a: 'No. InstaPSV only supports public Instagram profiles. We do not bypass Instagram\'s core privacy settings for private accounts to ensure the longevity and legality of our service.',
-    },
-    {
-        q: 'Can I cancel my subscription?',
-        a: 'Yes, you can stop at any time. Since payments are manual for 30-day periods, you simply choose not to renew. Your Pro features will remain active until the full 30 days from your last payment have passed.',
-    },
+    { q: 'What is included in the Free plan?', a: 'A new anonymous session starts with 6 local credits, enough for 3 successful profile searches at 2 credits per search. Posts and returned video items can be viewed when available. Stories and downloads have Pro gates.' },
+    { q: 'What does Pro change?', a: 'The $5 monthly plan removes monthly search-credit deductions and enables the premium controls. Provider rate limits, account eligibility and source availability still apply. Full highlight collection retrieval is not implemented.' },
+    { q: 'How is a payment activated?', a: 'Submit the transaction details through Checkout. An administrator reviews the payment before activating access. There is no guaranteed approval time and submitting a transaction ID does not itself activate Pro.' },
+    { q: 'Does no Instagram login guarantee anonymity?', a: 'No. The form does not ask for Instagram credentials, but site infrastructure processes requests. Account, credit and payment features also process information. Read the privacy policy before use.' },
+    { q: 'Can Pro retrieve private or missing content?', a: 'No. Pro does not bypass private account settings, recover deleted media or add data that the provider does not return. Confirm coverage before buying for a specific account or feature.' },
+    { q: 'How does renewal work?', a: 'Payments use a manual renewal flow. Check the expiry shown for your account and the payment terms before renewing. Choosing not to make another manual payment does not delete your account data.' },
 ];
 
 export default function PricingFaq() {

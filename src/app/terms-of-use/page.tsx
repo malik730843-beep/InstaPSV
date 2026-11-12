@@ -1,3 +1,4 @@
+import { correctServiceFacts } from '@/lib/serviceFacts';
 import { createClient } from '@supabase/supabase-js';
 import styles from '../about/page.module.css';
 import Header from '@/components/layout/Header';
@@ -63,7 +64,7 @@ export default async function TermsOfUsePage() {
                         <div
                             className={styles.card}
                             dangerouslySetInnerHTML={{
-                                __html: page?.content || `
+                                __html: correctServiceFacts(page?.content || `
                                     <p>Last updated: June 25, 2026</p>
                                     <p>Welcome to <strong>InstaPSV</strong> (“we,” “our,” or “us”). By accessing or using our website, tools, and services (collectively, the “Service”) located at <a href="https://instapsv.com">https://instapsv.com</a>, you agree to comply with and be bound by the following Terms of Use. Please read these terms carefully before using our Service.</p>
 
@@ -96,7 +97,7 @@ export default async function TermsOfUsePage() {
 
                                     <h3>8. Modifications to Terms</h3>
                                     <p>We reserve the right to modify or replace these Terms of Use at any time. The most current version will always be posted on this page. Your continued use of the Service after any changes constitutes acceptance of the new Terms of Use.</p>
-                                `
+                                `)
                             }}
                         />
                     </div>

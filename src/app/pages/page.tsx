@@ -57,10 +57,10 @@ export default async function PagesArchivePage() {
         { slug: 'about', title: navT('about'), description: t('aboutDesc'), icon: '👥' },
         { slug: 'contact', title: navT('contact'), description: t('contactDesc'), icon: '📧' },
         { slug: 'features', title: navT('features'), description: t('featuresDesc'), icon: '⚡' },
-        { slug: 'faq', title: navT('faq'), description: t('faqDesc'), icon: '❓' },
+        { slug: '#faq', title: navT('faq'), description: t('faqDesc'), icon: '❓' },
     ];
 
-    const allPages = [...staticPages, ...dynamicPages];
+    const allPages = Array.from(new Map([...staticPages, ...dynamicPages].map(page => [page.slug, page])).values());
 
     return (
         <>

@@ -11,11 +11,11 @@ export const metadata: Metadata = {
         canonical: '/pricing',
     },
     title: 'Pricing — InstaPSV | Anonymous Instagram Viewer Plans',
-    description: 'Choose a plan to view Instagram profiles, stories, reels, and highlights anonymously. Start free with 5 credits or go unlimited with our Monthly plan.',
+    description: 'Compare free search credits and the Pro plan. Check provider coverage, download access and manual payment activation before purchasing.',
     keywords: 'InstaPSV pricing, anonymous Instagram viewer plans, Instagram story viewer credits',
     openGraph: {
         title: 'Pricing — InstaPSV',
-        description: 'Start free. Upgrade for more anonymous Instagram views.',
+        description: 'Compare search credits, Pro access, coverage limits and manual activation.',
         type: 'website',
     },
 };
@@ -25,14 +25,14 @@ const plans = [
         name: 'Free',
         price: '$0',
         period: 'forever',
-        credits: '1 Profile Search',
-        creditsDetail: 'Full access to posts & reels',
+        credits: '3 Profile Searches',
+        creditsDetail: '6 initial credits; 2 per successful search',
         description: 'Try it out — see how it works.',
         features: [
-            'View public profiles anonymously',
+            'Supported public Business and Creator accounts',
             'Posts & Reels access',
-            'HD media viewing',
-            '1 profile search included',
+            'View media at the supplied quality',
+            '3 initial searches (6 credits)',
             'No account required',
         ],
         cta: 'Start Free',
@@ -45,17 +45,17 @@ const plans = [
         price: '$5',
         period: '/month',
         credits: 'Unlimited',
-        creditsDetail: 'No limits — search as much as you want',
+        creditsDetail: 'No monthly credit deduction; rate limits still apply',
         description: 'Best value for power users.',
         features: [
-            'View public profiles anonymously',
-            'Stories & Highlights access',
-            'HD media downloads',
-            'HD media viewing',
+            'Supported public Business and Creator accounts',
+            'Stories when the provider supplies them',
+            'Download available media files',
+            'View media at the supplied quality',
             'Unlimited searches',
             'No credit limits',
-            'Fastest search priority',
-            'Priority email support',
+            'Provider availability limits apply',
+            'Email support; no guaranteed response time',
         ],
         cta: 'Upgrade to Pro',
         ctaHref: '/checkout?plan=pro',
@@ -85,29 +85,34 @@ export default async function PricingPage() {
                                 Simple Pricing
                             </span>
                             <h1 className={styles.title}>
-                                Browse Instagram <span className={styles.gradientText}>Without Limits</span>
+                                Choose access <span className={styles.gradientText}>with clear limits</span>
                             </h1>
                             <p className={styles.subtitle}>
-                                Start free with 1 profile search. Upgrade for stories, highlights and downloads.
+                                Start with 6 credits, enough for 3 successful profile searches. Pro enables downloads and eligible story access; provider coverage and rate limits still apply.
                             </p>
                         </div>
 
                         {/* Pricing Cards */}
+                        <aside style={{ maxWidth: 820, margin: '0 auto 32px', padding: 24, border: '1px solid #555', borderRadius: 16, lineHeight: 1.7 }}>
+                            <h2>Before buying Pro</h2>
+                            <p>Full highlight collection retrieval is not implemented. Story data is not guaranteed for a particular account. Check a supported profile and <Link href="/contact">ask about the feature you need</Link> before payment. Downloads save the source file; there is no guaranteed resolution.</p>
+                            <p>Payments are reviewed manually. Access begins after approval, rather than immediately after submitting a transaction ID.</p>
+                        </aside>
                         <PricingCards plans={plans} />
 
                         {/* Trust row */}
                         <div className={styles.trustRow}>
                             <div className={styles.trustItem}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-                                <span>100% Anonymous</span>
+                                <span>No Instagram credentials</span>
                             </div>
                             <div className={styles.trustItem}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                                <span>Instant Activation</span>
+                                <span>Manual payment review</span>
                             </div>
                             <div className={styles.trustItem}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
-                                <span>Cancel Anytime</span>
+                                <span>Manual renewal</span>
                             </div>
                         </div>
 
@@ -120,7 +125,7 @@ export default async function PricingPage() {
                                 Ready to browse Instagram <span className={styles.gradientText}>privately</span>?
                             </h2>
                             <p className={styles.bottomCtaDesc}>
-                                Start with 1 free profile search — no signup needed. Upgrade anytime.
+                                Try the initial search credits before choosing a paid plan. Check coverage before paying for a particular feature.
                             </p>
                             <Link 
                                 href="/#search" 

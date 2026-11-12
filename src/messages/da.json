@@ -14,10 +14,10 @@
         "disclaimer": "Ansvarsfraskrivelse"
     },
     "hero": {
-        "badge": "Gratis Instagram Viewer",
-        "titleStart": "Anonym Instagram Story Viewer",
-        "titleHighlight": "og følgere parser",
-        "subtitle": "Se Instagram-historier, profiler, reels og følgere anonymt. Ingen login kræves. 100% gratis og sikker.",
+        "badge": "Offentlige profiler · Ingen Instagram-loginoplysninger",
+        "titleStart": "Instagram-profilviser",
+        "titleHighlight": "Se offentligt indhold",
+        "subtitle": "Søg efter understøttede offentlige Business- og Creator-konti. Kontroller funktionernes tilgængelighed før brug.",
         "searchPlaceholder": "Indtast brugernavn...",
         "searchButton": "Vis profil",
         "searchHint": "Prøv: @instagram, @cristiano, @therock",
@@ -40,7 +40,8 @@
                 "point2": "Ingen sporingpixels.",
                 "point3": "IP maskeret."
             }
-        }
+        },
+        "getStarted": "Kom i gang"
     },
     "features": {
         "badge": "Funktioner",
@@ -92,36 +93,32 @@
         "contactLink": "Kontakt support",
         "items": [
             {
-                "question": "Er InstaPSV gratis?",
-                "answer": "Ja, helt gratis."
+                "question": "Er alle funktioner gratis?",
+                "answer": "Nej. Søgninger bruger kreditter. Stories og downloads kræver Pro i den nuværende brugerflade. Dækningen afhænger af udbyderen."
             },
             {
-                "question": "Kan brugere se at jeg kiggede?",
-                "answer": "Nej, du forbliver anonym."
+                "question": "Er resultaterne komplette og aktuelle?",
+                "answer": "Ikke altid. Svar kan være cachelagret i op til 24 timer. Manglende medier beviser ikke, at kontoen ikke har udgivet indhold."
             },
             {
-                "question": "Skal jeg oprette konto?",
-                "answer": "Nej, ingen registrering."
+                "question": "Kan jeg åbne komplette highlight-samlinger?",
+                "answer": "Hentning af komplette samlinger er ikke implementeret. Brug den oprindelige Instagram-profil."
             },
             {
-                "question": "Kan jeg downloade historier?",
-                "answer": "Ja! Du kan downloade alt."
-            },
-            {
-                "question": "Er det lovligt?",
-                "answer": "Vi bruger kun offentligt indhold."
-            },
-            {
-                "question": "Hvorfor kan jeg ikke se visse profiler?",
-                "answer": "Kun offentlige profiler."
+                "question": "Betyder intet Instagram-login, at ingen data behandles?",
+                "answer": "Nej. Infrastrukturen behandler forespørgsler. Konto-, kredit- og betalingsfunktioner behandler også oplysninger. Læs privatlivspolitikken."
             }
-        ]
+        ],
+        "titleStart": "",
+        "titleHighlight": "Ofte stillede spørgsmål",
+        "titleEnd": ""
     },
     "testimonials": {
         "badge": "Anmeldelser",
         "title": "Hvad brugere siger om {brand}",
         "brand": "InstaPSV",
-        "subtitle": "Tusindvis af tilfredse brugere."
+        "subtitle": "Tusindvis af tilfredse brugere.",
+        "items": []
     },
     "cta": {
         "title": "Vis Instagram {followers}",
@@ -229,7 +226,7 @@
         "viewStory": "Vis historie"
     },
     "footer": {
-        "description": "Det sikreste værktøj til anonym Instagram-visning.",
+        "description": "Værktøjer og vejledninger til understøttet offentligt Instagram-indhold. Kredit-, abonnements- og udbydergrænser gælder. Uafhængig af Instagram og Meta.",
         "product": "Produkt",
         "company": "Virksomhed",
         "legal": "Juridisk",

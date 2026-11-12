@@ -401,53 +401,15 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                         {/* Main Content with Grid */}
                         <div className={styles.mainContent}>
                             {activeTab === 'HIGHLIGHTS' ? (
-                                /* Highlights Grid - Circular thumbnails */
-                                <div className={styles.highlightsGrid}>
-                                    {userPlan === 'free' ? (
-                                        <div className={styles.lockedItem} style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 1rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '1rem', border: '1px dashed rgba(255, 255, 255, 0.1)' }}>
-                                            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🔒</div>
-                                            <h3 style={{ marginBottom: '0.5rem', color: '#fff' }}>Pro Plan Required</h3>
-                                            <p style={{ color: 'var(--color-text-light-muted)', marginBottom: '1.5rem', maxWidth: '400px', margin: '0 auto 1.5rem' }}>
-                                                Viewing <strong>Highlights</strong> is a premium feature available only on the Pro plan.
-                                            </p>
-                                            <Link href="/pricing" className={styles.button} style={{ display: 'inline-block', width: 'auto', padding: '0.75rem 2rem' }}>
-                                                Upgrade to Pro
-                                            </Link>
-                                        </div>
-                                    ) : getFilteredMedia().length > 0 ? (
-                                        getFilteredMedia().map((item: any) => (
-                                            <div
-                                                key={item.id}
-                                                className={styles.highlightGridItem}
-                                                onClick={() => setSelectedMedia({
-                                                    ...item,
-                                                    media_url: item.cover_media?.media_url || item.cover_media?.thumbnail_url || item.thumbnail_url || item.media_url,
-                                                    media_type: 'IMAGE',
-                                                })}
-                                            >
-                                                <div className={styles.highlightGridCircle}>
-                                                    <img
-                                                        src={item.cover_media?.thumbnail_url || item.cover_media?.media_url || item.thumbnail_url || item.media_url}
-                                                        alt={item.title || 'Highlight'}
-                                                        className={styles.highlightGridThumb}
-                                                    />
-                                                </div>
-                                                <span className={styles.highlightGridLabel}>
-                                                    {item.title || 'Highlight'}
-                                                </span>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div className={styles.emptyState} style={{ gridColumn: '1 / -1' }}>
-                                            <p>{t('noMedia', { type: 'highlights' })}</p>
-                                            <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>Highlights are only available for some public profiles.</p>
-                                        </div>
-                                    )}
+                                <div className={styles.emptyState}>
+                                    <h3>Highlight collections are not available</h3>
+                                    <p>Full highlight retrieval is not implemented. A Pro upgrade does not add this coverage.</p>
+                                    <Link href="/instagram-highlights-viewer">Read the current limitations</Link>
                                 </div>
                             ) : (
                                 /* Regular Media Grid - Posts, Reels, Stories */
                                 <div className={styles.mediaGrid}>
-                                    {activeTab === 'STORIES' && userPlan === 'free' ? (
+                                    {activeTab === 'STORIES' && userPlan === 'free' && getFilteredMedia().length > 0 ? (
                                         <div className={styles.lockedItem} style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 1rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '1rem', border: '1px dashed rgba(255, 255, 255, 0.1)' }}>
                                             <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🔒</div>
                                             <h3 style={{ marginBottom: '0.5rem', color: '#fff' }}>Pro Plan Required</h3>
@@ -536,7 +498,7 @@ export default function InstagramSearch({ placeholder, restrictedTo }: Instagram
                                     ) : (
                                         <div className={styles.emptyState}>
                                             <p>{t('noMedia', { type: activeTab.toLowerCase() })}</p>
-                                            {activeTab === 'STORIES' && <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>{t('storyTip')}</p>}
+                                            {activeTab === 'STORIES' && <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>The provider did not return story media for this result. A Pro upgrade does not guarantee missing stories.</p>}
                                         </div>
                                     )}
                                 </div>

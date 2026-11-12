@@ -1,3 +1,4 @@
+import { applyReviewedPage, reviewedPages } from '@/lib/reviewedContent';
 import { createClient } from '@supabase/supabase-js';
 import styles from './page.module.css';
 import Header from '@/components/layout/Header';
@@ -19,6 +20,7 @@ async function getPage(slug: string) {
         .eq('slug', slug)
         .eq('status', 'published')
         .single();
+    if (reviewedPages[slug]) return applyReviewedPage(data || { slug });
     if (error) return null;
     return data;
 }
@@ -51,7 +53,7 @@ export default async function ContactPage() {
                             {t('title')} <span className={styles.highlight}>{t('highlight')}</span>
                         </h1>
                         <p className={styles.subtitle}>
-                            {t('subtitle')}
+                            {page?.excerpt || t('subtitle')}
                         </p>
                     </div>
                 </section>

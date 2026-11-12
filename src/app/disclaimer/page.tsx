@@ -1,3 +1,4 @@
+import { correctServiceFacts } from '@/lib/serviceFacts';
 import { createClient } from '@supabase/supabase-js';
 import styles from '../about/page.module.css';
 import Header from '@/components/layout/Header';
@@ -63,7 +64,7 @@ export default async function DisclaimerPage() {
                         <div
                             className={styles.card}
                             dangerouslySetInnerHTML={{
-                                __html: page?.content || `
+                                __html: correctServiceFacts(page?.content || `
                                     <p>Last updated: June 25, 2026</p>
                                     <p>The information, tools, and services provided by <strong>InstaPSV</strong> (accessible at <a href="https://instapsv.com">https://instapsv.com</a>) are offered on an "as is" and "as available" basis for general informational, educational, and personal use only.</p>
 
@@ -81,7 +82,7 @@ export default async function DisclaimerPage() {
 
                                     <h3>5. Limitation of Liability</h3>
                                     <p>In no event shall InstaPSV, its operators, or affiliates be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website. Your use of our tools is entirely at your own risk and discretion.</p>
-                                `
+                                `)
                             }}
                         />
                     </div>

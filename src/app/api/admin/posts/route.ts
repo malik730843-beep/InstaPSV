@@ -1,6 +1,8 @@
+import { reservedPageSlugs } from '@/lib/siteRoutes';
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { verifyAdmin, unauthorizedResponse } from '@/lib/adminAuth';
+import { applyReviewedPost } from '@/lib/reviewedContent';
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -50,7 +52,7 @@ export async function GET(req: NextRequest) {
 
                 if (error) throw error;
 
-                return NextResponse.json({ post });
+                return NextResponse.json({ post: post ? applyReviewedPost(post) : post });
             } catch (err: any) {
                 if (err.message?.includes('fetch failed') || err.message?.includes('fetch') || err.message?.includes('network')) {
                     console.warn(`Supabase offline - returning mock post by id ${id}`);
@@ -68,7 +70,7 @@ export async function GET(req: NextRequest) {
 
                 if (error) throw error;
 
-                return NextResponse.json({ posts });
+                return NextResponse.json({ posts: posts?.map(applyReviewedPost) });
             } catch (err: any) {
                 if (err.message?.includes('fetch failed') || err.message?.includes('fetch') || err.message?.includes('network')) {
                     console.warn("Supabase offline - returning mock posts list");
@@ -84,7 +86,7 @@ export async function GET(req: NextRequest) {
 
 // Helper to ensure unique slug
 async function ensureUniqueSlug(slug: string, existingId?: string) {
-    let uniqueSlug = slug;
+    let uniqueSlug = reservedPageSlugs.has(slug) ? `${slug}-guide` : slug;
     let counter = 1;
 
     while (true) {

@@ -186,19 +186,19 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                     <div className={styles.heroContent}>
                         <h1 className={styles.heroTitle}>
                             Instagram <span className={styles.highlight}>Hashtag Generator</span><br />
-                            Boost Your Reach Instantly
+                            Pick ideas for your next post
                         </h1>
                         <p className={styles.heroSub}>
-                            Discover the most effective, trending hashtags for your Instagram posts. 
-                            Select by category or search by keyword to skyrocket your engagement 100% free.
+                            Choose relevant hashtag ideas from a local category list for your Instagram posts.
+                            Select by category or keyword, then review each idea before copying. No live popularity data is used.
                         </p>
                         
                         <div className={styles.liveStatus} style={{ display: 'flex', gap: '2rem', justifyContent: 'center', opacity: 0.8 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <Zap size={16} /> <span>AI-Powered Categorization</span>
+                                <Zap size={16} /> <span>Category-based suggestions</span>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <ShieldCheck size={16} /> <span>100% Shadowban Safe</span>
+                                <ShieldCheck size={16} /> <span>Review tags before publishing</span>
                             </div>
                         </div>
                     </div>
@@ -269,7 +269,7 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                             <div className={styles.selectionBar}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                     <div className={styles.countBadge}>{selectedTags.size} Tags</div>
-                                    <span style={{ fontSize: '0.9rem', opacity: 0.7 }} className={styles.hideMobile}>Ready to boost your post</span>
+                                    <span style={{ fontSize: '0.9rem', opacity: 0.7 }} className={styles.hideMobile}>Review your selected tags</span>
                                 </div>
                                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                                     <button 
@@ -323,8 +323,8 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                                     <Globe size={28} />
                                 </div>
                                 <div className={styles.strategyContent}>
-                                    <h3>Broad Tags (3-5)</h3>
-                                    <p>High-volume hashtags (1M+ posts) that establish your general theme (e.g., #photography, #travel).</p>
+                                    <h3>Broad topic tags</h3>
+                                    <p>Broad topic ideas such as #photography or #travel. This tool does not measure their current post counts.</p>
                                 </div>
                             </div>
                             <div className={styles.strategyBlock}>
@@ -332,8 +332,8 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                                     <Target size={28} />
                                 </div>
                                 <div className={styles.strategyContent}>
-                                    <h3>Niche Tags (5-10)</h3>
-                                    <p>Medium-volume tags (100k-500k) where your specific audience hangs out (e.g., #streetphotography).</p>
+                                    <h3>Specific topic tags</h3>
+                                    <p>More specific topic ideas, such as #streetphotography. Select only those that accurately describe your content.</p>
                                 </div>
                             </div>
                             <div className={styles.strategyBlock}>
@@ -341,7 +341,7 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                                     <BarChart3 size={28} />
                                 </div>
                                 <div className={styles.strategyContent}>
-                                    <h3>Branded Tags (1-2)</h3>
+                                    <h3>Brand or community tags</h3>
                                     <p>Your unique tags that build community and track user-generated content (e.g., #YourBrand).</p>
                                 </div>
                             </div>
@@ -363,36 +363,36 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                                             <div className={`${styles.codeDot} ${styles.codeDotGreen}`}></div>
                                         </div>
                                         <div className={styles.codeContent}>
-                                            {"// Perfect Post Formula"}<br/>
-                                            {"const reach = (content) => {"}<br/>
+                                            {"// Example selection workflow"}<br/>
+                                            {"const caption = (content) => {"}<br/>
                                             {"  return content"}<br/>
-                                            {"    + ' ' + highVolumeTags(5)"}<br/>
-                                            {"    + ' ' + nicheTags(10)"}<br/>
-                                            {"    + ' ' + brandedTag(1);"}<br/>
+                                            {"    + ' ' + selectedTopicTags"}<br/>
+                                            {"    + ' ' + relevantNicheTags"}<br/>
+                                            {"    + ' ' + yourBrandTag;"}<br/>
                                             {"};"}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className={styles.tipsContent}>
-                                <h2>Engagement Pro-Tips</h2>
+                                <h2>Review your hashtag choices</h2>
                                 <div className={styles.tipsList}>
                                     <div className={styles.tipItem}>
                                         <div className={styles.tipIcon}><Lightbulb size={24} /></div>
                                         <div className={styles.tipText}>
-                                            <p><strong>Mix Tag Sizes:</strong> Don't just use 1M+ hashtags. You'll get buried. Use 50% niche tags to stay at the top longer.</p>
+                                            <p><strong>Describe the subject:</strong> For a night street photo, consider subject and setting tags rather than copying every photography suggestion.</p>
                                         </div>
                                     </div>
                                     <div className={styles.tipItem}>
                                         <div className={styles.tipIcon}><Lightbulb size={24} /></div>
                                         <div className={styles.tipText}>
-                                            <p><strong>Stay Relevant:</strong> Only use tags that actually match your photo. Instagram's AI scans your image and detects irrelevant tags.</p>
+                                            <p><strong>Stay Relevant:</strong> Remove ideas that do not match the post, its audience or its context. A category match alone is not enough.</p>
                                         </div>
                                     </div>
                                     <div className={styles.tipItem}>
                                         <div className={styles.tipIcon}><Lightbulb size={24} /></div>
                                         <div className={styles.tipText}>
-                                            <p><strong>Hide Your Tags:</strong> Use dots or spaces to push hashtags down in your caption so it looks cleaner for followers.</p>
+                                            <p><strong>Check the result:</strong> Preview your caption and check that each tag is appropriate in Instagram before publishing.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -412,21 +412,21 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                                 <div className={styles.howToNum}>1</div>
                                 <div className={styles.howToContent}>
                                     <h3>Select Your Industry</h3>
-                                    <p>Choose the high-intent category that best aligns with your content to load curated trending hashtags.</p>
+                                    <p>Choose a category to load suggestions from the bundled list. These are not live trend measurements.</p>
                                 </div>
                             </div>
                             <div className={styles.howToItem}>
                                 <div className={styles.howToNum}>2</div>
                                 <div className={styles.howToContent}>
                                     <h3>Curate Your Strategy</h3>
-                                    <p>Manually select the most relevant tags. We recommend a balanced strategy of 10-15 highly targeted hashtags.</p>
+                                    <p>Select only relevant tags. Check the current limit shown in Instagram when composing your post.</p>
                                 </div>
                             </div>
                             <div className={styles.howToItem}>
                                 <div className={styles.howToNum}>3</div>
                                 <div className={styles.howToContent}>
                                     <h3>Export & Go Live</h3>
-                                    <p>Copy your curated list instantly and integrate them into your post caption for immediate discovery.</p>
+                                    <p>Copy your selection, review it in Instagram and remove any tag that does not describe the post.</p>
                                 </div>
                             </div>
                         </div>
@@ -442,15 +442,15 @@ export default function HashtagGeneratorContent({ header, footer }: HashtagGener
                         <div className={styles.faqList}>
                             <div className={styles.faqItem}>
                                 <h4>How many hashtags should I use?</h4>
-                                <p>While Instagram allows up to 30 hashtags, recent data suggests that using 10-15 highly targeted tags is more effective than using the maximum amount of generic ones.</p>
+                                <p>Use only the tags that accurately describe your post and fit the current limit shown by Instagram. This tool does not establish an optimal count or predict performance.</p>
                             </div>
                             <div className={styles.faqItem}>
-                                <h4>What is a shadowban?</h4>
-                                <p>A shadowban is when Instagram limits your content's reach. This usually happens when you use banned or repetitive hashtags. Our list is regularly updated to include only safe, engagement-boosting tags.</p>
+                                <h4>Are these tags checked against live restrictions?</h4>
+                                <p>No. Suggestions come from a local list, and restrictions can change. Check each tag in Instagram before publishing. No hashtag list can guarantee reach or account safety.</p>
                             </div>
                             <div className={styles.faqItem}>
                                 <h4>Should I put hashtags in the caption or comments?</h4>
-                                <p>Both work! Placing them in the caption is better for searchability, while placing them in the first comment keeps your caption look cleaner. The performance difference is minimal.</p>
+                                <p>Choose a placement that keeps your post readable and follows the options currently supported by Instagram. This tool does not measure a performance difference between placements.</p>
                             </div>
                         </div>
                     </div>

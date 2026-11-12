@@ -1,3 +1,6 @@
+import { mergeStaticPosts, STATIC_BLOG_CATEGORIES } from '@/lib/staticBlogPosts';
+import { isReachablePost } from '@/lib/siteRoutes';
+import { applyReviewedPost } from '@/lib/reviewedContent';
 import Link from 'next/link';
 import styles from './BlogPreview.module.css';
 import { createClient } from '@supabase/supabase-js';
@@ -27,18 +30,18 @@ interface Category {
 export default async function BlogPreview() {
     let posts: Post[] = [];
     let categories: Category[] = [];
+    const unpublishedSlugs = new Set<string>();
 
     try {
         // Fetch latest 3 published posts
         const { data: postsData, error: postsError } = await supabase
             .from('posts')
             .select('*')
-            .eq('status', 'published')
-            .order('created_at', { ascending: false })
-            .limit(3);
+            .order('created_at', { ascending: false });
 
         if (postsData && !postsError) {
-            posts = postsData;
+            posts = postsData.filter(post => post.status === 'published' && isReachablePost(post)).map(applyReviewedPost);
+            for (const post of postsData) if (post.status !== 'published') unpublishedSlugs.add(post.slug);
         }
 
         // Fetch categories
@@ -53,6 +56,9 @@ export default async function BlogPreview() {
     } catch (error) {
         console.error('Failed to fetch blog posts:', error);
     }
+
+    posts = mergeStaticPosts(posts, unpublishedSlugs).sort((left, right) => Date.parse(right.created_at) - Date.parse(left.created_at)).slice(0, 3);
+    categories = Array.from(new Map([...STATIC_BLOG_CATEGORIES, ...categories].map(category => [category.id, category])).values());
 
     if (posts.length === 0) {
         return null;

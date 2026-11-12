@@ -1,5 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-import styles from '../about/page.module.css';
+import { applyReviewedPage, reviewedPages } from '@/lib/reviewedContent';
+import { createClient } from '@supabase/supabase-js';import styles from '../about/page.module.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -19,6 +19,7 @@ async function getPage(slug: string) {
         .eq('status', 'published')
         .single();
 
+    if (reviewedPages[slug]) return applyReviewedPage(data || { slug });
     if (error) return null;
     return data;
 }

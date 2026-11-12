@@ -1,0 +1,18 @@
+.main { max-width: 920px; margin: auto; padding: 130px 24px 80px; color: var(--color-text, #fff); line-height: 1.8; overflow-wrap: anywhere; }
+.main a { color: #c4b5fd; text-decoration: underline; text-underline-offset: 4px; }
+.header { margin: 32px 0; }
+.header h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; margin: 12px 0 24px; }
+.header p, .section p { color: #d1d5db; margin: 16px 0; }
+.eyebrow { color: #c4b5fd; font-size: .9rem; }
+.notice, .contents { padding: 24px; border: 1px solid #414152; border-radius: 16px; background: #141422; margin: 28px 0; }
+.notice p { margin: 12px 0; color: #d1d5db; }
+.search { margin: 40px 0; }
+.section { margin: 44px 0; scroll-margin-top: 110px; }
+.section h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.35; margin-bottom: 18px; }
+.section h3 { margin-top: 24px; font-size: 1.1rem; }
+.main ul, .main ol { padding-left: 24px; }
+.main li { margin: 10px 0; color: #d1d5db; }
+.tableWrap { overflow-x: auto; }
+.main table { width: 100%; border-collapse: collapse; min-width: 540px; }
+.main td, .main th { border-bottom: 1px solid #414152; padding: 16px; text-align: left; vertical-align: top; }
+@media(max-width: 600px) { .main { padding: 105px 18px 50px; } .notice, .contents { padding: 18px; } }

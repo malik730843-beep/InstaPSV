@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { applyReviewedPage } from '@/lib/reviewedContent';
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -41,7 +42,7 @@ export async function GET(req: NextRequest) {
 
                 if (error) throw error;
 
-                return NextResponse.json({ page });
+                return NextResponse.json({ page: page ? applyReviewedPage(page) : page });
             } catch (err: any) {
                 if (err.message?.includes('fetch failed') || err.message?.includes('fetch') || err.message?.includes('network')) {
                     console.warn(`Supabase offline - returning mock page by id ${id}`);
@@ -59,7 +60,7 @@ export async function GET(req: NextRequest) {
 
                 if (error) throw error;
 
-                return NextResponse.json({ pages });
+                return NextResponse.json({ pages: pages?.map(applyReviewedPage) });
             } catch (err: any) {
                 if (err.message?.includes('fetch failed') || err.message?.includes('fetch') || err.message?.includes('network')) {
                     console.warn("Supabase offline - returning mock pages list");

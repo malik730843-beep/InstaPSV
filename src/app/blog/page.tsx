@@ -1,3 +1,6 @@
+import { isReachablePost } from '@/lib/siteRoutes';
+import { applyReviewedPost } from '@/lib/reviewedContent';
+import { mergeStaticPosts, STATIC_BLOG_CATEGORIES } from '@/lib/staticBlogPosts';
 import Link from 'next/link';
 import styles from './page.module.css';
 import Header from '@/components/layout/Header';
@@ -37,8 +40,10 @@ interface Category {
     name: string;
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+    const selectedCategory = (await searchParams).category || '';
     let posts: Post[] = [];
+    const unpublishedSlugs = new Set<string>();
     let categories: Category[] = [];
     const t = await getTranslations('blog');
     const locale = await getLocale();
@@ -48,13 +53,15 @@ export default async function BlogPage() {
         const { data: postsData, error: postsError } = await supabaseAdmin
             .from('posts')
             .select('*')
-            .eq('status', 'published')
             .order('created_at', { ascending: false });
 
         if (postsData && !postsError) {
-            posts = postsData;
+            posts = postsData.filter(post => post.status === 'published' && isReachablePost(post)).map(applyReviewedPost);
+            for (const post of postsData) if (post.status !== 'published') unpublishedSlugs.add(post.slug);
         } else if (postsError) {
             console.error('Failed to fetch posts:', postsError.message);
+            // Fall back to static posts only
+            posts = [];
         }
 
         // Fetch Categories
@@ -67,14 +74,19 @@ export default async function BlogPage() {
         }
     } catch (error) {
         console.error('Global fetch error in BlogPage:', error);
+        // Fall back to static posts if DB is unavailable
+        posts = [];
     }
 
-    const categoryNames = [t('all'), ...categories.map(c => c.name)];
+    posts = mergeStaticPosts(posts, unpublishedSlugs).sort((left, right) => Date.parse(right.created_at) - Date.parse(left.created_at));
+    categories = Array.from(new Map([...STATIC_BLOG_CATEGORIES, ...categories].map(category => [category.id, category])).values());
+    const categoryOptions = [{ id: '', name: t('all') }, ...categories];
+    if (selectedCategory) posts = posts.filter(post => post.categories?.includes(selectedCategory));
 
     // Reading time calculation helper
     const getReadingTime = (text: string) => {
         const wpm = 200;
-        const words = text.trim().split(/\s+/).length;
+        const words = text.replace(/<[^>]*>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
         return Math.ceil(words / wpm);
     };
 
@@ -111,13 +123,15 @@ export default async function BlogPage() {
                 <section className={styles.categoriesSection}>
                     <div className={styles.container}>
                         <div className={styles.categories}>
-                            {categoryNames.map((cat) => (
-                                <button
-                                    key={cat}
-                                    className={`${styles.categoryBtn} ${cat === t('all') ? styles.active : ''}`}
+                            {categoryOptions.map((cat) => (
+                                <Link
+                                    key={cat.id}
+                                    href={cat.id ? `/blog?category=${encodeURIComponent(cat.id)}` : '/blog'}
+                                    aria-current={cat.id === selectedCategory ? 'page' : undefined}
+                                    className={`${styles.categoryBtn} ${cat.id === selectedCategory ? styles.active : ''}`}
                                 >
-                                    {cat}
-                                </button>
+                                    {cat.name}
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -131,7 +145,7 @@ export default async function BlogPage() {
                                 posts.map((post, index) => {
                                     // Resolve category name
                                     const catId = post.categories?.[0];
-                                    const categoryName = categories.find(c => c.id === catId)?.name || 'Tips';
+                                    const categoryName = categories.find(c => c.id === catId)?.name || 'Guides';
                                     const readTime = getReadingTime(post.content || '');
                                     const authorName = post.author_name || t('team');
 

@@ -2,41 +2,30 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
-import Features from '@/components/sections/Features';
-import SecurityComparison from '@/components/sections/SecurityComparison';
-import HowItWorks from '@/components/sections/HowItWorks';
+import ViewerGuide from '@/components/sections/ViewerGuide';
 
 import FAQ from '@/components/sections/FAQ';
-import UseCases from '@/components/sections/UseCases';
-import ComparisonTable from '@/components/sections/ComparisonTable';
-import CTASection from '@/components/sections/CTASection';
-import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
 import FAQSchema from '@/components/seo/FAQSchema';
-import dynamic from 'next/dynamic';
 
 export const metadata: Metadata = {
-  title: 'InstaPSV — Anonymous Instagram Viewer | No Login Required',
-  description: 'View Instagram stories, profiles, reels & highlights anonymously — no login, no account needed. 100% free, private, and works on any device. Try it now.',
-  keywords: 'anonymous instagram viewer, instagram story viewer, view instagram stories anonymously, ig story viewer no login, instagram profile viewer, browse instagram without account',
+  title: 'InstaPSV — Instagram Profile Viewer | No Login Required',
+  description: 'Look up supported public Instagram Business and Creator profiles without an Instagram account. Browse returned posts, check story availability, and use the hashtag idea picker.',
+  keywords: 'instagram profile viewer, instagram story viewer, public instagram viewer, instagram highlights viewer, instagram reels downloader, view instagram without login',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'InstaPSV — Anonymous Instagram Viewer | No Login Required',
-    description: 'View Instagram stories, profiles, reels & highlights anonymously. No login, no account. 100% free & private.',
+    title: 'InstaPSV — Instagram Profile Viewer | No Login Required',
+    description: 'Look up supported public Instagram profiles and learn what each tool can return, including plan limits and provider coverage.',
     type: 'website',
     url: 'https://instapsv.com/',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'InstaPSV — Anonymous Instagram Viewer | No Login Required',
-    description: 'View Instagram stories, profiles, reels & highlights anonymously. No login needed.',
+    title: 'InstaPSV — Instagram Profile Viewer | No Login Required',
+    description: 'Look up supported public profiles and read guides to credits, downloads and tool limitations.',
   },
 };
-
-const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
-  ssr: true,
-});
 
 export default function Home() {
   return (
@@ -46,21 +35,10 @@ export default function Home() {
       <main>
         <Hero />
         
-        <SecurityComparison />
-        
-        <Features />
-        
-        <HowItWorks />
-        
-        <ComparisonTable />
-        
-        <UseCases />
+        <ViewerGuide />
         
         <FAQ />
         
-        <Testimonials />
-        
-        <FeatureSuggestion />
       </main>
       <Footer />
     </>

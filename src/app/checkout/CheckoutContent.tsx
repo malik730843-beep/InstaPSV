@@ -111,27 +111,32 @@ export default function CheckoutContent() {
 
                 <ul className={styles.featureList}>
                     <li>
-                        <CheckCircle size={16} color="#10b981" /> Unlimited Anonymous Searches
+                        <CheckCircle size={16} color="#10b981" /> No monthly search-credit deduction
                     </li>
                     <li>
-                        <CheckCircle size={16} color="#10b981" /> View Instagram Stories & Reels
+                        <CheckCircle size={16} color="#10b981" /> Returned videos and eligible story data
                     </li>
                     <li>
-                        <CheckCircle size={16} color="#10b981" /> Browse Saved Highlights Folder
+                        <CheckCircle size={16} color="#10b981" /> Source availability limits apply
                     </li>
                     <li>
-                        <CheckCircle size={16} color="#10b981" /> Download Media Directly in HD
+                        <CheckCircle size={16} color="#10b981" /> Download available source media
                     </li>
                 </ul>
 
                 <div className={styles.securitySeal}>
-                    <Lock size={16} style={{ marginRight: '8px' }} /> Secure Payment Gateway
+                    <Lock size={16} style={{ marginRight: '8px' }} /> Manual payment and verification
                 </div>
             </div>
 
             {/* RIGHT COLUMN: Payment Details and Form */}
             <div className={styles.paymentCard}>
                 <h2 className={styles.cardSectionTitle}>Payment Details</h2>
+                <aside style={{ padding: 16, marginBottom: 24, border: '1px solid #666', borderRadius: 12, lineHeight: 1.7 }}>
+                    <strong>Check coverage before payment</strong>
+                    <p>Confirm a working profile lookup and the feature you need before sending money. Full highlight collection retrieval is not implemented. Stories and source resolution are not guaranteed. Payment activation requires manual review.</p>
+                    <Link href="/contact">Ask about availability</Link>
+                </aside>
 
                 {/* Payment Instructions */}
                 <div className={styles.instructions}>

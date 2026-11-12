@@ -107,6 +107,14 @@ export async function GET(request: Request) {
 
         const errorMessage = error.message || '';
 
+        // A provider credential failure is an availability issue, not a bad username.
+        if (/error validating access token|session has expired|invalid oauth access token/i.test(errorMessage)) {
+            return NextResponse.json({
+                error: 'Profile lookup is temporarily unavailable. Please try again later. No search credits were used.',
+                code: 'PROFILE_PROVIDER_UNAVAILABLE',
+            }, { status: 503 });
+        }
+
         // Catch Meta API rate limit (#4)
         if (errorMessage.includes('(#4)') || errorMessage.includes('request limit reached')) {
             const errorResponse = {

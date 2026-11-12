@@ -1,6 +1,9 @@
+import { applyReviewedPost, CONTENT_REVIEWED_AT } from '@/lib/reviewedContent';
+import { STATIC_BLOG_POSTS, STATIC_BLOG_CATEGORIES, withEditorialCategory } from '@/lib/staticBlogPosts';
 
 import { createClient } from '@supabase/supabase-js';
 import { notFound } from 'next/navigation';
+import { isValidPostPreview } from '@/lib/postPreview';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { getTranslations, getLocale } from 'next-intl/server';
@@ -42,35 +45,28 @@ interface Post {
     featured_image: string;
     created_at: string;
     author_name?: string;
+    updated_at?: string;
     categories?: string[];
 }
 
-async function getPost(slug: string, isPreview = false): Promise<{ post: Post | null, error: any, recentSlugs?: string[] }> {
-    let query = supabaseAdmin
-        .from('posts')
-        .select('*')
-        .eq('slug', slug);
+async function getPost(slug: string, isPreview = false): Promise<{ post: Post | null }> {
+    // Check static posts first (always available, no DB needed)
+    const staticPost = STATIC_BLOG_POSTS.find(p => p.slug === slug);
 
-    if (!isPreview) {
-        query = query.eq('status', 'published');
-    }
-
+    let query = supabaseAdmin.from('posts').select('*').eq('slug', slug);
     const { data: post, error } = await query.single();
-
-    if (error) {
-        try {
-            const { data: recent } = await supabaseAdmin
-                .from('posts')
-                .select('slug')
-                .order('created_at', { ascending: false })
-                .limit(5);
-            return { post: null, error, recentSlugs: recent?.map(r => r.slug) || [] };
-        } catch (e) {
-            return { post: null, error };
-        }
+    if (error && error.code !== 'PGRST116') {
+        console.error('Post lookup failed:', error.code);
+        // Return static post as fallback if DB fails
+        if (staticPost && !isPreview) return { post: staticPost };
+        throw new Error('Content is temporarily unavailable');
     }
-
-    return { post, error: null };
+    // Honor an explicit CMS unpublish instead of resurrecting a static fallback.
+    if (post && !isPreview && post.status !== 'published') return { post: null };
+    // If DB returned a post, apply reviewed content; otherwise use static
+    if (post) return { post: !isPreview ? withEditorialCategory(applyReviewedPost(post)) : post };
+    if (staticPost && !isPreview) return { post: staticPost };
+    return { post: null };
 }
 
 // Strip editor-injected wrappers (outer blockquote, empty h1 at start)
@@ -90,6 +86,8 @@ function sanitizeContent(html: string): string {
 
 async function getCategoryName(categoryId: string | undefined) {
     if (!categoryId) return null;
+    const staticCategory = STATIC_BLOG_CATEGORIES.find(category => category.id === categoryId);
+    if (staticCategory) return staticCategory.name;
     try {
         const { data } = await supabaseAdmin
             .from('categories')
@@ -112,7 +110,8 @@ export async function generateMetadata({
 }) {
     const { slug } = await params;
     const sParams = await searchParams;
-    const isPreview = sParams.preview === 'true';
+    const isPreview = isValidPostPreview(slug, sParams);
+    if (sParams.preview === 'true' && !isPreview) notFound();
 
     // Try static page first
     const page = await getPage(slug);
@@ -129,9 +128,9 @@ export async function generateMetadata({
     // Try blog post
     const { post } = await getPost(slug, isPreview);
     if (post) {
-        const t = await getTranslations('blog');
         return {
-            title: `${post.title} - InstaPSV ${isPreview ? '[PREVIEW]' : t('title')}`,
+            title: `${post.title}${isPreview ? ' [Preview]' : ''}`,
+            robots: isPreview ? { index: false, follow: false } : undefined,
             description: post.excerpt || post.content.slice(0, 160),
             alternates: {
                 canonical: `/${slug}`,
@@ -150,14 +149,10 @@ export default async function DynamicPage({
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const { slug: rawSlug } = await params;
-    // Decode and sanitize slug (e.g. "my post" or "my%20post" -> "my-post")
-    const slug = decodeURIComponent(rawSlug)
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
+    const { slug } = await params;
     const sParams = await searchParams;
-    const isPreview = sParams.preview === 'true';
+    const isPreview = isValidPostPreview(slug, sParams);
+    if (sParams.preview === 'true' && !isPreview) notFound();
 
     try {
         // ========== 1. Try Static Page First ==========
@@ -202,57 +197,11 @@ export default async function DynamicPage({
         }
 
         // ========== 2. Try Blog Post ==========
-        const { post, error, recentSlugs } = await getPost(slug, isPreview);
+        const { post } = await getPost(slug, isPreview);
         const t = await getTranslations('blog');
         const locale = await getLocale();
 
-        if (!post) {
-            console.log(`[Slug-Page] No post found for slug: "${slug}" (Preview: ${isPreview})`);
-            if (isPreview) {
-                const hasServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
-                return (
-                    <>
-                        <Header alwaysDark />
-                        <div style={{ padding: '100px 20px', textAlign: 'center', background: '#f9fafb', minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
-                            <div style={{ maxWidth: '600px', width: '100%', padding: '40px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-                                <h1 style={{ color: '#ef4444', marginBottom: '16px', fontSize: '24px' }}>Preview Not Found</h1>
-                                <p style={{ color: '#374151', fontSize: '16px', lineHeight: '1.6' }}>
-                                    We couldn't find a draft or published post with the slug: <br />
-                                    <strong style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>{slug}</strong>
-                                </p>
-
-                                <div style={{ marginTop: '24px', padding: '16px', borderRadius: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: '13px' }}>
-                                    <div style={{ marginBottom: '8px' }}><strong>Debug Status:</strong></div>
-                                    <div>URL Preview Mode: <span style={{ color: isPreview ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{String(isPreview)}</span></div>
-                                    <div>Service Role Key: <span style={{ color: hasServiceKey ? '#16a34a' : '#dc2626', fontWeight: 'bold' }}>{hasServiceKey ? 'Detected' : 'MISSING'}</span></div>
-                                    {error && <div style={{ marginTop: '8px', color: '#991b1b' }}>DB Error: {error.message}</div>}
-
-                                    {recentSlugs && recentSlugs.length > 0 && (
-                                        <div style={{ marginTop: '12px', borderTop: '1px solid #e2e8f0', paddingTop: '12px' }}>
-                                            <div style={{ marginBottom: '4px' }}><strong>Last 5 Slugs in DB:</strong></div>
-                                            {recentSlugs.map((s, i) => (
-                                                <div key={i} style={{ color: '#475569', fontSize: '12px' }}>{s}</div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                                <a
-                                    href={`/${slug}?preview=true&t=${Date.now()}`}
-                                    style={{ marginTop: '24px', padding: '12px 24px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}
-                                >
-                                    Refresh Preview
-                                </a>
-                            </div>
-                        </div>
-                        <Footer />
-                    </>
-                );
-            }
-            
-            // Re-throw this so Next.js handles the 404
-            notFound();
-        }
+        if (!post) notFound();
 
         // Render blog post
         const categoryName = (await getCategoryName(post.categories?.[0])) || t('defaultCategory');
@@ -299,8 +248,38 @@ export default async function DynamicPage({
 
                         <div className={blogStyles.content}>
                             <TableOfContents />
+                            {!isPreview && post.updated_at === CONTENT_REVIEWED_AT && <p>Revised November 12, 2026. <a href="/contact">Report a correction</a>.</p>}
                             <div className="blog-post-body" dangerouslySetInnerHTML={{ __html: sanitizeContent(post.content || '') }} />
                         </div>
+
+                        {/* Author Bio — E-E-A-T signal for Google */}
+                        <aside style={{
+                            margin: '3rem 0 2rem',
+                            padding: '1.5rem',
+                            borderTop: '2px solid rgba(255,0,128,0.15)',
+                            display: 'flex',
+                            gap: '1rem',
+                            alignItems: 'flex-start',
+                        }}>
+                            <div style={{
+                                width: 48, height: 48, borderRadius: '50%',
+                                background: 'linear-gradient(135deg, #ff0080, #7928ca)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                fontSize: '1.25rem', fontWeight: 800, color: '#fff', flexShrink: 0,
+                            }}>
+                                {authorName.charAt(0)}
+                            </div>
+                            <div>
+                                <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: 4 }}>{authorName}</div>
+                                <div style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: 8 }}>About this guide</div>
+                                <p style={{ fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
+                                    {authorName === 'InstaPSV Editorial'
+                                        ? 'InstaPSV Editorial publishes practical guides to public profile research and creator workflows. Product descriptions are checked against the implementation; examples are labeled and provider coverage is not guaranteed.'
+                                        : 'This article is attributed to the author shown above. Product availability and current limits are documented in the linked tool guides.'}
+                                    {' '}<a href="/editorial-policy">How we maintain our guides</a>. Found an error? <a href="/contact">Report a correction</a>.
+                                </p>
+                            </div>
+                        </aside>
                     </div>
                 </main>
                 <Footer />
@@ -313,16 +292,7 @@ export default async function DynamicPage({
             throw err;
         }
 
-        console.error("CRITICAL PAGE ERROR:", err);
-        return (
-            <div style={{ padding: '40px', background: '#fff', color: '#000', fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
-                <h1>Critical Server Error (Caught)</h1>
-                <p>Message: {err.message}</p>
-                <p>Stack: {err.stack}</p>
-                <hr />
-                <p>Please share this with the developer to fix the crash.</p>
-            </div>
-        );
+        throw err;
     }
 }
 

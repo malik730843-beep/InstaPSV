@@ -1,6 +1,6 @@
 'use client';
 
-import { adminFetch } from '@/lib/adminFetch';
+import { adminFetch, openPostPreview } from '@/lib/adminFetch';
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
@@ -188,7 +188,7 @@ export default function NewPostPage() {
                 const data = await res.json();
 
                 if (openPreview) {
-                    window.open(`/${payload.slug}?preview=true`, '_blank');
+                    await openPostPreview(payload.slug);
                     if (data.post && data.post.id) {
                         router.push(`/admin/posts/${data.post.id}/edit`);
                     } else {

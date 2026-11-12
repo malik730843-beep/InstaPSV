@@ -10,13 +10,14 @@
         "faq": "FAQ",
         "privacy": "Integritetspolicy",
         "terms": "Användarvillkor",
-        "disclaimer": "Ansvarsfriskrivning"
+        "disclaimer": "Ansvarsfriskrivning",
+        "pricing": "Priser"
     },
     "hero": {
-        "badge": "Gratis Instagram Viewer-verktyg",
-        "titleStart": "Anonym Instagram Story Viewer",
-        "titleHighlight": "och följare parser",
-        "subtitle": "Se Instagram-stories, profiler, reels och följare anonymt. Ingen inloggning krävs. 100% gratis och säkert.",
+        "badge": "Offentliga profiler · Inga Instagram-inloggningsuppgifter",
+        "titleStart": "Instagram-profilvisare",
+        "titleHighlight": "Se offentligt innehåll",
+        "subtitle": "Sök efter stödda offentliga Business- och Creator-konton. Kontrollera funktionernas tillgänglighet före användning.",
         "searchPlaceholder": "Ange användarnamn...",
         "searchButton": "Visa profil",
         "searchHint": "Prova: @instagram, @cristiano, @therock",
@@ -39,7 +40,8 @@
                 "point2": "Inga spårningspixlar.",
                 "point3": "IP-maskerad."
             }
-        }
+        },
+        "getStarted": "Kom igång"
     },
     "features": {
         "badge": "Funktioner",
@@ -91,36 +93,32 @@
         "contactLink": "Kontakta support",
         "items": [
             {
-                "question": "Är InstaPSV gratis?",
-                "answer": "Ja, helt gratis."
+                "question": "Är alla funktioner gratis?",
+                "answer": "Nej. Sökningar använder krediter. Stories och nedladdningar kräver Pro i det nuvarande gränssnittet. Täckningen beror på leverantören."
             },
             {
-                "question": "Kan användare se att jag tittade?",
-                "answer": "Nej, du förblir anonym."
+                "question": "Är resultaten fullständiga och aktuella?",
+                "answer": "Inte alltid. Svar kan cachelagras i upp till 24 timmar. Saknade medier bevisar inte att kontot saknar innehåll."
             },
             {
-                "question": "Måste jag skapa ett konto?",
-                "answer": "Nej, ingen registrering krävs."
+                "question": "Kan jag öppna kompletta höjdpunktssamlingar?",
+                "answer": "Hämtning av kompletta samlingar är inte implementerad. Använd den ursprungliga Instagram-profilen."
             },
             {
-                "question": "Kan jag ladda ner stories?",
-                "answer": "Ja! Du kan ladda ner allt."
-            },
-            {
-                "question": "Är det lagligt?",
-                "answer": "Vi använder endast offentligt innehåll."
-            },
-            {
-                "question": "Varför kan jag inte se vissa profiler?",
-                "answer": "Endast offentliga profiler."
+                "question": "Betyder ingen Instagram-inloggning att inga data behandlas?",
+                "answer": "Nej. Infrastrukturen behandlar förfrågningar. Konto-, kredit- och betalningsfunktioner behandlar också information. Läs integritetspolicyn."
             }
-        ]
+        ],
+        "titleStart": "",
+        "titleHighlight": "Vanliga frågor",
+        "titleEnd": ""
     },
     "testimonials": {
         "badge": "Recensioner",
         "title": "Vad användare säger om {brand}",
         "brand": "InstaPSV",
-        "subtitle": "Tusentals nöjda användare."
+        "subtitle": "Tusentals nöjda användare.",
+        "items": []
     },
     "cta": {
         "title": "Visa Instagram {followers}",
@@ -228,7 +226,7 @@
         "viewStory": "Visa story"
     },
     "footer": {
-        "description": "Det säkraste verktyget för anonym Instagram-visning.",
+        "description": "Verktyg och guider för stött offentligt Instagram-innehåll. Kredit-, abonnemangs- och leverantörsgränser gäller. Oberoende av Instagram och Meta.",
         "product": "Produkt",
         "company": "Företag",
         "legal": "Juridiskt",

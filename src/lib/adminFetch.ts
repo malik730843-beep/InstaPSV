@@ -14,3 +14,10 @@ export async function adminFetch(input: string, init: RequestInit = {}) {
     }
     return fetch(input, { ...init, headers });
 }
+
+export async function openPostPreview(slug: string) {
+    const response = await adminFetch(`/api/admin/posts/preview?slug=${encodeURIComponent(slug)}`);
+    if (!response.ok) throw new Error('Could not open preview. Please sign in again.');
+    const { url } = await response.json();
+    window.open(url, '_blank', 'noopener,noreferrer');
+}

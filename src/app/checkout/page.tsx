@@ -19,11 +19,11 @@ export const metadata: Metadata = {
         follow: false,
     },
     title: 'Subscribe to Pro Plan — InstaPSV',
-    description: 'Complete your upgrade to InstaPSV Pro. Get unlimited anonymous searches, view stories, highlights, and download media in HD quality.',
+    description: 'Review Pro access, source coverage and manual payment verification before upgrading.',
     keywords: 'InstaPSV checkout, buy anonymous instagram viewer, upgrade instapsv',
     openGraph: {
         title: 'Subscribe to Pro Plan — InstaPSV',
-        description: 'Complete your upgrade to InstaPSV Pro. Get unlimited anonymous searches.',
+        description: 'Review Pro access and manual payment verification.',
         type: 'website',
     },
 };
@@ -45,7 +45,7 @@ export default function CheckoutPage() {
                             <ArrowLeft size={16} /> Back to Pricing
                         </Link>
                         <h1 className={styles.title}>Complete Your Upgrade</h1>
-                        <p className={styles.subtitle}>Unlock unlimited anonymous searches and premium story downloading features instantly.</p>
+                        <p className={styles.subtitle}>Review feature availability and submit payment details for manual verification. Access begins after approval.</p>
                     </div>
 
                     {/* 

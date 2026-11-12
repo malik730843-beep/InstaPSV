@@ -22,6 +22,7 @@ export default async function Footer() {
             { href: '/about', label: navT('about') },
             { href: '/blog', label: navT('blog') },
             { href: '/contact', label: navT('contact') },
+            { href: '/editorial-policy', label: 'How we maintain our guides' },
         ],
         legal: [
             { href: '/privacy-policy', label: navT('privacy') },

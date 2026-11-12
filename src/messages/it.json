@@ -14,10 +14,10 @@
         "disclaimer": "Dichiarazione di non responsabilità"
     },
     "hero": {
-        "badge": "Strumento gratuito per Instagram",
-        "titleStart": "Visualizzatore Instagram anonimo",
-        "titleHighlight": "e parser di follower",
-        "subtitle": "Visualizza storie, profili, reel e follower di Instagram in modo anonimo. Nessun login richiesto. 100% gratuito e sicuro.",
+        "badge": "Profili pubblici · Senza credenziali Instagram",
+        "titleStart": "Visualizzatore di profili Instagram",
+        "titleHighlight": "Esplora contenuti pubblici",
+        "subtitle": "Cerca account Business e Creator pubblici supportati. Verifica la disponibilità delle funzioni prima di usarle.",
         "searchPlaceholder": "Inserisci il nome utente...",
         "searchButton": "Vedi profilo",
         "searchHint": "Prova: @instagram, @cristiano, @therock",
@@ -40,7 +40,8 @@
                 "point2": "Nessun pixel di tracciamento.",
                 "point3": "IP mascherato."
             }
-        }
+        },
+        "getStarted": "Inizia"
     },
     "features": {
         "badge": "Funzionalità",
@@ -92,30 +93,25 @@
         "contactLink": "Contatta il supporto",
         "items": [
             {
-                "question": "InstaPSV è gratuito?",
-                "answer": "Sì, InstaPSV è completamente gratuito."
+                "question": "Tutte le funzioni sono gratuite?",
+                "answer": "No. Le ricerche usano crediti. Storie e download richiedono Pro nell’interfaccia attuale. La copertura dipende dal fornitore."
             },
             {
-                "question": "Gli utenti possono vedere se ho visitato il loro profilo?",
-                "answer": "No, quando usi InstaPSV, rimani completamente anonimo."
+                "question": "I risultati sono completi e aggiornati?",
+                "answer": "Non sempre. Le risposte possono restare in cache fino a 24 ore. I contenuti mancanti non dimostrano che l’account non abbia pubblicato."
             },
             {
-                "question": "Devo creare un account?",
-                "answer": "No, non è richiesta alcuna registrazione."
+                "question": "Posso aprire raccolte complete in evidenza?",
+                "answer": "Il recupero delle raccolte complete non è implementato. Usa il profilo Instagram originale."
             },
             {
-                "question": "Posso scaricare storie e post?",
-                "answer": "Sì! InstaPSV permette di scaricare storie, post, reel e foto profilo."
-            },
-            {
-                "question": "È legale usare InstaPSV?",
-                "answer": "InstaPSV accede solo a contenuti pubblicamente disponibili su Instagram."
-            },
-            {
-                "question": "Perché non posso vedere certi profili?",
-                "answer": "InstaPSV può accedere solo a profili Instagram pubblici."
+                "question": "Senza accesso Instagram significa senza trattamento dei dati?",
+                "answer": "No. L’infrastruttura elabora richieste. Account, crediti e pagamenti comportano altri trattamenti. Consulta l’informativa sulla privacy."
             }
-        ]
+        ],
+        "titleStart": "",
+        "titleHighlight": "Domande frequenti",
+        "titleEnd": ""
     },
     "testimonials": {
         "badge": "Recensioni",
@@ -123,53 +119,7 @@
         "titleHighlight": "Utenti",
         "titleEnd": "",
         "subtitle": "Unisciti a migliaia di utenti che si affidano a InstaPSV per i loro approfondimenti su Instagram.",
-        "items": [
-            {
-                "id": 1,
-                "name": "Sarah Johnson",
-                "handle": "@sarahj_design",
-                "avatar": "S",
-                "rating": 5,
-                "text": "InstaPSV è fantastico! Lo uso ogni giorno per controllare i contenuti della concorrenza. La funzione di visualizzazione anonima è perfetta per le ricerche di mercato.",
-                "role": "Digital Marketer"
-            },
-            {
-                "id": 2,
-                "name": "Mike Chen",
-                "handle": "@mike_tech",
-                "avatar": "M",
-                "rating": 5,
-                "text": "Finalmente uno strumento che funziona! Nessun login richiesto, veloce e affidabile. Posso visualizzare istantaneamente qualsiasi profilo pubblico. Altamente raccomandato!",
-                "role": "Sviluppatore Software"
-            },
-            {
-                "id": 3,
-                "name": "Emily Davis",
-                "handle": "@emily_creates",
-                "avatar": "E",
-                "rating": 5,
-                "text": "Il visualizzatore di storie è incredibile. Posso salvare ispirazioni per le mie moodboard senza avvisare nessuno. Super utile per i creativi!",
-                "role": "Content Creator"
-            },
-            {
-                "id": 4,
-                "name": "Alex Thompson",
-                "handle": "@alex_growth",
-                "avatar": "A",
-                "rating": 5,
-                "text": "Il miglior strumento per visualizzare Instagram che abbia mai trovato. Interfaccia pulita, caricamento veloce e la funzione di download funziona perfettamente ogni volta.",
-                "role": "Growth Strategist"
-            },
-            {
-                "id": 5,
-                "name": "Jessica Lee",
-                "handle": "@jess_photo",
-                "avatar": "J",
-                "rating": 5,
-                "text": "Come fotografa, amo poter visualizzare e salvare ispirazioni in modo anonimo. InstaPSV è diventato una parte essenziale del mio flusso di lavoro.",
-                "role": "Fotografa"
-            }
-        ]
+        "items": []
     },
     "cta": {
         "title": "Vedi i {followers} di Instagram",
@@ -277,7 +227,7 @@
         "viewStory": "Visualizza storia"
     },
     "footer": {
-        "description": "Lo strumento più potente e sicuro per visualizzare storie, profili e follower di Instagram in modo anonimo.",
+        "description": "Strumenti e guide per contenuti Instagram pubblici supportati. Si applicano limiti di crediti, piani e fornitori. Indipendente da Instagram e Meta.",
         "product": "Prodotto",
         "company": "Azienda",
         "legal": "Legale",

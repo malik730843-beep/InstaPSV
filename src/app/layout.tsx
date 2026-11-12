@@ -30,7 +30,7 @@ const supabase = createClient(
 export async function generateMetadata(): Promise<Metadata> {
   // Fetch SEO settings
   let title = "InstaPSV — Anonymous Instagram Viewer | No Login";
-  let description = "View Instagram stories, profiles, reels & highlights anonymously — no login, no account. 100% private, free, and works on any device.";
+  let description = "Look up supported public Instagram profiles and use practical guides to account coverage, search credits, downloads and data limitations.";
   let keywords = "anonymous instagram viewer, instagram story viewer, view instagram stories anonymously, ig story viewer no login, instagram profile viewer anonymous, download instagram stories free";
   let verification: any = {};
   let otherMeta: any = {};
@@ -201,86 +201,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* SoftwareApplication Schema — rich results eligibility */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "InstaPSV",
-              "url": process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com",
-              "operatingSystem": "Any",
-              "applicationCategory": "BrowserApplication",
-              "description": "InstaPSV is a free anonymous Instagram viewer. View stories, highlights, reels, and profiles privately with no login or account required.",
-              "featureList": [
-                "Anonymous Instagram Story Viewer",
-                "Instagram Profile Viewer without Login",
-                "Instagram Highlights Downloader",
-                "Instagram Reels Downloader HD",
-                "Instagram Hashtag Generator",
-                "No login or account required",
-                "100% free to use"
-              ],
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              }
-            })
-          }}
-        />
-        {/* BreadcrumbList Schema — full site navigation */}
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "Home",
-                  "item": process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com"
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "name": "Anonymous Instagram Viewer",
-                  "item": `${process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com"}/anonymous-instagram-viewer`
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "name": "Instagram Story Viewer",
-                  "item": `${process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com"}/instagram-story-viewer`
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 4,
-                  "name": "Instagram Highlights Viewer",
-                  "item": `${process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com"}/instagram-highlights-viewer`
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 5,
-                  "name": "Instagram Reels Downloader",
-                  "item": `${process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com"}/instagram-reels-downloader`
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 6,
-                  "name": "Instagram Hashtag Generator",
-                  "item": `${process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com"}/instagram-hashtag-generator`
-                }
-              ]
-            })
-          }}
-        />
-        {/* WebSite Schema — enables Google Sitelinks Searchbox */}
+        {/* Site identity; search controls do not accept a query-string action. */}
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -290,15 +211,8 @@ export default async function RootLayout({
               "@type": "WebSite",
               "name": "InstaPSV",
               "url": process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com",
-              "description": "Free anonymous Instagram viewer — view stories, profiles, reels & highlights without login.",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": {
-                  "@type": "EntryPoint",
-                  "urlTemplate": `${process.env.NEXT_PUBLIC_SITE_URL || "https://instapsv.com"}/anonymous-instagram-viewer?q={search_term_string}`
-                },
-                "query-input": "required name=search_term_string"
-              }
+              "description": "Public Instagram profile tools and practical guides to their capabilities and limitations."
+
             })
           }}
         />

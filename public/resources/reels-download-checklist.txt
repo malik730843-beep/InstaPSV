@@ -1,0 +1,43 @@
+InstaPSV — Reels Download Troubleshooting Checklist
+====================================================
+Use this checklist before reporting a download problem through Contact.
+
+1. VERIFY THE ACCOUNT TYPE
+   [ ] Is the account a supported public Business or Creator account?
+   [ ] Is the username current? (Renamed accounts can fail lookups.)
+   [ ] Does the profile load successfully in the viewer?
+
+2. CHECK YOUR PLAN
+   [ ] Do you have an active Pro plan? (Downloads require Pro.)
+   [ ] Is the download button visible and enabled in the interface?
+   [ ] If the button is locked, the plan gate is the issue — not a file error.
+
+3. CONFIRM THE FILE ARRIVED
+   [ ] Check your browser's Downloads list (usually Ctrl+J or Cmd+J).
+   [ ] Check your device's Downloads folder or Files app.
+   [ ] On mobile: check the Files app, not just the gallery.
+
+4. IF THE FILE IS PRESENT BUT INCOMPLETE
+   [ ] Does the file have audio? (Some provider streams are video-only.)
+   [ ] Is the resolution lower than expected? (Source quality varies by provider.)
+   [ ] Does the file play correctly in a media player other than the browser?
+
+5. IF SAVING FAILS BUT PLAYBACK WORKS
+   [ ] Check whether the source file is still available.
+   [ ] Remember profile results can be cached for up to 24 hours; a repeated search may return the same expired URL.
+   [ ] Wait before retrying and report persistent failures.
+   [ ] If a video opens in a browser tab: use browser Save As to save it.
+
+6. WHAT TO SEND TO SUPPORT
+   Include all of the following when contacting support:
+   - The public Instagram handle you searched
+   - The page URL where the error appeared
+   - The approximate date and time (and your timezone)
+   - Your browser name and version
+   - The exact error message shown on screen
+   
+   DO NOT send: Instagram passwords, access tokens, private account URLs,
+   or payment credentials.
+
+Contact: https://instapsv.com/contact
+

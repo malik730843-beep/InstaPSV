@@ -5,7 +5,6 @@ import InstagramSearch from '@/components/instagram/InstagramSearch';
 import MediaTabs from '@/components/ui/MediaTabs';
 import styles from './ToolLandingPage.module.css';
 import dynamic from 'next/dynamic';
-import { useTranslations } from 'next-intl';
 
 const ParticleBackground = dynamic(() => import('../ui/ParticleBackground'), {
     ssr: false,
@@ -74,7 +73,7 @@ export default function ToolLandingPage({
     h1,
     h1Highlight,
     subtitle,
-    ctaText = "Start My Anonymous Search Now",
+    ctaText = "Look up a public profile",
     contentBlocks,
     steps,
     faqs,
@@ -86,7 +85,6 @@ export default function ToolLandingPage({
     header,
     footer,
 }: ToolLandingPageProps) {
-    const t = useTranslations('hero');
     const scrollToSearch = () => {
         const searchSection = document.getElementById('search-tool');
         if (searchSection) {
@@ -220,77 +218,13 @@ export default function ToolLandingPage({
                         <InstagramSearch />
                     </div>
 
-                    {/* Anonymity Level Check Section */}
-                    <div className={styles.anonymityCheck}>
-                        <h2 className={styles.anonymityTitle}>{t('anonymityCheck.title')}</h2>
-
-                        <div className={styles.statusCard}>
-                            <div className={styles.cardHeader}>
-                                <div className={styles.cardTitle}>
-                                    <svg className={styles.cardIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                        <line x1="12" y1="9" x2="12" y2="13"></line>
-                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                    </svg>
-                                    {t('anonymityCheck.standardLogin.title')}
-                                </div>
-                                <div className={`${styles.cardBadge} ${styles.standardBadge}`}>
-                                    {t('anonymityCheck.standardLogin.percentage')}
-                                </div>
-                            </div>
-                            <div className={styles.progressBar}>
-                                <div className={`${styles.progressFill} ${styles.standardFill}`} />
-                            </div>
-                            <p className={styles.cardDescription}>
-                                {t('anonymityCheck.standardLogin.description')}
-                            </p>
-                        </div>
-
-                        <div className={`${styles.statusCard} ${styles.safeCard}`}>
-                            <div className={styles.cardHeader}>
-                                <div className={styles.cardTitle}>
-                                    <svg className={styles.cardIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                        <polyline points="9 11 11 13 15 9"></polyline>
-                                    </svg>
-                                    {t('anonymityCheck.safeMode.title')}
-                                </div>
-                                <div className={`${styles.cardBadge} ${styles.safeBadge}`}>
-                                    {t('anonymityCheck.safeMode.percentage')}
-                                </div>
-                            </div>
-                            <div className={styles.progressBar}>
-                                <div className={`${styles.progressFill} ${styles.safeFill}`} />
-                            </div>
-                            <div className={styles.pointsList}>
-                                <div className={styles.pointItem}>
-                                    <svg className={styles.checkIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                    {t('anonymityCheck.safeMode.point1')}
-                                </div>
-                                <div className={styles.pointItem}>
-                                    <svg className={styles.checkIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                    {t('anonymityCheck.safeMode.point2')}
-                                </div>
-                                <div className={styles.pointItem}>
-                                    <svg className={styles.checkIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                    {t('anonymityCheck.safeMode.point3')}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </section>
 
                 {/* How To Steps */}
                 <section className={styles.stepsSection}>
                     <div className={styles.container}>
                         <h2 className={styles.stepsTitle}>
-                            3 Simple Steps to <span className={styles.highlight}>Browse Instagram</span> Without Being Seen
+                            3 Steps to <span className={styles.highlight}>Look Up a Public Instagram Profile</span>
                         </h2>
                         <div className={styles.stepsGrid}>
                             {steps.map((step, i) => (

@@ -51,23 +51,9 @@ export default function Hero() {
                     <InstagramSearch />
                 </div>
 
-                {/* Stats */}
-                <div className={styles.stats}>
-                    <div className={styles.stat}>
-                        <span className={styles.statValue}>500K+</span>
-                        <span className={styles.statLabel}>{t('stats.profiles')}</span>
-                    </div>
-                    <div className={styles.statDivider} />
-                    <div className={styles.stat}>
-                        <span className={styles.statValue}>50K+</span>
-                        <span className={styles.statLabel}>{t('stats.stories')}</span>
-                    </div>
-                    <div className={styles.statDivider} />
-                    <div className={styles.stat}>
-                        <span className={styles.statValue}>100%</span>
-                        <span className={styles.statLabel}>{t('stats.anonymous')}</span>
-                    </div>
-                </div>
+                <p className={styles.subtitle} style={{ fontSize: '0.85em', opacity: 0.8 }}>
+                    Searches use credits. Results depend on provider coverage and may be cached for up to 24 hours. No Instagram login required. <a href="/features" style={{ color: 'inherit', textDecoration: 'underline' }}>Check limitations before use →</a>
+                </p>
             </div>
 
             {/* Scroll Indicator */}

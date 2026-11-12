@@ -1,6 +1,6 @@
 'use client';
 
-import { adminFetch } from '@/lib/adminFetch';
+import { adminFetch, openPostPreview } from '@/lib/adminFetch';
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
@@ -220,7 +220,7 @@ export default function EditPostPage() {
             if (res.ok) {
                 localStorage.removeItem(`draft_post_${postId}`);
                 if (openPreview) {
-                    window.open(`/${formData.slug}?preview=true`, '_blank');
+                    await openPostPreview(formData.slug);
                 } else {
                     router.push('/admin/posts');
                 }

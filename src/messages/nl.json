@@ -14,10 +14,10 @@
         "disclaimer": "Disclaimer"
     },
     "hero": {
-        "badge": "Gratis Instagram Viewer Tool",
-        "titleStart": "Anonieme Instagram Viewer",
-        "titleHighlight": "en volgers parser",
-        "subtitle": "Bekijk Instagram verhalen, profielen, reels en volgers anoniem. Geen login vereist. 100% gratis en veilig.",
+        "badge": "Openbare profielen · Geen Instagram-inloggegevens",
+        "titleStart": "Instagram-profielviewer",
+        "titleHighlight": "Openbare inhoud bekijken",
+        "subtitle": "Zoek ondersteunde openbare Business- en Creator-accounts. Controleer de beschikbaarheid van elke functie voordat je deze gebruikt.",
         "searchPlaceholder": "Voer gebruikersnaam in...",
         "searchButton": "Profiel bekijken",
         "searchHint": "Probeer: @instagram, @cristiano, @therock",
@@ -40,7 +40,8 @@
                 "point2": "Geen tracking pixels.",
                 "point3": "IP gemaskeerd."
             }
-        }
+        },
+        "getStarted": "Aan de slag"
     },
     "features": {
         "badge": "Functies",
@@ -92,30 +93,25 @@
         "contactLink": "Contact support",
         "items": [
             {
-                "question": "Is InstaPSV gratis?",
-                "answer": "Ja, InstaPSV is volledig gratis."
+                "question": "Zijn alle functies gratis?",
+                "answer": "Nee. Zoekopdrachten gebruiken credits. Stories en downloads vereisen Pro in de huidige interface. Dekking hangt af van de aanbieder."
             },
             {
-                "question": "Kunnen gebruikers zien dat ik hun profiel heb bekeken?",
-                "answer": "Nee, wanneer je InstaPSV gebruikt, blijf je volledig anoniem."
+                "question": "Zijn de resultaten volledig en actueel?",
+                "answer": "Niet altijd. Antwoorden kunnen maximaal 24 uur worden gecachet. Ontbrekende media bewijzen niet dat een account niets heeft geplaatst."
             },
             {
-                "question": "Moet ik een account aanmaken?",
-                "answer": "Nee, geen registratie vereist."
+                "question": "Kan ik volledige highlightcollecties openen?",
+                "answer": "Het ophalen van volledige collecties is niet geïmplementeerd. Gebruik het oorspronkelijke Instagram-profiel."
             },
             {
-                "question": "Kan ik verhalen en berichten downloaden?",
-                "answer": "Ja! InstaPSV maakt het mogelijk om verhalen, berichten, reels en profielfoto's te downloaden."
-            },
-            {
-                "question": "Is het legaal om InstaPSV te gebruiken?",
-                "answer": "InstaPSV heeft alleen toegang tot openbaar beschikbare content op Instagram."
-            },
-            {
-                "question": "Waarom kan ik bepaalde profielen niet zien?",
-                "answer": "InstaPSV kan alleen openbare Instagram-profielen bekijken."
+                "question": "Betekent geen Instagram-login dat er geen gegevens worden verwerkt?",
+                "answer": "Nee. De infrastructuur verwerkt verzoeken. Account-, credit- en betaalfuncties verwerken ook informatie. Lees het privacybeleid."
             }
-        ]
+        ],
+        "titleStart": "",
+        "titleHighlight": "Veelgestelde vragen",
+        "titleEnd": ""
     },
     "testimonials": {
         "badge": "Reviews",
@@ -123,53 +119,7 @@
         "titleHighlight": "gebruikers",
         "titleEnd": "",
         "subtitle": "Sluit je aan bij duizenden gebruikers die InstaPSV vertrouwen voor hun Instagram-inzichten.",
-        "items": [
-            {
-                "id": 1,
-                "name": "Sarah Johnson",
-                "handle": "@sarahj_design",
-                "avatar": "S",
-                "rating": 5,
-                "text": "InstaPSV is geweldig! Ik gebruik het dagelijks om de inhoud van concurrenten te checken. De anonieme kijkfunctie is perfect voor marktonderzoek.",
-                "role": "Digitale Marketeer"
-            },
-            {
-                "id": 2,
-                "name": "Mike Chen",
-                "handle": "@mike_tech",
-                "avatar": "M",
-                "rating": 5,
-                "text": "Eindelijk een tool die werkt! Geen login nodig, snel en betrouwbaar. Ik kan elk openbaar profiel direct bekijken. Zeer aanbevolen!",
-                "role": "Software Ontwikkelaar"
-            },
-            {
-                "id": 3,
-                "name": "Emily Davis",
-                "handle": "@emily_creates",
-                "avatar": "E",
-                "rating": 5,
-                "text": "De story viewer is ongelooflijk. Ik kan inspiratie opslaan voor mijn moodboards zonder dat iemand het merkt. Super handig voor creatieven!",
-                "role": "Content Creator"
-            },
-            {
-                "id": 4,
-                "name": "Alex Thompson",
-                "handle": "@alex_growth",
-                "avatar": "A",
-                "rating": 5,
-                "text": "Beste Instagram-viewer-tool die ik heb gevonden. Schone interface, snel laden en de downloadfunctie werkt elke keer vlekkeloos.",
-                "role": "Groeistrateeg"
-            },
-            {
-                "id": 5,
-                "name": "Jessica Lee",
-                "handle": "@jess_photo",
-                "avatar": "J",
-                "rating": 5,
-                "text": "Als fotograaf vind ik het heerlijk om anoniem inspiratie te kunnen bekijken en opslaan. InstaPSV is een essentieel onderdeel van mijn workflow geworden.",
-                "role": "Fotograaf"
-            }
-        ]
+        "items": []
     },
     "cta": {
         "title": "Bekijk Instagram {followers}",
@@ -277,7 +227,7 @@
         "viewStory": "Bekijk verhaal"
     },
     "footer": {
-        "description": "De krachtigste en veiligste tool om Instagram verhalen, profielen en volgers anoniem te bekijken.",
+        "description": "Tools en handleidingen voor ondersteunde openbare Instagram-inhoud. Credit-, abonnements- en aanbiederlimieten gelden. Onafhankelijk van Instagram en Meta.",
         "product": "Product",
         "company": "Bedrijf",
         "legal": "Juridisch",

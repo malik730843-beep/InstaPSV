@@ -14,10 +14,10 @@
         "disclaimer": "Haftungsausschluss"
     },
     "hero": {
-        "badge": "Kostenloses Instagram Viewer Tool",
-        "titleStart": "Instagram Story und Follower",
-        "titleHighlight": "Viewer",
-        "subtitle": "Sehen Sie Instagram Stories, Profile, Reels und Follower anonym. Keine Anmeldung erforderlich. 100% kostenlos und sicher.",
+        "badge": "Öffentliche Profile · Keine Instagram-Zugangsdaten",
+        "titleStart": "Instagram-Profilbetrachter",
+        "titleHighlight": "Öffentliche Inhalte ansehen",
+        "subtitle": "Suche nach unterstützten öffentlichen Business- und Creator-Konten. Prüfe die Verfügbarkeit der einzelnen Funktionen vor der Nutzung.",
         "searchPlaceholder": "Instagram Benutzername eingeben...",
         "searchButton": "Profil ansehen",
         "searchHint": "Versuchen Sie: @instagram, @cristiano, @therock",
@@ -40,7 +40,8 @@
                 "point2": "Keine Tracking-Pixel.",
                 "point3": "IP maskiert."
             }
-        }
+        },
+        "getStarted": "Loslegen"
     },
     "security": {
         "badge": "Datenschutz zuerst",
@@ -225,28 +226,20 @@
         "contactLink": "Support kontaktieren",
         "items": [
             {
-                "question": "Ist InstaPSV kostenlos?",
-                "answer": "Ja, InstaPSV ist völlig kostenlos. Wir bieten alle unsere Funktionen ohne Gebühren an."
+                "question": "Sind alle Funktionen kostenlos?",
+                "answer": "Nein. Profilsuchen verbrauchen Guthaben. Stories und Downloads sind in der aktuellen Oberfläche Pro-Funktionen. Die Datenabdeckung hängt vom Anbieter ab."
             },
             {
-                "question": "Können Instagram-Benutzer sehen, ob ich ihr Profil angesehen habe?",
-                "answer": "Nein, wenn Sie InstaPSV verwenden, bleiben Sie völlig anonym. Instagram-Benutzer werden nicht benachrichtigt."
+                "question": "Sind Ergebnisse aktuell und vollständig?",
+                "answer": "Nicht immer. Profilantworten können bis zu 24 Stunden zwischengespeichert sein. Fehlende Medien bedeuten nicht, dass ein Konto keine Inhalte hat."
             },
             {
-                "question": "Muss ich ein Konto erstellen?",
-                "answer": "Nein, keine Registrierung erforderlich. Geben Sie einfach den Instagram-Benutzernamen ein und beginnen Sie sofort."
+                "question": "Kann ich vollständige Highlight-Sammlungen öffnen?",
+                "answer": "Der vollständige Abruf von Highlight-Sammlungen ist noch nicht implementiert. Verwende dafür das ursprüngliche Instagram-Profil."
             },
             {
-                "question": "Kann ich Instagram Stories und Beiträge herunterladen?",
-                "answer": "Ja! InstaPSV ermöglicht das Herunterladen von Stories, Beiträgen, Reels und Profilbildern in hoher Qualität."
-            },
-            {
-                "question": "Ist die Nutzung von InstaPSV legal?",
-                "answer": "InstaPSV greift nur auf öffentlich verfügbare Inhalte auf Instagram zu."
-            },
-            {
-                "question": "Warum kann ich bestimmte Profile nicht sehen?",
-                "answer": "InstaPSV kann nur auf öffentliche Instagram-Profile zugreifen. Private Profile können nicht eingesehen werden."
+                "question": "Bedeutet kein Instagram-Login, dass keine Daten verarbeitet werden?",
+                "answer": "Nein. Die Infrastruktur verarbeitet Anfragen; Konto-, Guthaben- und Zahlungsfunktionen verarbeiten ebenfalls Informationen. Lies die Datenschutzerklärung."
             }
         ]
     },
@@ -256,53 +249,7 @@
         "titleHighlight": "Nutzer",
         "titleEnd": "",
         "subtitle": "Schließen Sie sich Tausenden von Nutzern an, die InstaPSV für ihre Instagram-Einblicke vertrauen.",
-        "items": [
-            {
-                "id": 1,
-                "name": "Sarah Johnson",
-                "handle": "@sarahj_design",
-                "avatar": "S",
-                "rating": 5,
-                "text": "InstaPSV ist fantastisch! Ich nutze es täglich, um die Inhalte der Konkurrenz zu checken. Die anonyme Ansichtsfunktion ist perfekt für die Marktforschung.",
-                "role": "Digitale Vermarkterin"
-            },
-            {
-                "id": 2,
-                "name": "Mike Chen",
-                "handle": "@mike_tech",
-                "avatar": "M",
-                "rating": 5,
-                "text": "Endlich ein Tool, das funktioniert! Kein Login erforderlich, schnell und zuverlässig. Ich kann jedes öffentliche Profil sofort ansehen. Sehr empfehlenswert!",
-                "role": "Software-Entwickler"
-            },
-            {
-                "id": 3,
-                "name": "Emily Davis",
-                "handle": "@emily_creates",
-                "avatar": "E",
-                "rating": 5,
-                "text": "Der Story-Viewer ist unglaublich. Ich kann Inspirationen für meine Moodboards speichern, ohne jemanden zu benachrichtigen. Super hilfreich für Kreative!",
-                "role": "Content-Erstellerin"
-            },
-            {
-                "id": 4,
-                "name": "Alex Thompson",
-                "handle": "@alex_growth",
-                "avatar": "A",
-                "rating": 5,
-                "text": "Das beste Instagram-Viewer-Tool, das ich gefunden habe. Sauberes Interface, schnelles Laden und die Download-Funktion funktioniert jedes Mal tadellos.",
-                "role": "Wachstumsstratege"
-            },
-            {
-                "id": 5,
-                "name": "Jessica Lee",
-                "handle": "@jess_photo",
-                "avatar": "J",
-                "rating": 5,
-                "text": "Als Fotografin liebe ich es, Inspirationen anonym ansehen und speichern zu können. InstaPSV ist zu einem wesentlichen Bestandteil meines Workflows geworden.",
-                "role": "Fotografin"
-            }
-        ]
+        "items": []
     },
     "cta": {
         "titleStart": "Instagram",
@@ -411,7 +358,7 @@
         "viewStory": "Story ansehen"
     },
     "footer": {
-        "description": "Das leistungsstärkste und sicherste Tool zum anonymen Anzeigen von Instagram Stories, Profilen und Followern.",
+        "description": "Tools und Anleitungen für unterstützte öffentliche Instagram-Inhalte. Guthaben, Tarif- und Anbietergrenzen gelten. Unabhängig von Instagram und Meta.",
         "product": "Produkt",
         "company": "Unternehmen",
         "legal": "Rechtliches",
