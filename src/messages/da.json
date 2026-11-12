@@ -45,43 +45,55 @@
     },
     "features": {
         "badge": "Funktioner",
-        "title": "Oplev {magic} af InstaPSV",
-        "magic": "Magien",
-        "subtitle": "Kraftfulde værktøjer til at udforske Instagram-indhold anonymt.",
+        "titleStart": "Det rette værktøj til",
+        "titleHighlight": "din opgave",
+        "titleEnd": "",
+        "subtitle": "Sådan behandler InstaPSV din forespørgsel. Integrationen understøtter visse offentlige Business- og Creator-konti, ikke private konti.",
+        "learnMore": "Læs vejledningen",
+        "cta": "Søg efter en profil",
         "storyViewer": {
-            "title": "Story Viewer",
-            "description": "Se Instagram-historier anonymt."
+            "title": "Tilgængelige Stories",
+            "description": "Data afhænger af udbyderen. Visning kræver Pro, og dækningen er ikke garanteret.",
+            "cta": "Læs vejledningen",
+            "interlink": "Læs vejledningen"
         },
-        "followersParser": {
-            "title": "Følgere Analyzer",
-            "description": "Se komplette følgerlister."
+        "highlightsViewer": {
+            "title": "Highlights: aktuelle grænser",
+            "description": "Hentning af komplette samlinger er ikke implementeret. Kontroller grænserne før betaling.",
+            "cta": "Læs vejledningen",
+            "interlink": "Læs vejledningen"
         },
-        "reelsViewer": {
-            "title": "Reels Viewer",
-            "description": "Se og download Reels i høj kvalitet."
+        "postGrid": {
+            "title": "Profiler og returnerede opslag",
+            "description": "Se tilgængelige biografier, tal og et udvalg af opslag fra understøttede offentlige konti.",
+            "cta": "Læs vejledningen",
+            "interlink": "Læs vejledningen"
         },
-        "photoSaver": {
-            "title": "Foto Gemmer",
-            "description": "Download fotos i original kvalitet."
-        },
-        "learnMore": "Læs mere"
+        "reelsPlayer": {
+            "title": "Videoer og downloads",
+            "description": "Gennemse returnerede videoer. Downloads kræver Pro; kvalitet og dækning afhænger af kilden.",
+            "cta": "Læs vejledningen",
+            "interlink": "Læs vejledningen"
+        }
     },
     "howItWorks": {
         "badge": "Sådan virker det",
-        "title": "Kun {steps} for at udforske",
-        "steps": "3 trin",
-        "subtitle": "Begynd at se Instagram-indhold anonymt på sekunder.",
+        "titleStart": "Tre trin til",
+        "titleHighlight": "en nyttig søgning",
+        "titleEnd": "",
+        "subtitle": "Integrationen understøtter visse offentlige Business- og Creator-konti, ikke private konti.",
+        "cta": "Søg efter en profil",
         "step1": {
-            "title": "Indtast brugernavn",
-            "description": "Skriv Instagram-brugernavnet."
+            "title": "Indtast det aktuelle navn",
+            "description": "Brug et brugernavn eller en profil-URL. Direkte opslag- og Reel-links understøttes ikke."
         },
         "step2": {
-            "title": "Vis profil",
-            "description": "Gennemse opslag, historier og følgere anonymt."
+            "title": "Kontroller resultaterne",
+            "description": "Søgninger bruger kreditter. En indlæst profil garanterer ikke Stories eller et komplet arkiv."
         },
         "step3": {
-            "title": "Download indhold",
-            "description": "Gem foto, video eller historie med ét klik."
+            "title": "Gem kilde og dato",
+            "description": "Gem det oprindelige link som reference. Profilsvar kan være cachelagret i op til 24 timer."
         }
     },
     "faq": {
@@ -89,7 +101,7 @@
         "title": "Ofte stillede {questions}",
         "questions": "Spørgsmål",
         "subtitle": "Find svar på almindelige spørgsmål om InstaPSV.",
-        "contactCta": "Flere spørgsmål?",
+        "contactCta": "Har du flere spørgsmål?",
         "contactLink": "Kontakt support",
         "items": [
             {
@@ -146,7 +158,10 @@
             "Batch-download",
             "Highlights",
             "Udvidelse"
-        ]
+        ],
+        "feedbackTitle": "Hjælp os med at forbedre InstaPSV",
+        "feedbackDescription": "Send sidens URL og den synlige fejl. Send aldrig adgangskoder eller adgangstokens.",
+        "feedbackCta": "Send feedback"
     },
     "blog": {
         "title": "Blog",
@@ -242,5 +257,123 @@
         "instagram": "Instagram",
         "contentNotFound": "Indhold ikke fundet.",
         "scrollToExplore": "Rul for at udforske"
+    },
+    "security": {
+        "badge": "Privatliv og gennemsigtighed",
+        "title": "Sådan behandler InstaPSV din forespørgsel",
+        "subtitle": "Privatliv og gennemsigtighed. Sådan behandler InstaPSV din forespørgsel.",
+        "tracks": {
+            "title": "Oplysninger, der bruges",
+            "items": [
+                {
+                    "title": "Offentligt brugernavn",
+                    "text": "Søgningen sender det indtastede brugernavn til vores server."
+                },
+                {
+                    "title": "Forespørgselsdata",
+                    "text": "IP-adresser bruges til hastighedsbegrænsning. Infrastrukturen kan logge forespørgsler og fejl."
+                },
+                {
+                    "title": "Kontofunktioner",
+                    "text": "Login, kreditter og betalinger behandler konto- og transaktionsoplysninger."
+                }
+            ]
+        },
+        "protects": {
+            "title": "Tydelige adgangsgrænser",
+            "items": [
+                {
+                    "title": "Ingen Instagram-loginoplysninger",
+                    "text": "Formularen beder ikke om din Instagram-adgangskode eller forbindelse til din personlige konto."
+                },
+                {
+                    "title": "Understøttede offentlige konti",
+                    "text": "Integrationen understøtter visse offentlige Business- og Creator-konti, ikke private konti."
+                },
+                {
+                    "title": "Data og cache",
+                    "text": "Resultater kan gemmes i cache i 24 timer. Eksterne medieværter kan modtage forespørgsler."
+                }
+            ]
+        },
+        "cta": "Søg efter en profil"
+    },
+    "useCases": {
+        "badge": "Praktisk brug",
+        "title": "Gør offentlige oplysninger til nyttige observationer",
+        "subtitle": "Notér navne, datoer, kilder og åbne spørgsmål med det downloadbare arbejdsark.",
+        "items": [
+            {
+                "title": "Sammenlign virksomhedsbudskaber",
+                "text": "Se hvordan offentlige konti forklarer tilbud. Følgertal dokumenterer ikke salg."
+            },
+            {
+                "title": "Planlæg eget indhold",
+                "text": "Brug formater og billedtekster som reference. Gem kilderne og skab eget materiale."
+            },
+            {
+                "title": "Undersøg en offentlig profil",
+                "text": "Kontroller om biografi og opslag besvarer dit spørgsmål. Manglende data beviser ikke inaktivitet."
+            },
+            {
+                "title": "Dokumenter research",
+                "text": "Notér navne, datoer, kilder og åbne spørgsmål med det downloadbare arbejdsark."
+            }
+        ]
+    },
+    "comparison": {
+        "title": "Sammenlign funktioner og grænser",
+        "headers": {
+            "feature": "Funktioner",
+            "app": "Understøttede konti",
+            "others": "Adgang",
+            "instapsv": "Tilgængelighed"
+        },
+        "rows": [
+            {
+                "feature": "Profiler og returnerede opslag",
+                "app": "Understøttede offentlige konti",
+                "others": "Søgekreditter",
+                "instapsv": "Resultater kan gemmes i cache i 24 timer. Eksterne medieværter kan modtage forespørgsler.",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Videoer og downloads",
+                "app": "Understøttede offentlige konti",
+                "others": "Søgekreditter / Pro",
+                "instapsv": "Kvalitet og dækning varierer",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Tilgængelige Stories",
+                "app": "Understøttede offentlige konti",
+                "others": "Visning med Pro",
+                "instapsv": "Kun når udbyderen returnerer data",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Highlights: aktuelle grænser",
+                "app": "Ikke tilgængelig",
+                "others": "Ikke tilgængelig",
+                "instapsv": "Komplette samlinger ikke implementeret",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            }
+        ]
     }
 }

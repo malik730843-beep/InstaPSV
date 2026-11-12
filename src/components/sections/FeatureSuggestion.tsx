@@ -1,24 +1,12 @@
-'use client';
-
 import styles from './FeatureSuggestion.module.css';
+import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
-
-export default function FeatureSuggestion() {
-    const scrollToTop = (e: React.MouseEvent) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-        // Focus on search input
-        const searchInput = document.querySelector('input[type="text"]');
-        if (searchInput instanceof HTMLElement) {
-            setTimeout(() => searchInput.focus(), 800);
-        }
-    };
+export default async function FeatureSuggestion() {
+    const t = await getTranslations('featureSuggestion');
 
     return (
-        <section className={styles.featureSuggestion}>
+        <section className={styles.featureSuggestion} id="feedback">
             <div className={styles.container}>
                 {/* Background Elements */}
                 <div className={styles.bgElements}>
@@ -35,15 +23,15 @@ export default function FeatureSuggestion() {
                         </svg>
                     </div>
                     <h2 className={styles.stealthTitle}>
-                        Stalk the Gram in Stealth Mode Only on InstaPSV
+                        {t('feedbackTitle')}
                     </h2>
                     <p className={styles.stealthDescription}>
-                        Master the art of Digital Invisibility with InstaPSV. View Instagram stories anonymously and download content without leaving a trace. Learn more about why users trust anonymous Instagram viewers.
+                        {t('feedbackDescription')}
                     </p>
 
-                    <a href="#" onClick={scrollToTop} className={styles.gradientButton}>
-                        Start Viewing
-                    </a>
+                    <Link href="/contact" className={styles.gradientButton}>
+                        {t('feedbackCta')}
+                    </Link>
                 </div>
             </div>
         </section>

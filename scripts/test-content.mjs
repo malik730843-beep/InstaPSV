@@ -7,7 +7,7 @@ assert(['localhost', '127.0.0.1'].includes(origin.hostname), 'Use a local produc
 const english = JSON.parse(await readFile(new URL('../src/messages/en.json', import.meta.url), 'utf8'));
 for (const locale of ['de', 'fr', 'es', 'it', 'nl', 'da', 'no', 'sv']) {
     const messages = JSON.parse(await readFile(new URL(`../src/messages/${locale}.json`, import.meta.url), 'utf8'));
-    for (const namespace of ['nav', 'hero', 'faq', 'footer', 'blog']) {
+    for (const namespace of ['nav', 'hero', 'faq', 'footer', 'blog', 'security', 'features', 'howItWorks', 'comparison', 'useCases', 'featureSuggestion']) {
         for (const key of Object.keys(english[namespace])) {
             assert(key in messages[namespace], `missing translated interface key: ${locale}.${namespace}.${key}`);
         }
@@ -76,6 +76,15 @@ for (const [path, required, forbidden] of cases) {
     const canonicalPath = path === '/' ? '' : path;
     assert.match(html, new RegExp(`<link rel="canonical" href="https://instapsv\\.com${canonicalPath}/?"`), `canonical: ${path}`);
     assert.doesNotMatch(html, /"@type":"SoftwareApplication"/, 'removed misleading global offer schema');
+    if (path === '/') {
+        for (const id of ['search', 'security', 'features', 'how-it-works', 'comparison', 'solutions', 'faq', 'feedback']) {
+            assert.equal((html.match(new RegExp(`id="${id}"`, 'g')) || []).length, 1, `restored section has one anchor: ${id}`);
+        }
+        assert.match(text, /How InstaPSV handles your request/);
+        assert.match(text, /Compare features and access limits/);
+        assert.match(text, /Help improve InstaPSV/);
+        assert.doesNotMatch(text, /Ghost Mode|Stalk the Gram|Digital Invisibility|Sarah Johnson|Mike Chen|Full Proxy|Zero-Log Policy/i);
+    }
     if (path === '/instagram-highlights-viewer') assert.match(html, /name="robots" content="noindex, follow"/);
     console.log(`PASS: ${path}`);
 }

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import styles from '@/components/seo/ToolGuidePage.module.css';
 
-export default function ViewerGuide() {
+export default function ViewerGuide({ includeSectionAnchors = true }: { includeSectionAnchors?: boolean }) {
     return <div className={styles.main} style={{ paddingTop: 40 }} lang="en">
-        <section className={styles.section} id="features">
+        <section className={styles.section} id={includeSectionAnchors ? 'features' : undefined}>
             <h2>Choose the tool that fits your task</h2>
             <p>InstaPSV looks up supported public Instagram Business and Creator accounts. You do not enter Instagram credentials. Public visibility alone does not guarantee a result, and this service does not open private accounts.</p>
             <div className={styles.tableWrap}><table>
@@ -18,7 +18,7 @@ export default function ViewerGuide() {
                 </tbody>
             </table></div>
         </section>
-        <section className={styles.section} id="how-it-works">
+        <section className={styles.section} id={includeSectionAnchors ? 'how-it-works' : undefined}>
             <h2>Make your first lookup useful</h2>
             <ol>
                 <li><strong>Use a current account handle.</strong> Enter @example.studio or its profile URL. Direct post and Reel links are not supported by the username search.</li>

@@ -2,6 +2,14 @@
 
 Updated November 12, 2026 (Asia/Karachi).
 
+## Homepage restoration requested by the owner
+
+Restored the original privacy/transparency, feature cards, how-it-works, comparison, use-case and feedback layouts. Their copy now describes actual supported accounts, credits, provider coverage, data processing and known limits. The comparison describes the site's features instead of inventing competitor/security rankings. The feedback link opens Contact; it does not pretend to submit a form. Testimonials and fabricated usage counters remain removed. The practical guide and worksheets remain accessible, with no duplicate section anchors.
+
+Updated all nine locale catalogs for the restored sections and removed unverified support response-time promises. Production build passed with 54 routes; TypeScript, focused ESLint, whitespace checks, publishing tests and the full content suite passed. The content suite now asserts that all restored section anchors exist exactly once and that fabricated claims/reviews remain absent. Desktop feature cards, mobile comparison cards and the search CTA were checked visually; the CTA focused the search input and the mobile page did not overflow horizontally.
+
+No local secret values were found in versionable files. `.env.local` remains ignored and untracked. This restoration is being committed on main as a follow-up to the previously pushed content commit; production still needs its Vercel deployment verified before resubmission. The Meta permission/account-access issue described below is separate from these content changes.
+
 ## Latest credential update
 
 The owner supplied a replacement token, which was saved only to the ignored `.env.local` as `INSTAGRAM_ACCESS_TOKEN`. Meta accepted it (`/me` returned HTTP 200). However, the actual profile integration still failed because the token cannot access the configured Instagram Business account; `/me/accounts` returned no linked Pages. Correct account access/permissions before claiming the lookup works. The earlier expired-token finding below is historical.

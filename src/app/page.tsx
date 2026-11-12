@@ -3,6 +3,12 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
 import ViewerGuide from '@/components/sections/ViewerGuide';
+import SecurityComparison from '@/components/sections/SecurityComparison';
+import Features from '@/components/sections/Features';
+import HowItWorks from '@/components/sections/HowItWorks';
+import ComparisonTable from '@/components/sections/ComparisonTable';
+import UseCases from '@/components/sections/UseCases';
+import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
 
 import FAQ from '@/components/sections/FAQ';
 import FAQSchema from '@/components/seo/FAQSchema';
@@ -34,11 +40,14 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        
-        <ViewerGuide />
-        
+        <SecurityComparison />
+        <Features />
+        <HowItWorks />
+        <ComparisonTable />
+        <UseCases />
+        <ViewerGuide includeSectionAnchors={false} />
         <FAQ />
-        
+        <FeatureSuggestion />
       </main>
       <Footer />
     </>

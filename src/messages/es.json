@@ -44,46 +44,56 @@
         "getStarted": "Empezar"
     },
     "features": {
-        "badge": "Características",
-        "titleStart": "Funciones avanzadas de nuestro",
-        "titleHighlight": "Visor de Instagram",
+        "badge": "Funciones",
+        "titleStart": "La herramienta adecuada para",
+        "titleHighlight": "tu tarea",
         "titleEnd": "",
-        "subtitle": "Potentes herramientas para explorar el contenido de Instagram de forma anónima y segura sin una cuenta.",
+        "subtitle": "Cómo procesa InstaPSV tu solicitud. La integración admite determinadas cuentas Business y Creator públicas, no cuentas privadas.",
+        "learnMore": "Leer la guía",
+        "cta": "Buscar un perfil",
         "storyViewer": {
-            "title": "Visor de historias",
-            "description": "Mira historias de Instagram anónimamente sin que el usuario lo sepa. Guarda historias antes de que desaparezcan."
+            "title": "Disponibilidad de historias",
+            "description": "Los datos dependen del proveedor. La visualización requiere Pro y no garantiza cobertura.",
+            "cta": "Leer la guía",
+            "interlink": "Leer la guía"
         },
-        "followersParser": {
-            "title": "Parser de Seguidores",
-            "description": "Visualiza, exporta y descarga listas completas de seguidores y seguidos de cualquier perfil público de Instagram."
+        "highlightsViewer": {
+            "title": "Destacados: límites actuales",
+            "description": "La recuperación de colecciones completas no está implementada. Revisa los límites antes de pagar.",
+            "cta": "Leer la guía",
+            "interlink": "Leer la guía"
         },
-        "reelsViewer": {
-            "title": "Visor de Reels",
-            "description": "Mira y descarga Reels de Instagram en alta calidad sin iniciar sesión."
+        "postGrid": {
+            "title": "Perfiles y publicaciones devueltas",
+            "description": "Consulta biografías, contadores y una selección de publicaciones de cuentas públicas compatibles.",
+            "cta": "Leer la guía",
+            "interlink": "Leer la guía"
         },
-        "photoSaver": {
-            "title": "Ahorrador de fotos",
-            "description": "Descarga fotos de Instagram y fotos de perfil en calidad original."
-        },
-        "learnMore": "Saber más"
+        "reelsPlayer": {
+            "title": "Vídeos y descargas",
+            "description": "Explora los vídeos devueltos. Las descargas requieren Pro; la calidad y cobertura dependen de la fuente.",
+            "cta": "Leer la guía",
+            "interlink": "Leer la guía"
+        }
     },
     "howItWorks": {
         "badge": "Cómo funciona",
-        "titleStart": "Cómo ver",
-        "titleHighlight": "historias de Instagram",
-        "titleEnd": "de forma anónima",
-        "subtitle": "Comienza a ver contenido de Instagram anónimamente en segundos - no requiere cuenta.",
+        "titleStart": "Tres pasos para",
+        "titleHighlight": "una búsqueda útil",
+        "titleEnd": "",
+        "subtitle": "La integración admite determinadas cuentas Business y Creator públicas, no cuentas privadas.",
+        "cta": "Buscar un perfil",
         "step1": {
-            "title": "Introducir nombre de usuario",
-            "description": "Escribe el nombre de usuario de Instagram que quieres explorar en la barra de búsqueda."
+            "title": "Introduce el usuario actual",
+            "description": "Usa un nombre de usuario o URL de perfil. No se admiten enlaces directos a publicaciones o Reels."
         },
         "step2": {
-            "title": "Ver Perfil",
-            "description": "Navega por sus publicaciones, historias, reels y seguidores de forma anónima."
+            "title": "Revisa los resultados",
+            "description": "Las búsquedas usan créditos. Un perfil cargado no garantiza historias ni un historial completo."
         },
         "step3": {
-            "title": "Descargar contenido",
-            "description": "Guarda cualquier foto, video o historia con un solo clic."
+            "title": "Conserva la fuente y fecha",
+            "description": "Guarda el enlace original para mantener el contexto. Los resultados pueden estar en caché hasta 24 horas."
         }
     },
     "faq": {
@@ -92,7 +102,7 @@
         "titleHighlight": "Populares",
         "titleEnd": "",
         "subtitle": "Encuentra respuestas a las preguntas comunes sobre InstaPSV.",
-        "contactCta": "¿Todavía tienes preguntas?",
+        "contactCta": "¿Tienes más preguntas?",
         "contactLink": "Contactar Soporte",
         "items": [
             {
@@ -148,7 +158,10 @@
             "Descarga por lotes",
             "Visor de destacados",
             "Extensión de navegador"
-        ]
+        ],
+        "feedbackTitle": "Ayúdanos a mejorar InstaPSV",
+        "feedbackDescription": "Envía la URL de la página y el error visible. Nunca envíes contraseñas ni tokens de acceso.",
+        "feedbackCta": "Enviar comentarios"
     },
     "blog": {
         "title": "Blog",
@@ -244,5 +257,123 @@
         "instagram": "Instagram",
         "contentNotFound": "Contenido no encontrado.",
         "scrollToExplore": "Desliza para explorar"
+    },
+    "security": {
+        "badge": "Privacidad y transparencia",
+        "title": "Cómo procesa InstaPSV tu solicitud",
+        "subtitle": "Privacidad y transparencia. Cómo procesa InstaPSV tu solicitud.",
+        "tracks": {
+            "title": "Información utilizada",
+            "items": [
+                {
+                    "title": "Nombre de usuario público",
+                    "text": "La búsqueda envía el nombre de usuario introducido a nuestro servidor."
+                },
+                {
+                    "title": "Datos de solicitud",
+                    "text": "Las direcciones IP se usan para limitar solicitudes. La infraestructura puede registrar solicitudes y errores."
+                },
+                {
+                    "title": "Funciones de la cuenta",
+                    "text": "El inicio de sesión, los créditos y los pagos procesan información de cuenta y transacción."
+                }
+            ]
+        },
+        "protects": {
+            "title": "Límites de acceso claros",
+            "items": [
+                {
+                    "title": "Sin credenciales de Instagram",
+                    "text": "El formulario no pide tu contraseña de Instagram ni conectar tu cuenta personal."
+                },
+                {
+                    "title": "Cuentas públicas compatibles",
+                    "text": "La integración admite determinadas cuentas Business y Creator públicas, no cuentas privadas."
+                },
+                {
+                    "title": "Datos y caché",
+                    "text": "Los resultados pueden almacenarse hasta 24 horas. Los proveedores externos de medios pueden recibir solicitudes."
+                }
+            ]
+        },
+        "cta": "Buscar un perfil"
+    },
+    "useCases": {
+        "badge": "Usos prácticos",
+        "title": "Convertir información pública en observaciones útiles",
+        "subtitle": "Anota usuarios, fechas, fuentes y preguntas abiertas con la plantilla descargable.",
+        "items": [
+            {
+                "title": "Comparar mensajes comerciales",
+                "text": "Observa cómo cuentas públicas explican sus ofertas. Los seguidores no demuestran ventas."
+            },
+            {
+                "title": "Planificar tu propio contenido",
+                "text": "Usa formatos y textos como referencia. Conserva las fuentes y crea material propio."
+            },
+            {
+                "title": "Revisar un perfil público",
+                "text": "Comprueba si la biografía y publicaciones responden a tu pregunta. Los datos ausentes no prueban inactividad."
+            },
+            {
+                "title": "Documentar una investigación",
+                "text": "Anota usuarios, fechas, fuentes y preguntas abiertas con la plantilla descargable."
+            }
+        ]
+    },
+    "comparison": {
+        "title": "Comparar funciones y límites",
+        "headers": {
+            "feature": "Funciones",
+            "app": "Cuentas compatibles",
+            "others": "Acceso",
+            "instapsv": "Disponibilidad"
+        },
+        "rows": [
+            {
+                "feature": "Perfiles y publicaciones devueltas",
+                "app": "Cuentas públicas compatibles",
+                "others": "Créditos de búsqueda",
+                "instapsv": "Los resultados pueden almacenarse hasta 24 horas. Los proveedores externos de medios pueden recibir solicitudes.",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Vídeos y descargas",
+                "app": "Cuentas públicas compatibles",
+                "others": "Créditos de búsqueda / Pro",
+                "instapsv": "Calidad y cobertura variables",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Disponibilidad de historias",
+                "app": "Cuentas públicas compatibles",
+                "others": "Visualización Pro",
+                "instapsv": "Solo si el proveedor devuelve datos",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Destacados: límites actuales",
+                "app": "No disponible",
+                "others": "No disponible",
+                "instapsv": "Colecciones completas no implementadas",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            }
+        ]
     }
 }

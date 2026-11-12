@@ -106,7 +106,7 @@ export default async function HowItWorks() {
                 </div>
 
                 <div className={styles.ctaWrapper}>
-                    <ScrollToSearch label="Start My Anonymous Search Now" />
+                    <ScrollToSearch label={t('cta')} />
                 </div>
 
                 {/* Preview Image */}
@@ -118,7 +118,7 @@ export default async function HowItWorks() {
                                 <span></span>
                                 <span></span>
                             </div>
-                            <span className={styles.previewUrl}>instapsv.com/profile/instagram</span>
+                            <span className={styles.previewUrl}>InstaPSV · interface illustration</span>
                         </div>
                         <div className={styles.previewContent}>
                             <div className={styles.previewProfile}>

@@ -44,175 +44,173 @@
         "getStarted": "Loslegen"
     },
     "security": {
-        "badge": "Datenschutz zuerst",
-        "title": "Wie wir Sie vor Instagrams-Tracking zu 100% unsichtbar machen",
-        "subtitle": "Vergleichen Sie die Risiken des Standard-Betrachtens mit unserem sicheren, anonymen Gateway.",
+        "badge": "Datenschutz und Transparenz",
+        "title": "So verarbeitet InstaPSV deine Anfrage",
+        "subtitle": "Datenschutz und Transparenz. So verarbeitet InstaPSV deine Anfrage.",
         "tracks": {
-            "title": "Wie Instagram Sie verfolgt",
+            "title": "Informationen für die Anfrage",
             "items": [
                 {
-                    "title": "Story-Benachrichtigungen",
-                    "text": "Der Besitzer sieht Ihren Namen auf seiner Zuschauerliste. Ihre Identität ist aufgedeckt."
+                    "title": "Öffentlicher Benutzername",
+                    "text": "Die Suche sendet den eingegebenen Benutzernamen an unseren Server."
                 },
                 {
-                    "title": "Suchverlauf",
-                    "text": "Instagram protokolliert jedes von Ihnen besuchte Profil, um ein detailliertes Werbeprofil über Sie zu erstellen."
+                    "title": "Anfragedaten",
+                    "text": "IP-Adressen dienen der Ratenbegrenzung. Infrastruktur kann Anfragen und Fehler protokollieren."
                 },
                 {
-                    "title": "IP-Protokollierung",
-                    "text": "Ihr permanenter digitaler Fußabdruck ist mit Ihrem persönlichen Instagram-Konto verknüpft."
+                    "title": "Kontofunktionen",
+                    "text": "Anmeldung, Guthaben und Zahlungen verarbeiten Informationen zum Website-Konto."
                 }
             ]
         },
         "protects": {
-            "title": "Wie InstaPSV Sie schützt",
+            "title": "Klare Zugriffsgrenzen",
             "items": [
                 {
-                    "title": "Sichere Proxy-Anfragen",
-                    "text": "Wir fungieren als Schild und rufen Daten ab, sodass Ihre Identität niemals zu Instagram gelangt."
+                    "title": "Keine Instagram-Zugangsdaten",
+                    "text": "Das Suchformular verlangt weder dein Instagram-Passwort noch eine Verbindung mit deinem persönlichen Konto."
                 },
                 {
-                    "title": "Zero-Log-Richtlinie",
-                    "text": "Wir speichern niemals Ihre Suchanfragen oder persönlichen Daten. Kein digitaler Fußabdruck, niemals."
+                    "title": "Unterstützte öffentliche Konten",
+                    "text": "Die Integration unterstützt bestimmte öffentliche Business- und Creator-Konten, keine privaten Konten."
                 },
                 {
-                    "title": "Keine Anmeldung erforderlich",
-                    "text": "Surfen Sie frei, ohne Gefahr zu laufen, versehentlich einen Beitrag zu 'liken' oder in Empfehlungen aufzutauchen."
+                    "title": "Daten und Cache",
+                    "text": "Ergebnisse können bis zu 24 Stunden zwischengespeichert sein. Externe Medienanbieter erhalten möglicherweise Anfragen."
                 }
             ]
         },
-        "cta": "Meine Privatsphäre schützen & Suche starten"
+        "cta": "Profilsuche starten"
     },
     "features": {
         "badge": "Funktionen",
-        "titleStart": "Jedes Detail",
-        "titleHighlight": "heimlich",
-        "titleEnd": "durchsuchen",
-        "subtitle": "Greifen Sie mit unserem umfassenden Viewer-Tool auf alle Medientypen von öffentlichen Konten zu.",
+        "titleStart": "Das passende Werkzeug für",
+        "titleHighlight": "deine Aufgabe",
+        "titleEnd": "",
+        "subtitle": "So verarbeitet InstaPSV deine Anfrage. Die Integration unterstützt bestimmte öffentliche Business- und Creator-Konten, keine privaten Konten.",
+        "learnMore": "Anleitung lesen",
+        "cta": "Profilsuche starten",
         "storyViewer": {
-            "title": "Story Viewer",
-            "description": "Aktive Stories diskret ansehen. Sie verschwinden nach 24 Stunden, aber Sie können sie vorher jederzeit ansehen."
+            "title": "Story-Verfügbarkeit",
+            "description": "Story-Daten hängen vom Anbieter ab. Die Anzeige erfordert Pro; die Abdeckung ist nicht garantiert.",
+            "cta": "Anleitung lesen",
+            "interlink": "Anleitung lesen"
         },
         "highlightsViewer": {
-            "title": "Highlights Viewer",
-            "description": "Durchsuchen Sie gespeicherte Story-Highlights. Perfekt zum erneuten Ansehen kuratierter Inhalte."
+            "title": "Highlights: aktuelle Grenzen",
+            "description": "Der Abruf vollständiger Highlight-Sammlungen ist nicht implementiert. Lies die Grenzen vor einem Kauf.",
+            "cta": "Anleitung lesen",
+            "interlink": "Anleitung lesen"
         },
         "postGrid": {
-            "title": "Profil- & Beitragsraster",
-            "description": "Sehen Sie das vollständige Feed-Layout. Sehen Sie hochauflösende Fotos und Karussells."
+            "title": "Profile und zurückgegebene Beiträge",
+            "description": "Sieh verfügbare Biografien, Kontozahlen und eine Auswahl von Beiträgen unterstützter öffentlicher Konten.",
+            "cta": "Anleitung lesen",
+            "interlink": "Anleitung lesen"
         },
         "reelsPlayer": {
-            "title": "Reels Video-Player",
-            "description": "Spielen Sie Reels-Videos reibungslos ab, ohne sofort das nächste automatisch zu starten oder den Ersteller zu benachrichtigen."
-        },
-        "cta": "Jetzt loslegen",
-        "learnMore": "Mehr erfahren"
+            "title": "Videos und Downloads",
+            "description": "Durchsuche zurückgegebene Videos. Downloads erfordern Pro; Qualität und Umfang hängen von der Quelle ab.",
+            "cta": "Anleitung lesen",
+            "interlink": "Anleitung lesen"
+        }
     },
     "howItWorks": {
-        "badge": "So funktioniert's",
-        "titleStart": "Nur",
-        "titleHighlight": "3 Schritte",
-        "titleEnd": "zum Erkunden",
-        "subtitle": "Beginnen Sie in Sekunden mit dem anonymen Anzeigen von Instagram-Inhalten.",
+        "badge": "So funktioniert es",
+        "titleStart": "Drei Schritte zu",
+        "titleHighlight": "einer hilfreichen Suche",
+        "titleEnd": "",
+        "subtitle": "Die Integration unterstützt bestimmte öffentliche Business- und Creator-Konten, keine privaten Konten.",
+        "cta": "Profilsuche starten",
         "step1": {
-            "title": "Benutzername eingeben",
-            "description": "Geben Sie den Instagram-Benutzernamen, den Sie erkunden möchten, in die Suchleiste ein."
+            "title": "Aktuellen Benutzernamen eingeben",
+            "description": "Verwende einen Benutzernamen oder eine Profil-URL. Direkte Beitrags- und Reel-Links werden nicht unterstützt."
         },
         "step2": {
-            "title": "Profil ansehen",
-            "description": "Durchsuchen Sie deren Beiträge, Stories, Reels und Follower anonym."
+            "title": "Ergebnisse prüfen",
+            "description": "Suchen verbrauchen Guthaben. Ein geladenes Profil garantiert weder Stories noch eine vollständige Medienhistorie."
         },
         "step3": {
-            "title": "Inhalte herunterladen",
-            "description": "Speichern Sie jedes Foto, Video oder jede Story mit einem einzigen Klick."
+            "title": "Quelle und Datum festhalten",
+            "description": "Behalte den Originalbeitrag als Referenz. Profilantworten können bis zu 24 Stunden alt sein."
         }
     },
     "comparison": {
-        "title": "Wie InstaPSV besser ist als andere",
+        "title": "Funktionen und Zugriffsgrenzen vergleichen",
         "headers": {
-            "feature": "Funktion",
-            "app": "App mit Anmeldung",
-            "others": "Andere Viewer-Seiten",
-            "instapsv": "InstaPSV"
+            "feature": "Funktionen",
+            "app": "Kontobereich",
+            "others": "Zugang",
+            "instapsv": "Verfügbarkeit"
         },
         "rows": [
             {
-                "feature": "Für Profilinhaber sichtbar",
-                "app": "Ja",
-                "others": "Nein",
-                "instapsv": "Nein",
-                "status": [
-                    "risk",
-                    "safe",
-                    "safe"
-                ]
-            },
-            {
-                "feature": "Anmeldung erforderlich",
-                "app": "Ja",
-                "others": "Nein",
-                "instapsv": "Nein",
-                "status": [
-                    "risk",
-                    "safe",
-                    "safe"
-                ]
-            },
-            {
-                "feature": "Werbeaufdringlichkeit",
-                "app": "Mittel",
-                "others": "Extrem",
-                "instapsv": "Minimal",
+                "feature": "Profile und zurückgegebene Beiträge",
+                "app": "Unterstützte öffentliche Konten",
+                "others": "Suchguthaben",
+                "instapsv": "Ergebnisse können bis zu 24 Stunden zwischengespeichert sein. Externe Medienanbieter erhalten möglicherweise Anfragen.",
                 "status": [
                     "neutral",
-                    "risk",
-                    "safe"
+                    "neutral",
+                    "neutral"
                 ]
             },
             {
-                "feature": "IP-Schutz",
-                "app": "Kein",
-                "others": "Teilweise",
-                "instapsv": "Vollständiger Proxy",
+                "feature": "Videos und Downloads",
+                "app": "Unterstützte öffentliche Konten",
+                "others": "Suchguthaben / Pro",
+                "instapsv": "Quelle und Qualität variieren",
                 "status": [
-                    "risk",
                     "neutral",
-                    "safe"
+                    "neutral",
+                    "neutral"
                 ]
             },
             {
-                "feature": "Reels/Stories ansehen",
-                "app": "Ja",
-                "others": "Manchmal",
-                "instapsv": "Ja (HD)",
+                "feature": "Story-Verfügbarkeit",
+                "app": "Unterstützte öffentliche Konten",
+                "others": "Pro-Anzeige",
+                "instapsv": "Nur bei vom Anbieter gelieferten Daten",
                 "status": [
-                    "safe",
                     "neutral",
-                    "safe"
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Highlights: aktuelle Grenzen",
+                "app": "Nicht verfügbar",
+                "others": "Nicht verfügbar",
+                "instapsv": "Sammlungsabruf nicht implementiert",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
                 ]
             }
         ]
     },
     "useCases": {
-        "badge": "Lösungen",
-        "title": "Beliebte Anwendungsfälle, um Insta anonym zu sehen",
-        "subtitle": "Sicherheit sollte immer an erster Stelle stehen, folgend sind die beliebtesten Gründe, warum Leute InstaPSV nutzen",
+        "badge": "Praktische Anwendungen",
+        "title": "Öffentliche Informationen sinnvoll auswerten",
+        "subtitle": "Notiere Benutzernamen, Datum, Quellen und offene Fragen mit dem herunterladbaren Arbeitsblatt.",
         "items": [
             {
-                "title": "Konkurrenten unentdeckt überwachen",
-                "text": "Recherchieren Sie Markttrends und analysieren Sie Content-Strategien von Wettbewerbern, ohne deren Team zu alarmieren oder in deren Zuschauerlisten zu erscheinen. Perfekt für Marketer und Geschäftsinhaber."
+                "title": "Geschäftliche Botschaften vergleichen",
+                "text": "Prüfe, wie öffentliche Konten Angebote erklären. Followerzahlen belegen keine Verkäufe."
             },
             {
-                "title": "Inhalte kuratieren ohne Spuren hinterlassen",
-                "text": "Durchsuchen Sie Profile, um visuelle Referenzen und Trendideen zu finden. Sammeln Sie Inspirationen für Ihr nächstes Projekt, ohne dass der Kontoinhaber jemals erfährt, dass Sie ihn besucht haben."
+                "title": "Eigene Inhalte planen",
+                "text": "Nutze Formate und Bildunterschriften als Referenz. Behalte Quellenlinks und erstelle eigenes Material."
             },
             {
-                "title": "Sicher bleiben auf gemeinsam genutzten Geräten",
-                "text": "Greifen Sie auf Arbeits- oder Familiencomputern auf Stories und Reels zu, ohne Gefahr zu laufen, dass Ihr persönliches Konto angemeldet bleibt. Surfen Sie frei auf jedem Gerät, ohne dass ein Verlauf aufgezeichnet wird."
+                "title": "Ein öffentliches Profil prüfen",
+                "text": "Prüfe, ob Biografie und zurückgegebene Beiträge deine Frage beantworten. Fehlende Daten belegen keine Inaktivität."
             },
             {
-                "title": "Tiefgehende Recherche für Journalisten & Ermittler",
-                "text": "Führen Sie wichtige Recherchen oder elterliche Überwachung auf öffentlichen Profilen mit einer garantierten 'No-Logs'-Richtlinie durch. Kein digitaler Fußabdruck, keine IP-Protokollierung und kein Konto erforderlich."
+                "title": "Recherche dokumentieren",
+                "text": "Notiere Benutzernamen, Datum, Quellen und offene Fragen mit dem herunterladbaren Arbeitsblatt."
             }
         ]
     },
@@ -278,7 +276,10 @@
             "Batch-Download",
             "Highlights Viewer",
             "Browser-Erweiterung"
-        ]
+        ],
+        "feedbackTitle": "Hilf uns, InstaPSV zu verbessern",
+        "feedbackDescription": "Melde die Seiten-URL und den sichtbaren Fehler. Sende niemals Passwörter oder Zugangstoken.",
+        "feedbackCta": "Feedback senden"
     },
     "blog": {
         "title": "Blog",

@@ -45,43 +45,55 @@
     },
     "features": {
         "badge": "Functies",
-        "title": "Ontdek de {magic} van InstaPSV",
-        "magic": "Magie",
-        "subtitle": "Krachtige tools om Instagram-content anoniem en veilig te verkennen.",
+        "titleStart": "Het juiste hulpmiddel voor",
+        "titleHighlight": "je taak",
+        "titleEnd": "",
+        "subtitle": "Hoe InstaPSV je verzoek verwerkt. De integratie ondersteunt bepaalde openbare Business- en Creator-accounts, geen privéaccounts.",
+        "learnMore": "Lees de handleiding",
+        "cta": "Zoek een profiel",
         "storyViewer": {
-            "title": "Verhalen Viewer",
-            "description": "Bekijk Instagram verhalen anoniem. Sla verhalen op voordat ze verdwijnen."
+            "title": "Beschikbaarheid van Stories",
+            "description": "Gegevens hangen af van de aanbieder. Bekijken vereist Pro; dekking is niet gegarandeerd.",
+            "cta": "Lees de handleiding",
+            "interlink": "Lees de handleiding"
         },
-        "followersParser": {
-            "title": "Volgers Analyzer",
-            "description": "Bekijk volledige volgers- en volgend-lijsten van elk openbaar profiel."
+        "highlightsViewer": {
+            "title": "Highlights: huidige grenzen",
+            "description": "Het ophalen van volledige collecties is niet geïmplementeerd. Controleer de grenzen voordat je betaalt.",
+            "cta": "Lees de handleiding",
+            "interlink": "Lees de handleiding"
         },
-        "reelsViewer": {
-            "title": "Reels Viewer",
-            "description": "Bekijk en download Instagram Reels in hoge kwaliteit zonder in te loggen."
+        "postGrid": {
+            "title": "Profielen en opgehaalde berichten",
+            "description": "Bekijk beschikbare biografieën, aantallen en een selectie berichten van ondersteunde openbare accounts.",
+            "cta": "Lees de handleiding",
+            "interlink": "Lees de handleiding"
         },
-        "photoSaver": {
-            "title": "Foto Opslaan",
-            "description": "Download Instagram foto's en profielfoto's in originele kwaliteit."
-        },
-        "learnMore": "Meer info"
+        "reelsPlayer": {
+            "title": "Video’s en downloads",
+            "description": "Bekijk opgehaalde video’s. Downloads vereisen Pro; kwaliteit en dekking hangen van de bron af.",
+            "cta": "Lees de handleiding",
+            "interlink": "Lees de handleiding"
+        }
     },
     "howItWorks": {
-        "badge": "Hoe het werkt",
-        "title": "Slechts {steps} om te verkennen",
-        "steps": "3 stappen",
-        "subtitle": "Begin in seconden met het anoniem bekijken van Instagram-content.",
+        "badge": "Zo werkt het",
+        "titleStart": "Drie stappen naar",
+        "titleHighlight": "een nuttige zoekopdracht",
+        "titleEnd": "",
+        "subtitle": "De integratie ondersteunt bepaalde openbare Business- en Creator-accounts, geen privéaccounts.",
+        "cta": "Zoek een profiel",
         "step1": {
-            "title": "Voer gebruikersnaam in",
-            "description": "Typ de Instagram-gebruikersnaam die je wilt verkennen."
+            "title": "Voer de huidige naam in",
+            "description": "Gebruik een gebruikersnaam of profiel-URL. Directe bericht- en Reel-links worden niet ondersteund."
         },
         "step2": {
-            "title": "Bekijk profiel",
-            "description": "Blader door hun berichten, verhalen, reels en volgers anoniem."
+            "title": "Controleer de resultaten",
+            "description": "Zoekopdrachten gebruiken credits. Een geladen profiel garandeert geen Stories of volledig archief."
         },
         "step3": {
-            "title": "Download content",
-            "description": "Sla elke foto, video of verhaal op met één klik."
+            "title": "Bewaar bron en datum",
+            "description": "Bewaar de oorspronkelijke link voor de context. Profielantwoorden kunnen 24 uur worden gecachet."
         }
     },
     "faq": {
@@ -147,7 +159,10 @@
             "Batch download",
             "Highlights viewer",
             "Browser extensie"
-        ]
+        ],
+        "feedbackTitle": "Help InstaPSV te verbeteren",
+        "feedbackDescription": "Stuur de pagina-URL en zichtbare fout. Deel nooit wachtwoorden of toegangstokens.",
+        "feedbackCta": "Stuur feedback"
     },
     "blog": {
         "title": "Blog",
@@ -243,5 +258,123 @@
         "instagram": "Instagram",
         "contentNotFound": "Inhoud niet gevonden.",
         "scrollToExplore": "Scroll om te ontdekken"
+    },
+    "security": {
+        "badge": "Privacy en transparantie",
+        "title": "Hoe InstaPSV je verzoek verwerkt",
+        "subtitle": "Privacy en transparantie. Hoe InstaPSV je verzoek verwerkt.",
+        "tracks": {
+            "title": "Gebruikte informatie",
+            "items": [
+                {
+                    "title": "Openbare gebruikersnaam",
+                    "text": "De zoekopdracht stuurt de ingevoerde accountnaam naar onze server."
+                },
+                {
+                    "title": "Verzoekinformatie",
+                    "text": "IP-adressen worden gebruikt voor snelheidsbeperking. Infrastructuur kan verzoeken en fouten loggen."
+                },
+                {
+                    "title": "Accountfuncties",
+                    "text": "Aanmelden, credits en betalingen verwerken account- en transactiegegevens."
+                }
+            ]
+        },
+        "protects": {
+            "title": "Duidelijke toegangsgrenzen",
+            "items": [
+                {
+                    "title": "Geen Instagram-inloggegevens",
+                    "text": "Het formulier vraagt niet om je Instagram-wachtwoord of een koppeling met je persoonlijke account."
+                },
+                {
+                    "title": "Ondersteunde openbare accounts",
+                    "text": "De integratie ondersteunt bepaalde openbare Business- en Creator-accounts, geen privéaccounts."
+                },
+                {
+                    "title": "Gegevens en cache",
+                    "text": "Resultaten kunnen 24 uur worden gecachet. Externe mediahosts kunnen verzoeken ontvangen."
+                }
+            ]
+        },
+        "cta": "Zoek een profiel"
+    },
+    "useCases": {
+        "badge": "Praktische toepassingen",
+        "title": "Openbare informatie omzetten in nuttige observaties",
+        "subtitle": "Noteer namen, datums, bronnen en open vragen met het downloadbare werkblad.",
+        "items": [
+            {
+                "title": "Zakelijke boodschappen vergelijken",
+                "text": "Bekijk hoe openbare accounts aanbiedingen uitleggen. Volgers bewijzen geen verkoopresultaten."
+            },
+            {
+                "title": "Eigen inhoud plannen",
+                "text": "Gebruik formats en bijschriften als referentie. Bewaar bronlinks en maak eigen materiaal."
+            },
+            {
+                "title": "Een openbaar profiel bekijken",
+                "text": "Controleer of biografie en berichten je vraag beantwoorden. Ontbrekende gegevens bewijzen geen inactiviteit."
+            },
+            {
+                "title": "Onderzoek vastleggen",
+                "text": "Noteer namen, datums, bronnen en open vragen met het downloadbare werkblad."
+            }
+        ]
+    },
+    "comparison": {
+        "title": "Vergelijk functies en grenzen",
+        "headers": {
+            "feature": "Functies",
+            "app": "Ondersteunde accounts",
+            "others": "Toegang",
+            "instapsv": "Beschikbaarheid"
+        },
+        "rows": [
+            {
+                "feature": "Profielen en opgehaalde berichten",
+                "app": "Ondersteunde openbare accounts",
+                "others": "Zoekcredits",
+                "instapsv": "Resultaten kunnen 24 uur worden gecachet. Externe mediahosts kunnen verzoeken ontvangen.",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Video’s en downloads",
+                "app": "Ondersteunde openbare accounts",
+                "others": "Zoekcredits / Pro",
+                "instapsv": "Kwaliteit en dekking variëren",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Beschikbaarheid van Stories",
+                "app": "Ondersteunde openbare accounts",
+                "others": "Bekijken met Pro",
+                "instapsv": "Alleen als de aanbieder gegevens teruggeeft",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Highlights: huidige grenzen",
+                "app": "Niet beschikbaar",
+                "others": "Niet beschikbaar",
+                "instapsv": "Volledige collecties niet geïmplementeerd",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            }
+        ]
     }
 }

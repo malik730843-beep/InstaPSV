@@ -44,181 +44,171 @@
         "getStarted": "Start a Free Search"
     },
     "security": {
-        "badge": "Privacy & Transparency",
-        "title": "How InstaPSV Handles Your Request",
-        "subtitle": "Understand the difference between not needing your Instagram login and full anonymity.",
+        "badge": "Privacy & transparency",
+        "title": "How InstaPSV handles your request",
+        "subtitle": "Understand what the service processes and what using it without Instagram login means.",
         "tracks": {
-            "title": "How Instagram Tracks You",
+            "title": "Information used by the service",
             "items": [
                 {
-                    "title": "Story Notifications",
-                    "text": "The owner sees your name on their viewer list. Your identity is exposed."
+                    "title": "The public handle you enter",
+                    "text": "Your search sends the account handle to our server to look up supported public profile data."
                 },
                 {
-                    "title": "Search History",
-                    "text": "Instagram logs every profile you visit to build a detailed ad profile on you."
+                    "title": "Request information",
+                    "text": "Infrastructure processes connection information. IP addresses are used for rate limiting; requests and errors may be logged."
                 },
                 {
-                    "title": "IP Logging",
-                    "text": "Your permanent digital footprint is linked to your personal Instagram account."
+                    "title": "Site account features",
+                    "text": "Signing in, using credits or submitting a payment involves site account and transaction information."
                 }
             ]
         },
         "protects": {
-            "title": "How InstaPSV Protects You",
+            "title": "Clear access boundaries",
             "items": [
                 {
-                    "title": "Secure Proxy Requests",
-                    "text": "We act as a shield, fetching data so your identity never reaches Instagram."
+                    "title": "No Instagram credentials",
+                    "text": "The search form does not ask for your Instagram password or connect your personal Instagram account."
                 },
                 {
-                    "title": "Zero-Log Policy",
-                    "text": "We never store your searches or personal data. No digital footprint, ever."
+                    "title": "Public supported accounts",
+                    "text": "The integration is designed for supported public Business and Creator accounts. It cannot open private accounts."
                 },
                 {
-                    "title": "No Login Required",
-                    "text": "Browse freely without the risk of accidentally 'liking' a post or appearing in suggestions."
+                    "title": "Source and cache limits",
+                    "text": "Results can be cached for up to 24 hours. External media hosts may process requests; no-login access is not a zero-log guarantee."
                 }
             ]
         },
-        "cta": "Protect My Privacy & Start Searching"
+        "cta": "Look up a supported profile"
     },
     "features": {
         "badge": "Features",
-        "titleStart": "Browse Every Detail",
-        "titleHighlight": "Secretly",
+        "titleStart": "Find the right tool for",
+        "titleHighlight": "your task",
         "titleEnd": "",
-        "subtitle": "Look up public Instagram Business and Creator accounts, browse returned media, and use the hashtag picker — no Instagram login needed.",
+        "subtitle": "Check the available data, plan requirements and known limitations before choosing a tool.",
         "storyViewer": {
-            "title": "Anonymous Instagram Story Viewer",
-            "description": "Watch active Instagram stories anonymously and stay 100% hidden. Experience total privacy without leaving a digital footprint.",
-            "cta": "Open Story Viewer",
-            "interlink": "Try Highlights Viewer"
+            "title": "Story availability",
+            "description": "Check whether the provider returns story media for a supported account. Viewing requires Pro; coverage is not guaranteed.",
+            "cta": "Check Stories",
+            "interlink": "Highlights limits"
         },
         "highlightsViewer": {
-            "title": "Instagram Highlights Viewer & Downloader",
-            "description": "Browse and download saved Instagram highlights from public profiles in high definition. Access archived content securely.",
-            "cta": "View Highlights",
-            "interlink": "Go to Story Viewer"
+            "title": "Highlights: current limitations",
+            "description": "Full highlight collection retrieval is not implemented. Read what the interface can display before considering a paid plan.",
+            "cta": "Read limitations",
+            "interlink": "Story guide"
         },
         "postGrid": {
-            "title": "Anonymous IG Profile & Post Viewer",
-            "description": "Access the full Instagram feed layout privately. View high-resolution photos and carousels without notifying the user.",
-            "cta": "Explore Profiles"
+            "title": "Profiles and returned posts",
+            "description": "Read an available bio, profile counts and a selection of posts from supported public Business and Creator accounts.",
+            "cta": "Explore profiles"
         },
         "reelsPlayer": {
-            "title": "Instagram Reels Viewer & Downloader",
-            "description": "Play and download Instagram Reels in HD from any public account, without auto-playing or tracking your activity.",
-            "cta": "Download Reels"
+            "title": "Returned videos and downloads",
+            "description": "Browse returned video items. Downloads require Pro and save the supplied file; resolution and catalog completeness vary.",
+            "cta": "View video guide"
         },
-        "cta": "Get Started Now",
-        "learnMore": "Learn More"
+        "cta": "Start a search",
+        "learnMore": "Read the guide"
     },
     "howItWorks": {
-        "badge": "How It Works",
-        "titleStart": "3 Simple Steps to",
-        "titleHighlight": "Browse Instagram",
-        "titleEnd": "Without Being Seen",
-        "subtitle": "Start viewing Instagram content anonymously in seconds — no account required.",
+        "badge": "How it works",
+        "titleStart": "Three steps to",
+        "titleHighlight": "a useful lookup",
+        "titleEnd": "",
+        "subtitle": "Start with a supported account and keep the source limitations in mind.",
         "step1": {
-            "title": "Enter the Username",
-            "description": "Simply type or paste the public Instagram handle you want to explore. There’s no need to log in or link your own account."
+            "title": "Enter the current handle",
+            "description": "Use an account username or profile URL. Direct post and Reel URLs are not supported by this search."
         },
         "step2": {
-            "title": "Secure Anonymous Search",
-            "description": "Our private servers retrieve the profile data through an anonymous gateway. This ensures your personal IP address and identity are never exposed to Instagram."
+            "title": "Check the returned data",
+            "description": "Search credits apply. A loaded profile does not guarantee story data or a complete media history."
         },
         "step3": {
-            "title": "View Stories & Reels Secretly",
-            "description": "Explore stories, reels, and highlights with total peace of mind. You leave zero digital footprint, and the profile owner will never know you visited."
-        }
+            "title": "Keep the source and date",
+            "description": "Use the original post link for context. Profile responses may be cached for up to 24 hours."
+        },
+        "cta": "Start a profile lookup"
     },
     "comparison": {
-        "title": "How InstaPSV is better than others",
+        "title": "Compare features and access limits",
         "headers": {
             "feature": "Feature",
-            "app": "Logged-in App",
-            "others": "Other Viewer Sites",
-            "instapsv": "InstaPSV"
+            "app": "Account scope",
+            "others": "Access",
+            "instapsv": "Availability"
         },
         "rows": [
             {
-                "feature": "Visible to Owner",
-                "app": "Yes",
-                "others": "No",
-                "instapsv": "No",
-                "status": [
-                    "risk",
-                    "safe",
-                    "safe"
-                ]
-            },
-            {
-                "feature": "Login Required",
-                "app": "Yes",
-                "others": "No",
-                "instapsv": "No",
-                "status": [
-                    "risk",
-                    "safe",
-                    "safe"
-                ]
-            },
-            {
-                "feature": "Ad Intrusion",
-                "app": "Medium",
-                "others": "Extreme",
-                "instapsv": "Minimal",
+                "feature": "Profile and posts",
+                "app": "Supported public Business / Creator",
+                "others": "Search credits",
+                "instapsv": "Returned selection; up to 24-hour cache",
                 "status": [
                     "neutral",
-                    "risk",
-                    "safe"
+                    "neutral",
+                    "neutral"
                 ]
             },
             {
-                "feature": "IP Protection",
-                "app": "None",
-                "others": "Partial",
-                "instapsv": "Full Proxy",
+                "feature": "Video items",
+                "app": "Supported public Business / Creator",
+                "others": "Credits to view; Pro to download",
+                "instapsv": "Source quality and coverage vary",
                 "status": [
-                    "risk",
                     "neutral",
-                    "safe"
+                    "neutral",
+                    "neutral"
                 ]
             },
             {
-                "feature": "View Reels/Stories",
-                "app": "Yes",
-                "others": "Sometimes",
-                "instapsv": "Yes (HD)",
+                "feature": "Stories",
+                "app": "Supported public accounts",
+                "others": "Pro viewing",
+                "instapsv": "Only when returned by the provider",
                 "status": [
-                    "safe",
                     "neutral",
-                    "safe"
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Full highlight collections",
+                "app": "Not supported",
+                "others": "Not available",
+                "instapsv": "Collection retrieval not implemented",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
                 ]
             }
         ]
     },
     "useCases": {
-        "badge": "Solutions",
-        "title": "Popular use cases to view insta anonymously",
-        "subtitle": "Security should always come first, following are the most popular reason why people use instapsv",
+        "badge": "Practical uses",
+        "title": "Turn public information into useful observations",
+        "subtitle": "Use a specific question, record the source and separate observations from conclusions.",
         "items": [
             {
-                "title": "Monitor Competitors Undetected",
-                "text": "Research market trends and analyze competitor content strategies by looking up public Business and Creator accounts without connecting your own Instagram profile."
+                "title": "Compare business messaging",
+                "text": "Check how supported public accounts describe products or delivery. Record examples instead of inferring sales from follower counts."
             },
             {
-                "title": "Curate Content Without the Trace",
-                "text": "Browse public profiles to find visual references and trending post formats. Collect inspiration without connecting your personal Instagram account."
+                "title": "Plan your own content",
+                "text": "Read returned captions and formats for reference. Keep source links and create your own material rather than copying a creator."
             },
             {
-                "title": "Stay Safe on Shared Devices",
-                "text": "Access public Instagram content on shared devices without connecting your personal Instagram account or leaving session data in the browser."
+                "title": "Review a public profile",
+                "text": "Check whether an available bio and recent returned posts answer your question. Missing data is not proof of inactivity."
             },
             {
-                "title": "Deep Research for Journalists & Investigators",
-                "text": "Research public profiles for journalism or investigative work. The tool looks up publicly available Business and Creator account data; read the privacy policy before use."
+                "title": "Build a research record",
+                "text": "Use the downloadable worksheet to record handles, observation dates, source links and unanswered questions."
             }
         ]
     },
@@ -228,7 +218,7 @@
         "titleHighlight": "Questions",
         "titleEnd": "",
         "subtitle": "Honest answers about what InstaPSV can do, what it cannot do, and how it works.",
-        "contactCta": "Still have questions? We respond within 48 hours.",
+        "contactCta": "Still have questions?",
         "contactLink": "Contact Support",
         "items": [
             {
@@ -249,7 +239,7 @@
             },
             {
                 "question": "Will I appear in someone's story viewer list?",
-                "answer": "The search form does not connect to your personal Instagram account, so a named view is not logged on your behalf. However, this does not make your session fully anonymous — requests pass through InstaPSV infrastructure, and media may load from external hosts."
+                "answer": "The search form does not connect to your personal Instagram account. This does not guarantee complete anonymity: requests pass through site infrastructure and media may load from external hosts. Read the privacy policy before use."
             },
             {
                 "question": "Can I download Instagram Reels or posts?",
@@ -295,7 +285,10 @@
             "Batch Download",
             "Highlights Viewer",
             "Browser Extension"
-        ]
+        ],
+        "feedbackTitle": "Help improve InstaPSV",
+        "feedbackDescription": "Found a broken tool or a description that does not match what you see? Send the page URL, public handle if relevant, and the visible error. Never send passwords or access tokens.",
+        "feedbackCta": "Send feedback or report an issue"
     },
     "blog": {
         "title": "Blog",

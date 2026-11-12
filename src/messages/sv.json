@@ -45,43 +45,55 @@
     },
     "features": {
         "badge": "Funktioner",
-        "title": "Upptäck {magic} av InstaPSV",
-        "magic": "Magin",
-        "subtitle": "Kraftfulla verktyg för att utforska Instagram-innehåll anonymt och säkert.",
+        "titleStart": "Rätt verktyg för",
+        "titleHighlight": "din uppgift",
+        "titleEnd": "",
+        "subtitle": "Så behandlar InstaPSV din förfrågan. Integrationen stöder vissa offentliga Business- och Creator-konton, inte privata konton.",
+        "learnMore": "Läs guiden",
+        "cta": "Sök efter en profil",
         "storyViewer": {
-            "title": "Story Viewer",
-            "description": "Titta på Instagram-stories anonymt."
+            "title": "Tillgängliga Stories",
+            "description": "Data beror på leverantören. Visning kräver Pro och täckning garanteras inte.",
+            "cta": "Läs guiden",
+            "interlink": "Läs guiden"
         },
-        "followersParser": {
-            "title": "Följare Analyzer",
-            "description": "Se kompletta följarlistor."
+        "highlightsViewer": {
+            "title": "Höjdpunkter: aktuella gränser",
+            "description": "Hämtning av kompletta samlingar är inte implementerad. Kontrollera gränserna före köp.",
+            "cta": "Läs guiden",
+            "interlink": "Läs guiden"
         },
-        "reelsViewer": {
-            "title": "Reels Viewer",
-            "description": "Titta och ladda ner Reels i hög kvalitet."
+        "postGrid": {
+            "title": "Profiler och hämtade inlägg",
+            "description": "Se tillgängliga biografier, antal och ett urval inlägg från offentliga konton som stöds.",
+            "cta": "Läs guiden",
+            "interlink": "Läs guiden"
         },
-        "photoSaver": {
-            "title": "Foto Sparare",
-            "description": "Ladda ner foton i originalkvalitet."
-        },
-        "learnMore": "Läs mer"
+        "reelsPlayer": {
+            "title": "Videor och nedladdningar",
+            "description": "Bläddra bland hämtade videor. Nedladdningar kräver Pro; kvalitet och täckning beror på källan.",
+            "cta": "Läs guiden",
+            "interlink": "Läs guiden"
+        }
     },
     "howItWorks": {
-        "badge": "Hur det fungerar",
-        "title": "Bara {steps} att utforska",
-        "steps": "3 steg",
-        "subtitle": "Börja titta på Instagram-innehåll anonymt på sekunder.",
+        "badge": "Så fungerar det",
+        "titleStart": "Tre steg till",
+        "titleHighlight": "en användbar sökning",
+        "titleEnd": "",
+        "subtitle": "Integrationen stöder vissa offentliga Business- och Creator-konton, inte privata konton.",
+        "cta": "Sök efter en profil",
         "step1": {
-            "title": "Ange användarnamn",
-            "description": "Skriv Instagram-användarnamnet."
+            "title": "Ange aktuellt användarnamn",
+            "description": "Använd ett användarnamn eller en profil-URL. Direktlänkar till inlägg och Reels stöds inte."
         },
         "step2": {
-            "title": "Visa profil",
-            "description": "Bläddra bland inlägg, stories och följare anonymt."
+            "title": "Kontrollera resultaten",
+            "description": "Sökningar använder krediter. En inläst profil garanterar inte Stories eller ett fullständigt arkiv."
         },
         "step3": {
-            "title": "Ladda ner innehåll",
-            "description": "Spara foto, video eller story med ett klick."
+            "title": "Behåll källa och datum",
+            "description": "Spara originallänken för sammanhang. Profilsvar kan cachelagras i upp till 24 timmar."
         }
     },
     "faq": {
@@ -89,7 +101,7 @@
         "title": "Vanliga {questions}",
         "questions": "Frågor",
         "subtitle": "Hitta svar på vanliga frågor om InstaPSV.",
-        "contactCta": "Fler frågor?",
+        "contactCta": "Har du fler frågor?",
         "contactLink": "Kontakta support",
         "items": [
             {
@@ -146,7 +158,10 @@
             "Batch-nedladdning",
             "Highlights",
             "Tillägg"
-        ]
+        ],
+        "feedbackTitle": "Hjälp oss att förbättra InstaPSV",
+        "feedbackDescription": "Skicka sidans URL och det synliga felet. Skicka aldrig lösenord eller åtkomsttoken.",
+        "feedbackCta": "Skicka feedback"
     },
     "blog": {
         "title": "Blogg",
@@ -242,5 +257,123 @@
         "instagram": "Instagram",
         "contentNotFound": "Innehåll hittades inte.",
         "scrollToExplore": "Scrolla för att utforska"
+    },
+    "security": {
+        "badge": "Integritet och öppenhet",
+        "title": "Så behandlar InstaPSV din förfrågan",
+        "subtitle": "Integritet och öppenhet. Så behandlar InstaPSV din förfrågan.",
+        "tracks": {
+            "title": "Information som används",
+            "items": [
+                {
+                    "title": "Offentligt användarnamn",
+                    "text": "Sökningen skickar det angivna användarnamnet till vår server."
+                },
+                {
+                    "title": "Förfrågningsdata",
+                    "text": "IP-adresser används för hastighetsbegränsning. Infrastrukturen kan logga förfrågningar och fel."
+                },
+                {
+                    "title": "Kontofunktioner",
+                    "text": "Inloggning, krediter och betalningar behandlar konto- och transaktionsinformation."
+                }
+            ]
+        },
+        "protects": {
+            "title": "Tydliga åtkomstgränser",
+            "items": [
+                {
+                    "title": "Inga Instagram-inloggningsuppgifter",
+                    "text": "Formuläret ber inte om ditt Instagram-lösenord eller anslutning till ditt personliga konto."
+                },
+                {
+                    "title": "Offentliga konton som stöds",
+                    "text": "Integrationen stöder vissa offentliga Business- och Creator-konton, inte privata konton."
+                },
+                {
+                    "title": "Data och cache",
+                    "text": "Resultat kan cachelagras i 24 timmar. Externa medievärdar kan ta emot förfrågningar."
+                }
+            ]
+        },
+        "cta": "Sök efter en profil"
+    },
+    "useCases": {
+        "badge": "Praktisk användning",
+        "title": "Gör offentlig information till användbara observationer",
+        "subtitle": "Anteckna namn, datum, källor och öppna frågor med det nedladdningsbara arbetsbladet.",
+        "items": [
+            {
+                "title": "Jämför företagsbudskap",
+                "text": "Se hur offentliga konton beskriver erbjudanden. Följarantal bevisar inte försäljning."
+            },
+            {
+                "title": "Planera eget innehåll",
+                "text": "Använd format och bildtexter som referens. Behåll källor och skapa eget material."
+            },
+            {
+                "title": "Granska en offentlig profil",
+                "text": "Se om biografin och inläggen besvarar din fråga. Saknade data bevisar inte inaktivitet."
+            },
+            {
+                "title": "Dokumentera research",
+                "text": "Anteckna namn, datum, källor och öppna frågor med det nedladdningsbara arbetsbladet."
+            }
+        ]
+    },
+    "comparison": {
+        "title": "Jämför funktioner och gränser",
+        "headers": {
+            "feature": "Funktioner",
+            "app": "Konton som stöds",
+            "others": "Åtkomst",
+            "instapsv": "Tillgänglighet"
+        },
+        "rows": [
+            {
+                "feature": "Profiler och hämtade inlägg",
+                "app": "Offentliga konton som stöds",
+                "others": "Sökkrediter",
+                "instapsv": "Resultat kan cachelagras i 24 timmar. Externa medievärdar kan ta emot förfrågningar.",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Videor och nedladdningar",
+                "app": "Offentliga konton som stöds",
+                "others": "Sökkrediter / Pro",
+                "instapsv": "Kvalitet och täckning varierar",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Tillgängliga Stories",
+                "app": "Offentliga konton som stöds",
+                "others": "Visning med Pro",
+                "instapsv": "Endast när leverantören returnerar data",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Höjdpunkter: aktuella gränser",
+                "app": "Inte tillgängligt",
+                "others": "Inte tillgängligt",
+                "instapsv": "Kompletta samlingar inte implementerade",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            }
+        ]
     }
 }

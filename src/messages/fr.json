@@ -44,44 +44,56 @@
         "getStarted": "Commencer"
     },
     "features": {
-        "badge": "Fonctionnalités",
-        "title": "Découvrez la {magic} d'InstaPSV",
-        "magic": "Magie",
-        "subtitle": "Des outils puissants pour explorer le contenu Instagram de manière anonyme et sécurisée.",
+        "badge": "Fonctions",
+        "titleStart": "Le bon outil pour",
+        "titleHighlight": "votre tâche",
+        "titleEnd": "",
+        "subtitle": "Comment InstaPSV traite votre requête. L’intégration vise certains comptes Business et Creator publics, pas les comptes privés.",
+        "learnMore": "Lire le guide",
+        "cta": "Rechercher un profil",
         "storyViewer": {
-            "title": "Visualiseur de Stories",
-            "description": "Regardez les stories Instagram de manière anonyme. Enregistrez les stories avant qu'elles ne disparaissent."
+            "title": "Disponibilité des Stories",
+            "description": "Les données dépendent du fournisseur. La lecture exige Pro et la couverture n’est pas garantie.",
+            "cta": "Lire le guide",
+            "interlink": "Lire le guide"
         },
-        "followersParser": {
-            "title": "Analyseur d'Abonnés",
-            "description": "Consultez les listes complètes d'abonnés et d'abonnements de tout profil Instagram public."
+        "highlightsViewer": {
+            "title": "Stories à la une : limites",
+            "description": "La récupération des collections complètes n’est pas implémentée. Vérifiez les limites avant tout achat.",
+            "cta": "Lire le guide",
+            "interlink": "Lire le guide"
         },
-        "reelsViewer": {
-            "title": "Visualiseur de Reels",
-            "description": "Regardez et téléchargez des Reels Instagram en haute qualité sans vous connecter."
+        "postGrid": {
+            "title": "Profils et publications renvoyées",
+            "description": "Consultez la biographie, les compteurs et une sélection de publications de comptes publics pris en charge.",
+            "cta": "Lire le guide",
+            "interlink": "Lire le guide"
         },
-        "photoSaver": {
-            "title": "Sauvegarde de Photos",
-            "description": "Téléchargez des photos Instagram et des photos de profil en qualité originale."
-        },
-        "learnMore": "En savoir plus"
+        "reelsPlayer": {
+            "title": "Vidéos et téléchargements",
+            "description": "Parcourez les vidéos renvoyées. Les téléchargements exigent Pro ; qualité et couverture dépendent de la source.",
+            "cta": "Lire le guide",
+            "interlink": "Lire le guide"
+        }
     },
     "howItWorks": {
-        "badge": "Comment ça marche",
-        "title": "Seulement {steps} pour explorer",
-        "steps": "3 étapes",
-        "subtitle": "Commencez à visualiser le contenu Instagram de manière anonyme en quelques secondes.",
+        "badge": "Fonctionnement",
+        "titleStart": "Trois étapes pour",
+        "titleHighlight": "une recherche utile",
+        "titleEnd": "",
+        "subtitle": "L’intégration vise certains comptes Business et Creator publics, pas les comptes privés.",
+        "cta": "Rechercher un profil",
         "step1": {
-            "title": "Entrez le nom d'utilisateur",
-            "description": "Tapez le nom d'utilisateur Instagram que vous souhaitez explorer."
+            "title": "Saisir le nom actuel",
+            "description": "Utilisez un identifiant ou une URL de profil. Les liens directs vers une publication ou un Reel ne sont pas pris en charge."
         },
         "step2": {
-            "title": "Voir le profil",
-            "description": "Parcourez leurs publications, stories, reels et abonnés de manière anonyme."
+            "title": "Vérifier les données",
+            "description": "Les recherches utilisent des crédits. Un profil chargé ne garantit ni Stories ni historique complet."
         },
         "step3": {
-            "title": "Télécharger le contenu",
-            "description": "Enregistrez n'importe quelle photo, vidéo ou story en un seul clic."
+            "title": "Conserver la source et la date",
+            "description": "Gardez le lien original pour le contexte. Les réponses de profil peuvent être mises en cache 24 heures."
         }
     },
     "faq": {
@@ -89,7 +101,7 @@
         "title": "Questions {questions}",
         "questions": "Fréquentes",
         "subtitle": "Trouvez des réponses aux questions courantes sur InstaPSV.",
-        "contactCta": "Encore des questions?",
+        "contactCta": "Vous avez encore des questions ?",
         "contactLink": "Contacter le support",
         "items": [
             {
@@ -146,7 +158,10 @@
             "Téléchargement en lot",
             "Visualiseur de highlights",
             "Extension de navigateur"
-        ]
+        ],
+        "feedbackTitle": "Aidez-nous à améliorer InstaPSV",
+        "feedbackDescription": "Envoyez l’URL de la page et l’erreur visible. Ne transmettez jamais de mot de passe ni de jeton d’accès.",
+        "feedbackCta": "Envoyer un retour"
     },
     "blog": {
         "title": "Blog",
@@ -242,5 +257,123 @@
         "instagram": "Instagram",
         "contentNotFound": "Contenu non trouvé.",
         "scrollToExplore": "Faites défiler pour explorer"
+    },
+    "security": {
+        "badge": "Confidentialité et transparence",
+        "title": "Comment InstaPSV traite votre requête",
+        "subtitle": "Confidentialité et transparence. Comment InstaPSV traite votre requête.",
+        "tracks": {
+            "title": "Informations utilisées",
+            "items": [
+                {
+                    "title": "Identifiant public",
+                    "text": "La recherche transmet le nom de compte saisi à notre serveur."
+                },
+                {
+                    "title": "Informations de requête",
+                    "text": "Les adresses IP servent à limiter les requêtes. L’infrastructure peut enregistrer requêtes et erreurs."
+                },
+                {
+                    "title": "Fonctions du site",
+                    "text": "La connexion, les crédits et les paiements traitent des informations de compte et de transaction."
+                }
+            ]
+        },
+        "protects": {
+            "title": "Des limites d’accès claires",
+            "items": [
+                {
+                    "title": "Sans identifiants Instagram",
+                    "text": "Le formulaire ne demande pas votre mot de passe Instagram ni de connecter votre compte personnel."
+                },
+                {
+                    "title": "Comptes publics pris en charge",
+                    "text": "L’intégration vise certains comptes Business et Creator publics, pas les comptes privés."
+                },
+                {
+                    "title": "Données et cache",
+                    "text": "Les résultats peuvent rester en cache 24 heures. Les hébergeurs de médias externes peuvent recevoir des requêtes."
+                }
+            ]
+        },
+        "cta": "Rechercher un profil"
+    },
+    "useCases": {
+        "badge": "Usages pratiques",
+        "title": "Exploiter les informations publiques avec méthode",
+        "subtitle": "Notez identifiants, dates, sources et questions ouvertes avec la fiche téléchargeable.",
+        "items": [
+            {
+                "title": "Comparer les messages commerciaux",
+                "text": "Observez comment des comptes publics présentent leurs offres. Les abonnés ne prouvent pas les ventes."
+            },
+            {
+                "title": "Préparer vos propres contenus",
+                "text": "Utilisez les formats et légendes comme références. Gardez les sources et créez votre propre travail."
+            },
+            {
+                "title": "Examiner un profil public",
+                "text": "Vérifiez si la biographie et les publications répondent à votre question. Des données absentes ne prouvent pas l’inactivité."
+            },
+            {
+                "title": "Documenter une recherche",
+                "text": "Notez identifiants, dates, sources et questions ouvertes avec la fiche téléchargeable."
+            }
+        ]
+    },
+    "comparison": {
+        "title": "Comparer les fonctions et leurs limites",
+        "headers": {
+            "feature": "Fonctions",
+            "app": "Comptes concernés",
+            "others": "Accès",
+            "instapsv": "Disponibilité"
+        },
+        "rows": [
+            {
+                "feature": "Profils et publications renvoyées",
+                "app": "Comptes publics pris en charge",
+                "others": "Crédits de recherche",
+                "instapsv": "Les résultats peuvent rester en cache 24 heures. Les hébergeurs de médias externes peuvent recevoir des requêtes.",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Vidéos et téléchargements",
+                "app": "Comptes publics pris en charge",
+                "others": "Crédits de recherche / Pro",
+                "instapsv": "Qualité et couverture variables",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Disponibilité des Stories",
+                "app": "Comptes publics pris en charge",
+                "others": "Lecture Pro",
+                "instapsv": "Seulement si le fournisseur renvoie les données",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            },
+            {
+                "feature": "Stories à la une : limites",
+                "app": "Indisponible",
+                "others": "Indisponible",
+                "instapsv": "Collections complètes non implémentées",
+                "status": [
+                    "neutral",
+                    "neutral",
+                    "neutral"
+                ]
+            }
+        ]
     }
 }
