@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11998e"/>
+      <stop offset="50%" stop-color="#38ef7d"/>
+      <stop offset="100%" stop-color="#0575E6"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.06)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Decorative circles / shapes -->
+  <circle cx="1050" cy="120" r="240" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="150" cy="520" r="180" fill="rgba(0,0,0,0.12)"/>
+  <circle cx="980" cy="520" r="90" fill="rgba(255,255,255,0.05)"/>
+
+  <!-- Glass Card -->
+  <rect x="80" y="70" width="1040" height="490" rx="24" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Brand watermark -->
+  <text x="140" y="140" fill="rgba(255,255,255,0.95)" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="2">INSTAPSV EDITORIAL</text>
+
+  <!-- Category pill -->
+  <rect x="140" y="170" width="160" height="38" rx="19" fill="rgba(255,255,255,0.22)"/>
+  <text x="220" y="195" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" text-anchor="middle">CREATOR STRATEGY</text>
+
+  <!-- Article Title (Auto multi-line simulation) -->
+  <text x="140" y="275" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" letter-spacing="-0.5">
+    How to Price Sponsored Instagram Posts in 2026
+  </text>
+
+  <!-- Subtitle -->
+  <text x="140" y="340" fill="rgba(255,255,255,0.85)" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400">
+    Comprehensive Guide &amp; Research Analysis &bull; Updated 2026
+  </text>
+
+  <!-- Icon Circle -->
+  <g transform="translate(940, 260)">
+    <circle cx="60" cy="60" r="70" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+    <g transform="translate(30, 30) scale(2.5)">
+      <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="#ffffff"/>
+    </g>
+  </g>
+
+  <!-- Footer meta in card -->
+  <line x1="140" y1="470" x2="1060" y2="470" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <text x="140" y="515" fill="rgba(255,255,255,0.9)" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600">InstaPSV Research Hub</text>
+  <text x="1060" y="515" fill="rgba(255,255,255,0.7)" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500" text-anchor="end">instapsv.com</text>
+</svg>

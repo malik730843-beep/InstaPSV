@@ -35,6 +35,12 @@ const articles = [
     ['public-instagram-profile-analysis-tutorial', 'research'],
     ['instagram-creator-vs-business-account', 'guides'],
     ['instagram-engagement-rate-guide', 'research'],
+    ['instagram-algorithm-explained-2026', 'guides'],
+    ['instagram-carousel-strategy-guide', 'creators'],
+    ['instagram-influencer-collaborations-guide', 'creators'],
+    ['instagram-seo-ranking-factors', 'research'],
+    ['instagram-monetization-guide-2026', 'creators'],
+    ['instagram-analytics-key-metrics-guide', 'research'],
 ];
 
 export const STATIC_BLOG_POSTS: StaticPost[] = articles.map(([slug, category]) => {
@@ -44,7 +50,7 @@ export const STATIC_BLOG_POSTS: StaticPost[] = articles.map(([slug, category]) =
         ...article,
         id: `static-${slug}`,
         slug,
-        featured_image: '',
+        featured_image: `/images/blog/${slug}.svg`,
         created_at: CONTENT_REVIEWED_AT,
         updated_at: CONTENT_REVIEWED_AT,
         categories: [category],
