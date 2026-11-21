@@ -1,66 +1,12 @@
-import { mergeStaticPosts, STATIC_BLOG_CATEGORIES } from '@/lib/staticBlogPosts';
-import { isReachablePost } from '@/lib/siteRoutes';
-import { applyReviewedPost } from '@/lib/reviewedContent';
+import { STATIC_BLOG_POSTS, STATIC_BLOG_CATEGORIES } from '@/lib/staticBlogPosts';
 import Link from 'next/link';
 import styles from './BlogPreview.module.css';
-import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase Client (Server-side)
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+export default function BlogPreview() {
+    const posts = STATIC_BLOG_POSTS.slice(0, 3);
+    const categoryMap = new Map(STATIC_BLOG_CATEGORIES.map(c => [c.id, c.name]));
 
-interface Post {
-    id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    featured_image: string;
-    created_at: string;
-    categories: string[];
-    content?: string;
-}
-
-interface Category {
-    id: string;
-    name: string;
-}
-
-export default async function BlogPreview() {
-    let posts: Post[] = [];
-    let categories: Category[] = [];
-    const unpublishedSlugs = new Set<string>();
-
-    try {
-        // Fetch latest 3 published posts
-        const { data: postsData, error: postsError } = await supabase
-            .from('posts')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-        if (postsData && !postsError) {
-            posts = postsData.filter(post => post.status === 'published' && isReachablePost(post)).map(applyReviewedPost);
-            for (const post of postsData) if (post.status !== 'published') unpublishedSlugs.add(post.slug);
-        }
-
-        // Fetch categories
-        const { data: categoriesData, error: catError } = await supabase
-            .from('categories')
-            .select('*');
-
-        if (categoriesData && !catError) {
-            categories = categoriesData;
-        }
-
-    } catch (error) {
-        console.error('Failed to fetch blog posts:', error);
-    }
-
-    posts = mergeStaticPosts(posts, unpublishedSlugs).sort((left, right) => Date.parse(right.created_at) - Date.parse(left.created_at)).slice(0, 3);
-    categories = Array.from(new Map([...STATIC_BLOG_CATEGORIES, ...categories].map(category => [category.id, category])).values());
-
-    if (posts.length === 0) {
+    if (!posts || posts.length === 0) {
         return null;
     }
 
@@ -72,10 +18,10 @@ export default async function BlogPreview() {
                     <div className={styles.headerLeft}>
                         <span className={styles.badge}>📚 Resources</span>
                         <h2 className={styles.title}>
-                            Insights <span className={styles.highlight}>& Resources</span>
+                            Insights <span className={styles.highlight}>&amp; Resources</span>
                         </h2>
                         <p className={styles.subtitle}>
-                            Tips, tutorials, and guides to help you get the most out of InstaPSV.
+                            In-depth guides, research frameworks, and creator strategies from InstaPSV Editorial.
                         </p>
                     </div>
                     <Link href="/blog" className={styles.viewAllLink}>
@@ -89,11 +35,10 @@ export default async function BlogPreview() {
                 {/* Blog Grid */}
                 <div className={styles.grid}>
                     {posts.map((post) => {
-                        // Resolve category name (first category)
                         const catId = post.categories?.[0];
-                        const categoryName = categories.find(c => c.id === catId)?.name || 'Tips';
-                        // Estimate read time
-                        const readTime = Math.ceil((post.content || post.excerpt || '').split(' ').length / 200) + ' min read';
+                        const categoryName = categoryMap.get(catId) || 'Guides';
+                        const wordCount = (post.content || '').replace(/<[^>]*>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
+                        const readTime = Math.ceil(wordCount / 200) + ' min read';
                         const date = new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
                         return (

@@ -10,7 +10,6 @@ import ComparisonTable from '@/components/sections/ComparisonTable';
 import UseCases from '@/components/sections/UseCases';
 import FeatureSuggestion from '@/components/sections/FeatureSuggestion';
 import BlogPreview from '@/components/sections/BlogPreview';
-import ContentSection from '@/components/sections/ContentSection';
 
 import FAQ from '@/components/sections/FAQ';
 import FAQSchema from '@/components/seo/FAQSchema';
@@ -47,7 +46,6 @@ export default function Home() {
         <HowItWorks />
         <ComparisonTable />
         <UseCases />
-        <ContentSection />
         <ViewerGuide includeSectionAnchors={false} />
         <BlogPreview />
         <FAQ />
