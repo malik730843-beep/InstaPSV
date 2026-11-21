@@ -34,12 +34,12 @@
 
   <!-- Article Title (Auto multi-line simulation) -->
   <text x="140" y="275" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" letter-spacing="-0.5">
-    Instagram Algorithm Explained 2026: Feed & Reels
+    Instagram Algorithm Explained 2026: Feed &amp; Reels
   </text>
 
   <!-- Subtitle -->
   <text x="140" y="340" fill="rgba(255,255,255,0.85)" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400">
-    Comprehensive Guide &amp; Research Analysis &bull; Updated 2026
+    Comprehensive Guide &amp; Research Analysis &amp;bull; Updated 2026
   </text>
 
   <!-- Icon Circle -->
