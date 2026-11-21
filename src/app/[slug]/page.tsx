@@ -207,8 +207,43 @@ export default async function DynamicPage({
         const categoryName = (await getCategoryName(post.categories?.[0])) || t('defaultCategory');
         const authorName = post.author_name || t('defaultAuthor');
 
+        // JSON-LD Article schema for E-E-A-T and rich results
+        const articleSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: post.excerpt || post.content.slice(0, 160).replace(/<[^>]*>/g, ''),
+            author: {
+                '@type': 'Organization',
+                name: authorName,
+                url: 'https://instapsv.com/about',
+            },
+            publisher: {
+                '@type': 'Organization',
+                name: 'InstaPSV',
+                url: 'https://instapsv.com',
+                logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://instapsv.com/logo.png',
+                },
+            },
+            datePublished: post.created_at,
+            dateModified: post.updated_at || post.created_at,
+            mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': `https://instapsv.com/${slug}`,
+            },
+            url: `https://instapsv.com/${slug}`,
+            articleSection: categoryName,
+            inLanguage: 'en',
+        };
+
         return (
             <>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+                />
                 <Header alwaysDark />
                 <main className={blogStyles.main}>
                     <div className={blogStyles.articleContainer}>
@@ -248,7 +283,7 @@ export default async function DynamicPage({
 
                         <div className={blogStyles.content}>
                             <TableOfContents />
-                            {!isPreview && post.updated_at === CONTENT_REVIEWED_AT && <p>Revised November 12, 2026. <a href="/contact">Report a correction</a>.</p>}
+                            {!isPreview && post.updated_at === CONTENT_REVIEWED_AT && <p>Revised November 21, 2026. <a href="/contact">Report a correction</a>.</p>}
                             <div className="blog-post-body" dangerouslySetInnerHTML={{ __html: sanitizeContent(post.content || '') }} />
                         </div>
 

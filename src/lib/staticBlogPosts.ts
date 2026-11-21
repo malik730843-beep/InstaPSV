@@ -29,6 +29,12 @@ const articles = [
     ['social-media-burnout-2026', 'creators'],
     ['instagram-reels-downloader-guide', 'guides'],
     ['instagram-hashtag-strategy-guide', 'creators'],
+    ['instagram-bio-optimization-guide', 'guides'],
+    ['how-to-grow-instagram-followers-organically', 'guides'],
+    ['instagram-content-calendar-template', 'creators'],
+    ['public-instagram-profile-analysis-tutorial', 'research'],
+    ['instagram-creator-vs-business-account', 'guides'],
+    ['instagram-engagement-rate-guide', 'research'],
 ];
 
 export const STATIC_BLOG_POSTS: StaticPost[] = articles.map(([slug, category]) => {
